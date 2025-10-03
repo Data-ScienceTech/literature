@@ -1,0 +1,2399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Stream: Information & Privacy & Their</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .meta-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .papers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .paper-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .paper-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .paper-authors {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .year-tag {
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .methodology-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 25px; }
+            .section { padding: 25px; }
+            .meta-info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-lightbulb"></i> Information & Privacy & Their</h1>
+            <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                Research stream comprising 146 papers published between 2016-2025. Primary publication venues: MIS Quarterly (76), Information Systems Research (64), Organization Science (5). Based on analysis of 145 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena.
+            </p>
+            
+            <div class="meta-info">
+                <div class="meta-card">
+                    <div class="number">146</div>
+                    <div>Papers</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2016-2025</div>
+                    <div>Time Span</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">4</div>
+                    <div>Journals</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2025</div>
+                    <div>Peak Year</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="key-insights">
+            <h3><i class="fas fa-star"></i> Key Research Insights</h3>
+            <div class="insight-item">
+                <strong>Temporal Evolution:</strong> This stream spans 10 years, 
+                showing steady growth in research attention.
+            </div>
+            <div class="insight-item">
+                <strong>Journal Distribution:</strong> Primary publication venue is MIS Quarterly 
+                (76 papers, 52.1%).
+            </div>
+            <div class="insight-item">
+                <strong>Research Maturity:</strong> Emerging area with 
+                146 papers contributing to the scholarly dialog.
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-microscope"></i> How This Stream Was Discovered</h3>
+            <p>This research stream was identified using advanced AI and network science methods:</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li><strong>SPECTER2 Embeddings:</strong> Papers were encoded into 768-dimensional semantic vectors using a transformer model trained on scientific literature</li>
+                <li><strong>Leiden Clustering:</strong> Community detection on k-nearest neighbor graphs revealed papers with high semantic similarity</li>
+                <li><strong>Temporal Analysis:</strong> Burst detection identified periods of increased research activity</li>
+                <li><strong>Quality Validation:</strong> Clustering quality assessed using silhouette scores and manual inspection</li>
+            </ul>
+        </div>
+        
+        <!-- Temporal Trends -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Temporal Evolution</h2>
+            <div class="chart-container">
+                <div id="temporal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- Journal Distribution -->
+        <div class="section">
+            <h2><i class="fas fa-journal-whills"></i> Journal Distribution</h2>
+            <div class="chart-container">
+                <div id="journal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- All Papers -->
+        <div class="section">
+            <h2><i class="fas fa-file-alt"></i> All Papers in This Stream</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Papers are ordered by publication year (most recent first). Each paper contributes to the coherent 
+                research dialog that defines this stream.
+            </p>
+            
+            <div class="papers-grid">
+
+                <div class="paper-card">
+                    <div class="paper-title">A General-Purpose IT Intervention to Improve Human Decision Making, Strengthen Passwords, and Reduce Receptivity to Misinformation</div>
+                    <div class="paper-authors">Harmon, Kevin Andrew; Walden, Eric A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0372" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Investigation of p-Hacking in E-Commerce A/B Testing</div>
+                    <div class="paper-authors">Miller, Alex P.; Hosanagar, Kartik</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2024.0872" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Chief Information Security Officers on Top Management Teams: Impact on Firms’ Innovation</div>
+                    <div class="paper-authors">Gao, Yiwen; Wattal, Sunil; Thatcher, Jason</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0197" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Clocking in or Not? Optimal Design of a Novel Gamified Business Model in Online Learning</div>
+                    <div class="paper-authors">Gao, Yi; Liu, Dengpan; Kumar, Subodha</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0138" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Deeper Down the Rabbit Hole: How Technology Conspiracy Beliefs Emerge and Foster a Conspiracy Mindset</div>
+                    <div class="paper-authors">Trang, Simon; Kraemer, Tobias; Trenz, Manuel; Weiger, Welf H.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0494" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Ransomware Make Investors “WannaCry”? On Investors’ Divergent Reactions to Ransomware Hits and Near Misses</div>
+                    <div class="paper-authors">Schuetz, Sebastian W.; Chen, Yan; Forderer, Jens; Ma, Yusi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/18509" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Exploring Online Help-Seeking Tendencies: The Influence of Experience Type and Helper Identity</div>
+                    <div class="paper-authors">Li, Shaobo (Kevin); Huang, Xun (Irene); Wang, Le; Jiang, Yuwei; Luo, Xin (Robert)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/19133" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">From Smartphones to Smart Students: Learning vs. Distraction Using Smartphones in the Classroom</div>
+                    <div class="paper-authors">Deng, Zhe; Cheng, Zhi (Aaron); Ferreira, Pedro; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0078" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Guest Editorial: “Complexity is the Worst Enemy of Security”: Studying Cybersecurity Through the Lens of Organizational Complexity</div>
+                    <div class="paper-authors">Schneier, Bruce; Vance, Anthony</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/49.1.075" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Human Capital Acquisition in Response to Data Breaches</div>
+                    <div class="paper-authors">Bana, Sarah H.; Brynjolfsson, Erik; Jin, Wang; Steffen, Sebastian; Wang, Xiupeng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/18352" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Improving Students’ Argumentation Skills Using Dynamic Machine-Learning–Based Modeling</div>
+                    <div class="paper-authors">Wambsganss, Thiemo; Janson, Andreas; Söllner, Matthias; Koedinger, Ken; Leimeister, Jan Marco</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0615" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is Fitness Technology-Facilitated Social Comparison the Thief of Well-Being? The Mediating Role of Social Comparison on the Relationships Between Passion and Performance Self-Esteem</div>
+                    <div class="paper-authors">James, Tabitha L.; Whelan, Eoin; Conboy, Kieran</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0083" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is Prevention Better Than Cure? Effects of Cyber Risk Disclosures on Shareholder Response to Breaches</div>
+                    <div class="paper-authors">Cao, Rui; Matta, Moksh; Cavusoglu, Hasan; Aziz, Arslan; Kafaee, Özüm</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0405" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning Personalized Privacy Preference from Public Data</div>
+                    <div class="paper-authors">Wang, Wen; Li, Beibei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0318" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Privacy Concerns and Data Donations: Do Societal Benefits Matter?</div>
+                    <div class="paper-authors">Alashoor, Tawfiq; Keil, Mark; Jiang, Zhenhui (Jack); Saffarizadeh, Kambiz</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/16853" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Promoting Security Behaviors in Remote Work Environments: Personal Values Shaping Information Security Policy Compliance</div>
+                    <div class="paper-authors">Torres, Carlos I.; Crossler, Robert E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0563" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Shapley-Value-Based Feature Attribution for Data Masking</div>
+                    <div class="paper-authors">Qu, Xinxue (Shawn); Darku, Francis Bilson; Guo, Hong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/18502" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Norm Awareness and Norm Compliance in Online Games</div>
+                    <div class="paper-authors">Huang, Tzu-Ling; Liao, Gen-Yih; Dennis, Alexander S.; Dennis, Alan R.; Teng, Ching-I</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/18424" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Fog of Warnings: How Non-Security-Related Notifications Diminish the Efficacy of Security Warnings</div>
+                    <div class="paper-authors">Vance, Anthony; Eargle, Dave; Kirwan, C. Brock; Anderson, Bonnie Brinton; Jenkins, Jeffrey L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/18531" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Learning Mode and Speed on Mutual Learning</div>
+                    <div class="paper-authors">Denrell, Jerker; Christensen, Michael; Knudsen, Thorbjørn; Liu, Chengwei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2023.0173" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Situational Achievement Goals on Online Learning Behavior: Results from Field Experiments</div>
+                    <div class="paper-authors">Mousavi, Nasim; Golara, Sina; Bockstedt, Jesse</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0353" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Understanding and Mitigating the Robot Disadvantage in Luxury Services: The Role of Desire for Superiority</div>
+                    <div class="paper-authors">Ma, Shuang; Ge, Lin; Jia, He (Michael); Wang, Yonggui</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0229" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Understanding the Dynamic and Episodic Nature of Technostressors and Their Effects on Cyberdeviance: A Daily Field Investigation</div>
+                    <div class="paper-authors">Chen, Yang; Benitez, Jose; Cheung, Christy M. K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0273" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">“Extortionality” in Ransomware Attacks: A Microeconomic Study of Extortion and Externality</div>
+                    <div class="paper-authors">Dey, Debabrata; Lahiri, Atanu</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2024.1160" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Design Theory for Transparency of Information Privacy Practices</div>
+                    <div class="paper-authors">Dehling, Tobias; Sunyaev, Ali</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0239" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Onto-Epistemological Analysis of Information Privacy Research</div>
+                    <div class="paper-authors">Xu, Heng; Zhang, Nan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0633" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Automated Analysis of Changes in Privacy Policies: a Structured Self-Attentive Sentence Embedding Approach</div>
+                    <div class="paper-authors">Lin, Fangyu; Samtani, Sagar; Zhu, Hongyi; Brandimarte, Laura; Chen, Hsinchun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/17115" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Behaviorally Measuring Usability by Analyzing Users’ Mouse Movement Efficiency</div>
+                    <div class="paper-authors">Wilson, David W.; Valacich, Joseph S.; Jenkins, Jeffrey L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17900" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Conceptualization and Measurement of Voice-Interaction Usability: The Development of Cooperative Principle Theory for Smart Product Use</div>
+                    <div class="paper-authors">Chen, Qian; Gong, Yeming; Keil, Mark; Liu, Shan; Lu, Yaobin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17525" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Contextual Targeting in mHealth Apps: Harnessing Weather Information and Message Framing to Increase Physical Activity</div>
+                    <div class="paper-authors">Kyung, Nakyung; Chan, Jason; Lim, Sanghee; Lee, Byungtae</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0119" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Delays in Information Presentation Lead to Brain State Switching, Which Degrades User Performance, and There May Not Be Much We Can Do about It</div>
+                    <div class="paper-authors">Harmon, Kevin A.; Lee, Hansol; Khasraghi, Bahar Javadi; Parmar, Harshit S.; Walden, Eric A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17680" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Exploring Contrasting Effects of Trust in Organizational Security Practices and Protective Structures on Employees’ Security-Related Precaution Taking</div>
+                    <div class="paper-authors">Greulich, Malte; Lins, Sebastian; Pienta, Daniel; Thatcher, Jason Bennett; Sunyaev, Ali</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0528" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Interleaved Design for E-Learning: Theory, Design, and Empirical Findings</div>
+                    <div class="paper-authors">Li, Andy Tao; Liu, De; Xu, Sean Xin; Yi, Cheng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17206" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Legitimating Illegitimate Practices: How Data Analysts Compromised Their Standards to Promote Quantification</div>
+                    <div class="paper-authors">Stice-Lusvardi, Ryan; Hinds, Pamela J.; Valentine, Melissa</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1655" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mirror, Mirror on the Wall: Algorithmic Assessments, Transparency, and Self-Fulfilling Prophecies</div>
+                    <div class="paper-authors">Bauer, Kevin; Gill, Andrej</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1217" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Ontology-Based Intelligent Interface Personalization for Protection Against Phishing Attacks</div>
+                    <div class="paper-authors">Zahedi, Fatemeh Mariam; Chen, Yan; Zhao, Huimin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0065" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Privacy Breaches and the Effect of Customer Notification</div>
+                    <div class="paper-authors">Kim, Jeong-Bon; Wang, Chong; Wu, Feng (Harry)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/17540" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Recognition in Personal Data: Data Warping, Recognition Concessions, and Social Justice</div>
+                    <div class="paper-authors">Stelmaszak, Marta; Wagner, Erica L.; DuPont, Nicolle Nixon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/18088" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Rethinking Gamification Failure: A Model and Investigation of Gamified System Maladaptive Behaviors</div>
+                    <div class="paper-authors">Tseng, Shih-Lun “Allen”; Sun, Heshan; Santhanam, Radhika; Lu, Shuya; Thatcher, Jason B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0284" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impacts of Internet Monitoring on Employees’ Cyberloafing and Organizational Citizenship Behavior: A Longitudinal Field Quasi-Experiment</div>
+                    <div class="paper-authors">Jiang, Hemin; Siponen, Mikko; Jiang, Zhenhui (Jack); Tsohou, Aggeliki</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0216" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Time Will Tell: The Case for an Idiographic Approach to Behavioral Cybersecurity Research</div>
+                    <div class="paper-authors">Cram, W. Alec; D’Arcy, John; Benlian, Alexander</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17707" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Uncovering the Neural Processes of Privacy: A Neurally Informed Behavioral Intervention to Protect Information Privacy</div>
+                    <div class="paper-authors">Reeck, Crystal; Guo, Xue; Dimoka, Angelika; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0550" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">United We Stand, Divided We Fall: An Autogenic Perspective on Empowering Cybersecurity in Organizations</div>
+                    <div class="paper-authors">Durcikova, Alexandra; Miranda, Shaila M.; Jensen, Matthew L.; Wright, Ryan T.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/17211" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When the Clock Strikes: A Multimethod Investigation of On-the-Hour Effects in Online Learning</div>
+                    <div class="paper-authors">Huang, Ni; Wang, Lingli; Hong, Yili; Lin, Lihui; Guo, Xunhua; Chen, Guoqing</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1234" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Augmenting Password Strength Meter Design Using the Elaboration Likelihood Model: Evidence from Randomized Experiments</div>
+                    <div class="paper-authors">Khern-am-nuai, Warut; Hashim, Matthew J.; Pinsonneault, Alain; Yang, Weining; Li, Ninghui</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1125" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Could Gamification Designs Enhance Online Learning Through Personalization? Lessons from a Field Experiment</div>
+                    <div class="paper-authors">Leung, Alvin Chung Man; Santhanam, Radhika; Kwok, Ron Chi-Wai; Yue, Wei Thoo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1123" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Cyberslacking in the Workplace: Antecedents and Effects on Job Performance</div>
+                    <div class="paper-authors">Venkatesh, Viswanath; Cheung, Christy M. K.; Davis, Fred D.; Lee, Zach W. Y.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14985" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Going Beyond Deterrence: A Middle-Range Theory of Motives and Controls for Insider Computer Abuse</div>
+                    <div class="paper-authors">Burns, A. J.; Roberts, Tom L.; Posey, Clay; Lowry, Paul Benjamin; Fuller, Bryan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1133" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Mergers and Acquisitions Increase Data Breaches: A Complexity Perspective</div>
+                    <div class="paper-authors">Liang, Huigang; Srinivas, Santhosh; Xue, Yajiong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17703" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Passing the Torch: How Parental Privacy Concerns Affect Adolescent Self-Disclosure on Social Networking Sites</div>
+                    <div class="paper-authors">Wang, Jingguo; Dong, Meichen; Yang, Zhiyong; Li, Yuan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16761" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Phishing Susceptibility in Context: A Multilevel Information Processing Perspective on Deception Detection</div>
+                    <div class="paper-authors">Wright, Ryan T.; Johnson, Steven L.; Kitchens, Brent</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16625" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Pushing Yourself Harder: The Effects of Mobile Touch Modes on Users’ Self-Regulation</div>
+                    <div class="paper-authors">Liu, Yang (Alison); Jiang, Zhenhui (Jack); Choi, Ben C. F.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1155" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reidentification Risk in Panel Data: Protecting fork-Anonymity</div>
+                    <div class="paper-authors">Li, Shaobo; Schneider, Matthew J.; Yu, Yan; Gupta, Sachin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1169" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Satisfaction to Stay, Regret to Switch: Understanding Post-adoption Regret in Choosing Competing Technologies When Herding</div>
+                    <div class="paper-authors">Zou, Haiyun (Melody); Sun, Heshan; Fang, Yulin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1188" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Self-Regulation and External Influence: The Relative Efficacy of Mobile Apps and Offline Channels for Personal Weight Management</div>
+                    <div class="paper-authors">Kwon, Hyeokkoo Eric; Dewan, Sanjeev; Oh, Wonseok; Kim, Taekyung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1144" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Fault in Our Stars: Molecular Genetics and Information Technology Use</div>
+                    <div class="paper-authors">Brown, Susan A.; Sias, Richard W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17075" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Path to Hedonic Information System Use Addiction: A Process Model in the Context of Social Networking Sites</div>
+                    <div class="paper-authors">Vaghefi, Isaac; Negoita, Bogdan; Lapointe, Liette</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1109" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Too Tired and in Too Good of a Mood to Worry About Privacy: Explaining the Privacy Paradox Through the Lens of Effort Level in Information Processing</div>
+                    <div class="paper-authors">Alashoor, Tawfiq; Keil, Mark; Smith, H. Jeff; McConnell, Allen R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1182" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Uncovering the Neural Processes of Privacy: A Neurally Informed Behavioral Intervention to Protect Information Privacy</div>
+                    <div class="paper-authors">Reeck, Crystal; Guo, Xue; Dimoka, Angelika; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.550" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Where is IT in Information Security? The Interrelationship among IT Investment, Security Awareness, and Data Breaches</div>
+                    <div class="paper-authors">Li, Wilson Weixun; Leung, Alvin Chung Man; Yue, Wei Thoo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15713" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Randomized Field Experiment to Explore the Impact of Herding Cues as Catalysts for Adoption</div>
+                    <div class="paper-authors">Feng, Yue (Katherine); Claggett, Jennifer L.; Karahanna, Elena; Tam, Kar Yan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16141" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Achieving a Balance Between Privacy Protection and Data Collection: A Field Experimental Examination of a Theory-Driven Information Technology Solution</div>
+                    <div class="paper-authors">Liu, Bailing; Pavlou, Paul A.; Cheng, Xiufeng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1045" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Empirical Investigation of Company Response to Data Breaches</div>
+                    <div class="paper-authors">Nikkhah, Hamid Reza; Grover, Varun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16609" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Co-Opting Regulation: Professional Control Through Discretionary Mobilization of Legal Prescriptions and Expert Knowledge</div>
+                    <div class="paper-authors">Evans, Joelle; Silbey, Susan S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1525" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Comparing Competing Systems: An Extension of the Information Systems Continuance Model</div>
+                    <div class="paper-authors">Lin, Julian; Yin, Jiamin; Wei, Kwok Kee; Chan, Hock Chuan; Teo, Hock Hai</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/12309" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Deviant Affordances: When Tensions, Deadlocks, and Nonconformance Generate Performance</div>
+                    <div class="paper-authors">Haag, Steffi; Eckhardt, Andreas; Venkatesh, Viswanath</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14340" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Security Fear Appeals Work When They Interrupt Tasks? A Multi-Method Examination of Password Strength</div>
+                    <div class="paper-authors">Vance, Anthony; Eargle, David; Eggett, Dennis; Straub, Detmar W.; Ouimet, Kirk</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15511" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Empowering Patients Using Smart Mobile Health Platforms: Evidence From a Randomized Field Experiment</div>
+                    <div class="paper-authors">Ghose, Anindya; Guo, Xitong; Li, Beibei; Dang, Yuanyuan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16201" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Executive Functions and Information Systems Learning</div>
+                    <div class="paper-authors">Sullivan, Yulia W.; Davis, Fred D.; Koh, Chang E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15979" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Formation and Mitigation of Technostress in the Personal Use of IT</div>
+                    <div class="paper-authors">Salo, Markus; Pirkkalainen, Henri; Chua, Cecil Eng Huang; Koskelainen, Tiina</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14950" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Gamified Challenges in Online Weight-Loss Communities</div>
+                    <div class="paper-authors">Bojd, Behnaz; Song, Xiaolong; Tan, Yong; Yan, Xiangbin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1081" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Helping Older Workers Realize Their Full Organizational Potential: A Moderated Mediation Model of Age and IT-Enabled Task Performance</div>
+                    <div class="paper-authors">Tams, Stefan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16359" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Impact of Customer Compensation Strategies on Outcomes and the Mediating Role of Justice Perceptions: A Longitudinal Study of Target’s Data Breach</div>
+                    <div class="paper-authors">Hoehle, Hartmut; Venkatesh, Viswanath; Brown, Susan A.; Tepper, Bennett J.; Kude, Thomas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14740" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Linking Exploits from the Dark Web to Known Vulnerabilities for Proactive Cyber Threat Intelligence: An Attention-based Deep Structured Semantic Model</div>
+                    <div class="paper-authors">Samtani, Sagar; Chai, Yidong; Chen, Hsinchun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15392" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Overcoming the Single-IS Paradigm in Individual-Level IS Research</div>
+                    <div class="paper-authors">Gerlach, Jin P.; Cenfetelli, Ronald T.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1065" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Peer Privacy Concern: Conceptualization and Measurement</div>
+                    <div class="paper-authors">Zhang, Nan (Andy); Wang, Chong (Alex); Karahanna, Elena; Xu, Yan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14861" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Technological Entitlement: It’s My Technology and I’ll (Ab)Use It How I Want To</div>
+                    <div class="paper-authors">Amo, Laura C.; Grijalva, Emily; Herath, Tejaswini; Lemoine, G. James; Rao, H. Raghav</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15499" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Path of the Righteous: Using Trace Data to Understand Fraud Decisions in Real Time</div>
+                    <div class="paper-authors">Weinmann, Markus; Valacich, Joseph S.; Schneider, Christoph; Jenkins, Jeffrey L.; Hibbeln, Martin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17038" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Role of Social Cues and Trust in Users’ Private Information Disclosure</div>
+                    <div class="paper-authors">Zalmanson, Lior; Oestreicher-Singer, Gal; Ecker, Yael</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16288" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Trial-Period Technostress: A Conceptual Definition and Mixed-Methods Investigation</div>
+                    <div class="paper-authors">Maier, Christian; Laumer, Sven; Thatcher, Jason Bennett; Wirth, Jakob; Weitzel, Tim</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1047" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Uncovering the Mitigating Psychological Response to Monitoring Technologies: Police Body Cameras Not Only Constrain but Also Depolarize</div>
+                    <div class="paper-authors">Patil, Shefali V.; Bernstein, Ethan S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1452" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Constructs Become Obsolete: A Systematic Approach to Evaluating and Updating Constructs for Information Systems Research</div>
+                    <div class="paper-authors">Compeau, Deborah; Correia, John; Thatcher, Jason Bennett</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15516" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Examining the Neural Basis of Information Security Policy Violations: A Noninvasive Brain Stimulation Approach</div>
+                    <div class="paper-authors">Turel, Ofir; He, Qinghua; Wen, Yatong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/15717" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Personal Achievement Goals, Learning Strategies, and Perceived IT Affordances</div>
+                    <div class="paper-authors">Nevo, Saggi; Nevo, Dorit; Pinsonneault, Alain</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1025" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Technology-Mediated Dangerous Behaviors as Foraging for Social-Hedonic Rewards: The Role of Implied Inequality</div>
+                    <div class="paper-authors">Turel, Ofir</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/16353" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Technology-Mediated Dangerous Behaviors as Foraging for Social–Hedonic Rewards: The Role of Implied Inequality</div>
+                    <div class="paper-authors">Turel, Ofir</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/16352" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Executives’ IT Expertise on Reported Data Security Breaches</div>
+                    <div class="paper-authors">Haislip, Jacob; Lim, Jee-Hae; Pinsker, Robert</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0986" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Next Generation of Research on IS Use: A Theoretical Framework of Delegation to and from Agentic IS Artifacts</div>
+                    <div class="paper-authors">Baird, Aaron; Maruping, Likoebe M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/15882" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Phishing Funnel Model: A Design Artifact to Predict User Susceptibility to Phishing Websites</div>
+                    <div class="paper-authors">Abbasi, Ahmed; Dobolyi, David; Vance, Anthony; Zahedi, Fatemeh Mariam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0973" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Understanding Inconsistent Employee Compliance with Information Security Policies Through the Lens of the Extended Parallel Process Model</div>
+                    <div class="paper-authors">Chen, Yan; Galletta, Dennis F.; Lowry, Paul Benjamin; Luo, Xin (Robert); Moody, Gregory D.; Willison, Robert</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1014" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Theory of Multilevel Information Privacy Management for the Digital Era</div>
+                    <div class="paper-authors">Bélanger, France; James, Tabitha L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0900" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Empirical Investigation of the Antecedents and Consequences of Privacy Uncertainty in the Context of Mobile Apps</div>
+                    <div class="paper-authors">Al-Natour, Sameh; Cavusoglu, Hasan; Benbasat, Izak; Aleem, Usman</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0931" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Constant Checking Is Not Addiction: A Grounded Theory of IT-Mediated State-Tracking</div>
+                    <div class="paper-authors">Gerlach, Jin P.; Cenfetelli, Ronald T.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15685" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Examining How Chronically Ill Patients’ Reactions to and Effective Use of Information Technology Can Influence How Well They Self-Manage Their Illness</div>
+                    <div class="paper-authors">Savoli, Azadeh; Barki, Henri; Paré, Guy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15103" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Go To YouTube and Call Me in the Morning: Use of Social Media for Chronic Conditions</div>
+                    <div class="paper-authors">Liu, Xiao; Zhang, Bin; Susarla, Anjana; Padman, Rema</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15107" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">IT-Enabled Self-Monitoring for Chronic Disease Self-Management: An Interdisciplinary Review</div>
+                    <div class="paper-authors">Jiang, Jinglu; Cameron, Ann-Frances</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15108" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Information Technology Identity: A Key Determinant of IT Feature and Exploratory Usage</div>
+                    <div class="paper-authors">Carter, Michelle; Petter, Stacie; Grover, Varun; Thatcher, Jason Bennett</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14607" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is There a Genetic Basis for Information Search Propensity? A Genotyping Experiment</div>
+                    <div class="paper-authors">Browne, Glenn J.; Walden, Eric A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14718" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Separate Versus Joint Evaluation: The Roles of Evaluation Mode and Construal Level in Technology Adoption</div>
+                    <div class="paper-authors">Ho, Candy K. Y.; Ke, Weiling; Liu, Hefu; Chau, Patrick Y. K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14246" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Influence of Professional Subculture on Information Security Policy Violations: A Field Study in a Healthcare Context</div>
+                    <div class="paper-authors">Sarkar, Sumantra; Vance, Anthony; Ramesh, Balasubramaniam; Demestihas, Menelaos; Wu, Daniel Thomas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0941" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Interplay of IT Users’ Coping Strategies: Uncovering Momentary Emotional Load, Routes, and Sequences</div>
+                    <div class="paper-authors">Salo, Markus; Makkonen, Markus; Hekkala, Riitta</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15610" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Too Good to Be True: Firm Social Performance and the Risk of Data Breach</div>
+                    <div class="paper-authors">D’Arcy, John; Adjerid, Idris; Angst, Corey M.; Glavas, Ante</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0939" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Longitudinal Study of Unauthorized Access Attempts on Information Systems: The Role of Opportunity Contexts1</div>
+                    <div class="paper-authors">Wang, Jingguo; Shan, Zhe; Gupta, Manish; Rao, H. Raghav</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/14751" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An fMRI Exploration of Information Processing in Electronic Networks of Practice1</div>
+                    <div class="paper-authors">Meservy, Thomas O.; Fadel, Kelly J.; Kirwan, C. Brock; Meservy, Rayman D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/15093" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Relative Privacy Valuations Under Varying Disclosure Characteristics</div>
+                    <div class="paper-authors">Buckman, Joseph R.; Bockstedt, Jesse C.; Hashim, Matthew J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0818" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Seeing the Forest and the Trees: A Meta-Analysis of the Antecedents to Information Security Policy Compliance1</div>
+                    <div class="paper-authors">Cram, W. Alec; D’Arcy, John; Proudfoot, Jeffrey G.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/15117" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Adaptive Roles of Positive and Negative Emotions in Organizational Insiders’ Security-Based Precaution Taking</div>
+                    <div class="paper-authors">Burns, A. J.; Roberts, Tom L.; Posey, Clay; Lowry, Paul Benjamin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0860" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Toward a Theory of Information Systems Security Behaviors of Organizational Employees: A Dialectical Process Perspective</div>
+                    <div class="paper-authors">Karjalainen, Mari; Sarker, Suprateek; Siponen, Mikko</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0827" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Using Organismic Integration Theory to Explore the Associations Between Users’ Exercise Motivations and Fitness Technology Feature Set Use1</div>
+                    <div class="paper-authors">James, Tabitha L.; Wallace, Linda; Deane, Jason K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/14128" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Using Polynomial Modeling to Understand Service Quality in E–Government Websites1</div>
+                    <div class="paper-authors">Nishant, Rohit; Srivastava, Shirish C.; Teo, Thompson S. H.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/12349" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">What Users Do Besides Problem-Focused Coping When Facing It Security Threats: An Emotionfocused Coping Perspective1</div>
+                    <div class="paper-authors">Liang, Huigang; Xue, Yajiong; Pinsonneault, Alain; Wu, Yu “Andy”</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/14360" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Why Would I Use Location-Protective Settings on My Smartphone? Motivating Protective Behaviors and the Existence of the Privacy Knowledge–Belief Gap</div>
+                    <div class="paper-authors">Crossler, Robert E.; Bélanger, France</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0846" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Self-Fulfilling Cycle of Coercive Surveillance: Workers’ Invisibility Practices and Managerial Justification</div>
+                    <div class="paper-authors">Anteby, Michel; Chan, Curtis K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1175" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beyond The Privacy Paradox: Objective Versus Relative Risk in Privacy Decision Making1</div>
+                    <div class="paper-authors">Adjerid, Idris; Peer, Eyal; Acquisti, Alessandro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/14316" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Collective Information Systems Use: A Typological Theory1</div>
+                    <div class="paper-authors">Negoita, Bogdan; Lapointe, Liette; Rivard, Suzanne</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13219" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mindfulness in Information Technology Use: Definitions, Distinctions, and A New Measure1</div>
+                    <div class="paper-authors">Thatcher, Jason Bennett; Wright, Ryan T.; Sun, Heshan; Zagenczyk, Thomas J.; Klein, Richard</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/11881" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Quantifying the Impact of Social Influence on the Information Technology Implementation Process by Physicians: A Hierarchical Bayesian Learning Approach</div>
+                    <div class="paper-authors">Hao, Haijing; Padman, Rema; Sun, Baohong; Telang, Rahul</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0746" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Recommending Remedial Learning Materials to Students by Filling Their Knowledge GAPS1</div>
+                    <div class="paper-authors">Bauman, Konstantin; Tuzhilin, Alexander</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13770" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Needs–Affordances–Features Perspective for the Use of Social Media1</div>
+                    <div class="paper-authors">Karahanna, Elena; Xu, Sean Xin; Xu, Yan; Zhang, Nan (Andy)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/11492" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Toward a Unified Model of Information Security Policy Compliance1</div>
+                    <div class="paper-authors">Moody, Gregory D.; Siponen, Mikko; Pahnila, Seppo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13853" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Transfiguration Work and the System of Transfiguration: How Employees Represent and Misrepresent Their Work1</div>
+                    <div class="paper-authors">Cunha, Joao; Carugati, Andrea</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13050" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Tuning Out Security Warnings: A Longitudinal Examination of Habituation Through fMRI, Eye Tracking, and Field Experiments1</div>
+                    <div class="paper-authors">Vance, Anthony; Jenkins, Jeffrey L.; Anderson, Bonnie Brinton; Bjornn, Daniel K.; Kirwan, C. Brock</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/14124" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Coping Responses in Phishing Detection: An Investigation of Antecedents and Consequences</div>
+                    <div class="paper-authors">Wang, Jingguo; Li, Yuan; Rao, H. Raghav</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0680" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Direct and Indirect Information System Use: A Multimethod Exploration of Social Power Antecedents in Healthcare</div>
+                    <div class="paper-authors">Tong, Yu; Tan, Chuan-Hoo; Teo, Hock-Hai</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0708" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Examining the Mediating Roles of Cognitive Load and Performance Outcomes in User Satisfaction with a Website: A Field Quasi-Experiment1</div>
+                    <div class="paper-authors">Hu, Paul Jen-Hwa; Hu, Han-fen; Fang, Xiao</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.3.14" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Extending the Concept of Control Beliefs: Integrating the Role of Advice Networks</div>
+                    <div class="paper-authors">Robert, Lionel P.; Sykes, Tracy Ann</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0666" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Is Your User Feeling? Inferring Emotion Through Human-Computer Interaction Devices1</div>
+                    <div class="paper-authors">Hibbeln, Martin; Jenkins, Jeffrey L.; Schneider, Christoph; Valacich, Joseph S.; Weinmann, Markus</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.1.01" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Through the Eyes of Others: How Onlookers Shape the Use of Technology at Work1</div>
+                    <div class="paper-authors">Sergeeva, Anastasia; Huysman, Marleen; Soekijad, Maura; van den Hooff, Bart</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.4.07" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Toward Meaningful Engagement: A Framework for Design and Research of Gamified Information Systems1</div>
+                    <div class="paper-authors">Liu, De; Santhanam, Radhika; Webster, Jane</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.4.01" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Understanding Consumers’ Attitudes Toward Controversial Information Technologies: A Contextualization Approach</div>
+                    <div class="paper-authors">Breward, Michael; Hassanein, Khaled; Head, Milena</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0706" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">User Compensation as a Data Breach Recovery Action: An Investigation of the Sony PlayStation Network Breach1</div>
+                    <div class="paper-authors">Goode, Sigi; Hoehle, Hartmut; Venkatesh, Viswanath; Brown, Susan A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.3.03" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Temporally Situated Self-Agency Theory of Information Technology Reinvention1</div>
+                    <div class="paper-authors">Nevo, Saggi; Nevo, Dorit; Pinsonneault, Alain</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.1.07" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Exploratory Study of the Formation and Impact of Electronic Service Failures1</div>
+                    <div class="paper-authors">Tan, Chee-Wee; Benbasat, Izak; Cenfetelli, Ronald T.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.1.01" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Capturing the Complexity of Malleable IT Use: Adaptive Structuration Theory for Individuals1</div>
+                    <div class="paper-authors">Schmitz, Kurt W.; Teng, James T. C.; Webb, Kimberly J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.3.07" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Examining the Continuance of Secure Behavior: A Longitudinal Field Study of Mobile Device Authentication</div>
+                    <div class="paper-authors">Steinbart, Paul John; Keith, Mark J.; Babb, Jeffry</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0634" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Excessive Dependence on Mobile Social Apps: A Rational Addiction Perspective</div>
+                    <div class="paper-authors">Kwon, Hyeokkoo Eric; So, Hyunji; Han, Sang Pil; Oh, Wonseok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0658" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Individuals’ Internet Security Perceptions and Behaviors: Polycontextual Contrasts between the United States and China1</div>
+                    <div class="paper-authors">Chen, Yan; Zahedi, Fatemeh Mariam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.1.09" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Managing Citizens’ Uncertainty in E-Government Services: The Mediating and Moderating Roles of Transparency and Trust</div>
+                    <div class="paper-authors">Venkatesh, Viswanath; Thong, James Y. L.; Chan, Frank K. Y.; Hu, Paul J. H.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2015.0612" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mandatory Standards and Organizational Information Security</div>
+                    <div class="paper-authors">Lee, Chul Ho; Geng, Xianjun; Raghunathan, Srinivasan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2015.0607" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">More Harm Than Good? How Messages That Interrupt Can Make Us Vulnerable</div>
+                    <div class="paper-authors">Jenkins, Jeffrey L.; Anderson, Bonnie Brinton; Vance, Anthony; Kirwan, C. Brock; Eargle, David</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0644" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reducing Organizational Rule Breaking Through Task Variety: How Task Design Supports Deliberative Thinking</div>
+                    <div class="paper-authors">Derfler-Rozin, Rellie; Moore, Celia; Staats, Bradley R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1094" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—Gamification of Technology-Mediated Training: Not All Competitions Are the Same</div>
+                    <div class="paper-authors">Santhanam, Radhika; Liu, De; Shen, Wei-Cheng Milton</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0630" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—Using Expectation Disconfirmation Theory and Polynomial Modeling to Understand Trust in Technology</div>
+                    <div class="paper-authors">Lankton, Nancy K.; McKnight, D. Harrison; Wright, Ryan T.; Thatcher, Jason Bennett</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2015.0611" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Revisiting Group-Based Technology Adoption as a Dynamic Process: The Role of Changing Attitude–Rationale Configurations1</div>
+                    <div class="paper-authors">Bayerl, Petra Saskia; Lauche, Kristina; Axtell, Carolyn</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.3.12" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Compensatory Interaction Between User Capabilities and Technology Capabilities in Influencing Task Performance: An Empirical Assessment in Telemedicine Consultations1</div>
+                    <div class="paper-authors">Serrano, Christina; Karahanna, Elena</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.3.04" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Being Hot Is Not Cool: Monitoring Hot Lists for Information Security</div>
+                    <div class="paper-authors">Ji, Yonghua; Kumar, Subodha; Mookerjee, Vijay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0677" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate temporal chart
+        const yearlyData = {"2016": 15, "2017": 9, "2018": 10, "2019": 10, "2020": 12, "2021": 8, "2022": 22, "2023": 16, "2024": 20, "2025": 24};
+        const years = Object.keys(yearlyData).map(y => parseInt(y)).sort();
+        const counts = years.map(y => yearlyData[y.toString()]);
+        
+        const temporalTrace = {
+            x: years,
+            y: counts,
+            type: 'scatter',
+            mode: 'lines+markers',
+            fill: 'tonexty',
+            line: {color: '#667eea', width: 3},
+            marker: {color: '#764ba2', size: 8},
+            name: 'Papers per Year'
+        };
+        
+        const temporalLayout = {
+            title: {
+                text: 'Research Activity Over Time',
+                font: {size: 18, color: '#333'}
+            },
+            xaxis: {title: 'Year'},
+            yaxis: {title: 'Number of Papers'},
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('temporal-chart', [temporalTrace], temporalLayout, {responsive: true});
+        
+        // Generate journal chart
+        const journalData = {"MIS Quarterly": 76, "Information Systems Research": 64, "Organization Science": 5, "Academy of Management Review": 1};
+        const journalTrace = {
+            labels: Object.keys(journalData),
+            values: Object.values(journalData),
+            type: 'pie',
+            hole: 0.4,
+            marker: {
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+            },
+            textinfo: 'label+percent+value'
+        };
+        
+        const journalLayout = {
+            title: {
+                text: 'Distribution Across Journals',
+                font: {size: 18, color: '#333'}
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('journal-chart', [journalTrace], journalLayout, {responsive: true});
+    </script>
+</body>
+</html>

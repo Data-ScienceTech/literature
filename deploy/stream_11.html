@@ -1,0 +1,2119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Stream: Team & Teams & Knowledge</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .meta-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .papers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .paper-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .paper-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .paper-authors {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .year-tag {
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .methodology-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 25px; }
+            .section { padding: 25px; }
+            .meta-info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-lightbulb"></i> Team & Teams & Knowledge</h1>
+            <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                Research stream comprising 126 papers published between 2016-2025. Primary publication venues: Organization Science (78), MIS Quarterly (20), Information Systems Research (18). Based on analysis of 116 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena.
+            </p>
+            
+            <div class="meta-info">
+                <div class="meta-card">
+                    <div class="number">126</div>
+                    <div>Papers</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2016-2025</div>
+                    <div>Time Span</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">4</div>
+                    <div>Journals</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2018</div>
+                    <div>Peak Year</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="key-insights">
+            <h3><i class="fas fa-star"></i> Key Research Insights</h3>
+            <div class="insight-item">
+                <strong>Temporal Evolution:</strong> This stream spans 10 years, 
+                showing steady growth in research attention.
+            </div>
+            <div class="insight-item">
+                <strong>Journal Distribution:</strong> Primary publication venue is Organization Science 
+                (78 papers, 61.9%).
+            </div>
+            <div class="insight-item">
+                <strong>Research Maturity:</strong> Emerging area with 
+                126 papers contributing to the scholarly dialog.
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-microscope"></i> How This Stream Was Discovered</h3>
+            <p>This research stream was identified using advanced AI and network science methods:</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li><strong>SPECTER2 Embeddings:</strong> Papers were encoded into 768-dimensional semantic vectors using a transformer model trained on scientific literature</li>
+                <li><strong>Leiden Clustering:</strong> Community detection on k-nearest neighbor graphs revealed papers with high semantic similarity</li>
+                <li><strong>Temporal Analysis:</strong> Burst detection identified periods of increased research activity</li>
+                <li><strong>Quality Validation:</strong> Clustering quality assessed using silhouette scores and manual inspection</li>
+            </ul>
+        </div>
+        
+        <!-- Temporal Trends -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Temporal Evolution</h2>
+            <div class="chart-container">
+                <div id="temporal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- Journal Distribution -->
+        <div class="section">
+            <h2><i class="fas fa-journal-whills"></i> Journal Distribution</h2>
+            <div class="chart-container">
+                <div id="journal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- All Papers -->
+        <div class="section">
+            <h2><i class="fas fa-file-alt"></i> All Papers in This Stream</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Papers are ordered by publication year (most recent first). Each paper contributes to the coherent 
+                research dialog that defines this stream.
+            </p>
+            
+            <div class="papers-grid">
+
+                <div class="paper-card">
+                    <div class="paper-title">A Cognitive Network Perspective on Creativity: Theorizing Network Mobilization Scripts</div>
+                    <div class="paper-authors">Biscaro, Claudio; Montanari, Fabrizio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16899" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Adaptive Secrecy in the Making of the Atomic Bomb: Toward a Process View of Secretive Innovation</div>
+                    <div class="paper-authors">Borpujari, Rohin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17687" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Concerted Quantification: How Knowledge Workers Limit Overwork While Maintaining Client Satisfaction</div>
+                    <div class="paper-authors">Conzon, Vanessa M.; Mellody, James C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17738" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Coordination in Dynamic Teams: Investigating a Learning–Productivity Trade-Off</div>
+                    <div class="paper-authors">Mayo, Anna T.; Woolley, Anita Williams; John, Liny; March, Christine; Witchel, Selma; Nowalk, Andrew</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16729" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Departmental Boundaries and Knowledge Sharing in Corporate Online Communities</div>
+                    <div class="paper-authors">Liu, Yang; Pu, Jingchuan; Chen, Yuan; Qiu, Liangfei; Cheng, Hsing Kenneth</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0086" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Collaboration Technology Use Affects IT Project Team Creativity: Integrating Team Knowledge and Creative Synthesis Perspectives</div>
+                    <div class="paper-authors">Zhang, Xiaojie; Fang, Yulin; Zhou, Jingmei; Lim, Kai H.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/16651" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Improving Virtual Team Collaboration Paradox Management: A Field Experiment</div>
+                    <div class="paper-authors">Luciano, Margaret M.; Leslie, Jean B.; Mathieu, John E.; Hoole, Emily R.; Anderson, Rebecca; Fenters, Virgil W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17952" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Effects of Competition and Scarcity on Interpersonal Communication in Organizations</div>
+                    <div class="paper-authors">Rao, Kariyushi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18288" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Virtual Team Efficacy Theory: An Integrative Sociotechnical Understanding of the Emergence and Ramifications of Collective Efficacy in Virtual Teams</div>
+                    <div class="paper-authors">Hardin, Andrew; Chatterjee, Sutirtha; Davison, Robert; Fuller, Mark</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0299" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Virtually Even: Status Equalizing in Distributed Organizations</div>
+                    <div class="paper-authors">Hinds, Rebecca; Valentine, Melissa; DeCelles, Katherine; Berg, Justin M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15846" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Resource-Based View on Individual Absorption in the Context of Multiple Team Memberships</div>
+                    <div class="paper-authors">Backmann, Julia; Wimmer, Julia; Mortensen, Mark; Hartmann, Silja; Hoegl, Martin; Peus, Claudia</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.14929" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Balancing Affordances and Constraints: Designing Enterprise Social Media for Organizational Knowledge Work</div>
+                    <div class="paper-authors">Safadi, Hani</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/16499" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Competitive Familiarity: Learning to Coordinate by Competing</div>
+                    <div class="paper-authors">Ching, Kenny; Forti, Enrico; Rawley, Evan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17068" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Lower-Power Individuals Really Compete Less? An Investigation of Covert Competition</div>
+                    <div class="paper-authors">Zhong, Yufei; Li, Huisi (Jessica)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1684" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Group Size and Its Impact on Diversity-Related Perceptions and Hiring Decisions in Homogeneous Groups</div>
+                    <div class="paper-authors">Rai, Aneesh; Chang, Edward H.; Kirgios, Erika L.; Milkman, Katherine L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.14705" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Hierarchy Conflict: Causes, Expressions, and Consequences</div>
+                    <div class="paper-authors">Schouten, Maartje E.; van Knippenberg, Daan; Greer, Lindred L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17976" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">High-Status Teammates: Award Evaluation in the National Basketball Association</div>
+                    <div class="paper-authors">Randle, Dominika Kinga; Zhang, Letian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.13917" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Inverted Apprenticeship: How Senior Occupational Members Develop Practical Expertise and Preserve Their Position When New Technologies Arrive</div>
+                    <div class="paper-authors">Beane, Matthew; Anthony, Callen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1688" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Striking Out Swinging: Specialist Success Following Forced Task Inferiority</div>
+                    <div class="paper-authors">Bond, Brittany; Poskanzer, Ethan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1680" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Task Characteristics and Incentives in Collaborative Problem Solving: Evidence from Three Field Experiments</div>
+                    <div class="paper-authors">Samuel, Jayarajan; Zheng, Zhiqiang (Eric); Mookerjee, Vijay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0118" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Influence of Media Capabilities on Knowledge Contribution in Online Communities</div>
+                    <div class="paper-authors">Liao, Gen-Yih; Huang, Tzu-Ling; Dennis, Alan R.; Teng, Ching-I</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1225" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Performative Production of Trace Data in Knowledge Work</div>
+                    <div class="paper-authors">Aaltonen, Aleksi; Stelmaszak, Marta</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0357" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Virtues of Joint Production: Ethical Foundations for Collaborative Organizations</div>
+                    <div class="paper-authors">Bernacchio, Caleb; Foss, Nicolai J.; Lindenberg, Siegwart</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0389" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Using Digital Nudges to Enhance Collective Intelligence in Online Collaboration: Insights from Unexpected Outcomes</div>
+                    <div class="paper-authors">Gupta, Pranav; Kim, Young Ji; Glikson, Ella; Woolley, Anita Williams</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/16752" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Value Creation, Value Appropriation, and Cooperation in Team Production</div>
+                    <div class="paper-authors">Panico, Claudio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2021.0491" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Does External Knowledge Benefit Team Creativity? The Role of Internal Team Network Structure and Task Complexity</div>
+                    <div class="paper-authors">Venkataramani, Vijaya; Tang, Chaoying</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1661" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Star Is Born: The Relationship Between Performance and Achieving Status Through Certification Contests in the Context of Equity Analysts</div>
+                    <div class="paper-authors">Paik, Eugene Taeha; Pollock, Timothy G.; Boivie, Steven; Lange, Donald; Lee, Peggy M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1563" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Collective Attention and Collective Intelligence: The Role of Hierarchy and Team Gender Composition</div>
+                    <div class="paper-authors">Woolley, Anita Williams; Chow, Rosalind M.; Mayo, Anna T.; Riedl, Christoph; Chang, Jin Wook</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1602" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How the Basis for Status Perceptions Varies with Perceiver Status</div>
+                    <div class="paper-authors">Tan, David; Rider, Christopher I.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1582" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Just Diverse Among Themselves: How Does Negative Performance Feedback Affect Boards’ Expertise vs. Ascriptive Diversity?</div>
+                    <div class="paper-authors">Jung, HeeJung; Lee, Yonghoon G.; Park, Sun Hyun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1595" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning in Temporary Teams: The Varying Effects of Partner Exposure by Team Member Role</div>
+                    <div class="paper-authors">Kim, Song-Hee; Song, Hummy; Valentine, Melissa A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1585" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Managing Uncertainty: An Experiment on Delegation and Team Selection</div>
+                    <div class="paper-authors">Hamman, John R.; Martínez-Carrasco, Miguel A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1545" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Network Centralization and Collective Adaptability to a Shifting Environment</div>
+                    <div class="paper-authors">Bernstein, Ethan S.; Shore, Jesse C.; Jang, Alice J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1584" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Organizing Entrepreneurial Teams: A Field Experiment on Autonomy over Choosing Teams and Ideas</div>
+                    <div class="paper-authors">Boss, Viktoria; Dahlander, Linus; Ihl, Christoph; Jayaraman, Rajshri</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1520" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Exchange and the Reciprocity Roller Coaster: Evidence from the Life and Death of Virtual Teams</div>
+                    <div class="paper-authors">Hergueux, Jérôme; Henry, Emeric; Benkler, Yochai; Algan, Yann</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1515" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Task Characteristics and Incentives in Collaborative Problem Solving: Evidence from Three Field Experiments</div>
+                    <div class="paper-authors">Samuel, Jayarajan; Zheng, Zhiqiang (Eric); Mookerjee, Vijay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.118" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Team Adaptation to Discontinuous Task Change: Equity and Equality as Facilitators of Individual and Collective Task Capabilities Redevelopment</div>
+                    <div class="paper-authors">Li, Alex Ning; Sherf, Elad N.; Tangirala, Subrahmaniam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1621" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Team Performance: Nature and Antecedents of Nonnormal Distributions</div>
+                    <div class="paper-authors">Bradley, Kyle J.; Aguinis, Herman</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1619" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Role of Resources in the Success or Failure of Diverse Teams: Resource Scarcity Activates Negative Performance-Detracting Resource Dynamics in Social Category Diverse Teams</div>
+                    <div class="paper-authors">Yu, Siyu; Greer, Lindred L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1560" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Social Contract in Miniature: How Virtual Bargaining Supports Team Production</div>
+                    <div class="paper-authors">Zeitoun, Hossam; Melkonyan, Tigran; Chater, Nick</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0229" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Tale of Two Hierarchies: Interactive Effects of Power Differentiation and Status Differentiation on Team Performance</div>
+                    <div class="paper-authors">Hays, Nicholas A.; Li, Huisi (Jessica); Yang, Xue; Oh, Jo K.; Yu, Andrew; Chen, Ya-Ru; Hollenbeck, John R.; Jamieson, Bradley B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1540" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Attaining Individual Creativity and Performance in Multidisciplinary and Geographically Distributed IT Project Teams: The Role of Transactive Memory Systems</div>
+                    <div class="paper-authors">He, Wei; Po-An Hsieh, J. J.; Schroeder, Andreas; Fang, Yulin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14596" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Detrimental Collaborations in Creative Work: Evidence from Economics</div>
+                    <div class="paper-authors">Vakili, Keyvan; Teodoridis, Florenta; Bikard, Michaël</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1501" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Formal Hierarchy As a Source of Upward Status Disagreement? A Theoretical Perspective</div>
+                    <div class="paper-authors">Yap, Andy J.; Madan, Nikhil; Puranam, Phanish</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1523" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Global Leaders for Global Teams: Leaders with Multicultural Experiences Communicate and Lead More Effectively, Especially in Multinational Teams</div>
+                    <div class="paper-authors">Lu, Jackson G.; Swaab, Roderick I.; Galinsky, Adam D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1480" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">IT Knowledge Spillovers, Absorptive Capacity, and Productivity: Evidence from Enterprise Software</div>
+                    <div class="paper-authors">Huang, Peng; Ceccagnoli, Marco; Forman, Chris; Wu, D.J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1091" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Just Enough Information? The Contingent Curvilinear Effect of Information Volume on Decision Performance in IS-Enabled Teams</div>
+                    <div class="paper-authors">Mullins, Jeffrey K.; Sabherwal, Rajiv</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17290" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning by Connecting: How Rule Networks Evolve Through Discovery of Relevance</div>
+                    <div class="paper-authors">Schulz, Martin; Zhu, Kejia</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1524" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Open Team Production, the New Cooperative Firm, and Hybrid Advantage</div>
+                    <div class="paper-authors">Berti, Marco; Pitelis, Christos</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0416" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Sustaining Effectiveness in Global Teams: The Coevolution of Knowledge Management Activities and Technology Affordances</div>
+                    <div class="paper-authors">Gibson, Cristina B.; Dunlop, Patrick D.; Majchrzak, Ann; Chia, Terence</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1478" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Aggregation–Learning Trade-off</div>
+                    <div class="paper-authors">Piezunka, Henning; Aggarwal, Vikas A.; Posen, Hart E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1477" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Creative and Cross-Functional Benefits of Wearing Hearts on Sleeves: Authentic Affect Climate, Information Elaboration, and Team Creativity</div>
+                    <div class="paper-authors">Parke, Michael R.; Seo, Myeong-Gu; Hu, Xiaoran; Jin, Sirkwoo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1448" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Mechanisms and Components of Knowledge Transfer: The Virtual Special Issue on Knowledge Transfer Within Organizations</div>
+                    <div class="paper-authors">Argote, Linda; Guo, Jerry; Park, Sae-Seul; Hahl, Oliver</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1590" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Problems and Promise of Entrepreneurial Partnerships: Decision-Making, Overconfidence, and Learning in Founding Teams</div>
+                    <div class="paper-authors">Chen, John S.; Elfenbein, Daniel W.; Posen, Hart E.; Wang, Ming zhu</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0119" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Theory and Measurement of Expertise-Based Problem Solving in Organizational Teams: Revisiting Demonstrability</div>
+                    <div class="paper-authors">Bonner, Bryan L.; Shannahan, Daniel; Bain, Kristin; Coll, Kathryn; Meikle, Nathan L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1481" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Victorious and Hierarchical: Past Performance as a Determinant of Team Hierarchical Differentiation</div>
+                    <div class="paper-authors">To, Christopher; Yan, Thomas Taiyi; Sherf, Elad N.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1528" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">What Questions Are You Inclined to Answer? Effects of Hierarchy in Corporate Q&amp;A Communities</div>
+                    <div class="paper-authors">Pu, Jingchuan; Liu, Yang; Chen, Yuan; Qiu, Liangfei; Cheng, Hsing Kenneth</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1052" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Bridging Temporal Divides: Temporal Brokerage in Global Teams and Its Impact on Individual Performance</div>
+                    <div class="paper-authors">Mell, Julija N.; Jang, Sujin; Chai, Sen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1406" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Capability Development through Just-in-Time Access to Knowledge in Document Repositories: A Longitudinal Examination of Technical Problem Solving</div>
+                    <div class="paper-authors">Subramani, Mani; Wagle, Mihir; Ray, Gautam; Gupta, Alok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/15635" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Cooperative Criticism: When Criticism Enhances Creativity in Brainstorming and Negotiation</div>
+                    <div class="paper-authors">Curhan, Jared R.; Labuzova, Tatiana; Mehta, Aditi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1420" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Extemporaneous Coordination in Specialist Teams: The Familiarity Complementarity</div>
+                    <div class="paper-authors">Ching, Kenny; Forti, Enrico; Rawley, Evan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1376" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Ideology in Vicarious Learning–Related Communication</div>
+                    <div class="paper-authors">Lamberg, Juha-Antti; Luoma, Jukka</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1378" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Network-Biased Technical Change: How Modern Digital Collaboration Tools Overcome Some Biases but Exacerbate Others</div>
+                    <div class="paper-authors">Wu, Lynn; Kane, Gerald C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1368" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Professional Network Identification: Searching for Stability in Transient Knowledge Work</div>
+                    <div class="paper-authors">Litchfield, Robert C.; Hirst, Giles; van Knippenberg, Daan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2017.0388" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Socio-Technical Affordances for Large-Scale Collaborations: Introduction to a Virtual Special Issue</div>
+                    <div class="paper-authors">Malhotra, Arvind; Majchrzak, Ann; Lyytinen, Kalle</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1457" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Who Contributes Knowledge? Core-Periphery Tension in Online Innovation Communities</div>
+                    <div class="paper-authors">Safadi, Hani; Johnson, Steven L.; Faraj, Samer</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1364" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Why Do Firms Fail to Engage Diversity? A Behavioral Strategy Perspective</div>
+                    <div class="paper-authors">Liu, Chengwei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1425" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Achieving Effective Use When Digitalizing Work: The Role Of Representational Complexity</div>
+                    <div class="paper-authors">Lauterbach, Jens; Mueller, Benjamin; Kahrau, Felix; Maedche, Alexander</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14583" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Bridging Cultural Holes in Organizations: The Dynamic Structure of Social Networks and Organizational Vocabularies Within and Across Subunits</div>
+                    <div class="paper-authors">Tasselli, Stefano; Zappa, Paola; Lomi, Alessandro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1352" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Finding Useful Solutions in Online Knowledge Communities: A Theory-Driven Design and Multilevel Analysis</div>
+                    <div class="paper-authors">Liu, Xiaomo; Wang, G. Alan; Fan, Weiguo; Zhang, Zhongju</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0911" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Framing Communication: How Agenda Alignment and Media Capabilities Shape Partially Cooperative Communication</div>
+                    <div class="paper-authors">Harrison, Andrew; Windeler, Jaime B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15062" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Getting to Know You: Motivating Cross-Understanding for Improved Team and Individual Performance</div>
+                    <div class="paper-authors">Janardhanan, Niranjan S.; Lewis, Kyle; Reger, Rhonda K.; Stevens, Cynthia K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1324" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is Cybersecurity a Team Sport? A Multilevel Examination of Workgroup Information Security Effectiveness</div>
+                    <div class="paper-authors">Yoo, Chul Woo; Goo, Jahyun; Rao, H. Raghav</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15477" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Meso-Foundations of Interorganizational Relationships: How Team Power Structures Shape Partner Novelty</div>
+                    <div class="paper-authors">Young-Hyman, Trevor; Kleinbaum, Adam M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1356" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On the Emergence of Collective Psychological Ownership in New Creative Teams</div>
+                    <div class="paper-authors">Gray, Steven M.; Knight, Andrew P.; Baer, Markus</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1307" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Robust Systems of Cooperation in the Presence of Rankings: How Displaying Prosocial Contributions Can Offset the Disruptive Effects of Performance Rankings</div>
+                    <div class="paper-authors">Chambers, Cassandra R.; Baker, Wayne E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1296" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Too Much Trust in Group Decisions: Uncovering Hidden Profiles by Groups and Markets</div>
+                    <div class="paper-authors">Maciejovsky, Boris; Budescu, David V.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1363" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Blurred Lines: How the Collectivism Norm Operates Through Perceived Group Diversity to Boost or Harm Group Performance in Himalayan Mountain Climbing</div>
+                    <div class="paper-authors">Chatman, Jennifer A.; Greer, Lindred L.; Sherman, Eliot; Doerr, Bernadette</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1268" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Pair Programming Influences Team Performance: The Role of Backup Behavior, Shared Mental Models, and Task Novelty</div>
+                    <div class="paper-authors">Kude, Thomas; Mithas, Sunil; Schmidt, Christoph T.; Heinzl, Armin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0856" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Integrating Diversity at Different Levels: Multilevel Human Capital, Social Capital, and Demographic Diversity and Their Implications for Team Effectiveness</div>
+                    <div class="paper-authors">Tasheva, Sabina; Hillman, Amy J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2015.0396" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Lasting Benefits of Teams: Tie Vitality After Teams Disband</div>
+                    <div class="paper-authors">Maloney, Mary M.; Shah, Priti Pradhan; Zellmer-Bruhn, Mary; Jones, Stephen L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1254" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Using Technology to Persuade: Visual Representation Technologies and Consensus Seeking in Virtual Teams</div>
+                    <div class="paper-authors">Peng, Chih-Hung; Lurie, Nicholas H.; Slaughter, Sandra A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0843" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Developers Disagree: Divergent Advice as a Potential Catalyst for Protégé Growth</div>
+                    <div class="paper-authors">Feldman, Elana; Kahn, William</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1256" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Who Loses When a Team Wins? Better Performance Increases Racial Bias</div>
+                    <div class="paper-authors">Zhang, Letian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1232" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Contextual Priming and the Design of 3D Virtual Environments to Improve Group Ideation</div>
+                    <div class="paper-authors">Bhagwatwar, Akshay; Massey, Anne; Dennis, Alan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0721" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Differences are Different: Examining the Effects of Communication Media on the Impacts of Racial and Gender Diversity in Decision-Making Teams</div>
+                    <div class="paper-authors">Robert, Lionel P.; Dennis, Alan R.; Ahuja, Manju K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0773" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Emergent Leadership Structures in Informal Groups: A Dynamic, Cognitively Informed Network Model</div>
+                    <div class="paper-authors">Carnabuci, Gianluca; Emery, Cécile; Brinberg, David</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1171" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Estimating Contextual Motivating Factors in Virtual Interorganizational Communities of Practice: Peer Effects and Organizational Influences</div>
+                    <div class="paper-authors">Zhao, Kexin; Zhang, Bin; Bai, Xue</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0752" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">External Bridging and Internal Bonding: Unlocking the Generative Resources of Member Time and Attention Spent in Online Communities1</div>
+                    <div class="paper-authors">Kim, Yongsuk; Jarvenpaa, Sirkka L.; Gu, Bin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13278" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Goal Relatedness and Learning: Evidence from Hospitals</div>
+                    <div class="paper-authors">Clark, Jonathan R.; Kuppuswamy, Venkat; Staats, Bradley R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1166" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Knowledge Creation Across Worldviews: How Metaphors Impact and Orient Group Creativity</div>
+                    <div class="paper-authors">Biscaro, Claudio; Comacchio, Anna</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1163" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Perspective—Rethinking Teams: From Bounded Membership to Dynamic Participation</div>
+                    <div class="paper-authors">Mortensen, Mark; Haas, Martine R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1198" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Media and the Development of Shared Cognition: The Roles of Network Expansion, Content Integration, and Triggered Recalling</div>
+                    <div class="paper-authors">Leonardi, Paul M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1200" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Presence in Virtual World Collaboration: An Uncertainty Reduction Perspective Using a Mixed Methods Approach1</div>
+                    <div class="paper-authors">Srivastava, Shirish C.; Chandra, Shalini</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/11914" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Effects of Communication Networks and Turnover on Transactive Memory and Group Performance</div>
+                    <div class="paper-authors">Argote, Linda; Aven, Brandy L.; Kush, Jonathan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1176" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Tua culpa: When an Organization Blames Its Partner for Failure in a Shared Task</div>
+                    <div class="paper-authors">Park, Brian S.; Park, Hyunwoo; Ramanujam, Rangaraj</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2016.0305" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unpacking the Structure of Coordination Mechanisms and the Role of Relational Coordination in an Era of Digitally Mediated Work Processes</div>
+                    <div class="paper-authors">Claggett, Jennifer L.; Karahanna, Elena</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2016.0325" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Virtual First Impressions Matter: The Effect of Enterprise Social Networking Sites on Impression Formation in Virtual Teams1</div>
+                    <div class="paper-authors">Cummings, Jeff; Dennis, Alan R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13202" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">What Do They Know? The Antecedents of Information Accuracy Differentials in Interorganizational Networks</div>
+                    <div class="paper-authors">Knoben, Joris; Oerlemans, Leon A. G.; Krijkamp, Annefleur R.; Provan, Keith G.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1180" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When the General Meets the Particular: The Practices and Challenges of Interorganizational Knowledge Reuse</div>
+                    <div class="paper-authors">Waisberg, Isaac; Nelson, Andrew</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1196" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Where Do Stars Come From? The Role of Star vs. Nonstar Collaborators in Creative Settings</div>
+                    <div class="paper-authors">Liu, Haibo; Mihm, Jürgen; Sosa, Manuel E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1223" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Configural Approach to Coordinating Expertise in Software Development Teams1</div>
+                    <div class="paper-authors">Kudaravalli, Srinivas; Faraj, Samer; Johnson, Steven L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.1.03" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Nomological Network of Knowledge Management System Use: Antecedents and Consequences1</div>
+                    <div class="paper-authors">Zhang, Xiaojun; Venkatesh, Viswanath</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.4.12" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Chronotype Diversity in Teams: Toward a Theory of Team Energetic Asynchrony</div>
+                    <div class="paper-authors">Volk, Stefan; Pearsall, Matthew J.; Christian, Michael S.; Becker, William J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2015.0185" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Cultural Brokerage and Creative Performance in Multicultural Teams</div>
+                    <div class="paper-authors">Jang, Sujin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1162" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Drawing Snow White and Animating Buzz Lightyear: Technological Toolkit Characteristics and Creativity in Cross-Disciplinary Teams</div>
+                    <div class="paper-authors">Mannucci, Pier Vittorio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1141" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Explaining Post-Implementation Employee System Use and Job Performance: Impacts of the Content and Source of Social Network Ties1</div>
+                    <div class="paper-authors">Sykes, Tracy Ann; Venkatesh, Viswanath</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.3.11" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">From Monologue to Dialogue: Performative Objects to Promote Collective Mindfulness in Computer-Mediated Team Discussions1</div>
+                    <div class="paper-authors">Curtis, Aaron M.; Dennis, Alan R.; McNamara, Kelly O.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.2.10" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Knowledge Management System Use and Job Performance: A Multilevel Contingency Model1</div>
+                    <div class="paper-authors">Zhang, Xiaojun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.3.07" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Smart or Diverse Start-up Teams? Evidence from a Field Experiment</div>
+                    <div class="paper-authors">Hoogendoorn, Sander; Parker, Simon C.; van Praag, Mirjam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1158" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Structural Disruption, Relational Experimentation, and Performance in Professional Hockey Teams: A Network Perspective on Member Change</div>
+                    <div class="paper-authors">Stuart, H. Colleen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1112" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unifying the Role of IT in Hyperturbulence and Competitive Advantage Via a Multilevel Perspective of IS Strategy1</div>
+                    <div class="paper-authors">Nan, Ning; Tanriverdi, Hüseyin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.3.12" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When the Boss Is Away: Manager–Worker Separation and Worker Performance in a Multisite Software Maintenance Organization</div>
+                    <div class="paper-authors">Bonet, Rocio; Salvador, Fabrizio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1107" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Laughing Matter: Patterns of Laughter and the Effectiveness of Working Dyads</div>
+                    <div class="paper-authors">Wang, Lu; Doucet, Lorna; Waller, Mary; Sanders, Karin; Phillips, Sybil</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1082" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Framing Innovation Opportunities While Staying Committed to an Organizational Epistemic Stance</div>
+                    <div class="paper-authors">Fayard, Anne-Laure; Gkeredakis, Emmanouil; Levina, Natalia</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0623" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Hierarchy and Its Discontents: Status Disagreement Leads to Withdrawal of Contribution and Lower Group Performance</div>
+                    <div class="paper-authors">Kilduff, Gavin J.; Willer, Robb; Anderson, Cameron</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1058" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Do Brokers Broker? Tertius Gaudens, Tertius Iungens, and the Temporality of Structural Holes</div>
+                    <div class="paper-authors">Quintane, Eric; Carnabuci, Gianluca</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1091" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Knowledge Utilization, Coordination, and Team Performance</div>
+                    <div class="paper-authors">Reagans, Ray; Miron-Spektor, Ella; Argote, Linda</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1078" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Overcoming Stickiness: How the Timing of Knowledge Transfer Methods Affects Transfer Difficulty</div>
+                    <div class="paper-authors">Szulanski, Gabriel; Ringov, Dimo; Jensen, Robert J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1049" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Participation in Open Knowledge Communities and Job-Hopping: Evidence from Enterprise Software1</div>
+                    <div class="paper-authors">Huang, Peng; Zhang, Zhongju</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.3.13" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Perspective—A New Look at Conflict Management in Work Groups</div>
+                    <div class="paper-authors">Carton, Andrew M.; Tewfik, Basima A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1085" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—Leader Influence on Sustained Participation in Online Collaborative Work Communities: A Simulation-Based Approach</div>
+                    <div class="paper-authors">Oh, Wonseok; Moon, Jae Yun; Hahn, Jungpil; Kim, Taekyung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0632" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Special Section Introduction—Online Community as Space for Knowledge Flows</div>
+                    <div class="paper-authors">Faraj, Samer; von Krogh, Georg; Monteiro, Eric; Lakhani, Karim R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0682" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Pursuit of Information Sharing: Expressing Task Conflicts as Debates vs. Disagreements Increases Perceived Receptivity to Dissenting Opinions in Groups</div>
+                    <div class="paper-authors">Tsai, Ming-Hong; Bendersky, Corinne</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1025" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Turbulent Stability of Emergent Roles: The Dualistic Nature of Self-Organizing Knowledge Coproduction</div>
+                    <div class="paper-authors">Arazy, Ofer; Daxenberger, Johannes; Lifshitz-Assaf, Hila; Nov, Oded; Gurevych, Iryna</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0647" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Does Repository Kms Use Lift Performance? The Role of Alternative Knowledge Sources and Task Environments1</div>
+                    <div class="paper-authors">Kim, Seung Hyun; Mukhopadhyay, Tridas; Kraut, Robert E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.1.06" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate temporal chart
+        const yearlyData = {"2016": 13, "2017": 12, "2018": 17, "2019": 7, "2020": 10, "2021": 10, "2022": 17, "2023": 14, "2024": 16, "2025": 10};
+        const years = Object.keys(yearlyData).map(y => parseInt(y)).sort();
+        const counts = years.map(y => yearlyData[y.toString()]);
+        
+        const temporalTrace = {
+            x: years,
+            y: counts,
+            type: 'scatter',
+            mode: 'lines+markers',
+            fill: 'tonexty',
+            line: {color: '#667eea', width: 3},
+            marker: {color: '#764ba2', size: 8},
+            name: 'Papers per Year'
+        };
+        
+        const temporalLayout = {
+            title: {
+                text: 'Research Activity Over Time',
+                font: {size: 18, color: '#333'}
+            },
+            xaxis: {title: 'Year'},
+            yaxis: {title: 'Number of Papers'},
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('temporal-chart', [temporalTrace], temporalLayout, {responsive: true});
+        
+        // Generate journal chart
+        const journalData = {"Organization Science": 78, "MIS Quarterly": 20, "Information Systems Research": 18, "Academy of Management Review": 10};
+        const journalTrace = {
+            labels: Object.keys(journalData),
+            values: Object.values(journalData),
+            type: 'pie',
+            hole: 0.4,
+            marker: {
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+            },
+            textinfo: 'label+percent+value'
+        };
+        
+        const journalLayout = {
+            title: {
+                text: 'Distribution Across Journals',
+                font: {size: 18, color: '#333'}
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('journal-chart', [journalTrace], journalLayout, {responsive: true});
+    </script>
+</body>
+</html>

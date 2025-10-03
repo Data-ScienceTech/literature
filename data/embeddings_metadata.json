@@ -1,0 +1,10 @@
+{
+  "model_used": "sentence-transformers/allenai-specter",
+  "shape": [
+    2890,
+    768
+  ],
+  "normalized": true,
+  "mean_norm": 1.0,
+  "std_norm": 5.3691138646172476e-08
+}

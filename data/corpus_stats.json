@@ -1,0 +1,27 @@
+{
+  "total_papers": 3093,
+  "papers_with_doi": "3093",
+  "papers_with_abstract": "2310",
+  "papers_with_text": "3093",
+  "year_min": 2016,
+  "year_max": 2025,
+  "unique_journals": 4,
+  "journals": {
+    "Information Systems Research": 922,
+    "Organization Science": 918,
+    "MIS Quarterly": 707,
+    "Academy of Management Review": 546
+  },
+  "papers_per_year": {
+    "2016": 255,
+    "2017": 233,
+    "2018": 248,
+    "2019": 281,
+    "2020": 287,
+    "2021": 297,
+    "2022": 332,
+    "2023": 331,
+    "2024": 401,
+    "2025": 428
+  }
+}

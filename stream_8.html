@@ -1,0 +1,2371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Stream: Firms & Firm & Their</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .meta-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .papers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .paper-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .paper-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .paper-authors {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .year-tag {
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .methodology-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 25px; }
+            .section { padding: 25px; }
+            .meta-info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-lightbulb"></i> Firms & Firm & Their</h1>
+            <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                Research stream comprising 144 papers published between 2016-2025. Primary publication venues: Organization Science (95), Academy of Management Review (43), MIS Quarterly (6). Based on analysis of 101 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena.
+            </p>
+            
+            <div class="meta-info">
+                <div class="meta-card">
+                    <div class="number">144</div>
+                    <div>Papers</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2016-2025</div>
+                    <div>Time Span</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">3</div>
+                    <div>Journals</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2022</div>
+                    <div>Peak Year</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="key-insights">
+            <h3><i class="fas fa-star"></i> Key Research Insights</h3>
+            <div class="insight-item">
+                <strong>Temporal Evolution:</strong> This stream spans 10 years, 
+                showing steady growth in research attention.
+            </div>
+            <div class="insight-item">
+                <strong>Journal Distribution:</strong> Primary publication venue is Organization Science 
+                (95 papers, 66.0%).
+            </div>
+            <div class="insight-item">
+                <strong>Research Maturity:</strong> Emerging area with 
+                144 papers contributing to the scholarly dialog.
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-microscope"></i> How This Stream Was Discovered</h3>
+            <p>This research stream was identified using advanced AI and network science methods:</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li><strong>SPECTER2 Embeddings:</strong> Papers were encoded into 768-dimensional semantic vectors using a transformer model trained on scientific literature</li>
+                <li><strong>Leiden Clustering:</strong> Community detection on k-nearest neighbor graphs revealed papers with high semantic similarity</li>
+                <li><strong>Temporal Analysis:</strong> Burst detection identified periods of increased research activity</li>
+                <li><strong>Quality Validation:</strong> Clustering quality assessed using silhouette scores and manual inspection</li>
+            </ul>
+        </div>
+        
+        <!-- Temporal Trends -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Temporal Evolution</h2>
+            <div class="chart-container">
+                <div id="temporal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- Journal Distribution -->
+        <div class="section">
+            <h2><i class="fas fa-journal-whills"></i> Journal Distribution</h2>
+            <div class="chart-container">
+                <div id="journal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- All Papers -->
+        <div class="section">
+            <h2><i class="fas fa-file-alt"></i> All Papers in This Stream</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Papers are ordered by publication year (most recent first). Each paper contributes to the coherent 
+                research dialog that defines this stream.
+            </p>
+            
+            <div class="papers-grid">
+
+                <div class="paper-card">
+                    <div class="paper-title">A Model of CEO Succession Planning as a Risky Investment: Anticipated Costs, Uncertain Results, and Contingency Conditions</div>
+                    <div class="paper-authors">Hambrick, Donald C.; Lee, Eric Y.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17781" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Analyst Reaction to War-Related Language: Source Domains and the Role of Market Structure and Market Share</div>
+                    <div class="paper-authors">Cotter Salvado, João; Crilly, Donal</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15728" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Initial Contract Duration and Corporate Acquisitions</div>
+                    <div class="paper-authors">Chen, Guoli; Huang, Ronghong; Mei, Shunji; Tan, Kelvin Jui Keng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16493" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Counter-Activism Against Ideological Opponents: Evidence Based on the Competitive Dynamics of Corporate Engagement in Advocacy Giving</div>
+                    <div class="paper-authors">Seo, Haram</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17382" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Courting the Sharks: The Influence of CEO Narcissistic Admiration and Rivalry on New Venture Funding</div>
+                    <div class="paper-authors">Sanchez-Ruiz, Paul; Blake, Andrew; Petrenko, Oleg; Maldonado-Bautista, Ileana; Collewaert, Veroniek; Artz, Kendall W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17024" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Boards Reward and Punish CEOs Based on Employee Satisfaction Ratings?</div>
+                    <div class="paper-authors">Abdulsalam, Khaled; Christensen, Dane M.; Graffin, Scott D.; Li, John</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15818" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Excusing Corporate Wrongdoing and the State of Nature</div>
+                    <div class="paper-authors">Silver, Kenneth; Garofalo, Paul</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0236" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Expectations and Exits: The Effect of CEO Agency and Communion on Boards’ Expectancy Violations and Dismissal of CEOs Following Breaches of Stakeholder Rights</div>
+                    <div class="paper-authors">Zyung, J. Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17114" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Ideologically Opposed Stakeholders Influence Organizational Practice Adoption: Theory and Evidence from the Diffusion of Domestic Partner Benefits in Higher Education</div>
+                    <div class="paper-authors">Gupta, Abhinav; Murphy, Chad; Briscoe, Forrest</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17219" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Interim CEO Successions: Implications for CEO Successor Selection and Subsequent Firm Performance</div>
+                    <div class="paper-authors">Langan, Robert; Deuschel, Nicolas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16837" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Navigating Uncharted Waters: How Executives Originate High-Quality Ideas for Strategic Responses to Unprecedented Shocks</div>
+                    <div class="paper-authors">Barreto, Ilídio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2022.0035" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Policymaker Responses to CEO Activism</div>
+                    <div class="paper-authors">Poliquin, Christopher; Hou, Young</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18282" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Shareholder Activism and the Deterrence Effect of Democratic Politician Shareholders</div>
+                    <div class="paper-authors">DesJardine, Mark R.; Shi, Wei; Werner, Timothy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17495" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Effect of Financial Resources on Misconduct: Evidence from Lottery Ticket Sales</div>
+                    <div class="paper-authors">Frake, Justin; Byun, Heejung; Kim, Jihyeon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17541" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The PSI Model for Predicting Activist Engagements: Toward a Theory of Shareholder Activism</div>
+                    <div class="paper-authors">DesJardine, Mark R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2024.0006" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Accounting for Negative Attention: Status and Costs in the Market for Audit Services</div>
+                    <div class="paper-authors">Ody-Brasier, Amandine; Sharkey, Amanda J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15814" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Antecedents of Independent Directors on Joint Venture Boards</div>
+                    <div class="paper-authors">Olie, René; Klijn, Elko; Reuer, Jeffrey J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.14865" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beyond Primacy: A Stakeholder Theory of Corporate Governance</div>
+                    <div class="paper-authors">Stoelhorst, J. W.; Vishwanathan, Pushpika</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0268" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Humility and Corporate Social Irresponsibility: Evidence Based on a New Unobtrusive Measure</div>
+                    <div class="paper-authors">Ou, Amy Y.; Lu, Qian; Li, Xina; Chi-Nien, Chung; Chen, Guoli</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17104" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Caught in the Revolving Door: Firm-Government Employee Mobility as a Fleeting Regulatory Advantage</div>
+                    <div class="paper-authors">Katic, Ivana V.; Kim, Jerry W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1669" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Federated Corporate Social Responsibility: Constraining the Responsible Corporation</div>
+                    <div class="paper-authors">Caulfield, Matthew; Lynn, Andrew</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0273" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Taming Unicorns: Toward a New Normal of Responsible Entrepreneurship</div>
+                    <div class="paper-authors">Zankl, Jonah; Grimes, Matthew</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2021.0406" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Art of Blending Stakeholders: “Bootlegger and Baptist” Coalitions in Corporate Constituency-Building</div>
+                    <div class="paper-authors">Murphy, Maurice J.; Walker, Edward; Jia, Nan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0538" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Corporate Opportunity Structure for Shareholder Activism: How Activist Hedge Funds Exploit Board Demographic Diversity</div>
+                    <div class="paper-authors">DesJardine, Mark R.; Shi, Wei; Marti, Emilio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1679" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Ideological Imperative: Corporate Social Responsibility and News Media Coverage of Firms</div>
+                    <div class="paper-authors">Dewan, Yasir; Simons, Tal; Wernicke, Georg</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17237" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of a Short-Selling-Friendly Environment on Board Composition</div>
+                    <div class="paper-authors">Kang, Ribuga; Kang, Jingoo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16506" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Radical Flank Revisited: How Regulatory Discretion Shapes the Effectiveness of Social Activism on Business Outcomes</div>
+                    <div class="paper-authors">Grandy, Jake B.; Hiatt, Shon R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16104" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">We Fly Congress: Market Actions as Corporate Political Activity in the U.S. Airline Industry</div>
+                    <div class="paper-authors">Pang, Min-Seok; Funk, Russell J.; Hirschman, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17026" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When the Principal Is the Firm’s Problem: Principal Costs and Their Corporate Governance Implications</div>
+                    <div class="paper-authors">Zajac, Edward J.; Goranova, Maria</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2022.0479" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Why Do Some Conservative CEOs Publicly Support Liberal Causes? Organizational Ideology, Managerial Discretion, and CEO Sociopolitical Activism</div>
+                    <div class="paper-authors">Wowak, Adam J.; Busenbark, John R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17160" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Rising Tide Lifts All Boats: The Effects of Common Ownership on Corporate Social Responsibility</div>
+                    <div class="paper-authors">DesJardine, Mark R.; Grewal, Jody; Viswanathan, Kala</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1620" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">From Compliance to Progress: A Sensemaking Perspective on the Governance of Corruption</div>
+                    <div class="paper-authors">Schembera, Stefan; Haack, Patrick; Scherer, Andreas Georg</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1614" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Maintaining or Altering the Status Quo in the Nonmarket Arena: Theory and Evidence from Government Contract Disputes</div>
+                    <div class="paper-authors">Abdurakhmonov, Mirzokhidjon; Hasija, Dinesh; Ridge, Jason W.; Hill, Aaron D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1606" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Private Equity as an Intermediary in the Market for Corporate Assets</div>
+                    <div class="paper-authors">Nary, Paul; Kaul, Aseem</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0168" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Public Opinion and Impression Management in the Communication of Performance During the Second Iraq War</div>
+                    <div class="paper-authors">Audia, Pino G.; Rousseau, Horacio E.; Stimmler, Mary Kate</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1598" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Symbolic Shareholder Democracy: Toward a Behavioral Understanding of the Role of Shareholder Voting in CEO Dismissals</div>
+                    <div class="paper-authors">Andrei, Alina G.; van Oosterhout, J. (Hans); Sauerwald, Steve</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1641" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Crisis in Local Newspapers and Organizational Wrongdoing: The Role of Community Social Connectedness</div>
+                    <div class="paper-authors">Choi, Tony Jaehyun; Valente, Mike</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1644" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Downside of Displaying Agentic Values: Evidence from Shareholder Activism</div>
+                    <div class="paper-authors">DesJardine, Mark R.; Shi, Wei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1637" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Bribery Relationships on Firm Growth in Transition Economies</div>
+                    <div class="paper-authors">Jung, Hyun Ju; Lee, Seung-Hyun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1575" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Radical Flank Revisited: How Regulatory Discretion Shapes the Effectiveness of Social Activism on Business Outcomes</div>
+                    <div class="paper-authors">Grandy, Jake B.; Hiatt, Shon R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.22.16104" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Returns to Nonmarket Strategies During Institutional Transitions: Investor Reactions to Actor and Tie Characteristics</div>
+                    <div class="paper-authors">Gatignon, Aline; Gama, Marina A. B.; DeMello, Rodrigo B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1616" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Theoretical Light in Empirical Darkness: Illuminating Strategic Concealment of Corporate Political Activity</div>
+                    <div class="paper-authors">Jia, Nan; Markus, Stanislav; Werner, Timothy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0292" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Variations in the Corporate Social Responsibility-Performance Relationship in Emerging Market Firms</div>
+                    <div class="paper-authors">Cuervo-Cazurra, Alvaro; Purkayastha, Saptarshi; Ramaswamy, Kannan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1639" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Do Boards of Directors Contribute to Shareholder Value in Firms Targeted for Acquisition? A Group Information-Processing Perspective</div>
+                    <div class="paper-authors">Pavićević, Stevo; Haleblian, Jerayr (John); Keil, Thomas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1643" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">“Dear CEO and Board”: How Activist Investors’ Confidence in Tone Influences Campaign Success</div>
+                    <div class="paper-authors">Brauer, Matthias; Wiersema, Margarethe; Binder, Philipp</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1625" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Activist Protest Spillovers into the Regulatory Domain: Theory and Evidence from the U.S. Nuclear Power Generation Industry</div>
+                    <div class="paper-authors">Fremeth, Adam R.; Holburn, Guy L. F.; Piazza, Alessandro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1473" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beyond Shareholder Value Maximization: Accounting for Financial/Social Trade-Offs in Dual-Purpose Companies</div>
+                    <div class="paper-authors">Battilana, Julie; Obloj, Tomasz; Pache, Anne-Claire; Sengul, Metin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0386" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Business and Peace: The Impact of Firm–Stakeholder Relational Strategies on Conflict Risk</div>
+                    <div class="paper-authors">Ganson, Brian; He, Tony L.; Henisz, Witold J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0411" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Power and Nonconforming Reference Group Selection</div>
+                    <div class="paper-authors">Audia, Pino G.; Rousseau, Horacio E.; Brion, Sebastien</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1397" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Financial Reporting Choices, Governance Structures, and Strategic Assets: A Transaction Cost Perspective</div>
+                    <div class="paper-authors">David, Parthiban; Dharwadkar, Ravi; Duru, Augustine</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0105" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Generalized Trust, External Sourcing, and Firm Performance in Economic Downturns</div>
+                    <div class="paper-authors">Vanneste, Bart S.; Gulati, Ranjay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1500" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Hierarchical Inconsistency: A Monitoring Mechanism to Reduce Securities Fraud in Emerging Markets</div>
+                    <div class="paper-authors">Guo, Yidi; Luo, Xiaowei Rose; Li, Danyang</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1541" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Green Information Technology Standards and Strategies Influence Performance: Role of Environment, Cost and Dual Focus</div>
+                    <div class="paper-authors">Saldanha, Terence J. V.; Mithas, Sunil; Khuntia, Jiban; Whitaker, Jonathan; Melville, Nigel P.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16824" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Property Rights Matter to Firm Resource Investment: Evidence from China’s Property Law Enactment</div>
+                    <div class="paper-authors">He, Wenlong; Tong, Tony W.; Xu, Mingtao</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1418" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Inside the Velvet Glove: Sustaining Private Regulatory Institutions Through Hollowing and Fortifying</div>
+                    <div class="paper-authors">Buchanan, Sean; Barnett, Michael L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1537" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Institutional Disruptions and the Philanthropy of Multinational Firms</div>
+                    <div class="paper-authors">Ballesteros, Luis; Magelssen, Catherine</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1491" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">No Free Lunch After All: Corporate Political Connections and Firms’ Location Choices</div>
+                    <div class="paper-authors">Jia, Nan; Zhao, Bo; Zheng, Wei; Lu, Jiangyong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1451" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">No-Fly Zone in the Loan Office: How Chief Executive Officers’ Risky Hobbies Affect Credit Stakeholders’ Evaluation of Firms</div>
+                    <div class="paper-authors">Ouyang, Bo; Tang, Yi; Wang, Chong; Zhou, Jian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1443" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Nonprofit Organizations as Multisided Platforms</div>
+                    <div class="paper-authors">Kuan, Jennifer; Thornton, Jeremy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0216" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Resource Redeployment and Divestiture as Strategic Alternatives</div>
+                    <div class="paper-authors">Feldman, Emilie R.; Sakhartov, Arkadiy V.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1474" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Rethinking Corporate Power to Tackle Grand Societal Challenges: Lessons from Political Philosophy</div>
+                    <div class="paper-authors">Aguilera, Ruth V.; Aragón-Correa, J. Alberto; Marano, Valentina</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0456" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Stakeholder Governance: Solving the Collective Action Problems in Joint Value Creation</div>
+                    <div class="paper-authors">Bridoux, Flore; Stoelhorst, J. W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0441" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Corporate Social Responsibility Price Premium as an Enabler of Substantive CSR</div>
+                    <div class="paper-authors">Nardi, Leandro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0425" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Paradox of Awards: How Status Ripples Affect Who Benefits from CEO Awards</div>
+                    <div class="paper-authors">Jensen, Michael; Twardawski, Torsten; Younes, Nadja</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1475" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Social Nature of Stakeholder Utility</div>
+                    <div class="paper-authors">Lange, Donald; Bundy, Jonathan; Park, Eunyoung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0456" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Under Attack! CEO Implicit Motives and Firm Competitive Responses Following Short Seller Activism</div>
+                    <div class="paper-authors">Shi, Wei; DesJardine, Mark R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1464" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">We Cannot Direct the Wind, but We Can Adjust the Sails: Prosocial Ventures’ Responses to Potential Resource Threats</div>
+                    <div class="paper-authors">Mittermaier, Alexandra; Shepherd, Dean A.; Patzelt, Holger</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1465" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Bait-and-Switch Model of Corporate Social Responsibility</div>
+                    <div class="paper-authors">Haack, Patrick; Martignoni, Dirk; Schoeneborn, Dennis</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0139" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Theory of Ethical Accounting and Its Implications for Hypocrisy in Organizations</div>
+                    <div class="paper-authors">Kim, Peter H.; Wiltermuth, Scott S.; Newman, David T.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0161" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Bad Company: Shifts in Social Activists’ Tactics and Resources After Industry Crises</div>
+                    <div class="paper-authors">McDonnell, Mary-Hunter; Odziemkowska, Kate; Pontikes, Elizabeth</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1410" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Being Counted and Remaining Accountable: Maintenance of Quarterly Earnings Guidance by U.S. Public Companies</div>
+                    <div class="paper-authors">Park, Sun Hyun; Patterson, Kelly</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1401" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Sociopolitical Activism: A Stakeholder Alignment Model</div>
+                    <div class="paper-authors">Hambrick, Donald C.; Wowak, Adam J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0084" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Commitment to IT Investment Plans: The Interplay of Real Earnings, Management, IT Decentralization, and Corporate Governance</div>
+                    <div class="paper-authors">Xue, Ling; Mithas, Sunil; Ray, Gautam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/14970" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Contracting Beyond the Market</div>
+                    <div class="paper-authors">Odziemkowska, Kate; Dorobantu, Sinziana</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1388" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Evaluating Board Candidates: A Threat-Contingency Model of Shareholder Dissent Against Female Director Candidates</div>
+                    <div class="paper-authors">Mitra, Arjun; Post, Corinne; Sauerwald, Steve</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1386" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Good Deeds Done in Silence: Stakeholder Management and Quiet Giving by Chinese Firms</div>
+                    <div class="paper-authors">Wang, Heli; Jia, Ming; Zhang, Zhe</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1385" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Property Rights, Owner-Management, and Value Creation</div>
+                    <div class="paper-authors">Schulze, William; Zellweger, Thomas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0377" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Responsibility Beyond the Corporate: Executive Mental Accounting Across Sectoral and Issue Domains</div>
+                    <div class="paper-authors">Lungeanu, Razvan; Weber, Klaus</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1438" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Generativity Mindsets of Chief Executive Officers: A New Perspective on Succession Outcomes</div>
+                    <div class="paper-authors">Joshi, Aparna; Hambrick, Donald C.; Kang, Jiyeon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0426" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Webs of Influence: Secondary Stakeholder Actions and Cross-National Corporate Social Performance</div>
+                    <div class="paper-authors">Odziemkowska, Kate; Henisz, Witold J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1380" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Why Are Firms with Lower Performance More Volatile and Unpredictable? A Vulnerability Explanation of the Bowman Paradox</div>
+                    <div class="paper-authors">Becerra, Manuel; Markarian, Garen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1429" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Why Do Banks Favor Employee-Friendly Firms? A Stakeholder-Screening Perspective</div>
+                    <div class="paper-authors">Qian, Cuili; Crilly, Donal; Wang, Ke; Wang, Zheng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1400" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Board Predictive Accuracy in Executive Selection Decisions: How Do Initial Board Perceptions of CEO Quality Correspond with Subsequent CEO Career Performance?</div>
+                    <div class="paper-authors">Quigley, Timothy J.; Wowak, Adam J.; Crossland, Craig</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1326" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Cultural Entrepreneurship in Corporate Governance Practice Diffusion: Framing of “Independent Directors” by U.S.-Listed Chinese Companies</div>
+                    <div class="paper-authors">Park, Sun Hyun; Zhang, Yanlong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1355" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Social Similarity Pay Off? Homophily and Venture Capitalists’ Deal Valuation, Downside Risk Protection, and Financial Returns in India</div>
+                    <div class="paper-authors">Claes, Kim; Vissa, Balagopal</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1322" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Editors’ Comments: Is Research on Corporate Social Responsibility Undertheorized?</div>
+                    <div class="paper-authors">Wang, Heli; Gibson, Cristina; Zander, Udo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0450" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Effects of an Advancing Tenure on CEO Cognitive Complexity</div>
+                    <div class="paper-authors">Graf-Vlachy, Lorenz; Bundy, Jonathan; Hambrick, Donald C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1336" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">From the Editors—Why We Need a Theory of Stakeholder Governance—And Why This is a Hard Problem</div>
+                    <div class="paper-authors">Amis, John; Barney, Jay; Mahoney, Joseph T.; Wang, Heli</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2020.0181" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Interfirm Ties Between Ventures and Limited Partners of Venture Capital Funds: Performance Effects in Financial Markets</div>
+                    <div class="paper-authors">Ozmel, Umit; Yavuz, Deniz; Trombley, Tim; Gulati, Ranjay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1325" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On the Role of CEO Discretion and Agency in the Process of CEO Retirement</div>
+                    <div class="paper-authors">Bilgili, Hansin; Campbell, Joanna Tochman; O’Leary-Kelly, Anne; Ellstrand, Alan E.; Johnson, Jonathan L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0099" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Oppositional Logics and the Antecedents of Hybridization: A Country-Level Study of the Diffusion of Islamic Banking Windows, 1975–2017</div>
+                    <div class="paper-authors">Boone, Christophe; Özcan, Serden</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1338" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reflections on the 2018 Decade Award: The Meaning and Dynamics of Corporate Social Responsibility</div>
+                    <div class="paper-authors">Matten, Dirk; Moon, Jeremy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0348" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Relational Contracts and Managerial Delegation: Evidence from Foreign Entrepreneurs in Russia</div>
+                    <div class="paper-authors">Kulchina, Elena; Oxley, Joanne</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1329" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Final Countdown: Regulatory Focus and the Phases of CEO Retirement</div>
+                    <div class="paper-authors">Bilgili, Hansin; Campbell, Joanna Tochman; O’Leary-Kelly, Anne; Ellstrand, Alan E.; Johnson, Jonathan L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2016.0455" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Why Do Firms Suffer Differently from Input Stigmatization? The Costs of Removing Stigmatized Inputs</div>
+                    <div class="paper-authors">Diestre, Luis; Santaló, Juan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1293" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">You’ve Got a Friend: Examining Board Interlock Formation After Financial Restatements</div>
+                    <div class="paper-authors">Withers, Michael C.; Howard, Michael D.; Tihanyi, Laszlo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1319" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Corporate Purpose and Financial Performance</div>
+                    <div class="paper-authors">Gartenberg, Claudine; Prat, Andrea; Serafeim, George</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1230" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Instrumental Stakeholder Theory Makes Ethically Based Relationship Building Palatable to Managers Focused on the Bottom Line</div>
+                    <div class="paper-authors">Harrison, Jeffrey S.; Felps, Will; Jones, Thomas M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0442" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reluctant Disclosure and Transparency: Evidence from Environmental Disclosures</div>
+                    <div class="paper-authors">Fabrizio, Kira R.; Kim, Eun-Hee</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1298" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Safeguarding from the Sharks: Board Representation in Minority Equity Partnerships</div>
+                    <div class="paper-authors">Devarakonda, Shivaram V.; Reuer, Jeffrey J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1263" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Stock Market Responses to Unethical Behavior in Organizations: An Organizational Context Model</div>
+                    <div class="paper-authors">Baker, Bradford; Derfler-Rozin, Rellie; Pitesa, Marko; Johnson, Michael</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1244" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Cost of Status: When Social and Economic Interests Collide</div>
+                    <div class="paper-authors">Moore, Curt B.; Payne, G. Tyge; Filatotchev, Igor; Zajac, Edward J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1247" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Private Scope in Public–Private Collaborations: An Institutional and Capability-Based Perspective</div>
+                    <div class="paper-authors">Quelin, Bertrand V.; Cabral, Sandro; Lazzarini, Sergio; Kivleniece, Ilze</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1251" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Role of Third-Party Rankings in Status Dynamics: How Does the Stability of Rankings Induce Status Changes?</div>
+                    <div class="paper-authors">Bowers, Anne; Prato, Matteo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1316" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Thinking Broad and Deep: Why Some Directors Exert an Outsized Influence on Strategic Change</div>
+                    <div class="paper-authors">Lungeanu, Razvan; Zajac, Edward J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1258" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Values-Based Rivalry: A Theoretical Framework of Rivalry Between Activists and Firms</div>
+                    <div class="paper-authors">Waldron, Theodore L.; Navis, Chad; Aronson, Olivia; York, Jeffrey G.; Pacheco, Desiree F.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2017.0205" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">2017 Decade Award Invited Article Reflections on the 2017 Decade Award: Corporate Social Responsibility and the Financial Crisis</div>
+                    <div class="paper-authors">Campbell, John L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0057" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Board Independence and Firm Performance in the It Industry: The Moderating Role of New Entry Threats1</div>
+                    <div class="paper-authors">Pan, Yang; Huang, Peng; Gopal, Anandasivam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/14688" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Corporate Governance Deviance</div>
+                    <div class="paper-authors">Aguilera, Ruth V.; Judge, William Q.; Terjesen, Siri A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2014.0394" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Creating Common Ground: A Communicative Action Model of Dialogue in Shareholder Engagement</div>
+                    <div class="paper-authors">Ferraro, Fabrizio; Beunza, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1226" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Extending Signaling Theory to Rhetorical Signals: Evidence from Crowdfunding</div>
+                    <div class="paper-authors">Steigenberger, Norbert; Wilhelm, Hendrik</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1195" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Governance of Corporate Takeovers: Time for Say-on-Takeovers?1</div>
+                    <div class="paper-authors">Vithayathil, Joseph; Choudhary, Vidyanand</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13575" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Applying Instrumental Stakeholder Theory Can Provide Sustainable Competitive Advantage</div>
+                    <div class="paper-authors">Jones, Thomas M.; Harrison, Jeffrey S.; Felps, Will</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2016.0111" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is My Firm-Specific Investment Protected? Overcoming the Stakeholder Investment Dilemma in the Resource-Based View</div>
+                    <div class="paper-authors">Hoskisson, Robert E.; Gambeta, Eni; Green, Colby D.; Li, Toby X.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2015.0411" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Manu Militari: The Institutional Contingencies of Stakeholder Relationships on Entrepreneurial Performance</div>
+                    <div class="paper-authors">Hiatt, Shon R.; Carlos, W. Chad; Sine, Wesley D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1178" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Minority Rules: Credible State Ownership and Investment Risk Around the World</div>
+                    <div class="paper-authors">James, Barclay E.; Vaaler, Paul M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1186" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Signal Incongruence and Its Consequences: A Study of Media Disapproval and CEO Overcompensation</div>
+                    <div class="paper-authors">Vergne, JP; Wernicke, Georg; Brenner, Steffen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1209" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Taking Trade-offs Seriously: Examining the Contextually Contingent Relationship Between Social Outreach Intensity and Financial Sustainability in Global Microfinance</div>
+                    <div class="paper-authors">Wry, Tyler; Zhao, Eric Yanfei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1188" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Paradox of Responsive Authoritarianism: How Civic Activism Spurs Environmental Penalties in China</div>
+                    <div class="paper-authors">Marquis, Christopher; Bird, Yanhua</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1212" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The “Make and/or Buy” Decisions of Corporate Political Lobbying: Integrating the Economic Efficiency and Legitimacy Perspectives</div>
+                    <div class="paper-authors">Jia, Nan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2016.0148" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">nan</div>
+                    <div class="paper-authors">nan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1218" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beyond Nonmarket Strategy: Market Actions As Corporate Political Activity</div>
+                    <div class="paper-authors">Funk, Russell J.; Hirschman, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2013.0178" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Capital Market Development and Firm Restructuring During an Economic Shock</div>
+                    <div class="paper-authors">Singh, Kulwant; Mahmood, Ishtiaq P.; Natarajan, Siddharth</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1127" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Investors Care About Director Tenure? Insights from Executive Cognition and Social Capital Theories</div>
+                    <div class="paper-authors">Brown, Jill A.; Anderson, Anne; Salas, Jesus M.; Ward, Andrew J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1123" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Operational IT Failures, IT Value Destruction, and Board-Level IT Governance Changes1</div>
+                    <div class="paper-authors">Benaroch, Michel; Chernobai, Anna</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.3.04" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Decline of Social Entrenchment: Social Network Cohesion and Board Responsiveness to Shareholder Activism</div>
+                    <div class="paper-authors">Benton, Richard A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1119" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Relationship Between CEO Media Appearances and Compensation</div>
+                    <div class="paper-authors">Kang, Jingoo; Han Kim, Andy Y.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1128" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Multilevel Analysis of the Performance Implications of Excess Control in Business Groups</div>
+                    <div class="paper-authors">Yang, Kuo-Pin; Schwarz, Gavin M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1086" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Severance Agreements: A Theoretical Examination and Research Agenda</div>
+                    <div class="paper-authors">Cowen, Amanda P.; King, Adelaide Wilcox; Marcel, Jeremy J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2011.0435" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Good Times Breed Cheats? Prosperous Times Have Immediate and Lasting Implications for CEO Misconduct</div>
+                    <div class="paper-authors">Bianchi, Emily C.; Mohliver, Aharon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1101" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Political Connections Buffer Firms from or Bind Firms to the Government? A Study of Corporate Charitable Donations of Chinese Firms</div>
+                    <div class="paper-authors">Zhang, Jianjun; Marquis, Christopher; Qiao, Kunyuan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1084" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Dormancy as a Strategic Response to Detrimental Public Policy</div>
+                    <div class="paper-authors">Kozhikode, Rajiv Krishnan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1027" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Earnings Pressure and Long-Term Corporate Governance: Can Long-Term-Oriented Investors and Managers Reduce the Quarterly Earnings Obsession?</div>
+                    <div class="paper-authors">Zhang, Yu; Gimeno, Javier</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1056" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Financial Regulation and Social Welfare: The Critical Contribution of Management Theory</div>
+                    <div class="paper-authors">Marti, Emilio; Scherer, Andreas Georg</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2013.0469" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Historic Corporate Social Responsibility</div>
+                    <div class="paper-authors">Schrempf-Stirling, Judith; Palazzo, Guido; Phillips, Robert A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2014.0137" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Corporations Overcome Issue Illegitimacy and Issue Equivocality to Address Social Welfare: The Role of the Social Change Agent</div>
+                    <div class="paper-authors">Sonenshein, Scott</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2013.0425" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Ideological Purity vs. Hybridization Trade-Off: When Do Islamic Banks Hire Managers from Conventional Banking?</div>
+                    <div class="paper-authors">Boone, Christophe; Özcan, Serden</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1097" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On the Forgetting of Corporate Irresponsibility</div>
+                    <div class="paper-authors">Mena, Sébastien; Rintamäki, Jukka; Fleming, Peter; Spicer, André</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2014.0208" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Radical Repertoires: The Incidence and Impact of Corporate-Sponsored Social Activism</div>
+                    <div class="paper-authors">McDonnell, Mary-Hunter</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1017" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Scrutiny, Norms, and Selective Disclosure: A Global Study of Greenwashing</div>
+                    <div class="paper-authors">Marquis, Christopher; Toffel, Michael W.; Zhou, Yanhua</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1039" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Senior Executives’ IT Management Responsibilities: Serious IT-Related Deficiencies and CEO/CFO Turnover1</div>
+                    <div class="paper-authors">Masli, Adi; Richardson, Vernon J.; Watson, Marcia Weidenmier; Zmud, Robert W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.3.08" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Stakeholder Agency and Social Welfare: Pluralism and Decision Making in the Multi-Objective Corporation</div>
+                    <div class="paper-authors">Mitchell, Ronald K.; Weaver, Gary R.; Agle, Bradley R.; Bailey, Adam D.; Carlson, James</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2013.0486" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Stakeholder Relationships and Social Welfare: A Behavioral Theory of Contributions to Joint Value Creation</div>
+                    <div class="paper-authors">Bridoux, Flore; Stoelhorst, J. W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2013.0475" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Rise of Finance and Firm Employment Dynamics</div>
+                    <div class="paper-authors">Lin, Ken-Hou</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1073" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate temporal chart
+        const yearlyData = {"2016": 17, "2017": 6, "2018": 15, "2019": 10, "2020": 14, "2021": 15, "2022": 22, "2023": 15, "2024": 15, "2025": 15};
+        const years = Object.keys(yearlyData).map(y => parseInt(y)).sort();
+        const counts = years.map(y => yearlyData[y.toString()]);
+        
+        const temporalTrace = {
+            x: years,
+            y: counts,
+            type: 'scatter',
+            mode: 'lines+markers',
+            fill: 'tonexty',
+            line: {color: '#667eea', width: 3},
+            marker: {color: '#764ba2', size: 8},
+            name: 'Papers per Year'
+        };
+        
+        const temporalLayout = {
+            title: {
+                text: 'Research Activity Over Time',
+                font: {size: 18, color: '#333'}
+            },
+            xaxis: {title: 'Year'},
+            yaxis: {title: 'Number of Papers'},
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('temporal-chart', [temporalTrace], temporalLayout, {responsive: true});
+        
+        // Generate journal chart
+        const journalData = {"Organization Science": 95, "Academy of Management Review": 43, "MIS Quarterly": 6};
+        const journalTrace = {
+            labels: Object.keys(journalData),
+            values: Object.values(journalData),
+            type: 'pie',
+            hole: 0.4,
+            marker: {
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+            },
+            textinfo: 'label+percent+value'
+        };
+        
+        const journalLayout = {
+            title: {
+                text: 'Distribution Across Journals',
+                font: {size: 18, color: '#333'}
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('journal-chart', [journalTrace], journalLayout, {responsive: true});
+    </script>
+</body>
+</html>

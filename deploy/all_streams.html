@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Research Streams - Comprehensive Overview</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .streams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .stream-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #667eea;
+        }
+        
+        .stream-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .stream-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .stream-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .stream-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .journal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            font-size: 1.1em;
+            outline: none;
+        }
+        
+        .stats-summary {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .streams-grid { grid-template-columns: 1fr; }
+            .stats-summary { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <div class="header">
+            <h1><i class="fas fa-stream"></i> All Research Streams</h1>
+            <p style="font-size: 1.2em; color: #666;">
+                Comprehensive overview of all 15 discovered research streams
+            </p>
+        </div>
+        
+        <div class="stats-summary">
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div>Research Streams</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2,890</div>
+                <div>Total Papers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div>Years Covered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div>Journals</div>
+            </div>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="🔍 Search research streams by name, description, or journal..." 
+                   onkeyup="filterStreams(this.value)">
+        </div>
+        
+        <div class="streams-grid" id="streams-container">
+
+            <div class="stream-card" onclick="window.open('stream_0.html', '_blank')" 
+                 data-search="work & their & social research stream comprising 230 papers published between 2016-2025. primary publication venues: organization science (114), academy of management review (99), mis quarterly (12). based on analysis of 131 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science academy of management review mis quarterly">
+                <h3><i class="fas fa-lightbulb"></i> Work & Their & Social</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 230 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 230 papers published between 2016-2025. Primary publication venues: Organization Science (114), Academy of Management Review (99), MIS Quarterly (12). Based on analysis of 1...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">Academy of Management Review</span><span class="journal-tag">MIS Quarterly</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_1.html', '_blank')" 
+                 data-search="online & reviews & product research stream comprising 192 papers published between 2016-2025. primary publication venues: information systems research (125), mis quarterly (61), organization science (6). based on analysis of 192 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. information systems research mis quarterly organization science">
+                <h3><i class="fas fa-lightbulb"></i> Online & Reviews & Product</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 192 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 192 papers published between 2016-2025. Primary publication venues: Information Systems Research (125), MIS Quarterly (61), Organization Science (6). Based on analysis of 19...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Organization Science</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_2.html', '_blank')" 
+                 data-search="online & platform & data research stream comprising 190 papers published between 2016-2025. primary publication venues: information systems research (126), mis quarterly (57), organization science (6). based on analysis of 189 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. information systems research mis quarterly organization science">
+                <h3><i class="fas fa-lightbulb"></i> Online & Platform & Data</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 190 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 190 papers published between 2016-2025. Primary publication venues: Information Systems Research (126), MIS Quarterly (57), Organization Science (6). Based on analysis of 18...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Organization Science</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_3.html', '_blank')" 
+                 data-search="their & gender & work research stream comprising 161 papers published between 2016-2025. primary publication venues: organization science (110), information systems research (33), mis quarterly (15). based on analysis of 158 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science information systems research mis quarterly">
+                <h3><i class="fas fa-lightbulb"></i> Their & Gender & Work</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 161 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 161 papers published between 2016-2025. Primary publication venues: Organization Science (110), Information Systems Research (33), MIS Quarterly (15). Based on analysis of 1...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_4.html', '_blank')" 
+                 data-search="firms & innovation & knowledge research stream comprising 158 papers published between 2016-2025. primary publication venues: organization science (104), mis quarterly (28), information systems research (24). based on analysis of 155 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science mis quarterly information systems research">
+                <h3><i class="fas fa-lightbulb"></i> Firms & Innovation & Knowledge</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 158 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 158 papers published between 2016-2025. Primary publication venues: Organization Science (104), MIS Quarterly (28), Information Systems Research (24). Based on analysis of 1...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Information Systems Research</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_5.html', '_blank')" 
+                 data-search="time & comments & paradox research stream comprising 150 papers published between 2016-2025. primary publication venues: academy of management review (129), information systems research (11), mis quarterly (8). based on analysis of 8 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. academy of management review information systems research mis quarterly">
+                <h3><i class="fas fa-lightbulb"></i> Time & Comments & Paradox</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 150 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 150 papers published between 2016-2025. Primary publication venues: Academy of Management Review (129), Information Systems Research (11), MIS Quarterly (8). Based on analys...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Academy of Management Review</span><span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_6.html', '_blank')" 
+                 data-search="information & privacy & their research stream comprising 146 papers published between 2016-2025. primary publication venues: mis quarterly (76), information systems research (64), organization science (5). based on analysis of 145 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. mis quarterly information systems research organization science">
+                <h3><i class="fas fa-lightbulb"></i> Information & Privacy & Their</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 146 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 146 papers published between 2016-2025. Primary publication venues: MIS Quarterly (76), Information Systems Research (64), Organization Science (5). Based on analysis of 145...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Information Systems Research</span><span class="journal-tag">Organization Science</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_7.html', '_blank')" 
+                 data-search="social & media & social media research stream comprising 146 papers published between 2016-2025. primary publication venues: information systems research (68), mis quarterly (60), academy of management review (10). based on analysis of 136 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. information systems research mis quarterly academy of management review">
+                <h3><i class="fas fa-lightbulb"></i> Social & Media & Social Media</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 146 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 146 papers published between 2016-2025. Primary publication venues: Information Systems Research (68), MIS Quarterly (60), Academy of Management Review (10). Based on analys...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Academy of Management Review</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_8.html', '_blank')" 
+                 data-search="firms & firm & their research stream comprising 144 papers published between 2016-2025. primary publication venues: organization science (95), academy of management review (43), mis quarterly (6). based on analysis of 101 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science academy of management review mis quarterly">
+                <h3><i class="fas fa-lightbulb"></i> Firms & Firm & Their</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 144 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 144 papers published between 2016-2025. Primary publication venues: Organization Science (95), Academy of Management Review (43), MIS Quarterly (6). Based on analysis of 101...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">Academy of Management Review</span><span class="journal-tag">MIS Quarterly</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_9.html', '_blank')" 
+                 data-search="entrepreneurs & their & institutional research stream comprising 143 papers published between 2016-2025. primary publication venues: organization science (85), academy of management review (52), information systems research (3). based on analysis of 91 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science academy of management review information systems research">
+                <h3><i class="fas fa-lightbulb"></i> Entrepreneurs & Their & Institutional</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 143 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 143 papers published between 2016-2025. Primary publication venues: Organization Science (85), Academy of Management Review (52), Information Systems Research (3). Based on ...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">Academy of Management Review</span><span class="journal-tag">Information Systems Research</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_10.html', '_blank')" 
+                 data-search="online & their & more research stream comprising 134 papers published between 2016-2025. primary publication venues: information systems research (74), mis quarterly (46), organization science (13). based on analysis of 133 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. information systems research mis quarterly organization science">
+                <h3><i class="fas fa-lightbulb"></i> Online & Their & More</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 134 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 134 papers published between 2016-2025. Primary publication venues: Information Systems Research (74), MIS Quarterly (46), Organization Science (13). Based on analysis of 13...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Organization Science</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_11.html', '_blank')" 
+                 data-search="team & teams & knowledge research stream comprising 126 papers published between 2016-2025. primary publication venues: organization science (78), mis quarterly (20), information systems research (18). based on analysis of 116 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science mis quarterly information systems research">
+                <h3><i class="fas fa-lightbulb"></i> Team & Teams & Knowledge</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 126 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 126 papers published between 2016-2025. Primary publication venues: Organization Science (78), MIS Quarterly (20), Information Systems Research (18). Based on analysis of 11...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Information Systems Research</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_12.html', '_blank')" 
+                 data-search="platform & mobile & software research stream comprising 121 papers published between 2016-2025. primary publication venues: information systems research (70), mis quarterly (37), organization science (13). based on analysis of 119 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. information systems research mis quarterly organization science">
+                <h3><i class="fas fa-lightbulb"></i> Platform & Mobile & Software</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 121 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 121 papers published between 2016-2025. Primary publication venues: Information Systems Research (70), MIS Quarterly (37), Organization Science (13). Based on analysis of 11...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Information Systems Research</span><span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Organization Science</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_13.html', '_blank')" 
+                 data-search="organizational & change & organizations research stream comprising 118 papers published between 2016-2025. primary publication venues: organization science (74), academy of management review (37), mis quarterly (5). based on analysis of 80 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. organization science academy of management review mis quarterly">
+                <h3><i class="fas fa-lightbulb"></i> Organizational & Change & Organizations</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 118 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 118 papers published between 2016-2025. Primary publication venues: Organization Science (74), Academy of Management Review (37), MIS Quarterly (5). Based on analysis of 80 ...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">Organization Science</span><span class="journal-tag">Academy of Management Review</span><span class="journal-tag">MIS Quarterly</span>
+                </div>
+            </div>
+
+            <div class="stream-card" onclick="window.open('stream_14.html', '_blank')" 
+                 data-search="firms & firm & information research stream comprising 115 papers published between 2016-2025. primary publication venues: mis quarterly (39), information systems research (34), organization science (33). based on analysis of 106 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena. mis quarterly information systems research organization science">
+                <h3><i class="fas fa-lightbulb"></i> Firms & Firm & Information</h3>
+                <div class="stream-meta">
+                    <span><i class="fas fa-file-alt"></i> 115 papers</span>
+                    <span><i class="fas fa-calendar"></i> 2016-2025</span>
+                </div>
+                <div class="stream-description">
+                    Research stream comprising 115 papers published between 2016-2025. Primary publication venues: MIS Quarterly (39), Information Systems Research (34), Organization Science (33). Based on analysis of 10...
+                </div>
+                <div class="journal-tags">
+<span class="journal-tag">MIS Quarterly</span><span class="journal-tag">Information Systems Research</span><span class="journal-tag">Organization Science</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        function filterStreams(searchTerm) {
+            const cards = document.querySelectorAll('.stream-card');
+            const term = searchTerm.toLowerCase();
+            
+            cards.forEach(card => {
+                const searchData = card.getAttribute('data-search');
+                if (searchData.includes(term)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

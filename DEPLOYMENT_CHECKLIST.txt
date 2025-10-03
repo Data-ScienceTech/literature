@@ -1,0 +1,241 @@
+================================================================================
+                   DEPLOYMENT CHECKLIST FOR 
+              research.datasciencetech.ca
+================================================================================
+
+Date: _____________________
+Deployed by: ______________
+
+================================================================================
+PRE-DEPLOYMENT CHECKS
+================================================================================
+
+[ ] All HTML files generated (19 files)
+[ ] deploy/ folder exists with all files
+[ ] research_streams_dashboard.zip created
+[ ] Internet connection active
+[ ] Hosting credentials available
+
+================================================================================
+CPANEL DEPLOYMENT (RECOMMENDED - 5 MINUTES)
+================================================================================
+
+STEP 1: ACCESS CPANEL
+[ ] Navigated to hosting control panel
+[ ] Logged in successfully
+[ ] cPanel dashboard loaded
+
+STEP 2: CREATE SUBDOMAIN (One-time setup)
+[ ] Clicked "Subdomains" in cPanel
+[ ] Subdomain: research
+[ ] Domain: datasciencetech.ca
+[ ] Document Root: public_html/research
+[ ] Clicked "Create"
+[ ] Success message received
+[ ] Waited 2-3 minutes for DNS
+
+STEP 3: UPLOAD FILES
+[ ] Clicked "File Manager" in cPanel
+[ ] Navigated to public_html/research/
+[ ] Clicked "Upload" button
+[ ] Selected research_streams_dashboard.zip
+[ ] Upload completed (progress bar 100%)
+[ ] ZIP file visible in file manager
+
+STEP 4: EXTRACT FILES
+[ ] Right-clicked on ZIP file
+[ ] Selected "Extract"
+[ ] Clicked "Extract Files" button
+[ ] Extraction completed successfully
+[ ] All 23 files now visible
+[ ] Deleted the ZIP file
+
+STEP 5: SET PERMISSIONS (if needed)
+[ ] Selected all files
+[ ] Right-click → "Change Permissions"
+[ ] Set to 644 for all files
+[ ] Applied changes
+
+STEP 6: VERIFY DEPLOYMENT
+[ ] Opened browser
+[ ] Visited: https://research.datasciencetech.ca/
+[ ] Main dashboard loaded successfully
+[ ] Page styling looks correct
+[ ] Navigation menu works
+
+================================================================================
+FTP DEPLOYMENT (ALTERNATIVE METHOD)
+================================================================================
+
+STEP 1: PREPARE FTP CLIENT
+[ ] FileZilla installed (or other FTP client)
+[ ] FTP credentials obtained:
+    Host: _________________________
+    Username: _____________________
+    Password: _____________________
+    Port: 21
+
+STEP 2: CONNECT TO SERVER
+[ ] Opened FileZilla
+[ ] Entered connection details
+[ ] Connected successfully
+[ ] Navigated to public_html/research/
+
+STEP 3: UPLOAD FILES
+[ ] Local: Opened deploy/ folder
+[ ] Remote: In public_html/research/
+[ ] Selected all files from deploy/
+[ ] Drag & drop to upload
+[ ] All files transferred (23/23)
+[ ] No errors in transfer log
+
+STEP 4: VERIFY DEPLOYMENT
+[ ] Visited: https://research.datasciencetech.ca/
+[ ] Main dashboard loaded successfully
+
+================================================================================
+POST-DEPLOYMENT TESTING
+================================================================================
+
+FUNCTIONALITY TESTS
+[ ] Main dashboard (/) loads correctly
+[ ] All Streams page loads
+[ ] Papers database page loads
+[ ] Methodology page loads
+[ ] All 15 stream pages load (stream_0 through stream_14)
+
+NAVIGATION TESTS
+[ ] Top navigation menu works
+[ ] Breadcrumb navigation works
+[ ] "Back to" links work
+[ ] DataScienceTech.ca logo/link works
+
+SEARCH & INTERACTION
+[ ] Papers database search works
+[ ] Search filters work correctly
+[ ] Can click and expand paper details
+[ ] DOI links open in new tabs
+[ ] DOI links work correctly
+
+VISUAL TESTS
+[ ] All charts/visualizations display
+[ ] Page styling looks correct
+[ ] Images load (if any)
+[ ] Icons display correctly (Font Awesome)
+[ ] No broken images or missing icons
+
+MOBILE TESTS
+[ ] Dashboard loads on mobile phone
+[ ] Layout is responsive
+[ ] Navigation works on mobile
+[ ] Search works on mobile
+[ ] Charts are visible on mobile
+
+PERFORMANCE TESTS
+[ ] Pages load quickly (< 3 seconds)
+[ ] No JavaScript errors (check browser console F12)
+[ ] HTTPS enabled (padlock in browser)
+[ ] No mixed content warnings
+
+SEO & OPTIMIZATION
+[ ] robots.txt accessible: /robots.txt
+[ ] sitemap.xml accessible: /sitemap.xml
+[ ] Meta tags present (view source)
+[ ] Page titles correct
+
+================================================================================
+FINAL VERIFICATION
+================================================================================
+
+CRITICAL URLS - TEST EACH ONE:
+[ ] https://research.datasciencetech.ca/
+[ ] https://research.datasciencetech.ca/all_streams.html
+[ ] https://research.datasciencetech.ca/papers_database.html
+[ ] https://research.datasciencetech.ca/methodology.html
+[ ] https://research.datasciencetech.ca/stream_0.html
+[ ] https://research.datasciencetech.ca/stream_1.html
+[ ] https://research.datasciencetech.ca/stream_2.html
+[ ] https://research.datasciencetech.ca/stream_3.html
+[ ] https://research.datasciencetech.ca/stream_4.html
+[ ] https://research.datasciencetech.ca/stream_5.html
+[ ] https://research.datasciencetech.ca/stream_6.html
+[ ] https://research.datasciencetech.ca/stream_7.html
+[ ] https://research.datasciencetech.ca/stream_8.html
+[ ] https://research.datasciencetech.ca/stream_9.html
+[ ] https://research.datasciencetech.ca/stream_10.html
+[ ] https://research.datasciencetech.ca/stream_11.html
+[ ] https://research.datasciencetech.ca/stream_12.html
+[ ] https://research.datasciencetech.ca/stream_13.html
+[ ] https://research.datasciencetech.ca/stream_14.html
+
+BROWSER COMPATIBILITY:
+[ ] Chrome/Edge (Chromium)
+[ ] Firefox
+[ ] Safari (if available)
+[ ] Mobile browser
+
+================================================================================
+TROUBLESHOOTING LOG
+================================================================================
+
+Issue encountered:
+________________________________________________________________________
+________________________________________________________________________
+
+Solution applied:
+________________________________________________________________________
+________________________________________________________________________
+
+Issue encountered:
+________________________________________________________________________
+________________________________________________________________________
+
+Solution applied:
+________________________________________________________________________
+________________________________________________________________________
+
+================================================================================
+LAUNCH CONFIRMATION
+================================================================================
+
+[ ] All tests passed
+[ ] No critical errors
+[ ] Dashboard is live and functional
+[ ] Ready to share with users
+
+Launch Date/Time: _____________________
+
+Live URL: https://research.datasciencetech.ca/
+
+Total Time to Deploy: ________ minutes
+
+================================================================================
+SHARING & PROMOTION
+================================================================================
+
+[ ] Shared on LinkedIn
+[ ] Added to portfolio/CV
+[ ] Notified colleagues/stakeholders
+[ ] Added to DataScienceTech.ca main site
+[ ] Submitted to search engines (Google Search Console)
+
+================================================================================
+MAINTENANCE NOTES
+================================================================================
+
+Next update scheduled: _____________________
+
+Files to update for next version:
+________________________________________________________________________
+________________________________________________________________________
+
+================================================================================
+DEPLOYMENT COMPLETE! 🎉
+================================================================================
+
+Your Research Streams Dashboard is now live at:
+https://research.datasciencetech.ca/
+
+Congratulations! 🚀
+
+================================================================================

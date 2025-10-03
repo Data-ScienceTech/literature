@@ -1,0 +1,2049 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Stream: Platform & Mobile & Software</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .meta-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .papers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .paper-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .paper-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .paper-authors {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .year-tag {
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .methodology-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 25px; }
+            .section { padding: 25px; }
+            .meta-info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-lightbulb"></i> Platform & Mobile & Software</h1>
+            <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                Research stream comprising 121 papers published between 2016-2025. Primary publication venues: Information Systems Research (70), MIS Quarterly (37), Organization Science (13). Based on analysis of 119 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena.
+            </p>
+            
+            <div class="meta-info">
+                <div class="meta-card">
+                    <div class="number">121</div>
+                    <div>Papers</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2016-2025</div>
+                    <div>Time Span</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">4</div>
+                    <div>Journals</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2019</div>
+                    <div>Peak Year</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="key-insights">
+            <h3><i class="fas fa-star"></i> Key Research Insights</h3>
+            <div class="insight-item">
+                <strong>Temporal Evolution:</strong> This stream spans 10 years, 
+                showing steady growth in research attention.
+            </div>
+            <div class="insight-item">
+                <strong>Journal Distribution:</strong> Primary publication venue is Information Systems Research 
+                (70 papers, 57.9%).
+            </div>
+            <div class="insight-item">
+                <strong>Research Maturity:</strong> Emerging area with 
+                121 papers contributing to the scholarly dialog.
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-microscope"></i> How This Stream Was Discovered</h3>
+            <p>This research stream was identified using advanced AI and network science methods:</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li><strong>SPECTER2 Embeddings:</strong> Papers were encoded into 768-dimensional semantic vectors using a transformer model trained on scientific literature</li>
+                <li><strong>Leiden Clustering:</strong> Community detection on k-nearest neighbor graphs revealed papers with high semantic similarity</li>
+                <li><strong>Temporal Analysis:</strong> Burst detection identified periods of increased research activity</li>
+                <li><strong>Quality Validation:</strong> Clustering quality assessed using silhouette scores and manual inspection</li>
+            </ul>
+        </div>
+        
+        <!-- Temporal Trends -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Temporal Evolution</h2>
+            <div class="chart-container">
+                <div id="temporal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- Journal Distribution -->
+        <div class="section">
+            <h2><i class="fas fa-journal-whills"></i> Journal Distribution</h2>
+            <div class="chart-container">
+                <div id="journal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- All Papers -->
+        <div class="section">
+            <h2><i class="fas fa-file-alt"></i> All Papers in This Stream</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Papers are ordered by publication year (most recent first). Each paper contributes to the coherent 
+                research dialog that defines this stream.
+            </p>
+            
+            <div class="papers-grid">
+
+                <div class="paper-card">
+                    <div class="paper-title">Architectural Learning in the Professional 3D Printing Ecosystem: Proxies and the Complementarity Space</div>
+                    <div class="paper-authors">Lehmann, Julian; Berends, Hans; Berente, Nicholas; Tumbas, Sanja</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16779" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Consumer Evaluation of Digital Device Innovations: Disentangling Effects of Novelty and Familiarity</div>
+                    <div class="paper-authors">Zhang, Nila; Boh, Wai Fong; Lee, Gunwoong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/18750" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does David Make A Goliath? Impact of Rival’s Expertise Signals on Online User Engagement</div>
+                    <div class="paper-authors">Tandon, Ayushi; Deodhar, Swanand J.; Tandon, Abhas; Tripathi, Abhinav</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0282" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Dynamics of Shared Security in the Cloud</div>
+                    <div class="paper-authors">Clement, Nan; Arce, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0256" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Exaptation in Platforms: A Theory of Origins, Mechanisms, and Consequences</div>
+                    <div class="paper-authors">Tiwana, Amrit</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0484" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How App Developers’ Boundary-Shifting Moves Reshape Competitive Dynamics</div>
+                    <div class="paper-authors">Tian, Hengqi; Rai, Arun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/18060" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How to Make My Bug Bounty Cost-Effective? A Game-Theoretical Model</div>
+                    <div class="paper-authors">Zhang, Leting; Demirezen, Emre M.; Kumar, Subodha</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0349" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mobile Push vs. Pull Targeting and Geo-Conquesting</div>
+                    <div class="paper-authors">Molitor, Dominik; Spann, Martin; Ghose, Anindya; Reichhart, Philipp</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0206" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Opening First-Party App Resources: Empirical Evidence of Free-Riding</div>
+                    <div class="paper-authors">Soh, Franck; Setia, Pankaj; Grover, Varun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0607" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Self-Organization and Governance in Digital Platform Ecosystems: An Information Ecology Approach</div>
+                    <div class="paper-authors">Engert, Martin; Hein, Andreas; Maruping, Likoebe M.; Thatcher, Jason Bennett; Krcmar, Helmut</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/18413" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Shaping Ecosystem Rules: Complementarities, Interdependencies, and Firms’ Success in Coordinating Ecosystems Via Standard-Setting</div>
+                    <div class="paper-authors">Ranganathan, Ram; Chen, John S.; Ghosh, Anindya</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16136" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Star Wars: An Empirical Study of Star Performer Turnover and Content Supply on Multisided Streaming Platforms</div>
+                    <div class="paper-authors">Forderer, Jens; Gutt, Dominik; Greenwood, Brad N.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0367" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Complementor’s Dilemma: Navigating Growth Ambitions and the Dependency on Focal Actors in Platform Ecosystems</div>
+                    <div class="paper-authors">Liu, Shiyuan; Henfridsson, Ola; Hummel, Jochem T.; Nandhakumar, Joe</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/17767" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Third-Party Software Development Kit Utilization and Mobile App Market Performance</div>
+                    <div class="paper-authors">Xia, Yu; Chen, Hailiang; Fang, Yulin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0504" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">What Happens When Machines Become Smarter? An Empirical Investigation of AI Opponents in Online Gaming</div>
+                    <div class="paper-authors">Yuan, Haoyu; He, Qinglai; Wang, Lingli; Huang, Ni; Wei, Qiang; Zhang, Jiayin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/18603" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Coordination in a Digital Platform Organization</div>
+                    <div class="paper-authors">Leong, Carmen; Lin, Silvia; Tan, Felix; Yu, Jie</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1226" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Dynamics of Competition on Openness Strategies and Software Maintenance</div>
+                    <div class="paper-authors">Mallipeddi, Rakesh R.; Demirezen, Emre M.; Kumar, Subodha; Gopal, Ram D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17063" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Flow of the Game: A Hidden Markov Model of Player Engagement in Online Mobile Games</div>
+                    <div class="paper-authors">Deng, Jiaying; Lee, Stephanie; Tan, Yong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0217" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mobile Payment Adoption: An Empirical Investigation of Alipay</div>
+                    <div class="paper-authors">Xu, Yuqian; Ghose, Anindya; Xiao, Binqing</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0156" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Personalized Privacy Preservation in Consumer Mobile Trajectories</div>
+                    <div class="paper-authors">Macha, Meghanath; Foutz, Natasha Zhang; Li, Beibei; Ghose, Anindya</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1227" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Loophole Exploitation, Recovery Measures, and User Engagement: A Quasi-Natural Experiment in Online Gaming</div>
+                    <div class="paper-authors">Chen, Jianqing; He, Shu; Yang, Xue</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0416" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Player-vs.-Player Game Design and Pricing: A Tournament Design Perspective</div>
+                    <div class="paper-authors">Deng, Haowen; Dou, Yifan; Wu, Zenan; Zhang, Cheng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0258" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Mobile Data Cost on Consumer Price Sensitivity: A Study of a Hotel Booking App</div>
+                    <div class="paper-authors">Luo, Xiaopeng; He, Cheng; Hu, Yu Jeffrey; Li, Xitong; Cheng, Yuan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0450" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Comparing Platform Owners’ Early and Late Entry into Complementary Markets</div>
+                    <div class="paper-authors">Shi, Runyu; Aaltonen, Aleksi; Henfridsson, Ola; Gopal, Ram</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17413" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Competing for Temporary Advantage in a Hypercompetitive Mobile App Market</div>
+                    <div class="paper-authors">James, Tabitha L.; Qiao, Zhilei; Shen, Wenqi; Wang, G. Alan; Fan, Weiguo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15079" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Customer Complaint Avoidance: A Randomized Field Experiment of Platform Governance Based on Value Co-Creation and Appropriation</div>
+                    <div class="paper-authors">Zhao, Xia; Song, Peijian; Shi, Lanfei; Xue, Ling; Feng, Fan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17000" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Evolution of Referrals over Customers’ Life Cycle: Evidence from a Ride-Sharing Platform</div>
+                    <div class="paper-authors">Fernández-Loría, Carlos; Cohen, Maxime C.; Ghose, Anindya</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1138" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Extended Generativity Theory on Digital Platforms</div>
+                    <div class="paper-authors">Fürstenau, Daniel; Baiyere, Abayomi; Schewina, Kai; Schulte-Althoff, Matthias; Rothe, Hannes</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1209" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Fun Shopping: A Randomized Field Experiment on Gamification</div>
+                    <div class="paper-authors">Ho, Yi-Jen (Ian); Liu, Siyuan; Wang, Lei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1147" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Green Data Analytics of Supercomputing from Massive Sensor Networks: Does Workload Distribution Matter?</div>
+                    <div class="paper-authors">Guo, Zhiling; Li, Jin; Ramesh, Ram</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1208" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Moving Consumers from Free to Fee in Platform-Based Markets: An Empirical Study of Multiplayer Online Battle Arena Games</div>
+                    <div class="paper-authors">Wang, Le; Lowry, Paul Benjamin; Luo, Xin (Robert); Li, Han</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1127" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Nudging Private Ryan: Mobile Microgiving under Economic Incentives and Audience Effects</div>
+                    <div class="paper-authors">Lee, Dongwon; Gopal, Anandasivam; Lee, Dokyun; Shin, Dongwook</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16643" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On the Same Page? What Users Benefit from a Desktop View on Mobile Devices</div>
+                    <div class="paper-authors">Fink, Lior; Papismedov, Daniele</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1140" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Personalized Ranking at a Mobile App Distribution Platform</div>
+                    <div class="paper-authors">Mao, Shengjun; Dewan, Sanjeev; Ho, Yi-Jen (Ian)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1156" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Positive Demand Spillover of Popular App Adoption: Implications for Platform Owners’ Management of Complements</div>
+                    <div class="paper-authors">Lee, Mi Hyun; Han, Sang Pil; Park, Sungho; Oh, Wonseok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1164" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Software Components and Product Variety in a Platform Ecosystem: A Dynamic Network Analysis of WordPress</div>
+                    <div class="paper-authors">Um, Sungyong; Zhang, Bin; Wattal, Sunil; Yoo, Youngjin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1172" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Standardize or Let a Thousand Flowers Bloom? Interface Design Coordination between Software Platforms and Hosted Apps</div>
+                    <div class="paper-authors">Zhang, Cheng; Song, Peijian; Lim, Kai</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16484" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Voice of Commerce: How Smart Speakers Reshape Digital Content Consumption and Preferences</div>
+                    <div class="paper-authors">Son, Yoonseock; Oh, Wonseok; Im, Il</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17333" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Value Creation Tradeoff in Business Ecosystems: Leveraging Complementarities While Managing Interdependencies</div>
+                    <div class="paper-authors">Agarwal, Shiva; Kapoor, Rahul</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1615" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Value Destruction in Information Technology Ecosystems: A Mixed-Method Investigation with Interpretive Case Study and Analytical Modeling</div>
+                    <div class="paper-authors">Sahaym, Arvin; Vithayathil, Joseph; Sarker, Suprateek; Sarker, Saonee; Bjørn-Andersen, Niels</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1119" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Which Enemy to Dance with? A New Role of Software Piracy in Influencing Antipiracy Strategies</div>
+                    <div class="paper-authors">Sun, Can; Ji, Yonghua; Geng, Xianjun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1219" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Theory of Multi-Realization of IT Value: Toward Construct Clarity in the Co-Development of Large Platforms</div>
+                    <div class="paper-authors">Flak, Leif Skiftenes; Solli-Sæther, Hans; Straub, Detmar William</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/14492" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Digital Platform Ecosystem Dynamics: The Roles of Product Scope, Innovation, and Collaborative Network Centrality</div>
+                    <div class="paper-authors">Li, He; Zhang, Chen; Kettinger, William J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15444" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Is Mobile User Behavior Different? A Hidden Markov Model of Cross-Mobile Application Usage Dynamics</div>
+                    <div class="paper-authors">Wu, Shaohui; Tan, Yong; Chen, Yubo; Liang, Yitian (Sky)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1093" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How a Firm’s Value Capture Affects Value Creation in Its Ecosystem</div>
+                    <div class="paper-authors">John, Kose; Ross, David Gaddis</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2019.0494" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">In Cloud We Trust? Co-opting Occupational Gatekeepers to Produce Normalized Trust in Platform-Mediated Interorganizational Relationships</div>
+                    <div class="paper-authors">Karunakaran, Arvind</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1469" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Multifarious Roles and Conflicts on an Interorganizational Green Is</div>
+                    <div class="paper-authors">Leidner, Dorothy E.; Sutanto, Juliana; Goutas, Lazaros</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15116" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Compatibility and Developer Multihoming: A Trade-off Perspective</div>
+                    <div class="paper-authors">Tian, Jing; Zhao, Xia; Xue, Ling</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16369" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Product Meaning in Digital Product Innovation</div>
+                    <div class="paper-authors">Wang, Gongtai; Henfridsson, Ola; Nandhakumar, Joe; Yoo, Youngjin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15252" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Empirical Examination of the Economics of Mobile Application Security</div>
+                    <div class="paper-authors">Sanyal, Pallab; Menon, Nirup; Siponen, Mikko</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/15315" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Anchored Differentiation: The Role of Temporal Distance in the Comparison and Evaluation of New Product Designs</div>
+                    <div class="paper-authors">Chan, Tian Heong; Lee, Yonghoon G.; Jung, HeeJung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1454" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Discount Schemes for the Preemptible Service of a Cloud Platform with Unutilized Capacity</div>
+                    <div class="paper-authors">Chen, Shi; Moinzadeh, Kamran; Tan, Yong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1011" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Congestion Always Hurt? Managing Discount Under Congestion in a Game-Theoretic Setting</div>
+                    <div class="paper-authors">Saha, Rajib L.; Singha, Sumanta; Kumar, Subodha</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1040" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Freemium Pricing in Digital Games with Virtual Currency</div>
+                    <div class="paper-authors">Meng, Zixuan; Hao, Lin; Tan, Yong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0976" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Leveraging the Numerosity Effect to Influence Perceived Expensiveness of Virtual Items</div>
+                    <div class="paper-authors">Huang, Yunhui; Lim, Kai H.; Lin, Zhijie</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0955" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Manufacturer’s “1-Up” from Used Games: Insights from the Secondhand Market for Video Games</div>
+                    <div class="paper-authors">Kim, Antino; Saha, Rajib L.; Khern-am-nuai, Warut</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1023" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mobile Money and Mobile Technologies: A Structural Estimation</div>
+                    <div class="paper-authors">Dong, Yan; Song, Sining; Venkataraman, Sriram; Yao, Yuliang</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0891" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Support Forums and Software Vendor’s Pricing Strategy</div>
+                    <div class="paper-authors">Dey, Debabrata; Ghoshal, Abhijeet; Lahiri, Atanu</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0988" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Power of Renegotiation and Monitoring in Software Outsourcing: Substitutes or Complements?</div>
+                    <div class="paper-authors">Huang, He; Hu, Minhui; Kauffman, Robert J.; Xu, Hongyan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1026" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Switch in Time Saves the Dime: A Model to Reduce Rental Cost in Cloud Computing</div>
+                    <div class="paper-authors">Hosseini, Leila; Tang, Shaojie; Mookerjee, Vijay; Sriskandarajah, Chelliah</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0912" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Cloud Services vs. On-Premises Software: Competition Under Security Risk and Product Customization</div>
+                    <div class="paper-authors">Zhang, Zan; Nan, Guofang; Tan, Yong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0919" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Commitment and Replacement of Existing SaaS-Delivered Applications: A Mixed-Methods Investigation</div>
+                    <div class="paper-authors">Xiao, Xiao; Sarker, Saonee; Wright, Ryan T.; Sarker, Suprateek; Mariadoss, Babu John</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/13216" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Data-Driven Promotion Planning for Paid Mobile Applications</div>
+                    <div class="paper-authors">Li, Manqi (Maggie); Huang, Yan; Sinha, Amitabh</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0928" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Different but Equal? A Field Experiment on the Impact of Recommendation Systems on Mobile and Personal Computer Channels in Retail</div>
+                    <div class="paper-authors">Lee, Dongwon; Gopal, Anandasivam; Park, Sung-Hyuk</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0922" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Digitization and Phase Transitions in Platform Organizing Logics: Evidence from the Process Automation Industry</div>
+                    <div class="paper-authors">Sandberg, Johan; Holmström, Jonny; Lyytinen, Kalle</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14520" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Distance and Local Competition in Mobile Geofencing</div>
+                    <div class="paper-authors">Ho, Yi-Jen (Ian); Dewan, Sanjeev; Ho, Yi-Chun (Chad)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0953" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">First- or Second-Mover Advantage? The Case of IT-Enabled Platform Markets</div>
+                    <div class="paper-authors">Feng, Haiyang; Jiang, Zhengrui; Li, Minqiang; Feng, Nan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15273)" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is the Grass Greener? On the Strategic Implications of Moving Along the Value Chain for IT Service Providers</div>
+                    <div class="paper-authors">Gopal, Anandasivam; Karmegam, Sabari Rajan; Koka, Balaji R.; Rand, William M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0879" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Matching Mobile Applications for Cross-Promotion</div>
+                    <div class="paper-authors">Lee, Gene Moo; He, Shu; Lee, Joowon; Whinston, Andrew B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0921" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Nonlinear Pricing of Software with Local Demand Inelasticity</div>
+                    <div class="paper-authors">Xin, Mingdi; Sundararajan, Arun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0940" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Signaling for Generating Platform Content</div>
+                    <div class="paper-authors">Hukal, Philipp; Henfridsson, Ola; Shaikh, Maha; Parker, Geoffrey</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15190" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Effect of Shortening Lock-in Periods in Telecommunication Services</div>
+                    <div class="paper-authors">Yang, Baojiang; de Matos, Miguel Godinho; Ferreira, Pedro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14839" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Customer Valuation Uncertainty on Software Licensing</div>
+                    <div class="paper-authors">Xin, Mingdi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14728" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Battle of the Internet Channels: How Do Mobile and Fixed-Line Quality Drive Internet Use?</div>
+                    <div class="paper-authors">Xu, Jiao; Forman, Chris; Hu, Yu Jeffrey</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0776" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does It Pay to Shroud In-App Purchase Prices?</div>
+                    <div class="paper-authors">Shulman, Jeffrey D.; Geng, Xianjun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0835" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Familiarity, Creativity, and the Adoption of Category Labels in Technology Industries</div>
+                    <div class="paper-authors">Zunino, Diego; Suarez, Fernando F.; Grodal, Stine</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1238" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Forward-Looking Behavior in Mobile Data Consumption and Targeted Promotion Design: A Dynamic Structural Model</div>
+                    <div class="paper-authors">Xu, Lizhen; Duan, Jason A.; Hu, Yu Jeffrey; Cheng, Yuan; Zhu, Yan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0820" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Generativity Tension and Value Creation in Platform Ecosystems</div>
+                    <div class="paper-authors">Cennamo, Carmelo; Santaló, Juan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1270" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Mega Is the Mega? Exploring the Spillover Effects of WeChat Using Graphical Model</div>
+                    <div class="paper-authors">Zheng, Jinyang; Qi, Zhengling; Dou, Yifan; Tan, Yong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0865" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Innovation and Policy Support for Two-Sided Market Platforms: Can Government Policy Makers and Executives Optimize Both Societal Value and Profits?</div>
+                    <div class="paper-authors">Jung, Dawoon; Kim, Byung Cho; Park, Myungsub; Straub, Detmar W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0851" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mobile App Recommendation: An Involvement-Enhanced Approach1</div>
+                    <div class="paper-authors">He, Jiangning; Fang, Xiao; Liu, Hongyan; Li, Xindan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/15049" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Motivating Effective Mobile App Adoptions: Evidence from a Large-Scale Randomized Field Experiment</div>
+                    <div class="paper-authors">Sun, Tianshu; Shi, Lanfei; Viswanathan, Siva; Zheleva, Elena</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0815" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Optimal Management of Virtual Infrastructures Under Flexible Cloud Service Agreements</div>
+                    <div class="paper-authors">Guo, Zhiling; Li, Jin; Ramesh, Ram</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0871" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Optimizing and Satisficing: The Interplay Between Platform Architecture and Producers’ Design Strategies for Platform Performance1</div>
+                    <div class="paper-authors">Brunswicker, Sabine; Almirall, Esteve; Majchrzak, Ann</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/13561" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Personalized Mobile Targeting with User Engagement Stages: Combining a Structural Hidden Markov Model and Field Experiment</div>
+                    <div class="paper-authors">Zhang, Yingjie; Li, Beibei; Luo, Xueming; Wang, Xiaoyi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0831" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Strategy: Managing Ecosystem Value Through Selective Promotion of Complements</div>
+                    <div class="paper-authors">Rietveld, Joost; Schilling, Melissa A.; Bellavitis, Cristiano</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1290" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Seizing the Commuting Moment: Contextual Targeting Based on Mobile Transportation Apps</div>
+                    <div class="paper-authors">Ghose, Anindya; Kwon, Hyeokkoo Eric; Lee, Dongwon; Oh, Wonseok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0792" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Selling Virtual Currency in Digital Games: Implications for Gameplay and Social Welfare</div>
+                    <div class="paper-authors">Guo, Hong; Hao, Lin; Mukhopadhyay, Tridas; Sun, Daewon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0812" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Shared or Dedicated Infrastructures: On the Impact of Reprovisioning Ability1</div>
+                    <div class="paper-authors">Guerin, Roch; Hosanagar, Kartik; Li, Xinxin; Sen, Soumya</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/14857" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Spillover of Spotlight: Platform Recommendation in the Mobile App Market</div>
+                    <div class="paper-authors">Liang, Chen; Shi, Zhan (Michael); Raghu, T. S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0863" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">“Level Up”: Leveraging Skill and Engagement to Maximize Player Game-Play in Online Video Games</div>
+                    <div class="paper-authors">Huang, Yan; Jasin, Stefanus; Manchanda, Puneet</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0839" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Model of Competition Between Perpetual Software and Software as a Service1</div>
+                    <div class="paper-authors">Guo, Zhiling; Ma, Dan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13640" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Copycats vs. Original Mobile Apps: A Machine Learning Copycat-Detection Method and Empirical Analysis</div>
+                    <div class="paper-authors">Wang, Quan; Li, Beibei; Singh, Param Vir</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0735" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Demand Heterogeneity in Platform Markets: Implications for Complementors</div>
+                    <div class="paper-authors">Rietveld, Joost; Eggers, J. P.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1183" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Platform Owner’s Entry Crowd Out Innovation? Evidence from Google Photos</div>
+                    <div class="paper-authors">Foerderer, Jens; Kude, Thomas; Mithas, Sunil; Heinzl, Armin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0787" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Exploiting and Defending Open Digital Platforms with Boundary Resources: Android’s Five Platform Forks</div>
+                    <div class="paper-authors">Karhu, Kimmo; Gustafsson, Robin; Lyytinen, Kalle</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0786" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Generating Value Through Open Source: Software Service Market Regulation and Licensing Policy</div>
+                    <div class="paper-authors">August, Terrence; Shin, Hyoduk; Tunca, Tunay I.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0726" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Optimal Distinctiveness in the Console Video Game Industry: An Exemplar-Based Model of Proto-Category Evolution</div>
+                    <div class="paper-authors">Zhao, Eric Yanfei; Ishihara, Masakazu; Jennings, P. Devereaux; Lounsbury, Michael</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1194" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Architecture and Quality Trade-offs of Multihoming Complements</div>
+                    <div class="paper-authors">Cennamo, Carmelo; Ozalp, Hakan; Kretschmer, Tobias</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0779" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Synergy: Architectural Origins and Competitive Consequences</div>
+                    <div class="paper-authors">Tiwana, Amrit</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0739" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Quality, Pricing, and Release Time: Optimal Market Entry Strategy for Software-as-a-Service Vendors1</div>
+                    <div class="paper-authors">Feng, Haiyang; Jiang, Zhengrui; Liu, Dengpan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/14057" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Service Agreement Trifecta: Backup Resources, Price and Penalty in the Availability-Aware Cloud</div>
+                    <div class="paper-authors">Yuan, Shuai; Das, Sanjukta; Ramesh, R.; Qiao, Chunming</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0755" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Technology Support and Post-Adoption It Service Use: Evidence from the Cloud1</div>
+                    <div class="paper-authors">Retana, German F.; Forman, Chris; Narasimhan, Sridhar; Niculescu, Marius Florin; Wu, D. J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13064" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Ecosystem of Software Platform: A Study of Asymmetric Cross-Side Network Effects and Platform Governance1</div>
+                    <div class="paper-authors">Song, Peijian; Xue, Ling; Rai, Arun; Zhang, Cheng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13737" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Role of Venture Capital in the Formation of a New Technological Ecosystem: Evidence from the Cloud1</div>
+                    <div class="paper-authors">Breznitz, Dan; Forman, Chris; Wen, Wen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/13577" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">User Service Innovation on Mobile Phone Platforms: Investigating Impacts of Lead Userness, Toolkit Support, and Design Autonomy1</div>
+                    <div class="paper-authors">Ye, Hua (Jonathan); Kankanhalli, Atreyi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2018/12361" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Drawing a Line in the Sand: Commitment Problem in Ending Software Support1</div>
+                    <div class="paper-authors">Ghoshal, Abhijeet; Lahiri, Atanu; Dey, Debabrata</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.4.10" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Governance Practices in Platform Ecosystems: Navigating Tensions Between Cocreated Value and Governance Costs</div>
+                    <div class="paper-authors">Huber, Thomas L.; Kude, Thomas; Dibbern, Jens</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0701" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How High Should We Go? Determining Reservation Values to Negotiate Successfully for Composite Software Services</div>
+                    <div class="paper-authors">Sun, Sherry X.; Zhao, Jing; Sarkar, Sumit</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0678" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Logic Pluralism in Mobile Platform Ecosystems: A Study of Indie App Developers on the iOS App Store</div>
+                    <div class="paper-authors">Qiu, Yixin; Gopal, Anandasivam; Hann, Il-Horn</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0664" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On Buyer Selection of Service Providers in Online Outsourcing Platforms for IT Services</div>
+                    <div class="paper-authors">Hong, Yili; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0709" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Platform Ecosystems: How Developers Invert the Firm1</div>
+                    <div class="paper-authors">Parker, Geoffrey; Van Alstyne, Marshall; Jiang, Xiaoyue</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.1.13" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Software Diversity for Improved Network Security: Optimal Distribution of Software-Based Shared Vulnerabilities</div>
+                    <div class="paper-authors">Temizkan, Orcun; Park, Sungjune; Saydam, Cem</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0722" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Sustaining Superior Performance in Business Ecosystems: Evidence from Application Software Developers in the iOS and Android Smartphone Ecosystems</div>
+                    <div class="paper-authors">Kapoor, Rahul; Agarwal, Shiva</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1122" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Multiagent Competitive Gaming Platform to Address Societal Challenges1</div>
+                    <div class="paper-authors">Ketter, Wolfgang; Peters, Markus; Collins, John; Gupta, Alok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.2.09" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mobile App Analytics: A Multiple Discrete-Continuous Choice Framework1</div>
+                    <div class="paper-authors">Han, Sang Pil; Park, Sungho; Oh, Wonseok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.4.09" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Product Line Extension in Consumer Software Markets in the Presence of Free Alternatives</div>
+                    <div class="paper-authors">Baird, Aaron; Miller, Chadwick J.; Raghu, T. S.; Sinha, Rajiv K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0621" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—Cloud Computing Spot Pricing Dynamics: Latency and Limits to Arbitrage</div>
+                    <div class="paper-authors">Cheng, Hsing Kenneth; Li, Zhi; Naranjo, Andy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2015.0608" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Double-Edged Sword of Backward Compatibility: The Adoption of Multigenerational Platforms in the Presence of Intergenerational Services</div>
+                    <div class="paper-authors">Hann, Il-Horn; Koh, Byungwan; Niculescu, Marius F.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2015.0615" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Turning Back the Clock in Baseball: The Increased Prominence of Extrinsic Rewards and Demand for Authenticity</div>
+                    <div class="paper-authors">Hahl, Oliver</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1072" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">With Whom Do Technology Sponsors Partner During Technology Battles? Social Networking Strategies for Unproven (and Proven) Technologies</div>
+                    <div class="paper-authors">Cohen, Susan K.; Hsu, Sean T.; Dahlin, Kristina B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1063" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate temporal chart
+        const yearlyData = {"2016": 7, "2017": 8, "2018": 15, "2019": 18, "2020": 14, "2021": 10, "2022": 8, "2023": 18, "2024": 8, "2025": 15};
+        const years = Object.keys(yearlyData).map(y => parseInt(y)).sort();
+        const counts = years.map(y => yearlyData[y.toString()]);
+        
+        const temporalTrace = {
+            x: years,
+            y: counts,
+            type: 'scatter',
+            mode: 'lines+markers',
+            fill: 'tonexty',
+            line: {color: '#667eea', width: 3},
+            marker: {color: '#764ba2', size: 8},
+            name: 'Papers per Year'
+        };
+        
+        const temporalLayout = {
+            title: {
+                text: 'Research Activity Over Time',
+                font: {size: 18, color: '#333'}
+            },
+            xaxis: {title: 'Year'},
+            yaxis: {title: 'Number of Papers'},
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('temporal-chart', [temporalTrace], temporalLayout, {responsive: true});
+        
+        // Generate journal chart
+        const journalData = {"Information Systems Research": 70, "MIS Quarterly": 37, "Organization Science": 13, "Academy of Management Review": 1};
+        const journalTrace = {
+            labels: Object.keys(journalData),
+            values: Object.values(journalData),
+            type: 'pie',
+            hole: 0.4,
+            marker: {
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+            },
+            textinfo: 'label+percent+value'
+        };
+        
+        const journalLayout = {
+            title: {
+                text: 'Distribution Across Journals',
+                font: {size: 18, color: '#333'}
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('journal-chart', [journalTrace], journalLayout, {responsive: true});
+    </script>
+</body>
+</html>

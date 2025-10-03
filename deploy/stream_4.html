@@ -1,0 +1,2567 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Stream: Firms & Innovation & Knowledge</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .meta-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .papers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .paper-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .paper-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .paper-authors {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .year-tag {
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .methodology-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 25px; }
+            .section { padding: 25px; }
+            .meta-info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-lightbulb"></i> Firms & Innovation & Knowledge</h1>
+            <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                Research stream comprising 158 papers published between 2016-2025. Primary publication venues: Organization Science (104), MIS Quarterly (28), Information Systems Research (24). Based on analysis of 155 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena.
+            </p>
+            
+            <div class="meta-info">
+                <div class="meta-card">
+                    <div class="number">158</div>
+                    <div>Papers</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2016-2025</div>
+                    <div>Time Span</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">4</div>
+                    <div>Journals</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2025</div>
+                    <div>Peak Year</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="key-insights">
+            <h3><i class="fas fa-star"></i> Key Research Insights</h3>
+            <div class="insight-item">
+                <strong>Temporal Evolution:</strong> This stream spans 10 years, 
+                showing steady growth in research attention.
+            </div>
+            <div class="insight-item">
+                <strong>Journal Distribution:</strong> Primary publication venue is Organization Science 
+                (104 papers, 65.8%).
+            </div>
+            <div class="insight-item">
+                <strong>Research Maturity:</strong> Established field with 
+                158 papers contributing to the scholarly dialog.
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-microscope"></i> How This Stream Was Discovered</h3>
+            <p>This research stream was identified using advanced AI and network science methods:</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li><strong>SPECTER2 Embeddings:</strong> Papers were encoded into 768-dimensional semantic vectors using a transformer model trained on scientific literature</li>
+                <li><strong>Leiden Clustering:</strong> Community detection on k-nearest neighbor graphs revealed papers with high semantic similarity</li>
+                <li><strong>Temporal Analysis:</strong> Burst detection identified periods of increased research activity</li>
+                <li><strong>Quality Validation:</strong> Clustering quality assessed using silhouette scores and manual inspection</li>
+            </ul>
+        </div>
+        
+        <!-- Temporal Trends -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Temporal Evolution</h2>
+            <div class="chart-container">
+                <div id="temporal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- Journal Distribution -->
+        <div class="section">
+            <h2><i class="fas fa-journal-whills"></i> Journal Distribution</h2>
+            <div class="chart-container">
+                <div id="journal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- All Papers -->
+        <div class="section">
+            <h2><i class="fas fa-file-alt"></i> All Papers in This Stream</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Papers are ordered by publication year (most recent first). Each paper contributes to the coherent 
+                research dialog that defines this stream.
+            </p>
+            
+            <div class="papers-grid">
+
+                <div class="paper-card">
+                    <div class="paper-title">Artificial Intelligence and Firm Resilience: Empirical Evidence from Natural Disaster Shocks</div>
+                    <div class="paper-authors">Han, Miaozhe; Shen, Hongchuan; Wu, Jing; Zhang, Xiaoquan (Michael)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0440" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beefing IT Up for Your Investor? Engagement with Open Source Communities, Innovation, and Startup Funding: Evidence from GitHub</div>
+                    <div class="paper-authors">Conti, Annamaria; Peukert, Christian; Roche, Maria</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18348" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Big Shoes to Fill: How Star Search Behavior and Network Structure Influence Coinventor Mobility and Innovation Performance upon Star Exit</div>
+                    <div class="paper-authors">Awate, Kiran S.; Khanna, Rajat; Srikanth, Kannan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.14415" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Human Capital and Digital Product Innovation: A Dynamic Managerial Capabilities Perspective</div>
+                    <div class="paper-authors">Schulz, Colin; Bendig, David; Kriebel, Johannes; Haubner, Kathrin; Fainshmidt, Stav</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0553" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Creating Radical Technologies and Competencies: Revisiting Interorganizational Dynamics in the Nascent Bionic Prosthetic Industry</div>
+                    <div class="paper-authors">Kim, Seojin; Agarwal, Rajshree; Goldfarb, Brent</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16915" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Fast Friends: The Impact of Short-Term Visits on Firms’ Invention Outcomes</div>
+                    <div class="paper-authors">Kang, Hyo; Eklund, John C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.16081" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Growing Technological Relatedness to the ICT Industry and Its Impacts</div>
+                    <div class="paper-authors">Karanam, Subrahmanyam Aditya; Mani, Deepa; Saha, Rajib L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0627" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Information Technology Firms and Revenue Stall, 1950-2015: Theory and Empirical Evidence</div>
+                    <div class="paper-authors">Saldanha, Terence J. V.; Mithas, Sunil; Mayya, Raveesh</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/17430" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Inventor Commingling and Innovation in Technology Start-up Acquisitions</div>
+                    <div class="paper-authors">Chen, Qingqing; Hsu, David H.; Zvilichovsky, David</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16189" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Long Jump Learning: Absorbing Distant Knowledge via Familiar Components</div>
+                    <div class="paper-authors">Mealey, Christian; Koka, Balaji R.; Hoskisson, Robert E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.13171" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Market Demand, Competition for Knowledge Workers, and Impact on Invention: Evidence from Electric Vehicle Technologies</div>
+                    <div class="paper-authors">Lu, Jino</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18181" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Measure Twice, Cut Once: Unit Profitability, Scalability, and the Exceptional Growth of New Firms</div>
+                    <div class="paper-authors">Tidhar, Ron; Hallen, Benjamin L.; Eisenhardt, Kathleen M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15970" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Migration and Global Network Formation: Evidence from Female Scientists in Developing Countries</div>
+                    <div class="paper-authors">Fry, Caroline; Furman, Jeffrey L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1683" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Migration and Innovation: How Foreign R&amp;D Hires Shape Firm-Level Exploration in Their Host Country</div>
+                    <div class="paper-authors">Uhlbach, Wolf-Hendrik; Anckaert, Paul-Emmanuel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.16073" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Organizational Selection of Innovation</div>
+                    <div class="paper-authors">Böttcher, Lucas; Klingebiel, Ronald</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17357" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Organizing for AI Innovation: Insights From an Empirical Exploration of U.S. Patents</div>
+                    <div class="paper-authors">Lin, Yu-Kai; Maruping, Likoebe M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2025/18765" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Regulation and Innovation Revisited: How Restrictive Environments Can Promote Destabilizing New Technologies</div>
+                    <div class="paper-authors">Park, Michael; Wu, Shuping; Funk, Russell J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16770" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Selection Regimes and Selection Errors</div>
+                    <div class="paper-authors">Sharapov, Dmitry; Dahlander, Linus</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17482" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Rise of Scientific Research in Corporate America</div>
+                    <div class="paper-authors">Arora, Ashish; Belenzon, Sharon; Kosenko, Konstantin; Suh, Jungkyu; Yafeh, Yishay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18053" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Transmission of Economic Shocks in Multidivisional Organizations: An Empirical Analysis of the Global Retail Industry</div>
+                    <div class="paper-authors">Sohl, Timo; McCann, Brian T.; Vroom, Govert</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16521" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Voluntary Technology Sharing to Rivals</div>
+                    <div class="paper-authors">Chen, Jianqing; Zeng, Weijun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2024.1255" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Founder Turnover and Organizational Change</div>
+                    <div class="paper-authors">Kim, J. Daniel; Kim, Minjae</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1668" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Generativity and Profitability on B2B Innovation Platforms: A Simulation-Based Theory Development</div>
+                    <div class="paper-authors">Haki, Kazem; Tanriverdi, Hüseyin; Safaei, Dorsa; Schmid, Marius; Aier, Stephan; Winter, Robert</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17701" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Generativity and Profitability on B2B Innovation Platforms: A Simulation-based Theory Development</div>
+                    <div class="paper-authors">Haki, Kazem; Tanriverdi, Hüseyin; Safaei, Dorsa; Schmid, Marius; Aier, Stephan; Winter, Robert</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17710" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Information Technology Overcomes Deficiencies for Innovation in Small and Medium-Sized Enterprises: Closed Innovation vs. Open Innovation</div>
+                    <div class="paper-authors">Andrade-Rojas, Mariana G.; Saldanha, Terence J. V.; Kathuria, Abhishek; Khuntia, Jiban; Boh, Waifong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0096" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning from Failures: Differentiating Between Slip-ups and Knowledge Gaps</div>
+                    <div class="paper-authors">Anand, Gopesh; Mukherjee, Ujjal Kumar</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15663" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Peer Influence and IT Career Choice</div>
+                    <div class="paper-authors">Langer, Nishtha; Jain, Tarun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0416" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Performance Implications of Digital Disruption in Strategic Competition</div>
+                    <div class="paper-authors">Sting, Fabian J.; Tarakci, Murat; Recker, Jan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/17999" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Technology Counteroffensive Strategies: Toward an Ex Ante View of Technology Substitution</div>
+                    <div class="paper-authors">Furr, Nathan R.; Snow, Daniel C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.12239" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Next Frontiers of Digital Innovation Research</div>
+                    <div class="paper-authors">Yoo, Youngjin; Henfridsson, Ola; Kallinikos, Jannis; Gregory, Robert; Burtch, Gordon; Chatterjee, Sutirtha; Sarker, Suprateek</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2024.editorial.v35.n4" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Scope of Software Patent Protection in the Digital Age: Evidence from Alice</div>
+                    <div class="paper-authors">Lin, Yu-Kai; Rai, Arun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0137" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unlocking the Inventive Potential of Knowledge Distance in Teams: How Intrateam Network Configurations Provide a Key</div>
+                    <div class="paper-authors">Vestal, Alex; Danneels, Erwin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1665" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Real Utopia Under What Conditions? The Economic and Social Benefits of Workplace Democracy in Knowledge-Intensive Industries</div>
+                    <div class="paper-authors">Young-Hyman, Trevor; Magne, Nathalie; Kruse, Douglas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1622" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Academic Entrepreneurship: Entrepreneurial Advisors and Their Advisees’ Outcomes</div>
+                    <div class="paper-authors">Roche, Maria P.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1633" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Attention to Digital Innovation: Exploring the Impact of a Chief Information Officer in the Top Management Team</div>
+                    <div class="paper-authors">Bendig, David; Wagner, Robin; Piening, Erk P.; Foege, Johann Nils</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17152" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Bridging the Gap: Evidence from the Return Migration of African Scientists</div>
+                    <div class="paper-authors">Fry, Caroline Viola</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1580" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Can Public Organizations Perform Like Private Firms? The Role of Heterogeneous Resources and Practices</div>
+                    <div class="paper-authors">Teodorovicz, Thomaz; Lazzarini, Sérgio; Cabral, Sandro; Nardi, Leandro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1634" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Collaborations and Innovation in Partitioned Industries: An Analysis of U.S. Feature Film Coproductions</div>
+                    <div class="paper-authors">Jia, Ruo; Lewis, Demetrius; Negro, Giacomo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1600" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Complementarity Between Investment in Information Technology (IT) and IT Human Resources: Implications for Different Types of Firm Innovation</div>
+                    <div class="paper-authors">Guo, Feng; Li, Yijun; Maruping, Likoebe M.; Masli, Adi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1185" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Converging Tides Lift All Boats: Consensus in Evaluation Criteria Boosts Investments in Firms in Nascent Technology Sectors</div>
+                    <div class="paper-authors">Shen, Xirong (Subrina); Li, Huisi (Jessica); Tolbert, Pamela S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1493" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Exploiting Expert Knowledge for Assigning Firms to Industries: A Novel Deep Learning Method</div>
+                    <div class="paper-authors">Zhao, Xiaohang; Fang, Xiao; He, Jing; Huang, Lihua</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17171" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">External Interfaces or Internal Processes? Market Positioning and Divergent Professionalization Paths in Young Ventures</div>
+                    <div class="paper-authors">DeSantola, Alicia; Gulati, Ranjay; Zhelyazkov, Pavel I.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1561" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Incentivizing Effort Allocation Through Resource Allocation: Evidence from Scientists’ Response to Changes in Funding Policy</div>
+                    <div class="paper-authors">Blomfield, Michael; Vakili, Keyvan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1565" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Specialists, Generalists, or Both? Founders’ Multidimensional Breadth of Experience and Entrepreneurial Ventures’ Fundraising at IPO</div>
+                    <div class="paper-authors">Souitaris, Vangelis; Peng, Bo; Zerbinati, Stefania; Shepherd, Dean A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1581" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Evaluation of Founder Failure and Success by Hiring Firms: A Field Experiment</div>
+                    <div class="paper-authors">Botelho, Tristan L.; Chang, Melody</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1592" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Road Not Taken: Technological Uncertainty and the Evaluation of Innovations</div>
+                    <div class="paper-authors">Tan, David</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1567" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Does the Pre-entry Experience of New Entrants Improve Their Performance? A Meta-Analytical Investigation of Critical Moderators</div>
+                    <div class="paper-authors">Cao, Zhi; Posen, Hart E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1589" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Are Foreign and Domestic Information Technology Professionals Complements or Substitutes?</div>
+                    <div class="paper-authors">Mithas, Sunil; Chen, Yanzhen; Liu, Che-Wei; Han, Kunsoo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16202" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Bottleneck Resources, Market Relatedness, and the Dynamics of Organizational Growth</div>
+                    <div class="paper-authors">Chang, Sungyong; Eggers, J. P.; Keum, D. Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1479" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Compete, Cooperate, or Both? Integrating the Demand Side into Patent Deployment Strategies for the Commercialization and Licensing of Technology</div>
+                    <div class="paper-authors">Trigeorgis, Lenos; Baldi, Francesco; Makadok, Richard</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0119" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Designing Digital Market Offerings: How Digital Ventures Navigate the Tension Between Generative Digital Technology and the Current Environment</div>
+                    <div class="paper-authors">Lehmann, Julian; Recker, Jan; Yoo, Youngjin; Rosenkranz, Christoph</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16026" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Extending Digital Ventures Through Templating</div>
+                    <div class="paper-authors">Huang, Jimmy; Henfridsson, Ola; Liu, Martin J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1057" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">In Search of Inspiration: External Mobility and the Emergence of Technology Intrapreneurs</div>
+                    <div class="paper-authors">Ng, Weiyi; Sherman, Eliot L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1530" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Inappropriateness Penalty, Desirability Premium: What Do More Certifications Actually Signal?</div>
+                    <div class="paper-authors">Lanahan, Lauren; Armanios, Daniel Erian; Joshi, Amol M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1463" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Living It Up at the Hotel California: Employee Mobility Barriers and Collaborativeness in Firms’ Innovation</div>
+                    <div class="paper-authors">Seo, Eunkwang; Somaya, Deepak</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1461" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mind the Gaps: How Organization Design Shapes the Sourcing of Inventions</div>
+                    <div class="paper-authors">Eklund, John; Kapoor, Rahul</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1483" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Pre-Entry Experience, Postentry Adaptations, and Internationalization in the African Mobile Telecommunications Industry</div>
+                    <div class="paper-authors">Jahanbakht, Mohammad; Mostafa, Romel; Veloso, Francisco</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1470" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Responding to Complementary-Asset Discontinuities: A Multilevel Adaptation Framework of Resources, Demand, and Ecosystems</div>
+                    <div class="paper-authors">Cozzolino, Alessio; Verona, Gianmario</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1522" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Soft but Strong: Software-Based Innovation and Product Differentiation in the IT Hardware Industry</div>
+                    <div class="paper-authors">Kim, Keongtae; Lee, Jeongsik “Jay”; Gopal, Anandasivam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16517" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Differential Impact of Intrafirm Collaboration and Technological Network Centrality on Employees’ Likelihood of Leaving the Firm</div>
+                    <div class="paper-authors">Tzabbar, Daniel; Cirillo, Bruno; Breschi, Stefano</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1535" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of IT Decision-Making Authority on IT Project Performance in the U.S. Federal Government</div>
+                    <div class="paper-authors">Pang, Min-Seok; Lee, Gwanhoo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16898" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Transferring Knowledge by Transferring Individuals: Innovative Technology Use and Organizational Performance in Multiunit Firms</div>
+                    <div class="paper-authors">Stadler, Christian; Helfat, Constance E.; Verona, Gianmario</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1446" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Do Firms Trade Patents?</div>
+                    <div class="paper-authors">Kwon, Jung H.; Park, Haemin Dennis; Deng, Shu</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1471" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">AI on Drugs: Can Artificial Intelligence Accelerate Drug Development? Evidence from a Large-Scale Examination of Bio-Pharma Firms</div>
+                    <div class="paper-authors">Lou, Bowen; Wu, Lynn</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/16565" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">CEO Risk-Taking Incentives and IT Innovation: The Moderating Role of a CEO’s IT-Related Human Capital</div>
+                    <div class="paper-authors">Choi, Inmyung; Chung, Sunghun; Han, Kunsoo; Pinsonneault, Alain</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15606" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Corporate Investment Relationships and the Search for Innovations: An Examination of Startups’ Search Shift Toward Incumbents</div>
+                    <div class="paper-authors">Polidoro, Francisco; Yang, Wei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1421" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Local Industry R&amp;D Shapes Academic Research: Evidence from the Agricultural Biotechnology Revolution</div>
+                    <div class="paper-authors">Sohn, Eunhee</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1407" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Vertical Integration Affects Firm Innovation: Quasi-Experimental Evidence</div>
+                    <div class="paper-authors">Zhang, Yuchen; Tong, Tony W.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1396" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Information Technology Investment and Commercialized Innovation Performance: Dynamic Adjustment Costs and Curvilinear Impacts</div>
+                    <div class="paper-authors">Karhade, Prasanna P.; Dong, John Qi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/14368" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Innovation Outcomes of Digitally Enabled Collaborative Problemistic Search Capability</div>
+                    <div class="paper-authors">Karhade, Prasanna P.; Dong, John Qi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/12202" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning from Technologically Successful Peers: The Convergence of Asian Laggards to the Technology Frontier</div>
+                    <div class="paper-authors">Miao, Yuzhe; Salomon, Robert M.; Song, Jaeyong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1375" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Lowering the Bar? External Conditions, Opportunity Costs, and High-Tech Start-Up Outcomes</div>
+                    <div class="paper-authors">Conti, Annamaria; Roche, Maria P.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1411" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Making Digital Innovation Happen: A Chief Information Officer Issue Selling Perspective</div>
+                    <div class="paper-authors">Chen, Daniel Qi; Zhang, Yanlin; Xiao, Jinghua; Xie, Kang</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1008" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Seeing What Others Miss: A Competition Network Lens on Product Innovation</div>
+                    <div class="paper-authors">Thatchenkery, Sruthi; Katila, Riitta</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1430" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Sequence Effect in Panel Decisions: Evidence from the Evaluation of Research and Development Projects</div>
+                    <div class="paper-authors">Criscuolo, Paola; Dahlander, Linus; Grohsjean, Thorsten; Salter, Ammon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1413" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When All Products Are Digital: Complexity and Intangible Value in the Ecosystem of Digitizing Firms</div>
+                    <div class="paper-authors">Rahmati, Pouya; Tafti, Ali; Westland, J. Christopher; Hidalgo, Cesar</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/15384" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When and Who Do Platform Companies Acquire? Understanding the Role of Acquisitions in the Growth of Platform Companies</div>
+                    <div class="paper-authors">Miric, Milan; Pagani, Margherita; El Sawy, Omar A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16374" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Altruism or Shrewd Business? Implications of Technology Openness on Innovations and Competition</div>
+                    <div class="paper-authors">Huang, He; Parker, Geoffrey; Tan, Yinliang (Ricky); Xu, Hongyan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/14589" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Big Fish, Big Pond? The Joint Effect of Formal and Informal Core/Periphery Positions on the Generation of Incremental Innovations</div>
+                    <div class="paper-authors">Maoret, Massimo; Tortoriello, Marco; Iubatti, Daniela</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1365" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Committed Diversification: Why Authenticity Insulates Against Penalties for Diversification</div>
+                    <div class="paper-authors">Hahl, Oliver; Ha, Jaekyung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1317" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Competition, Technology Licensing-in, and Innovation</div>
+                    <div class="paper-authors">Moreira, Solon; Klueter, Thomas Maximilian; Tasselli, Stefano</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1337" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Configurations for Achieving Organizational Ambidexterity with Digitization</div>
+                    <div class="paper-authors">Park, YoungKi; Pavlou, Paul A.; Saraf, Nilesh</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0950" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Entering a Golden Age of Sustained Superiority: Entrepreneurial Creation or Discovery?</div>
+                    <div class="paper-authors">Henderson, Andrew D.; Graebner, Melissa E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1357" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Experience, Consumers, and Fit: Disentangling Performance Implications of Preentry Technological and Market Experience in 2G Mobile Telephony</div>
+                    <div class="paper-authors">Eggers, J. P.; Grajek, Michał; Kretschmer, Tobias</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1311" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Exploring Uncharted Territory: Knowledge Search Processes in the Origination of Outlier Innovation</div>
+                    <div class="paper-authors">Kneeland, Madeline K.; Schilling, Melissa A.; Aharonson, Barak S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1328" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">For Startups, Adaptability and Mentor Network Diversity Can be Pivotal: Evidence from a Randomized Experiment on a MOOC Platform</div>
+                    <div class="paper-authors">Eesley, Charles; Wu, Lynn</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/15138" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Immigrants and Foreign Firm Performance</div>
+                    <div class="paper-authors">Hernandez, Exequiel; Kulchina, Elena</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1331" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Managing Autonomy in Industrial Research and Development: A Project-Level Investigation</div>
+                    <div class="paper-authors">Gambardella, Alfonso; Khashabi, Pooyan; Panico, Claudio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1294" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Penalizing the Underdogs? Employment Protection and the Competitive Dynamics of Firm Innovation</div>
+                    <div class="paper-authors">Keum, Dongil D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1342" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reconciling the Firm Size and Innovation Puzzle</div>
+                    <div class="paper-authors">Knott, Anne Marie; Vieregger, Carl</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1310" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Influence of Multinational Corporations on International Alliance Formation Behavior of Colocated Start-Ups</div>
+                    <div class="paper-authors">Aharonson, Barak S.; Bort, Suleika; Woywode, Michael</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1315" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Transaction Costs in Resource Redeployment for Multiniche Firms</div>
+                    <div class="paper-authors">Giarratana, Marco S.; Santaló, Juan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1351" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Innovation Theory of Headquarters Value in Multibusiness Firms</div>
+                    <div class="paper-authors">Knott, Anne Marie; Turner, Scott F.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1231" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does the Middle Conform or Compete? Quality Thresholds Predict the Locus of Innovation</div>
+                    <div class="paper-authors">Vashevko, Anthony</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1240" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Explaining Heterogeneity in the Organization of Scientific Work</div>
+                    <div class="paper-authors">Rahmandad, Hazhir; Vakili, Keyvan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1303" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">External Learning Strategies and Technological Search Output: Spinout Strategy and Corporate Invention Quality</div>
+                    <div class="paper-authors">Cirillo, Bruno</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1233" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Do Adopters Transition Between New and Incumbent Channels?1</div>
+                    <div class="paper-authors">Overby, Eric; Ransbotham, Sam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/13781" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Interdependence, Perception, and Investment Choices: An Experimental Approach to Decision Making in Innovation Ecosystems</div>
+                    <div class="paper-authors">Adner, Ron; Feiler, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1242" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Knowledge Sources and Operational Problems: Less Now, More Later</div>
+                    <div class="paper-authors">Berchicci, Luca; Dutt, Nilanjana; Mitchell, Will</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1269" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Knowledge Transfers in Alliances: Exploring the Facilitating Role of Information Technology</div>
+                    <div class="paper-authors">Ravichandran, T.; Giura, Simona Ileana</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0823" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning by Seconding: Evidence from National Science Foundation Rotators</div>
+                    <div class="paper-authors">Kolympiris, Christos; Hoenen, Sebastian; Klein, Peter G.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1245" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Optimal Market Entry Timing for Successive Generations of Technological Innovations1</div>
+                    <div class="paper-authors">Jiang, Zhengrui; Qu, Xinxue (Shawn); Jain, Dipak C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2019/14307" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Product Adaptation During New Industry Emergence: The Role of Start-Up Team Preentry Experience</div>
+                    <div class="paper-authors">Furr, Nathan R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1278" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Pursuing the New While Sustaining the Current: Incumbent Strategies and Firm Value During the Nascent Period of Industry Change</div>
+                    <div class="paper-authors">Eklund, John; Kapoor, Rahul</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1229" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Software Patents and Firm Value: A Real Options Perspective on the Role of Innovation Orientation and Environmental Uncertainty</div>
+                    <div class="paper-authors">Chung, Sunghun; Animesh, Animesh; Han, Kunsoo; Pinsonneault, Alain</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0854" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Specializing in Generality: Firm Strategies When Intermediate Markets Work</div>
+                    <div class="paper-authors">Conti, Raffaele; Gambardella, Alfonso; Novelli, Elena</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1243" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Storm Clouds on the Horizon? New Entry Threats and R&amp;D Investments in the U.S. IT Industry</div>
+                    <div class="paper-authors">Pan, Yang; Huang, Peng; Gopal, Anandasivam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0816" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Dynamics of Learning and Competition in Schumpeterian Environments</div>
+                    <div class="paper-authors">Giustiziero, Gianluigi; Kaul, Aseem; Wu, Brian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1264" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Collaboration Bridges Institutions: The Impact of University–Industry Collaboration on Academic Productivity</div>
+                    <div class="paper-authors">Bikard, Michaël; Vakili, Keyvan; Teodoridis, Florenta</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1235" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Competitive Landscape Shifts: The Influence of Strategic Entrepreneurship on Shifts in Market Commonality</div>
+                    <div class="paper-authors">Withers, Michael C.; Ireland, R. Duane; Miller, Danny; Harrison, Joseph S.; Boss, David S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2016.0157" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does More Certification Always Benefit a Venture?</div>
+                    <div class="paper-authors">Lanahan, Lauren; Armanios, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1211" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Here’s an Opportunity: Knowledge Sharing Among Competitors as a Response to Buy-in Uncertainty</div>
+                    <div class="paper-authors">Botelho, Tristan L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1214" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Made in Academia: The Effect of Institutional Origin on Inventors’ Attention to Science</div>
+                    <div class="paper-authors">Bikard, Michaël</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1206" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Marshallian Forces and Governance Externalities: Location Effects on Contractual Safeguards in Research and Development Alliances</div>
+                    <div class="paper-authors">Devarakonda, Shivaram V.; McCann, Brian T.; Reuer, Jeffrey J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1221" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Networks and Innovation: Accounting for Structural and Institutional Sources of Recombination in Brokerage Triads</div>
+                    <div class="paper-authors">Balachandran, Sarath; Hernandez, Exequiel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1165" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Paradise of Novelty—Or Loss of Human Capital? Exploring New Fields and Inventive Output</div>
+                    <div class="paper-authors">Arts, Sam; Fleming, Lee</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1216" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Slack Time and Innovation</div>
+                    <div class="paper-authors">Agrawal, Ajay; Catalini, Christian; Goldfarb, Avi; Luo, Hong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1215" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Strategic Intellectual Property Sharing: Competition on an Open Technology Platform Under Network Effects</div>
+                    <div class="paper-authors">Niculescu, Marius F.; Wu, D. J.; Xu, Lizhen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0756" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Surviving in Global Online Labor Markets for IT Services: A Geo-Economic Analysis</div>
+                    <div class="paper-authors">Kanat, Irfan; Hong, Yili; Raghu, T. S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0751" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Influence of Multiple Knowledge Networks on Innovation in Foreign Operations</div>
+                    <div class="paper-authors">Berry, Heather</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1203" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beyond the Startup Stage: The Founding Team’s Human Capital, New Venture’s Stage of Life, Founder–CEO Duality, and Breakthrough Innovation</div>
+                    <div class="paper-authors">Tzabbar, Daniel; Margolis, Jaclyn</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1152" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Digital Innovation Management: Reinventing Innovation Management Research in a Digital World</div>
+                    <div class="paper-authors">Nambisan, Satish; Lyytinen, Kalle; Majchrzak, Ann; Song, Michael</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41:1.03" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Information Technology Improve Open Innovation Performance? An Examination of Manufacturers in Spain</div>
+                    <div class="paper-authors">Gómez, Jaime; Salazar, Idana; Vargas, Pilar</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0705" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Embracing Digital Innovation in Incumbent Firms: How Volvo Cars Managed Competing Concerns1</div>
+                    <div class="paper-authors">Svahn, Fredrik; Mathiassen, Lars; Lindgren, Rikard</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.1.12" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Evading the Boomerang Effect: Using the Grant-Back Clause to Further Generative Appropriability from Technology Licensing Deals</div>
+                    <div class="paper-authors">Laursen, Keld; Moreira, Solon; Reichstein, Toke; Leone, Maria Isabella</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1130" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">External Knowledge and Information Technology: Implications for Process Innovation Performance1</div>
+                    <div class="paper-authors">Trantopoulos, Konstantinos; von Krogh, Georg; Wallin, Martin W.; Woerter, Martin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.1.15" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Growing on Steroids: Rapidly Scaling the User Base of Digital Ventures Through Digital Innovaton1</div>
+                    <div class="paper-authors">Huang, Jimmy; Henfridsson, Ola; Liu, Martin J.; Newell, Sue</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.1.16" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Information Technology, Revenues, and Profits: Exploring the Role of Foreign and Domestic Operations</div>
+                    <div class="paper-authors">Mithas, Sunil; Whitaker, Jonathan; Tafti, Ali</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0689" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Innovation Outcomes in a Distributed Organization: Intrafirm Mobility and Access to Resources</div>
+                    <div class="paper-authors">Choudhury, Prithwiraj</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1121" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Institutional Regime Shift in Intellectual Property Rights and Innovation Strategies of Firms in China</div>
+                    <div class="paper-authors">Huang, Kenneth Guang-Lih; Geng, Xuesong; Wang, Heli</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1117" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mitigating Diminishing Returns to R&amp;D: The Role of Information Technology in Innovation</div>
+                    <div class="paper-authors">Ravichandran, T.; Han, Shu; Mithas, Sunil</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0717" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Near Misses in the Breakthrough Discovery Process</div>
+                    <div class="paper-authors">Chai, Sen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1134" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Network Prominence, Bargaining Power, and the Allocation of Value Capturing Rights in High-Tech Alliance Contracts</div>
+                    <div class="paper-authors">Ozmel, Umit; Yavuz, Deniz; Reuer, Jeffrey J.; Zenger, Todd</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1147" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Partner Selection in R&amp;D Collaborations: Effects of Affiliations with Venture Capitalists</div>
+                    <div class="paper-authors">Reuer, Jeffrey J.; Devarakonda, Ramakrishna</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1124" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Risky Recombinations: Institutional Gatekeeping in the Innovation Process</div>
+                    <div class="paper-authors">Ferguson, John-Paul; Carnabuci, Gianluca</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1106" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Seeking Value Through Deviation? Economic Impacts of IT Overinvestment and Underinvestment</div>
+                    <div class="paper-authors">Ho, Joanna; Tian, Feng; Wu, Anne; Xu, Sean Xin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2017.0710" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Supply-Side Network Effects and the Development of Information Technology Standards1</div>
+                    <div class="paper-authors">Uotila, Juha; Keil, Thomas; Maula, Markku</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.4.09" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Technology Mergers and Acquisitions in the Presence of an Installed Base: A Strategic Analysis</div>
+                    <div class="paper-authors">Wang, Qiu-Hong; Hui, Kai-Lung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0659" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Effects of Corporate Venture Capital, Founder Incumbency, and Their Interaction on Entrepreneurial Firms’ R&amp;D Investment Strategies</div>
+                    <div class="paper-authors">Paik, Yongwook; Woo, Heejin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1133" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Paradox of Openness and Value Protection Strategies: Effect of Extramural R&amp;D on Innovative Performance</div>
+                    <div class="paper-authors">Wadhwa, Anu; Bodas Freitas, Isabel Maria; Sarkar, M. B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1145" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Comparative Analysis of Patent Assertion Entities in Markets for Intellectual Property Rights</div>
+                    <div class="paper-authors">Steensma, H. Kevin; Chari, Mukund; Heidl, Ralph</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1021" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Capital Structure and Innovation Trajectory: The Role of Debt in Balancing Exploration and Exploitation</div>
+                    <div class="paper-authors">Choi, Byungchul; Kumar, M. V. Shyam; Zambuto, Fabio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1089" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Collaborative Promotion of Technology Standards and the Impact on Innovation, Industry Structure, and Organizational Capabilities: Evidence from Modern Patent Pools</div>
+                    <div class="paper-authors">Vakili, Keyvan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1098" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Disentangling the Multiple Effects of Affiliate Reputation on Resource Attraction in New Firms</div>
+                    <div class="paper-authors">Vanacker, Tom; Forbes, Daniel P.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1090" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Product Market Competition Drive CVC Investment? Evidence from the U.S. IT Industry</div>
+                    <div class="paper-authors">Kim, Keongtae; Gopal, Anandasivam; Hoberg, Gerard</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0620" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Growing New Corporate Businesses: From Initiation to Graduation</div>
+                    <div class="paper-authors">Raisch, Sebastian; Tushman, Michael L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1081" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How to Share “A Really Good Secret”: Managing Sharing/Secrecy Tensions Around Scientific Knowledge Disclosure</div>
+                    <div class="paper-authors">Nelson, Andrew J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1040" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Institutional Equivalence: How Industry and Community Peers Influence Corporate Philanthropy</div>
+                    <div class="paper-authors">Marquis, Christopher; Tilcsik, András</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1083" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Integrative Capabilities, Vertical Integration, and Innovation Over Successive Technology Lifecycles</div>
+                    <div class="paper-authors">Helfat, Constance E.; Campo-Rembado, Miguel A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1045" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">New Blood as an Elixir of Youth: Effects of Human Capital Tenure on the Explorative Capability of Aging Firms</div>
+                    <div class="paper-authors">Tschang, F. Ted; Ertug, Gokhan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1067" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—An Internet-Enabled Move to the Market in Logistics</div>
+                    <div class="paper-authors">Gong, Fengmei; Nault, Barrie R.; Rahman, Mohammad S.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0625" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Business Hybrids: Demand Externalities, Competitive Advantage, and Growth Through Diversification</div>
+                    <div class="paper-authors">Fosfuri, Andrea; Giarratana, Marco S.; Roca, Esther</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1080" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Impact of Patent Wars on Firm Strategy: Evidence from the Global Smartphone Industry</div>
+                    <div class="paper-authors">Paik, Yongwook; Zhu, Feng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1092" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Moderating Role of Submarket Dynamics on the Product Customization–Firm Survival Relationship</div>
+                    <div class="paper-authors">Bhaskarabhatla, Ajay</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1074" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Toward a Better Measure of Business Proximity: Topic Modeling for Industry Intelligence1</div>
+                    <div class="paper-authors">Shi, Zhan (Michael); Lee, Gene Moo; Whinston, Andrew B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40.4.11" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Transformational Issues of Big Data and Analytics in Networked Business</div>
+                    <div class="paper-authors">Baesens, Bart; Bapna, Ravi; Marsden, James R.; Vanthienen, Jan; Zhao, J. Leon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2016/40:4.03" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">User-Industry Spinouts: Downstream Industry Knowledge as a Source of New Firm Entry and Survival</div>
+                    <div class="paper-authors">Adams, Pamela; Fontana, Roberto; Malerba, Franco</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1029" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Venture Capital, CEOs’ Sources of Power, and Innovation Novelty at Different Life Stages of a New Venture</div>
+                    <div class="paper-authors">Park, Haemin Dennis; Tzabbar, Daniel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1054" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate temporal chart
+        const yearlyData = {"2016": 18, "2017": 20, "2018": 11, "2019": 17, "2020": 15, "2021": 14, "2022": 16, "2023": 15, "2024": 11, "2025": 21};
+        const years = Object.keys(yearlyData).map(y => parseInt(y)).sort();
+        const counts = years.map(y => yearlyData[y.toString()]);
+        
+        const temporalTrace = {
+            x: years,
+            y: counts,
+            type: 'scatter',
+            mode: 'lines+markers',
+            fill: 'tonexty',
+            line: {color: '#667eea', width: 3},
+            marker: {color: '#764ba2', size: 8},
+            name: 'Papers per Year'
+        };
+        
+        const temporalLayout = {
+            title: {
+                text: 'Research Activity Over Time',
+                font: {size: 18, color: '#333'}
+            },
+            xaxis: {title: 'Year'},
+            yaxis: {title: 'Number of Papers'},
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('temporal-chart', [temporalTrace], temporalLayout, {responsive: true});
+        
+        // Generate journal chart
+        const journalData = {"Organization Science": 104, "MIS Quarterly": 28, "Information Systems Research": 24, "Academy of Management Review": 2};
+        const journalTrace = {
+            labels: Object.keys(journalData),
+            values: Object.values(journalData),
+            type: 'pie',
+            hole: 0.4,
+            marker: {
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+            },
+            textinfo: 'label+percent+value'
+        };
+        
+        const journalLayout = {
+            title: {
+                text: 'Distribution Across Journals',
+                font: {size: 18, color: '#333'}
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('journal-chart', [journalTrace], journalLayout, {responsive: true});
+    </script>
+</body>
+</html>

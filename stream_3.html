@@ -1,0 +1,2609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Stream: Their & Gender & Work</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .meta-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .papers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .paper-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .paper-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .paper-authors {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .journal-tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .year-tag {
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .methodology-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .insight-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insight-item::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 25px; }
+            .section { padding: 25px; }
+            .meta-info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="research_streams_dashboard.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-lightbulb"></i> Their & Gender & Work</h1>
+            <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                Research stream comprising 161 papers published between 2016-2025. Primary publication venues: Organization Science (110), Information Systems Research (33), MIS Quarterly (15). Based on analysis of 158 abstracts and titles, this stream focuses on interdisciplinary research examining organizational and technological phenomena.
+            </p>
+            
+            <div class="meta-info">
+                <div class="meta-card">
+                    <div class="number">161</div>
+                    <div>Papers</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2016-2025</div>
+                    <div>Time Span</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">4</div>
+                    <div>Journals</div>
+                </div>
+                <div class="meta-card">
+                    <div class="number">2024</div>
+                    <div>Peak Year</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="key-insights">
+            <h3><i class="fas fa-star"></i> Key Research Insights</h3>
+            <div class="insight-item">
+                <strong>Temporal Evolution:</strong> This stream spans 10 years, 
+                showing steady growth in research attention.
+            </div>
+            <div class="insight-item">
+                <strong>Journal Distribution:</strong> Primary publication venue is Organization Science 
+                (110 papers, 68.3%).
+            </div>
+            <div class="insight-item">
+                <strong>Research Maturity:</strong> Established field with 
+                161 papers contributing to the scholarly dialog.
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-microscope"></i> How This Stream Was Discovered</h3>
+            <p>This research stream was identified using advanced AI and network science methods:</p>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+                <li><strong>SPECTER2 Embeddings:</strong> Papers were encoded into 768-dimensional semantic vectors using a transformer model trained on scientific literature</li>
+                <li><strong>Leiden Clustering:</strong> Community detection on k-nearest neighbor graphs revealed papers with high semantic similarity</li>
+                <li><strong>Temporal Analysis:</strong> Burst detection identified periods of increased research activity</li>
+                <li><strong>Quality Validation:</strong> Clustering quality assessed using silhouette scores and manual inspection</li>
+            </ul>
+        </div>
+        
+        <!-- Temporal Trends -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Temporal Evolution</h2>
+            <div class="chart-container">
+                <div id="temporal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- Journal Distribution -->
+        <div class="section">
+            <h2><i class="fas fa-journal-whills"></i> Journal Distribution</h2>
+            <div class="chart-container">
+                <div id="journal-chart"></div>
+            </div>
+        </div>
+        
+        <!-- All Papers -->
+        <div class="section">
+            <h2><i class="fas fa-file-alt"></i> All Papers in This Stream</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Papers are ordered by publication year (most recent first). Each paper contributes to the coherent 
+                research dialog that defines this stream.
+            </p>
+            
+            <div class="papers-grid">
+
+                <div class="paper-card">
+                    <div class="paper-title">A Theory of the Start-Up Workforce</div>
+                    <div class="paper-authors">Bort, James</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2023.0174" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">All That Glitters Is Not Gold: The Impact of Certification Test Costs in Online Labor Markets</div>
+                    <div class="paper-authors">Bai, Jiaru; Gao, Qiang; Goes, Paulo; Lin, Mingfeng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0303" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Board Gender Diversity Reforms Around the World: The Impact on Corporate Innovation</div>
+                    <div class="paper-authors">Wang, Kun Tracy; Cui, Lin; Zhu, Nathan Zhenghang; Sun, Aonan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.22.16956" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Can Stereotype Reactance Prompt Women to Compete? A Field Experiment</div>
+                    <div class="paper-authors">Pink, Sophia L.; Cervantez, Jose; Kirgios, Erika L.; Chang, Edward H.; Milkman, Katherine L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2024.19563" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Can You Go Home Again? Performance Assistance Between Boomerangs and Incumbent Employees</div>
+                    <div class="paper-authors">Grohsjean, Thorsten; Dokko, Gina; Yang, Philip</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16685" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Investors Value Workforce Gender Diversity?</div>
+                    <div class="paper-authors">Daniels, David P.; Dannals, Jennifer E.; Lys, Thomas Z.; Neale, Margaret A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.17098" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Evening the Odds in a Gendered Workplace: The Empowering Role of Knowledge Repositories</div>
+                    <div class="paper-authors">Cao, Chengxin; Subramani, Mani; Ray, Gautam; Gupta, Alok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2024.0840" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Forced to Change? Media Exposure of Labor Issues and Firm Artificial Intelligence Investment</div>
+                    <div class="paper-authors">Li, Boshuo; Huang, Ni; Shi, Wei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0402" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Psychological Barriers Constrain Men’s Interest in Gender-Atypical Jobs and Facilitate Occupational Segregation</div>
+                    <div class="paper-authors">Suh, Eileen Y.; Apfelbaum, Evan P.; Norton, Michael I.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17550" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">In Search of a Soft Landing: How Premigration Work Attainments Influence Identity Transformation Processes of Refugee Entrepreneurs</div>
+                    <div class="paper-authors">Amin, Joris; van Burg, Elco; Stam, Wouter</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.16075" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Monitoring and Home Bias in Global Hiring: Evidence from an Online Labor Platform</div>
+                    <div class="paper-authors">Liang, Chen; Hong, Yili; Gu, Bin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0526" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Monitoring and the Cold Start Problem in Digital Platforms: Theory and Evidence from Online Labor Markets</div>
+                    <div class="paper-authors">Liang, Chen; Hong, Yili; Gu, Bin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0146" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">National Conflict and High-Skilled Immigrants’ Workplace Efforts: Evidence from the U.S.–China Conflict</div>
+                    <div class="paper-authors">Sim, Suzan; Hong, A-Sung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2024.19031" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Omnificence or Differentiation? An Empirical Study of Knowledge Structure and Career Development of IT Workers</div>
+                    <div class="paper-authors">Zhang, Yingjie; Zheng, Zhiqiang (Eric); Gu, Bin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0634" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Passion Penalizes Women and Advantages (Unexceptional) Men in High-Potential Designations</div>
+                    <div class="paper-authors">He, Joyce C.; Jachimowicz, Jon M.; Moore, Celia</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18018" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reactions, Revisions, and Rehiring: Changes in Employers’ Gendered Preferences in Online Labor Markets</div>
+                    <div class="paper-authors">Daviss, Claire; Leung, Ming D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17383" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Refugee Hiring and Organizational Performance</div>
+                    <div class="paper-authors">Santangelo, Grazia D.; Rocha, Vera; Sofka, Wolfgang</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15980" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Setting Up the Gap? Gender Differences in Initial Salary Offers in Hiring</div>
+                    <div class="paper-authors">Wang, Shiya; Sterling, Adina</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17883" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Sparking Innovation: The Effect of Inventor Gender Diversity on Recombinant Innovation</div>
+                    <div class="paper-authors">Ramaraju, Naveenkumar; Pant, Shagun; Pant, Gautam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0343" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Taking a Broader View: Female Directors, CEO Strategic Attention Breadth, and Firm Performance</div>
+                    <div class="paper-authors">Pan, Lingling; McNamara, Gerry; Devers, Cynthia E.; Yonish, Lindsey M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17599" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Death of a Technical Skill</div>
+                    <div class="paper-authors">Horton, John J.; Tambe, Prasanna</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0709" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Hidden Cost of IT Innovation: Access to Emerging Technologies and the Gender Wage Gap</div>
+                    <div class="paper-authors">Tambe, Prasanna B.; Yang, Tiantian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/18268" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Indirect Effect of Entrepreneurship on Pay Dispersion: Entry Cost Reduction, Mobility Threat, and Wage Redistribution Within Incumbent Firms</div>
+                    <div class="paper-authors">Castellaneta, Francesco; Conti, Raffaele; Kacperczyk, Aleksandra Joanna; Mamadehussene, Samir</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16201" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Role of Reviewer Characteristics on the Diversity of Successful Applicants</div>
+                    <div class="paper-authors">Gavrilova-Zoutman, Evelina; Juranek, Steffen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17910" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Time to Stop? An Empirical Investigation on the Consequences of Canceling Monetary Incentives on a Digital Platform</div>
+                    <div class="paper-authors">Zhang, Dongcheng; Jiang, Hanchen; Qiang, Maoshan; Zhang, Kunpeng; Qiu, Liangfei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0017" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Do Gender-Diverse Teams Engage More Investors? Evidence of Threshold Alignment Benefits at Techstars</div>
+                    <div class="paper-authors">Kanze, Dana; Piazza, Alessandro</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2025.20141" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">“Why I Searched Alone”: Understanding Mothers’ Hesitation to Seek Network Assistance During Workforce Reentry</div>
+                    <div class="paper-authors">Yang, Tiantian; Lee, Hyo Young</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2025</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18098" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A New Perspective on Gender Bias in the Upper Echelons: Why Stakeholder Variability Matters</div>
+                    <div class="paper-authors">Joshi, Aparna; Oh, Soojin; DesJardine, Mark</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2021.0131" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Experimental Evaluation of Gender Differences in Responses to Major-Donor Funding Schemes for Crowdfunded Social Ventures</div>
+                    <div class="paper-authors">Bapna, Sofia; Burtch, Gordon</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0318" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beyond Categories: A Flow-Oriented Approach To Social Justice on Online Labor Platforms</div>
+                    <div class="paper-authors">Baygi, Reza M.; Introna, Lucas D.; Ostovar, Mahya</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/18253" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Can Telework Adjustment Help Reduce Disaster-Induced Gender Inequality in Job Market Outcomes?</div>
+                    <div class="paper-authors">Hou, Jingbo; Liang, Chen; Chen, Pei-Yu; Gu, Bin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.0241" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Creation or Destruction? STEM OPT Extension and Employment of Information Technology Professionals</div>
+                    <div class="paper-authors">Guo, Xue; Gong, Jing; Pang, Min-Seok</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/17585" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Deconstructing Technostress: A Configurational Approach to Explaining Job Burnout and Job Performance</div>
+                    <div class="paper-authors">Pflügner, Katharina; Maier, Christian; Thatcher, Jason Bennett; Mattke, Jens; Weitzel, Tim</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2023/16978" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Inter-Unit Executive Redeployment in Multiunit Firms: Evidence from Korean Business Groups</div>
+                    <div class="paper-authors">Chang, Sea-Jin; Kim, Young-Choon; Park, Sangchan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.14525" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is a College Education Still Enough? The IT-Labor Relationship with Education Level, Task Routineness, and Artificial Intelligence</div>
+                    <div class="paper-authors">Zhang, Dawei (David); Peng, Gang; Yao, Yuliang; Browning, Tyson R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0391" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">License to Layoff? Unemployment Insurance and the Moral Cost of Layoffs</div>
+                    <div class="paper-authors">Keum, Dongil Daniel; Meier, Stephan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16734" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Looking for Greener Grass? Prior Status and Exploration-Exploitation Decisions in Job Search</div>
+                    <div class="paper-authors">Barbulescu, Roxana; Bonet, Rocio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1663" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Loss of Peers and Individual Worker Performance: Evidence From H-1B Visa Denials</div>
+                    <div class="paper-authors">Choudhury, Prithwiraj; Doran, Kirk; Marinoni, Astrid; Yoon, Chungeun</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17319" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Moral or Lawful? When Legal Constraints Reverse the Motivational Benefits of Moral Considerations</div>
+                    <div class="paper-authors">Kundro, Timothy G.; Croitoru, Natalie; Helgason, Beth Anne</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17545" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Network Referrals and Self-Presentation in the High-Tech Labor Market</div>
+                    <div class="paper-authors">Campero, Santiago; Kacperczyk, Aleksandra (Olenka)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16674" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Online Food Delivery Platforms and Female Labor Force Participation</div>
+                    <div class="paper-authors">Liu, Jialu; Pei, Siqi; Zhang, Xiaoquan (Michael)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0182" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Pay Suppression in Social Impact Contexts: How Framing Work Around the Greater Good Inhibits Job Candidate Compensation Demands</div>
+                    <div class="paper-authors">Hussain, Insiya; Pitesa, Marko; Thau, Stefan; Schaerer, Michael</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1675" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Peer Influence in the Workplace: Evidence from an Enterprise Digital Platform</div>
+                    <div class="paper-authors">Liu, Haoyuan; Wen, Wen; Whinston, Andrew B.; He, Stephen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2024/16308" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Setting Gendered Expectations? Recruiter Outreach Bias in Online Tech Training Programs</div>
+                    <div class="paper-authors">Lane, Jacqueline N.; Lakhani, Karim R.; Fernandez, Roberto M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16499" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Skill-Biased Technical Change, Again? Online Gig Platforms and Local Employment</div>
+                    <div class="paper-authors">Guo, Xue; Cheng, Zhi (Aaron); Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.0307" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Temporal Availability and Women Career Progression: Evidence from Cross-Time-Zone Acquisitions</div>
+                    <div class="paper-authors">Gagliardi, Luisa; Mariani, Myriam; Breschi, Stefano</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17685" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Career Consequences of Workplace Protest Participation: Theory and Evidence from the NFL “Take a Knee” Movement</div>
+                    <div class="paper-authors">Rheinhardt, Alexandra; Poskanzer, Ethan J.; Briscoe, Forrest</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.15740" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Consequences of Revealing First-Generational Status</div>
+                    <div class="paper-authors">Belmi, Peter; Raz, Kelly; Neale, Margaret; Thomas-Hunt, Melissa</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1682" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Effect of Gender Expectations and Physical Attractiveness on Discussion of Weakness in Online Professional Recommendations</div>
+                    <div class="paper-authors">Aggarwal, Rohit; Midha, Vishal; Sullivan, Nicholas</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1032" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Fundamental Recruitment Error: Candidate-Recruiter Discrepancy in Their Relative Valuation of Innate Talent vs. Hard Work</div>
+                    <div class="paper-authors">Dai, Xianchi; Si, Kao</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1667" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Gender Disclosure Gap: Salary History Bans Unravel When Men Volunteer Their Income</div>
+                    <div class="paper-authors">Cowgill, Bo; Agan, Amanda; Gee, Laura K.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.17384" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Motherhood Wage Penalty and Female Entrepreneurship</div>
+                    <div class="paper-authors">Yang, Tiantian; Kacperczyk, Aleksandra (Olenka); Naldi, Lucia</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.1657" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Short-Term Effects of Generative Artificial Intelligence on Employment: Evidence from an Online Labor Market</div>
+                    <div class="paper-authors">Hui, Xiang; Reshef, Oren; Zhou, Luofeng</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2023.18441" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Transporting Causal Effects Across Populations Using Structural Causal Modeling: An Illustration to Work-from-Home Productivity</div>
+                    <div class="paper-authors">Park, Sujin; Tafti, Ali; Shmueli, Galit</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2023.1236" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Does Beauty Pay? A Large-Scale Image-Based Appearance Analysis on Career Transitions</div>
+                    <div class="paper-authors">Malik, Nikhil; Singh, Param Vir; Srinivasan, Kannan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.0559" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Which Idea to Pursue? Gender Differences in Novelty Avoidance During Creative Idea Selection</div>
+                    <div class="paper-authors">Jin, Mengzi; Chua, Roy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.16176" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">You Can Check Out Any Time You Like, but Can You Ever Leave? A Theory of Firm Value Capture from Alumni</div>
+                    <div class="paper-authors">Fulmer, Ingrid Smithey; Call, Matthew L.; Conlon, Donald E.; Klotz, Anthony C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2024</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.13061" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A New Take on the Categorical Imperative: Gatekeeping, Boundary Maintenance, and Evaluation Penalties in Science</div>
+                    <div class="paper-authors">Fini, Riccardo; Jourdan, Julien; Perkmann, Markus; Toschi, Laura</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1610" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Adjusting Skillset Cohesion in Online Labor Markets: Reputation Gains and Opportunity Losses</div>
+                    <div class="paper-authors">Kokkodis, Marios</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1177" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Corporate Hierarchy and Organizational Learning: Member Turnover, Code Change, and Innovation in the Multiunit Firm</div>
+                    <div class="paper-authors">Joseph, John; Rhee, Luke; Wilson, Alex James</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1618" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Differential Impact of Content in Online Communication on Heterogeneous Candidates: A Field Study in Technical Recruitment</div>
+                    <div class="paper-authors">Aggarwal, Rohit; Lee, Michael J.; Midha, Vishal</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1120" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Employees Work Less for Female Leaders? A Multi-Method Study of Entrepreneurial Firms</div>
+                    <div class="paper-authors">Kacperczyk, Olenka; Younkin, Peter; Rocha, Vera</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1611" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Does Investor Gender Matter for the Success of Female Entrepreneurs? Gender Homophily and the Stigma of Incompetence in Entrepreneurial Finance</div>
+                    <div class="paper-authors">Snellman, Kaisa; Solal, Isabelle</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1594" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Executives’ Prior Employment Ties to Interlocking Directors and Interfirm Mobility</div>
+                    <div class="paper-authors">Harrison, Joseph S.; Boivie, Steven; Withers, Michael C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1638" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Gender Differences in Responses to Competitive Organization? A Field Experiment on Differences Between STEM and Non-STEM Fields from an Internet-of-Things Platform</div>
+                    <div class="paper-authors">Boudreau, Kevin J.; Kaushik, Nilam</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1624" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Inter-Unit Executive Redeployment in Multiunit Firms: Evidence from Korean Business Groups</div>
+                    <div class="paper-authors">Chang, Sea-Jin; Kim, Young-Choon; Park, Sangchan</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.20.14525" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Managing the Double Bind: Women Directors’ Participation Tactics in the Gendered Boardroom</div>
+                    <div class="paper-authors">Trzebiatowski, Tiffany; McCluney, Courtney; Hernandez, Morela</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1599" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Reject and Resubmit: A Formal Analysis of Gender Differences in Reapplication and Their Contribution to Women’s Presence in Talent Pipelines</div>
+                    <div class="paper-authors">Fernandez-Mateo, Isabel; Rubineau, Brian; Kuppuswamy, Venkat</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1635" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Setting Gendered Expectations? Recruiter Outreach Bias in Online Tech Training Programs</div>
+                    <div class="paper-authors">Lane, Jacqueline N.; Lakhani, Karim R.; Fernandez, Roberto M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.22.16499" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Short-Selling Pressure and Workplace Safety: Curbing Short-Termism Through Stakeholder Interdependencies</div>
+                    <div class="paper-authors">Qian, Cuili; Crilly, Donal; Lin, Yupeng; Zhang, Keyuan; Zhang, Rengong</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1576" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Career Consequences of Workplace Protest Participation: Theory and Evidence from the NFL “Take a Knee” Movement</div>
+                    <div class="paper-authors">Rheinhardt, Alexandra; Poskanzer, Ethan J.; Briscoe, Forrest</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.21.15740" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Hidden Costs and Benefits of Monitoring in the Gig Economy</div>
+                    <div class="paper-authors">Liang, Chen; Peng, Jing; Hong, Yili; Gu, Bin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2022.1130" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unemployment and Online Labor: Evidence from Microtasking</div>
+                    <div class="paper-authors">Laitenberger, Ulrich; Viete, Steffen; Slivko, Olga; Kummer, Michael; Borchert, Kathrin; Hirth, Matthias</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/17347" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">When Do Firms Crack Under Pressure? Legal Professionals, Negative Role Models, and Organizational Misconduct</div>
+                    <div class="paper-authors">Gonsalves, Leroy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2023</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2022.1597" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Founding Penalty: Evidence from an Audit Study on Gender, Entrepreneurship, and Future Employment</div>
+                    <div class="paper-authors">Kacperczyk, Olenka; Younkin, Peter</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1456" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Are IT Professionals Unique? A Second-Order Meta-Analytic Comparison of Turnover Intentions Across Occupations</div>
+                    <div class="paper-authors">Zaza, Sam; Joseph, Damien; Armstrong, Deborah</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16951" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Chain Affiliation and Human Resource Investments: Evidence from the Restaurant Industry</div>
+                    <div class="paper-authors">Lakhani, Tashlin; Ouyang, Can</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1539" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Congruence Between Leadership Gender and Organizational Claims Affects the Gender Composition of the Applicant Pool: Field Experimental Evidence</div>
+                    <div class="paper-authors">Abraham, Mabel; Burbano, Vanessa</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1442" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Division of Labor Through Self-Selection</div>
+                    <div class="paper-authors">Raveendran, Marlo; Puranam, Phanish; Warglien, Massimo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1449" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Managers’ Affiliation Ties Have a Negative Relationship with Subordinates’ Interfirm Mobility? Evidence from Large U.S. Law Firms</div>
+                    <div class="paper-authors">Carnahan, Seth; Rabier, MaryJane; Uribe, Jose</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1447" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Employee Non-compete Agreements, Gender, and Entrepreneurship</div>
+                    <div class="paper-authors">Marx, Matt</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1506" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Expanding the Locus of Resistance: Understanding the Co-constitution of Control and Resistance in the Gig Economy</div>
+                    <div class="paper-authors">Cameron, Lindsey D.; Rahman, Hatim</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1557" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">He’s Overqualified, She’s Highly Committed: Qualification Signals and Gendered Assumptions About Job Candidate Commitment</div>
+                    <div class="paper-authors">Campbell, Elizabeth Lauren; Hahl, Oliver</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1550" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Immigrant Entrepreneurship: The Effect of Early Career Immigration Constraints on New Venture Formation</div>
+                    <div class="paper-authors">Agarwal, Rajshree; Ganco, Martin; Raffiee, Joseph</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1485" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">In the Midst of Hiring: Pathways of Anticipated and Accidental Job Evolution During Hiring</div>
+                    <div class="paper-authors">Cohen, Lisa E.; Mahabadi, Sara</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1516" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Institutional Investor Activism and Employee Safety: The Role of Activist and Board Political Ideology</div>
+                    <div class="paper-authors">Shi, Wei; Xia, Chongwu; Meyer-Doyle, Philipp</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1542" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Is Organizational Commitment to IT Good for Employees? The Role of Industry Dynamism and Concentration</div>
+                    <div class="paper-authors">Engelen, Andreas; Rieger, Verena; Wehner, Marius C.; Heidemann, Fabian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16588" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mitigating Gig and Remote Worker Misconduct: Evidence from a Real Effort Experiment</div>
+                    <div class="paper-authors">Burbano, Vanessa C.; Chiles, Bennett</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1488" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">My Manager Moved! Manager Mobility and Subordinates’ Career Outcomes</div>
+                    <div class="paper-authors">Baek, Minseo; Bidwell, Matthew; Keller, JR</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1509" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Socially Irresponsible Employment in Emerging-Market Manufacturers</div>
+                    <div class="paper-authors">Distelhorst, Greg; McGahan, Anita</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1526" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">What Makes One Intrinsically Interested in IT? An Exploratory Study on Influences of Autistic Tendency and Gender in the U.S. and India</div>
+                    <div class="paper-authors">Jia, Ronnie; Steelman, Zachary R.; Jia, Heather H.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/16362" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">“Making Out” While Driving: Relational and Efficiency Games in the Gig Economy</div>
+                    <div class="paper-authors">Cameron, Lindsey D.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2022</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1547" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Multilevel Contingency Model of Employee Ownership and Firm Productivity: The Moderating Roles of Industry Growth and Instability</div>
+                    <div class="paper-authors">Kim, Kyoung Yong; Patel, Pankaj C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1404" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Theory of Firm Value Capture from Employee Job Performance: A Multidisciplinary Perspective</div>
+                    <div class="paper-authors">Call, Matthew L.; Ployhart, Robert E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Academy of Management Review</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.5465/amr.2018.0103" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Algorithmic Management of Work on Online Labor Platforms: When Matching Meets Control</div>
+                    <div class="paper-authors">Möhlmann, Mareike; Zalmanson, Lior; Henfridsson, Ola; Gregory, Robert Wayne</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/15333" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Do Startup Employees Earn More in the Long Run?</div>
+                    <div class="paper-authors">Sorenson, Olav; Dahl, Michael S.; Canales, Rodrigo; Burton, M. Diane</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1371" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Dynamic, Multidimensional, and Skillset-Specific Reputation Systems for Online Work</div>
+                    <div class="paper-authors">Kokkodis, Marios</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0972" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Firm-Specific Worker Incentives, Employee Retention, and Wage–Tenure Slopes</div>
+                    <div class="paper-authors">Kryscynski, David</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1393" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Information Technology Skills and Labor Market Outcomes for Workers</div>
+                    <div class="paper-authors">Atasoy, Hilal; Banker, Rajiv D.; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0975" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Investigating the Nature of Change in Factors Affecting Gender Equity in the IT Sector: A Longitudinal Study of Women in Ireland</div>
+                    <div class="paper-authors">Trauth, Eileen; Connolly, Regina</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2022/15964" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Just DM Me (Politely): Direct Messaging, Politeness, and Hiring Outcomes in Online Labor Markets</div>
+                    <div class="paper-authors">Hong, Yili; Peng, Jing; Burtch, Gordon; Huang, Ni</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2021.1003" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Market Competition and the Effectiveness of Performance Pay</div>
+                    <div class="paper-authors">Khashabi, Pooyan; Heinz, Matthias; Zubanov, Nick; Kretschmer, Tobias; Friebel, Guido</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1392" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Turnback Intention: An Analysis of the Drivers of IT Professionals’ Intentions to Return to a Former Employer</div>
+                    <div class="paper-authors">Maier, Christian; Laumer, Sven; Joseph, Damien; Mattke, Jens; Weitzel, Tim</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/16033" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Tweet to the Top? Social Media Personal Branding and Career Outcomes</div>
+                    <div class="paper-authors">Chen, Yanzhen; Rui, Huaxia; Whinston, Andrew. B.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2021/14617" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">User Competence with Enterprise Systems: The Effects of Work Environment Factors</div>
+                    <div class="paper-authors">Ke, Weiling; Kang, Lele; Tan, Chuan-Hoo; Peng, Chih-Hung</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0989" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Women in the Inner Circle: Gender and Director Networks After the Fracturing of the Corporate Elite</div>
+                    <div class="paper-authors">Benton, Richard A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2021</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2021.1433" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Institutional Approach to Gender Diversity and Firm Performance</div>
+                    <div class="paper-authors">Zhang, Letian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1297" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Creating Mutual Gains to Leverage a Racially Diverse Workforce: The Effects of Firm-Level Racial Diversity on Financial and Workforce Outcomes Under the Use of Broad-Based Stock Options</div>
+                    <div class="paper-authors">Han, Joo Hun; Shin, DuckJung; Castellano, William G.; Konrad, Alison M.; Kruse, Douglas L.; Blasi, Joseph R.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1360" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Enterprise System Implementation and Employee Job Outcomes: Understanding the Role of Formal and Informal Support Structures Using the Job Strain Model</div>
+                    <div class="paper-authors">Sykes, Tracy Ann</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2020/11672" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Financial Incentives and Professionals’ Work Tasks: The Moderating Effects of Jurisdictional Dominance and Prominence</div>
+                    <div class="paper-authors">Chown, Jillian</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1334" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Hold Your Horses: Temporal Multiplexity and Conflict Moderation in the Palio di Siena (1743–2010)</div>
+                    <div class="paper-authors">Operti, Elisa; Y. Lampronti, Shemuel; Sgourev, Stoyan V.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1283" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">If Higher Pay Is Profitable, Why Is It So Rare? Modeling Competing Strategies in Mass Market Services</div>
+                    <div class="paper-authors">Rahmandad, Hazhir; Ton, Zeynep</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1347" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Initial and Longer-Term Change in Unit-Level Turnover Following Leader Succession: Contingent Effects of Outgoing and Incoming Leader Characteristics</div>
+                    <div class="paper-authors">Li, Huisi (Jessica); Hausknecht, John P.; Dragoni, Lisa</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1295" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Onward and Upward? An Empirical Investigation of Gender and Promotions in Information Technology Services</div>
+                    <div class="paper-authors">Langer, Nishtha; Gopal, Ram D.; Bapna, Ravi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0892" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Organizational Powers: Contested Innovation and Loss of Professional Jurisdiction in the Case of Retail Medicine</div>
+                    <div class="paper-authors">Galperin, Roman V.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1314" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Personnel Mobility and Organizational Performance: The Effects of Specialist vs. Generalist Experience and Organizational Work Structure</div>
+                    <div class="paper-authors">Fahrenkopf, Erin; Guo, Jerry; Argote, Linda</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1373" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Predicting Labor Market Competition: Leveraging Interfirm Network and Employee Skills</div>
+                    <div class="paper-authors">Liu, Yuanyang; Pant, Gautam; Sheng, Olivia R. L.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2020.0954" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Previous and Prospective Career Mobility, Client Capture, and Compromised Professional Judgment: The Withholding of Known Relevant Prior Art by Patent Lawyers on Behalf of Their Clients</div>
+                    <div class="paper-authors">Chari, Mukund; Steensma, H. Kevin; Connaughton, Charles</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1312" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Strength from Within: Internal Mobility and the Retention of High Performers</div>
+                    <div class="paper-authors">Benson, Alan; Rissing, Ben A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1362" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Production of Merit: How Managers Understand and Apply Merit in the Workplace</div>
+                    <div class="paper-authors">Castilla, Emilio J.; Ranganathan, Aruna</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1335" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unemployment and Digital Public Goods Contribution</div>
+                    <div class="paper-authors">Kummer, Michael; Slivko, Olga; Zhang, Xiaoquan (Michael)</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0916" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unemployment and Worker Participation in the Gig Economy: Evidence from an Online Labor Market</div>
+                    <div class="paper-authors">Huang, Ni; Burtch, Gordon; Hong, Yili; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0896" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Unpacking the Managerial Blues: How Expectations Formed in the Past Carry into New Jobs</div>
+                    <div class="paper-authors">Bourmault, Nishani; Anteby, Michel</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2020</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2020.1361" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Beauty Is in the Eye of the Beholder: Toward a Contextual Understanding of Compensation of Information Technology Professionals Within and Across Geographies</div>
+                    <div class="paper-authors">Whitaker, Jonathan; Mithas, Sunil; Liu, Che-Wei</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2019.0837" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Connected, but Qualified? Social Affiliations, Human Capital, and Service Professional Performance</div>
+                    <div class="paper-authors">Gubler, Timothy</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1279" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Discontinuities in the Value of Relational Capital: The Effects on Employee Entrepreneurship and Mobility</div>
+                    <div class="paper-authors">Byun, Heejung; Raffiee, Joseph; Ganco, Martin</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1262" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Gender Differences in Pay Levels: An Examination of the Compensation of University Presidents</div>
+                    <div class="paper-authors">Blevins, Dane P.; Sauerwald, Steve; Hoobler, Jenny M.; Robertson, Christopher J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1266" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Get Noticed and Die Trying: Signals, Sacrifice, and the Production of Face Time in Distributed Work</div>
+                    <div class="paper-authors">Cristea, Ioana C.; Leonardi, Paul M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1265" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Does the Implementation of Enterprise Information Systems Affect a Professional’s Mobility? An Empirical Study</div>
+                    <div class="paper-authors">Greenwood, Brad N.; Ganju, Kartik K.; Angst, Corey M.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2018.0817" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Mobility Constraint Externalities</div>
+                    <div class="paper-authors">Starr, Evan; Frake, Justin; Agarwal, Rajshree</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1252" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On a Firm’s Optimal Response to Pressure for Gender Pay Equity</div>
+                    <div class="paper-authors">Anderson, David; Bjarnadóttir, Margrét V.; Dezső, Cristian L.; Ross, David Gaddis</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1248" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Outside Insiders: Understanding the Role of Contracting in the Careers of Managerial Workers</div>
+                    <div class="paper-authors">Anderson, Tracy; Bidwell, Matthew</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1275" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Double-Edged Sword of Jurisdictional Entrenchment: Explaining Human Resources Professionals’ Failed Strategic Repositioning</div>
+                    <div class="paper-authors">Sandholtz, Kurt; Chung, Daisy; Waisberg, Isaac</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1282" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Women Don’t Mean Business? Gender Penalty in Board Composition</div>
+                    <div class="paper-authors">Solal, Isabelle; Snellman, Kaisa</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2019</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2019.1301" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">A Sociopolitical Perspective on Employee Innovativeness and Job Performance: The Role of Political Skill and Network Structure</div>
+                    <div class="paper-authors">Grosser, Travis J.; Obstfeld, David; Choi, Emily W.; Woehler, Meredith; Lopez-Kidwell, Virginie; Labianca, Giuseppe (Joe); Borgatti, Stephen P.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1201" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Gender Bias, Social Impact Framing, and Evaluation of Entrepreneurial Ventures</div>
+                    <div class="paper-authors">Lee, Matthew; Huang, Laura</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1172" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Gender and Organization Science: Introduction to a Virtual Special Issue</div>
+                    <div class="paper-authors">Fernandez-Mateo, Isabel; Kaplan, Sarah</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1249" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">How Do Firms Appropriate Value from Employees with Transferable Skills? A Study of the Appropriation Puzzle in Actively Managed Mutual Funds</div>
+                    <div class="paper-authors">Sevcenko, Victoria; Ethiraj, Sendil</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1197" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Starstruck: How Hiring High-Status Employees Affects Incumbents’ Performance</div>
+                    <div class="paper-authors">Prato, Matteo; Ferraro, Fabrizio</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2018.1204" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Price of Financial Precarity: Organizational Costs of Employees’ Financial Concerns</div>
+                    <div class="paper-authors">Meuris, Jirs; Leana, Carrie</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1187" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Value Creation Through Employer Loans: Evidence of Informal Lending to Employees at Small, Labor-Intensive Firms</div>
+                    <div class="paper-authors">Hunt, Richard A.; Hayward, Mathew L. A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1182" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Vertical and Horizontal Wage Dispersion and Mobility Outcomes: Evidence from the Swedish Microdata</div>
+                    <div class="paper-authors">Kacperczyk, Aleksandra; Balachandran, Chanchal</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2018</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1169" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Adverse Effects of CEO Family-to-Work Conflict on Firm Performance</div>
+                    <div class="paper-authors">Reina, Christopher S.; Peterson, Suzanne J.; Zhang, Zhen</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1114" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Blurring the Boundaries: The Interplay of Gender and Local Communities in the Commercialization of Social Ventures</div>
+                    <div class="paper-authors">Dimitriadis, Stefan; Lee, Matthew; Ramarajan, Lakshmi; Battilana, Julie</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1144" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Growing Apart: The Changing Firm-Size Wage Premium and Its Inequality Consequences</div>
+                    <div class="paper-authors">Cobb, J. Adam; Lin, Ken-Hou</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1125" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Hiring Molecules, Not Atoms: Comobility and Wages</div>
+                    <div class="paper-authors">Marx, Matt; Timmermans, Bram</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1155" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Pay Harmony? Social Comparison and Performance Compensation in Multibusiness Firms</div>
+                    <div class="paper-authors">Gartenberg, Claudine; Wulf, Julie</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1109" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Person–Organization and Person–Job Fit Perceptions of New IT Employees: Work Outcomes and Gender Differences1</div>
+                    <div class="paper-authors">Venkatesh, Viswanath; Windeler, Jaime B.; Bartol, Kathryn M.; Williamson, Ian O.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">MIS Quarterly</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.25300/misq/2017/41.2.09" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Promoted Up But Also Out? The Unintended Consequences of Increasing Women’s Representation in Managerial Roles in Engineering</div>
+                    <div class="paper-authors">Cardador, M. Teresa</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1132" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Sink or Swim: The Role of Workplace Context in Shaping Career Advancement and Human-Capital Development</div>
+                    <div class="paper-authors">Chattopadhyay, Shinjinee; Choudhury, Prithwiraj</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2017</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2017.1115" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">An Intraorganizational Ecology of Individual Attainment</div>
+                    <div class="paper-authors">Liu, Christopher C.; Srivastava, Sameer B.; Stuart, Toby E.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1020" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Educational Mismatch, Work Outcomes, and Entry Into Entrepreneurship</div>
+                    <div class="paper-authors">Stenard, Briana Sell; Sauermann, Henry</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1071" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Learning by Hiring: The Effects of Scientists’ Inbound Mobility on Research Performance in Academia</div>
+                    <div class="paper-authors">Slavova, Kremena; Fosfuri, Andrea; De Castro, Julio O.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2015.1026" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Motivational Spillovers from Awards: Crowding Out in a Multitasking Environment</div>
+                    <div class="paper-authors">Gubler, Timothy; Larkin, Ian; Pierce, Lamar</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1047" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">On the Longitudinal Effects of IT Use on Firm-Level Employment</div>
+                    <div class="paper-authors">Atasoy, Hilal; Banker, Rajiv D.; Pavlou, Paul A.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2015.0618" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—Are Online Labor Markets Spot Markets for Tasks? A Field Experiment on the Behavioral Response to Wage Cuts</div>
+                    <div class="paper-authors">Chen, Daniel L.; Horton, John J.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0633" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Research Note—Designing Promotion Ladders to Mitigate Turnover of IT Professionals</div>
+                    <div class="paper-authors">MacCrory, Frank; Choudhary, Vidyanand; Pinsonneault, Alain</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Information Systems Research</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/isre.2016.0652" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Revisiting the Small-Firm Effect on Entrepreneurship: Evidence from Firm Dissolutions</div>
+                    <div class="paper-authors">Kacperczyk, Aleksandra; Marx, Matt</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1065" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Social Responsibility Messages and Worker Wage Requirements: Field Experimental Evidence from Online Labor Marketplaces</div>
+                    <div class="paper-authors">Burbano, Vanessa C.</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1066" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">Status Reinforcement in Emerging Economies: The Psychological Experience of Local Candidates Striving for Global Employment</div>
+                    <div class="paper-authors">Al Dabbagh, May; Bowles, Hannah Riley; Thomason, Bobbi</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1099" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <div class="paper-title">The Credibility of Social Climbing: When Does Inter-Firm Mobility [Not] Influence Organizational Status?</div>
+                    <div class="paper-authors">Betancourt, Nathan; Wezel, Filippo Carlo</div>
+                    <div class="paper-meta">
+                        <div>
+                            <span class="journal-tag">Organization Science</span>
+                            <span class="year-tag">2016</span>
+                        </div>
+                        <div>
+                            <a href="https://doi.org/10.1287/orsc.2016.1096" target="_blank" style="color: #667eea; text-decoration: none;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p><strong>Research Streams Discovery System</strong> | Powered by AI & Network Science</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Developed by <a href="https://datasciencetech.ca" target="_blank" style="color: white; font-weight: bold; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,0.5);">DataScienceTech.ca</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate temporal chart
+        const yearlyData = {"2016": 11, "2017": 8, "2018": 8, "2019": 11, "2020": 17, "2021": 14, "2022": 18, "2023": 17, "2024": 30, "2025": 27};
+        const years = Object.keys(yearlyData).map(y => parseInt(y)).sort();
+        const counts = years.map(y => yearlyData[y.toString()]);
+        
+        const temporalTrace = {
+            x: years,
+            y: counts,
+            type: 'scatter',
+            mode: 'lines+markers',
+            fill: 'tonexty',
+            line: {color: '#667eea', width: 3},
+            marker: {color: '#764ba2', size: 8},
+            name: 'Papers per Year'
+        };
+        
+        const temporalLayout = {
+            title: {
+                text: 'Research Activity Over Time',
+                font: {size: 18, color: '#333'}
+            },
+            xaxis: {title: 'Year'},
+            yaxis: {title: 'Number of Papers'},
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('temporal-chart', [temporalTrace], temporalLayout, {responsive: true});
+        
+        // Generate journal chart
+        const journalData = {"Organization Science": 110, "Information Systems Research": 33, "MIS Quarterly": 15, "Academy of Management Review": 3};
+        const journalTrace = {
+            labels: Object.keys(journalData),
+            values: Object.values(journalData),
+            type: 'pie',
+            hole: 0.4,
+            marker: {
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+            },
+            textinfo: 'label+percent+value'
+        };
+        
+        const journalLayout = {
+            title: {
+                text: 'Distribution Across Journals',
+                font: {size: 18, color: '#333'}
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)'
+        };
+        
+        Plotly.newPlot('journal-chart', [journalTrace], journalLayout, {responsive: true});
+    </script>
+</body>
+</html>

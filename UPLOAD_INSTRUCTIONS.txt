@@ -1,0 +1,102 @@
+
+🚀 UPLOAD INSTRUCTIONS FOR DATASCIENCETECH.CA
+
+=== METHOD 1: cPanel File Manager (Recommended) ===
+
+1. LOGIN TO CPANEL
+   - Go to your hosting provider's control panel
+   - Usually: https://datasciencetech.ca:2083 or similar
+   - Enter your username and password
+
+2. OPEN FILE MANAGER
+   - Click "File Manager" icon
+   - Navigate to "public_html" folder
+
+3. CREATE DIRECTORY
+   - Click "New Folder" 
+   - Name it: research-streams
+   - Double-click to enter the folder
+
+4. UPLOAD FILES
+   - Click "Upload" button
+   - Select "research_streams_dashboard.zip" 
+   - Wait for upload to complete
+   - Right-click the ZIP file → "Extract"
+   - Delete the ZIP file after extraction
+
+5. TEST YOUR SITE
+   - Visit: https://datasciencetech.ca/research-streams/
+   - All pages should load correctly
+
+=== METHOD 2: FTP Upload ===
+
+1. GET FTP CREDENTIALS
+   - From your hosting provider
+   - Host: ftp.datasciencetech.ca (or your server IP)
+   - Username: Your cPanel username  
+   - Password: Your cPanel password
+
+2. DOWNLOAD FILEZILLA (Free FTP Client)
+   - https://filezilla-project.org/download.php
+   - Install and open
+
+3. CONNECT TO SERVER
+   - File → Site Manager → New Site
+   - Enter your FTP credentials
+   - Click "Connect"
+
+4. NAVIGATE AND UPLOAD
+   - Remote side: Go to public_html/research-streams/
+   - Local side: Go to your deploy/ folder
+   - Select all HTML files
+   - Drag from local to remote side
+
+5. SET PERMISSIONS
+   - Select all uploaded files
+   - Right-click → "File permissions"
+   - Set to 644 (read for all, write for owner)
+
+=== METHOD 3: Subdomain Setup (Most Professional) ===
+
+1. CREATE SUBDOMAIN
+   - In cPanel, click "Subdomains"
+   - Subdomain: research
+   - Domain: datasciencetech.ca
+   - Document Root: public_html/research
+   - Click "Create"
+
+2. UPLOAD FILES
+   - Navigate to public_html/research/
+   - Upload all files from deploy/ folder
+   - Rename index.html if needed
+
+3. ACCESS YOUR SITE
+   - https://research.datasciencetech.ca/
+   - Much cleaner URL!
+
+=== TROUBLESHOOTING ===
+
+❌ "Page not found" error:
+   - Check file permissions (should be 644)
+   - Verify files uploaded to correct directory
+   - Clear browser cache
+
+❌ Charts not loading:
+   - Check internet connection
+   - Verify CDN access (Plotly.js, Font Awesome)
+   - Try different browser
+
+❌ Links broken:
+   - Ensure all HTML files in same directory
+   - Check file names match exactly
+   - Verify case sensitivity (Linux servers)
+
+=== SUPPORT ===
+
+Contact your hosting provider if you need help with:
+- Accessing cPanel
+- Setting up FTP
+- Creating subdomains
+- DNS configuration
+
+Your Research Streams Dashboard is ready to go live! 🎉

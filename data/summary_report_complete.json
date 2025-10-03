@@ -1,0 +1,136 @@
+{
+  "dataset_overview": {
+    "total_papers": 2890,
+    "year_range": {
+      "start": 2016,
+      "end": 2025
+    },
+    "unique_journals": 4,
+    "papers_with_abstracts": "2310"
+  },
+  "clustering_overview": {
+    "total_clusters": 15,
+    "largest_cluster_size": 230,
+    "smallest_cluster_size": 115,
+    "mean_cluster_size": 151.6
+  },
+  "temporal_patterns": {
+    "papers_per_year": {
+      "2016": 231,
+      "2017": 219,
+      "2018": 228,
+      "2019": 262,
+      "2020": 264,
+      "2021": 274,
+      "2022": 309,
+      "2023": 308,
+      "2024": 378,
+      "2025": 417
+    },
+    "peak_year": 2025,
+    "peak_count": 417
+  },
+  "top_clusters": [
+    {
+      "cluster_id": 0,
+      "name": "Work & Their & Social",
+      "size": 230,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 230 papers published between 2016-2025. Primary publication venues: Organization Science (114), Academy of Management Review (99), MIS Quarterly (12). Based on analysis of 1..."
+    },
+    {
+      "cluster_id": 1,
+      "name": "Online & Reviews & Product",
+      "size": 192,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 192 papers published between 2016-2025. Primary publication venues: Information Systems Research (125), MIS Quarterly (61), Organization Science (6). Based on analysis of 19..."
+    },
+    {
+      "cluster_id": 2,
+      "name": "Online & Platform & Data",
+      "size": 190,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 190 papers published between 2016-2025. Primary publication venues: Information Systems Research (126), MIS Quarterly (57), Organization Science (6). Based on analysis of 18..."
+    },
+    {
+      "cluster_id": 3,
+      "name": "Their & Gender & Work",
+      "size": 161,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 161 papers published between 2016-2025. Primary publication venues: Organization Science (110), Information Systems Research (33), MIS Quarterly (15). Based on analysis of 1..."
+    },
+    {
+      "cluster_id": 4,
+      "name": "Firms & Innovation & Knowledge",
+      "size": 158,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 158 papers published between 2016-2025. Primary publication venues: Organization Science (104), MIS Quarterly (28), Information Systems Research (24). Based on analysis of 1..."
+    },
+    {
+      "cluster_id": 5,
+      "name": "Time & Comments & Paradox",
+      "size": 150,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 150 papers published between 2016-2025. Primary publication venues: Academy of Management Review (129), Information Systems Research (11), MIS Quarterly (8). Based on analys..."
+    },
+    {
+      "cluster_id": 6,
+      "name": "Information & Privacy & Their",
+      "size": 146,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 146 papers published between 2016-2025. Primary publication venues: MIS Quarterly (76), Information Systems Research (64), Organization Science (5). Based on analysis of 145..."
+    },
+    {
+      "cluster_id": 7,
+      "name": "Social & Media & Social Media",
+      "size": 146,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 146 papers published between 2016-2025. Primary publication venues: Information Systems Research (68), MIS Quarterly (60), Academy of Management Review (10). Based on analys..."
+    },
+    {
+      "cluster_id": 8,
+      "name": "Firms & Firm & Their",
+      "size": 144,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 144 papers published between 2016-2025. Primary publication venues: Organization Science (95), Academy of Management Review (43), MIS Quarterly (6). Based on analysis of 101..."
+    },
+    {
+      "cluster_id": 9,
+      "name": "Entrepreneurs & Their & Institutional",
+      "size": 143,
+      "year_range": {
+        "start": 2016,
+        "end": 2025
+      },
+      "description": "Research stream comprising 143 papers published between 2016-2025. Primary publication venues: Organization Science (85), Academy of Management Review (52), Information Systems Research (3). Based on ..."
+    }
+  ],
+  "generated_at": "2025-10-03T10:07:35.880810"
+}

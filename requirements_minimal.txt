@@ -1,0 +1,20 @@
+# Essential packages for basic analysis
+pandas
+numpy
+scipy
+scikit-learn
+matplotlib
+seaborn
+networkx
+requests
+tqdm
+bibtexparser
+sentence-transformers
+torch
+
+# Optional advanced packages (install if needed)
+# umap-learn
+# hdbscan  
+# python-igraph
+# leidenalg
+# bertopic
