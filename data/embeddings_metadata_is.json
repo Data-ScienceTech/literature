@@ -1,0 +1,7 @@
+{
+  "n_papers": 6556,
+  "embedding_dim": 384,
+  "model": "specter2",
+  "timestamp": "2025-10-03 16:20:58",
+  "corpus": "IS Premier Journals (OpenAlex)"
+}
