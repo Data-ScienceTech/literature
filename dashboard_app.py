@@ -337,37 +337,52 @@ def create_cluster_details_table(level=0, cluster_id=None):
 
 
 def create_keyword_network(level=0, top_n=30):
-    """Create keyword co-occurrence network with cluster context"""
+    """Create keyword co-occurrence network using meaningful TF-IDF keywords from cluster themes"""
     cluster_col = f'cluster_l{level}'
     
-    # Collect all keywords with cluster information
-    all_keywords = []
-    keyword_clusters = {}  # Track which clusters each keyword appears in
+    # Load cluster themes to get meaningful keywords
+    try:
+        with open('data/cluster_themes.json', 'r', encoding='utf-8') as f:
+            cluster_themes = json.load(f)
+    except:
+        return go.Figure()
     
-    for idx, row in df.iterrows():
-        keywords = row.get('keywords')
-        if keywords is not None and isinstance(keywords, list):
-            cluster_id = row.get(cluster_col)
-            if cluster_id is not None:
-                for kw in keywords:
-                    all_keywords.append(kw)
-                    if kw not in keyword_clusters:
-                        keyword_clusters[kw] = set()
-                    keyword_clusters[kw].add(str(cluster_id))
+    # Collect keywords from cluster themes with cluster mapping
+    keyword_clusters = {}  # keyword -> list of (cluster_id, cluster_name, weight)
+    cluster_keywords = {}  # cluster_id -> list of keywords
+    keyword_total_weight = {}  # keyword -> total weight across all clusters
     
-    # Get top keywords
-    kw_counter = Counter(all_keywords)
-    top_kws = [kw for kw, _ in kw_counter.most_common(top_n)]
+    level_key = f'level_{level}'
+    if level_key in cluster_themes:
+        for cluster_id, theme_data in cluster_themes[level_key].items():
+            keywords = theme_data.get('keywords', [])
+            cluster_name = cluster_names.get(level_key, {}).get(cluster_id, {}).get('name', f'Cluster {cluster_id}')
+            
+            cluster_keywords[cluster_id] = []
+            for kw_item in keywords[:10]:  # Top 10 keywords per cluster
+                kw = kw_item[0] if isinstance(kw_item, list) else kw_item
+                weight = kw_item[1] if isinstance(kw_item, list) and len(kw_item) > 1 else 1.0
+                
+                if kw not in keyword_clusters:
+                    keyword_clusters[kw] = []
+                    keyword_total_weight[kw] = 0
+                keyword_clusters[kw].append((cluster_id, cluster_name, weight))
+                keyword_total_weight[kw] += weight
+                cluster_keywords[cluster_id].append(kw)
     
-    # Build co-occurrence matrix
+    # Get top keywords by total weight across clusters
+    top_kws = sorted(keyword_total_weight.keys(), 
+                     key=lambda k: keyword_total_weight[k], 
+                     reverse=True)[:top_n]
+    
+    # Build co-occurrence matrix based on cluster membership
     from itertools import combinations
     cooccurrence = Counter()
     
-    for kw_list in df['keywords'].dropna():
-        if isinstance(kw_list, list):
-            filtered_kws = [kw for kw in kw_list if kw in top_kws]
-            for kw1, kw2 in combinations(sorted(filtered_kws), 2):
-                cooccurrence[(kw1, kw2)] += 1
+    for cluster_id, kws in cluster_keywords.items():
+        filtered_kws = [kw for kw in kws if kw in top_kws]
+        for kw1, kw2 in combinations(sorted(filtered_kws), 2):
+            cooccurrence[(kw1, kw2)] += 1
     
     # Create network edges
     edge_x = []
@@ -383,7 +398,7 @@ def create_keyword_network(level=0, top_n=30):
         positions[kw] = (math.cos(angle), math.sin(angle))
     
     for (kw1, kw2), weight in cooccurrence.most_common(100):
-        if weight > 5:  # Threshold
+        if weight > 2:  # Lower threshold for TF-IDF keywords
             x0, y0 = positions[kw1]
             x1, y1 = positions[kw2]
             edge_x.extend([x0, x1, None])
@@ -401,30 +416,24 @@ def create_keyword_network(level=0, top_n=30):
     node_x = [positions[kw][0] for kw in top_kws]
     node_y = [positions[kw][1] for kw in top_kws]
     node_text = top_kws
-    node_size = [kw_counter[kw] for kw in top_kws]
+    node_size = [keyword_total_weight[kw] * 100 for kw in top_kws]  # Scale for visibility
     
     # Create hover text with cluster names
     hover_texts = []
     for kw in top_kws:
-        cluster_ids = keyword_clusters.get(kw, set())
-        cluster_info = []
+        cluster_info_list = keyword_clusters.get(kw, [])
+        # Sort by weight and take top 5
+        cluster_info_list = sorted(cluster_info_list, key=lambda x: x[2], reverse=True)[:5]
         
-        # Get meaningful cluster names
-        for cid in sorted(cluster_ids, key=str)[:5]:  # Top 5 clusters
-            if cluster_names and f'level_{level}' in cluster_names:
-                c_info = cluster_names[f'level_{level}'].get(str(cid))
-                if c_info:
-                    name = c_info.get('name', f'Cluster {cid}')
-                    if len(name) > 40:
-                        name = name[:37] + '...'
-                    cluster_info.append(name)
-                else:
-                    cluster_info.append(f'Cluster {cid}')
-            else:
-                cluster_info.append(f'Cluster {cid}')
+        cluster_info = []
+        for cid, cname, weight in cluster_info_list:
+            if len(cname) > 40:
+                cname = cname[:37] + '...'
+            cluster_info.append(cname)
         
         clusters_text = '<br>  • ' + '<br>  • '.join(cluster_info) if cluster_info else ''
-        hover_text = f"<b>{kw}</b><br>{kw_counter[kw]} papers<br>Top clusters:{clusters_text}"
+        num_clusters = len(keyword_clusters.get(kw, []))
+        hover_text = f"<b>{kw}</b><br>{num_clusters} research streams<br>Key streams:{clusters_text}"
         hover_texts.append(hover_text)
     
     node_trace = go.Scatter(
@@ -435,7 +444,7 @@ def create_keyword_network(level=0, top_n=30):
         hoverinfo='text',
         hovertext=hover_texts,
         marker=dict(
-            size=[s/50 for s in node_size],
+            size=[min(s, 50) for s in node_size],  # Cap size at 50
             color=node_size,
             colorscale='Viridis',
             line_width=2,

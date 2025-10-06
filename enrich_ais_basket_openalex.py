@@ -46,14 +46,23 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_DIR = Path("output")
 
 # Setup logging
+import sys
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler(OUTPUT_DIR / f"enrichment_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"),
-        logging.StreamHandler()
+        logging.FileHandler(
+            OUTPUT_DIR / f"enrichment_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log",
+            encoding='utf-8'  # Fix for unicode characters
+        ),
+        logging.StreamHandler(sys.stdout)
     ]
 )
+# Ensure StreamHandler uses UTF-8
+if sys.stdout.encoding != 'utf-8':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+
 logger = logging.getLogger(__name__)
 
 class OpenAlexEnricher:
@@ -351,6 +360,15 @@ class OpenAlexEnricher:
         enriched["openalex_cited_by_count"] = openalex_work.get("cited_by_count", 0)
         enriched["openalex_type"] = openalex_work.get("type", "")
         
+        # Add citation network data (referenced_works)
+        referenced_works = openalex_work.get("referenced_works", [])
+        # Always save referenced_works field (even if empty) for consistency
+        enriched["referenced_works"] = referenced_works
+        if referenced_works:
+            # Track enrichment stats only if non-empty
+            enriched["_enrichment"]["enriched_fields"].append("citations")
+            self.stats['enriched_citations'] = self.stats.get('enriched_citations', 0) + 1
+        
         return enriched
     
     def enrich_corpus(self, articles: List[Dict]) -> List[Dict]:
@@ -404,6 +422,7 @@ class OpenAlexEnricher:
         logger.info(f"Enriched abstracts: {self.stats['enriched_abstracts']:,}")
         logger.info(f"Enriched keywords: {self.stats['enriched_keywords']:,}")
         logger.info(f"Enriched affiliations: {self.stats['enriched_affiliations']:,}")
+        logger.info(f"Enriched citations: {self.stats.get('enriched_citations', 0):,}")
         logger.info(f"API calls made: {self.stats['api_calls']:,}")
         logger.info(f"Cache hits: {self.stats['cache_hits']:,}")
         logger.info(f"Errors: {self.stats['errors']:,}")
@@ -452,7 +471,8 @@ def save_enriched_corpus(articles: List[Dict]):
             "enriched_fields": ",".join(article.get("_enrichment", {}).get("enriched_fields", [])),
             "openalex_cited_by_count": article.get("openalex_cited_by_count", 0),
             "keyword_count": len(article.get("subject", [])),
-            "has_keywords": len(article.get("subject", [])) > 0
+            "has_keywords": len(article.get("subject", [])) > 0,
+            "referenced_works": article.get("referenced_works", [])
         }
         df_records.append(record)
     
