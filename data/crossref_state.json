@@ -1,0 +1,73 @@
+{
+  "version": "2.0",
+  "created": "2025-10-06T12:48:46.349226",
+  "last_updated": "2025-10-06T12:50:17.870496",
+  "journals": {
+    "MIS Quarterly": {
+      "first_fetch": "2025-10-06T12:49:01.375891",
+      "article_count": 2095,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:49:01.375901",
+      "last_indexed_date": "2025-10-06T09:33:38Z"
+    },
+    "Information Systems Research": {
+      "first_fetch": "2025-10-06T12:49:14.256828",
+      "article_count": 1806,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:49:14.256839",
+      "last_indexed_date": "2025-10-06T16:43:04Z"
+    },
+    "Journal of Management Information Systems": {
+      "first_fetch": "2025-10-06T12:49:27.480318",
+      "article_count": 1758,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:49:27.480330",
+      "last_indexed_date": "2025-10-06T09:33:27Z"
+    },
+    "Journal of the Association for Information Systems": {
+      "first_fetch": "2025-10-06T12:49:33.848514",
+      "article_count": 1045,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:49:33.848523",
+      "last_indexed_date": "2025-10-06T09:33:26Z"
+    },
+    "European Journal of Information Systems": {
+      "first_fetch": "2025-10-06T12:49:44.604166",
+      "article_count": 1588,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:49:44.604176",
+      "last_indexed_date": "2025-10-06T09:33:19Z"
+    },
+    "Information Systems Journal": {
+      "first_fetch": "2025-10-06T12:49:54.350536",
+      "article_count": 1337,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:49:54.350547",
+      "last_indexed_date": "2025-10-06T09:33:41Z"
+    },
+    "Journal of Information Technology": {
+      "first_fetch": "2025-10-06T12:50:07.849853",
+      "article_count": 1841,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:50:07.849864",
+      "last_indexed_date": "2025-10-06T09:29:20Z"
+    },
+    "Journal of Strategic Information Systems": {
+      "first_fetch": "2025-10-06T12:50:16.569619",
+      "article_count": 1094,
+      "fetch_count": 1,
+      "last_update": "2025-10-06T12:50:16.569633",
+      "last_indexed_date": "2025-10-06T09:27:04Z"
+    }
+  },
+  "total_articles": 0,
+  "runs": [
+    {
+      "timestamp": "2025-10-06T12:50:17.870487",
+      "articles_fetched": 12564,
+      "unique_articles": 12564,
+      "journals_updated": 8,
+      "full_fetch": true
+    }
+  ]
+}

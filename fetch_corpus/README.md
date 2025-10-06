@@ -1,4 +1,64 @@
-# IS Corpus Fetcher
+# IS Corpus Fetchers
+
+This directory contains multiple fetchers for building comprehensive IS research datasets.
+
+## 🆕 NEW: AIS Basket of 8 - CrossRef Fetcher (RECOMMENDED)
+
+**The new production-ready fetcher with incremental update support!**
+
+### Quick Start
+```powershell
+# Test your setup
+python test_ais_basket.py
+
+# Run your first fetch
+.\run_ais_basket_fetch.ps1
+```
+
+### Why Use This?
+- ✅ **Incremental updates** - Only fetch new articles (1-2 min daily)
+- ✅ **State tracking** - Never re-download existing data
+- ✅ **Official AIS Basket** - All 8 premier journals
+- ✅ **Authoritative data** - Direct from CrossRef
+- ✅ **Citation network** - Full reference DOIs
+- ✅ **Multiple formats** - Parquet, JSON, BibTeX
+
+### Documentation
+- **`NEW_FETCHER_SUMMARY.md`** - Overview and test results
+- **`QUICKSTART_AIS_BASKET.md`** - 5-minute setup guide
+- **`README_AIS_BASKET.md`** - Complete documentation
+- **`FETCHER_COMPARISON.md`** - Compare with other fetchers
+
+---
+
+## Available Fetchers
+
+### 1. CrossRef Fetcher (NEW) ⭐ RECOMMENDED
+- **File**: `fetch_ais_basket_crossref.py`
+- **Source**: CrossRef API
+- **Journals**: AIS Basket of 8 (~12,500 articles)
+- **Updates**: Incremental (fast!)
+- **Best for**: Core dataset, daily updates, citations
+
+### 2. OpenAlex Fetcher (EXISTING)
+- **File**: `fetch_is_corpus.py`
+- **Source**: OpenAlex API
+- **Journals**: AIS 11 journals (~15,000 articles)
+- **Updates**: Full refetch
+- **Best for**: Abstracts, author affiliations, enrichment
+
+### 3. BibTeX Fetcher (EXISTING)
+- **File**: `fetch_journals_bibtex.py`
+- **Source**: CrossRef + enrichment
+- **Journals**: Custom set (4 journals)
+- **Updates**: Full refetch
+- **Best for**: Deep metadata extraction
+
+See **`FETCHER_COMPARISON.md`** for detailed comparison.
+
+---
+
+# Original OpenAlex Fetcher Documentation
 
 This script fetches academic literature from OpenAlex for the 11 AIS Senior Scholars' Premier Journals.
 

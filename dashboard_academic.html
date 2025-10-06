@@ -419,29 +419,32 @@
             <h1>Information Systems Research Landscape Analysis</h1>
             <div class="subtitle">A Comprehensive Study of 25 Years of Premier IS Research (2000-2025)</div>
             <div class="meta">
-                6,556 Papers • 28 Research Streams • 907,900 Citations • Machine Learning Analysis
+                <span id="headerPapers">6,556 Papers</span> • 
+                <span id="headerStreams">28 Research Streams</span> • 
+                <span id="headerCitations">907,900 Citations</span> • 
+                Machine Learning Analysis
             </div>
         </div>
     </header>
 
     <div class="container">
         <nav class="nav-pills">
-            <button class="nav-pill active" onclick="showSection('overview')">
+            <button class="nav-pill active" onclick="showSection('overview', this)">
                 <i class="fas fa-chart-line"></i> Overview
             </button>
-            <button class="nav-pill" onclick="showSection('methodology')">
+            <button class="nav-pill" onclick="showSection('methodology', this)">
                 <i class="fas fa-cogs"></i> Methodology
             </button>
-            <button class="nav-pill" onclick="showSection('streams')">
+            <button class="nav-pill" onclick="showSection('streams', this)">
                 <i class="fas fa-project-diagram"></i> Research Streams
             </button>
-            <button class="nav-pill" onclick="showSection('papers')">
+            <button class="nav-pill" onclick="showSection('papers', this)">
                 <i class="fas fa-file-alt"></i> Papers Explorer
             </button>
-            <button class="nav-pill" onclick="showSection('visualizations')">
+            <button class="nav-pill" onclick="showSection('visualizations', this)">
                 <i class="fas fa-chart-bar"></i> Visualizations
             </button>
-            <button class="nav-pill" onclick="showSection('insights')">
+            <button class="nav-pill" onclick="showSection('insights', this)">
                 <i class="fas fa-lightbulb"></i> Key Insights
             </button>
         </nav>

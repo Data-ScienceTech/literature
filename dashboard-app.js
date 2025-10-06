@@ -17,6 +17,12 @@ async function initializeDashboard() {
         // Load data
         await loadActualData();
         
+        console.log("Data loaded:", currentData);
+        console.log("Number of streams:", currentData.streams.length);
+        
+        // Update header with actual stats
+        updateHeader();
+        
         // Initialize sections
         initializeOverview();
         initializeStreams();
@@ -27,11 +33,29 @@ async function initializeDashboard() {
         console.log("Dashboard initialized successfully");
     } catch (error) {
         console.error("Error initializing dashboard:", error);
+        alert("Error initializing dashboard. Please check the console for details.");
+    }
+}
+
+// Update header with loaded data
+function updateHeader() {
+    const headerPapers = document.getElementById('headerPapers');
+    const headerStreams = document.getElementById('headerStreams');
+    const headerCitations = document.getElementById('headerCitations');
+    
+    if (headerPapers && currentData.stats) {
+        headerPapers.textContent = currentData.stats.totalPapers.toLocaleString() + ' Papers';
+    }
+    if (headerStreams && currentData.stats) {
+        headerStreams.textContent = currentData.stats.totalStreams + ' Research Streams';
+    }
+    if (headerCitations && currentData.stats) {
+        headerCitations.textContent = currentData.stats.totalCitations.toLocaleString() + ' Citations';
     }
 }
 
 // Navigation functions
-function showSection(sectionId) {
+function showSection(sectionId, clickedElement) {
     // Hide all sections
     document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
@@ -46,7 +70,9 @@ function showSection(sectionId) {
     document.getElementById(sectionId).classList.add('active');
     
     // Add active class to clicked nav pill
-    event.target.classList.add('active');
+    if (clickedElement) {
+        clickedElement.classList.add('active');
+    }
     
     currentSection = sectionId;
     
@@ -163,6 +189,8 @@ function updateStreamDisplay() {
     const activityFilter = document.getElementById('activityFilter')?.value || 'all';
     const searchTerm = document.getElementById('topicSearch')?.value.toLowerCase() || '';
     
+    console.log("Updating stream display:", { sortBy, activityFilter, searchTerm });
+    
     // Filter streams
     filteredStreams = currentData.streams.filter(stream => {
         // Activity filter
@@ -178,6 +206,8 @@ function updateStreamDisplay() {
         
         return true;
     });
+    
+    console.log("Filtered streams:", filteredStreams.length);
     
     // Sort streams
     filteredStreams.sort((a, b) => {
@@ -283,6 +313,8 @@ function updatePaperDisplay() {
     const sortBy = document.getElementById('paperSort')?.value || 'citations';
     const searchTerm = document.getElementById('paperSearch')?.value.toLowerCase() || '';
     
+    console.log("Updating paper display:", { streamFilter, yearFilter, sortBy, searchTerm });
+    
     // Update year display
     const yearDisplay = document.getElementById('yearDisplay');
     if (yearDisplay) {
@@ -299,6 +331,8 @@ function updatePaperDisplay() {
         }
         return true;
     });
+    
+    console.log("Filtered papers:", filteredPapers.length);
     
     // Sort papers
     filteredPapers.sort((a, b) => {
