@@ -56,6 +56,19 @@ Thumbs.db
 # Logs
 *.log
 
+# Large cache and data files
+data/raw/
+data/clean/*.json
+data/clean/*.parquet
+*.cache
+cache/
+*_cache/
+
+# Output files (regeneratable)
+output/*.json
+output/*.log
+output/*.md
+
 # Temporary files
 *.tmp
 *.bak
