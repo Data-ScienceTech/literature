@@ -457,6 +457,398 @@ def analyze_temporal_patterns(G: nx.DiGraph) -> Dict:
     return results
 
 
+def multi_resolution_community_detection(
+    G: nx.Graph,
+    resolutions: List[float] = None,
+    method: str = 'louvain'
+) -> Dict[float, List[Set]]:
+    """
+    Detect communities at multiple resolution scales.
+    
+    Parameters
+    ----------
+    G : nx.Graph
+        Input graph
+    resolutions : list of float
+        Resolution parameters to test
+    method : str
+        Community detection method ('louvain' or 'leiden')
+    
+    Returns
+    -------
+    Dict[float, List[Set]]
+        Communities at each resolution level
+    """
+    logger.info(f"Multi-resolution community detection using {method}")
+    
+    if resolutions is None:
+        resolutions = [0.5, 1.0, 1.5, 2.0]
+    
+    communities_by_resolution = {}
+    
+    try:
+        if method == 'louvain':
+            import community as community_louvain
+            
+            for res in resolutions:
+                partition = community_louvain.best_partition(G, resolution=res)
+                
+                # Convert to list of sets
+                communities = defaultdict(set)
+                for node, comm_id in partition.items():
+                    communities[comm_id].add(node)
+                
+                communities_by_resolution[res] = list(communities.values())
+                logger.info(f"  Resolution {res}: {len(communities)} communities")
+        
+        elif method == 'leiden':
+            try:
+                import igraph as ig
+                import leidenalg
+                
+                # Convert to igraph
+                ig_graph = ig.Graph.from_networkx(G)
+                
+                for res in resolutions:
+                    partition = leidenalg.find_partition(
+                        ig_graph,
+                        leidenalg.RBConfigurationVertexPartition,
+                        resolution_parameter=res
+                    )
+                    
+                    # Convert back to node sets
+                    communities = []
+                    for comm in partition:
+                        node_names = [G.nodes()[i] for i in comm]
+                        communities.append(set(node_names))
+                    
+                    communities_by_resolution[res] = communities
+                    logger.info(f"  Resolution {res}: {len(communities)} communities")
+            
+            except ImportError:
+                logger.warning("Leiden not available, falling back to Louvain")
+                return multi_resolution_community_detection(G, resolutions, method='louvain')
+        
+        else:
+            raise ValueError(f"Unknown method: {method}")
+    
+    except Exception as e:
+        logger.error(f"Community detection failed: {e}")
+        return {}
+    
+    return communities_by_resolution
+
+
+def detect_bridge_papers(
+    G: nx.Graph,
+    cluster_attr: str = 'cluster',
+    centrality_threshold: float = 0.7
+) -> List[Tuple]:
+    """
+    Detect papers that bridge different research clusters.
+    
+    Parameters
+    ----------
+    G : nx.Graph
+        Graph with cluster annotations
+    cluster_attr : str
+        Node attribute containing cluster ID
+    centrality_threshold : float
+        Percentile threshold for betweenness centrality
+    
+    Returns
+    -------
+    List[Tuple]
+        List of (node, betweenness, cluster_connections)
+    """
+    logger.info("Detecting bridge papers between clusters")
+    
+    # Compute betweenness centrality
+    betweenness = nx.betweenness_centrality(G, weight='weight' if G.is_weighted() else None)
+    
+    # Threshold
+    threshold_value = np.percentile(list(betweenness.values()), centrality_threshold * 100)
+    
+    bridges = []
+    
+    for node, centrality in betweenness.items():
+        if centrality < threshold_value:
+            continue
+        
+        # Get neighbor clusters
+        node_data = G.nodes[node]
+        node_cluster = node_data.get(cluster_attr, -1)
+        
+        neighbor_clusters = set()
+        for neighbor in G.neighbors(node):
+            neighbor_cluster = G.nodes[neighbor].get(cluster_attr, -1)
+            if neighbor_cluster != node_cluster and neighbor_cluster >= 0:
+                neighbor_clusters.add(neighbor_cluster)
+        
+        if len(neighbor_clusters) >= 2:  # Connects multiple clusters
+            bridges.append((
+                node,
+                centrality,
+                node_cluster,
+                list(neighbor_clusters),
+                len(neighbor_clusters)
+            ))
+    
+    # Sort by number of cluster connections
+    bridges.sort(key=lambda x: (x[4], x[1]), reverse=True)
+    
+    logger.info(f"Found {len(bridges)} bridge papers")
+    return bridges
+
+
+def extract_hierarchical_backbone(
+    G: nx.Graph,
+    levels: int = 3,
+    method: str = 'disparity',
+    alpha: float = 0.05
+) -> Dict[int, nx.Graph]:
+    """
+    Extract multi-level backbone hierarchy.
+    
+    Each level contains progressively stronger edges.
+    
+    Parameters
+    ----------
+    G : nx.Graph
+        Weighted input graph
+    levels : int
+        Number of hierarchy levels
+    method : str
+        Backbone extraction method
+    alpha : float
+        Base significance level
+    
+    Returns
+    -------
+    Dict[int, nx.Graph]
+        Backbone graphs at each level
+    """
+    logger.info(f"Extracting {levels}-level hierarchical backbone")
+    
+    backbones = {}
+    
+    # Level 0: Full graph
+    backbones[0] = G.copy()
+    
+    # Extract increasingly strict backbones
+    for level in range(1, levels):
+        # Adjust alpha for this level (more strict)
+        level_alpha = alpha / (2 ** level)
+        
+        logger.info(f"  Level {level}: alpha={level_alpha:.4f}")
+        
+        # Extract backbone from previous level
+        prev_backbone = backbones[level - 1]
+        
+        if method == 'disparity':
+            level_backbone = _disparity_filter(prev_backbone, level_alpha)
+        elif method == 'weight_threshold':
+            # Use percentile threshold
+            threshold_pct = 50 + (level * 15)  # 50th, 65th, 80th percentiles
+            level_backbone = _threshold_filter(prev_backbone, threshold_pct)
+        else:
+            raise ValueError(f"Unknown method: {method}")
+        
+        backbones[level] = level_backbone
+        
+        logger.info(f"    Nodes: {level_backbone.number_of_nodes()}, Edges: {level_backbone.number_of_edges()}")
+    
+    return backbones
+
+
+def _disparity_filter(G: nx.Graph, alpha: float) -> nx.Graph:
+    """Apply disparity filter to extract backbone."""
+    backbone = nx.Graph()
+    backbone.add_nodes_from(G.nodes(data=True))
+    
+    for node in G.nodes():
+        neighbors = list(G.neighbors(node))
+        if len(neighbors) <= 1:
+            continue
+        
+        weights = [G[node][neighbor].get('weight', 1) for neighbor in neighbors]
+        total_weight = sum(weights)
+        
+        if total_weight == 0:
+            continue
+        
+        k = len(neighbors)
+        
+        for i, neighbor in enumerate(neighbors):
+            w = weights[i]
+            p_ij = w / total_weight
+            
+            if k > 1:
+                p_value = (1 - p_ij) ** (k - 1)
+                
+                if p_value < alpha:
+                    backbone.add_edge(node, neighbor, **G[node][neighbor])
+    
+    return backbone
+
+
+def _threshold_filter(G: nx.Graph, percentile: float) -> nx.Graph:
+    """Extract backbone by weight threshold."""
+    weights = [data.get('weight', 1) for u, v, data in G.edges(data=True)]
+    threshold = np.percentile(weights, percentile)
+    
+    backbone = nx.Graph()
+    backbone.add_nodes_from(G.nodes(data=True))
+    
+    for u, v, data in G.edges(data=True):
+        if data.get('weight', 1) >= threshold:
+            backbone.add_edge(u, v, **data)
+    
+    logger.debug(f"Threshold filter: {backbone.number_of_edges()} edges above {threshold:.2f}")
+    return backbone
+
+
+def analyze_citation_flows_between_clusters(
+    G: nx.DiGraph,
+    cluster_attr: str = 'cluster'
+) -> pd.DataFrame:
+    """
+    Analyze citation flows between research clusters.
+    
+    Parameters
+    ----------
+    G : nx.DiGraph
+        Directed citation graph
+    cluster_attr : str
+        Node attribute containing cluster ID
+    
+    Returns
+    -------
+    pd.DataFrame
+        Citation flow matrix (from_cluster -> to_cluster)
+    """
+    logger.info("Analyzing inter-cluster citation flows")
+    
+    # Get clusters
+    clusters = set()
+    for node, data in G.nodes(data=True):
+        cluster = data.get(cluster_attr, -1)
+        if cluster >= 0:
+            clusters.add(cluster)
+    
+    clusters = sorted(clusters)
+    
+    # Build flow matrix
+    flow_matrix = np.zeros((len(clusters), len(clusters)))
+    cluster_to_idx = {c: i for i, c in enumerate(clusters)}
+    
+    for citing, cited in G.edges():
+        citing_cluster = G.nodes[citing].get(cluster_attr, -1)
+        cited_cluster = G.nodes[cited].get(cluster_attr, -1)
+        
+        if citing_cluster >= 0 and cited_cluster >= 0:
+            i = cluster_to_idx[citing_cluster]
+            j = cluster_to_idx[cited_cluster]
+            flow_matrix[i, j] += 1
+    
+    # Convert to DataFrame
+    flow_df = pd.DataFrame(
+        flow_matrix,
+        index=[f"Cluster_{c}" for c in clusters],
+        columns=[f"Cluster_{c}" for c in clusters]
+    )
+    
+    # Summary statistics
+    total_citations = flow_matrix.sum()
+    internal_citations = np.diag(flow_matrix).sum()
+    external_citations = total_citations - internal_citations
+    
+    logger.info(f"Total citations: {int(total_citations)}")
+    logger.info(f"Internal citations: {int(internal_citations)} ({internal_citations/total_citations*100:.1f}%)")
+    logger.info(f"External citations: {int(external_citations)} ({external_citations/total_citations*100:.1f}%)")
+    
+    return flow_df
+
+
+def find_knowledge_flows(
+    G: nx.DiGraph,
+    time_attr: str = 'year',
+    cluster_attr: str = 'cluster',
+    time_window: int = 3
+) -> List[Dict]:
+    """
+    Identify knowledge flow patterns between clusters over time.
+    
+    Parameters
+    ----------
+    G : nx.DiGraph
+        Citation graph
+    time_attr : str
+        Node attribute for time
+    cluster_attr : str
+        Node attribute for cluster
+    time_window : int
+        Years to aggregate
+    
+    Returns
+    -------
+    List[Dict]
+        Knowledge flow events
+    """
+    logger.info("Identifying knowledge flow patterns")
+    
+    # Get temporal citation edges
+    temporal_flows = []
+    
+    for citing, cited in G.edges():
+        citing_data = G.nodes[citing]
+        cited_data = G.nodes[cited]
+        
+        citing_year = citing_data.get(time_attr)
+        cited_year = cited_data.get(time_attr)
+        citing_cluster = citing_data.get(cluster_attr, -1)
+        cited_cluster = cited_data.get(cluster_attr, -1)
+        
+        if all([citing_year, cited_year, citing_cluster >= 0, cited_cluster >= 0]):
+            temporal_flows.append({
+                'citing': citing,
+                'cited': cited,
+                'citing_year': citing_year,
+                'cited_year': cited_year,
+                'citing_cluster': citing_cluster,
+                'cited_cluster': cited_cluster,
+                'citation_age': citing_year - cited_year
+            })
+    
+    # Aggregate into time windows
+    flows_df = pd.DataFrame(temporal_flows)
+    
+    if len(flows_df) == 0:
+        return []
+    
+    # Group by time window and cluster pairs
+    flows_df['time_window'] = flows_df['citing_year'] // time_window * time_window
+    
+    flow_patterns = flows_df.groupby(
+        ['time_window', 'citing_cluster', 'cited_cluster']
+    ).agg({
+        'citing': 'count',
+        'citation_age': 'mean'
+    }).reset_index()
+    
+    flow_patterns.columns = ['time_window', 'from_cluster', 'to_cluster', 'citation_count', 'avg_age']
+    
+    # Filter for significant flows (cross-cluster only)
+    significant_flows = flow_patterns[
+        (flow_patterns['from_cluster'] != flow_patterns['to_cluster']) &
+        (flow_patterns['citation_count'] >= 3)
+    ].copy()
+    
+    logger.info(f"Found {len(significant_flows)} significant knowledge flows")
+    
+    return significant_flows.to_dict('records')
+
+
 if __name__ == "__main__":
     # Test with synthetic data
     logger.info("Testing network analysis with synthetic data")
@@ -502,3 +894,19 @@ if __name__ == "__main__":
     # Test temporal analysis
     temporal = analyze_temporal_patterns(citation_graph)
     print(f"Temporal analysis: {temporal}")
+    
+    # Test multi-resolution communities
+    if coupling_graph.number_of_edges() > 0:
+        try:
+            communities = multi_resolution_community_detection(coupling_graph, resolutions=[0.5, 1.0])
+            print(f"\nMulti-resolution communities: {len(communities)} resolutions tested")
+        except Exception as e:
+            print(f"Community detection test skipped: {e}")
+    
+    # Test bridge detection
+    bridges = detect_bridge_papers(coupling_graph, cluster_attr='cluster')
+    print(f"Bridge papers: {len(bridges)}")
+    
+    # Test citation flows
+    flows = analyze_citation_flows_between_clusters(citation_graph, cluster_attr='cluster')
+    print(f"\nCitation flow matrix:\n{flows}")

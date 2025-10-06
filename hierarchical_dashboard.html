@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Research Streams Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .control-group label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        select, input {
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 0.95em;
+            min-width: 150px;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        .hierarchy-nav {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+        }
+        
+        .hierarchy-nav h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .tree-node {
+            margin-left: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .tree-node-label {
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tree-node-label:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .tree-node-label.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .node-size {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+        
+        .content-area {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cluster-card {
+            margin-bottom: 30px;
+        }
+        
+        .cluster-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .cluster-title {
+            flex: 1;
+        }
+        
+        .cluster-title h2 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .breadcrumb {
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        .cluster-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .stat-box {
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .paper-list {
+            list-style: none;
+        }
+        
+        .paper-item {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .paper-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .paper-meta {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            padding: 5px 12px;
+            background: #667eea;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        
+        .children-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .child-cluster {
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .child-cluster:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0f0f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Multi-Level Hierarchical Research Streams</h1>
+            <p class="subtitle">Interactive exploration of research communities at multiple scales</p>
+        </header>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Hierarchy Level</label>
+                <select id="levelSelect">
+                    <option value="0">Level 0 - Macro (Broad Areas)</option>
+                    <option value="1">Level 1 - Meso (Research Streams)</option>
+                    <option value="2">Level 2 - Micro (Specific Topics)</option>
+                    <option value="3">Level 3 - Ultra-Micro (Niches)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Sort By</label>
+                <select id="sortSelect">
+                    <option value="size">Cluster Size</option>
+                    <option value="citations">Total Citations</option>
+                    <option value="recent">Recent Papers</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Search</label>
+                <input type="text" id="searchInput" placeholder="Search clusters...">
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="hierarchy-nav">
+                <h3>🌳 Hierarchy Tree</h3>
+                <div id="treeView">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading hierarchy...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-area">
+                <div id="clusterView">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Select a cluster to view details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // This is a template - data will be loaded from JSON files
+        let hierarchyData = null;
+        let dialogCards = null;
+        let currentCluster = null;
+        
+        // Load data
+        async function loadData() {
+            try {
+                // In production, these would load actual JSON files
+                // For now, show instructions
+                console.log('To use this dashboard:');
+                console.log('1. Run: python run_hierarchical_analysis.py');
+                console.log('2. Load data/hierarchical_dialog_cards.json');
+                console.log('3. Load data/hierarchy_leiden.json');
+                
+                // Placeholder data
+                showPlaceholder();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showError();
+            }
+        }
+        
+        function showPlaceholder() {
+            document.getElementById('treeView').innerHTML = `
+                <div style="padding: 20px; text-align: center;">
+                    <p style="color: #666; margin-bottom: 15px;">
+                        📋 Run the hierarchical analysis first:
+                    </p>
+                    <code style="background: #f5f5f5; padding: 10px; border-radius: 5px; display: block; margin: 10px 0;">
+                        python run_hierarchical_analysis.py
+                    </code>
+                    <p style="color: #999; font-size: 0.9em; margin-top: 15px;">
+                        This will generate the required JSON files
+                    </p>
+                </div>
+            `;
+            
+            document.getElementById('clusterView').innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <h2 style="color: #667eea; margin-bottom: 20px;">Getting Started</h2>
+                    <ol style="text-align: left; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+                        <li>Run <code>python run_hierarchical_analysis.py</code></li>
+                        <li>Wait for analysis to complete (5-20 minutes)</li>
+                        <li>Reload this dashboard</li>
+                        <li>Explore your hierarchical research streams!</li>
+                    </ol>
+                    <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 10px;">
+                        <h3 style="color: #333; margin-bottom: 10px;">What You'll Get:</h3>
+                        <ul style="text-align: left; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+                            <li>3-4 levels of nested research clusters</li>
+                            <li>Macro → Meso → Micro granularity</li>
+                            <li>Key papers and topics at each level</li>
+                            <li>Citation flow analysis</li>
+                            <li>Bridge paper detection</li>
+                            <li>Interactive hierarchy navigation</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showError() {
+            document.getElementById('treeView').innerHTML = `
+                <div style="padding: 20px; color: #e74c3c;">
+                    ⚠️ Error loading data. Please run the analysis first.
+                </div>
+            `;
+        }
+        
+        // Event listeners
+        document.getElementById('levelSelect').addEventListener('change', function() {
+            // Filter clusters by level
+            console.log('Level changed to:', this.value);
+        });
+        
+        document.getElementById('sortSelect').addEventListener('change', function() {
+            // Re-sort clusters
+            console.log('Sort changed to:', this.value);
+        });
+        
+        document.getElementById('searchInput').addEventListener('input', function() {
+            // Filter clusters by search
+            console.log('Search:', this.value);
+        });
+        
+        // Initialize
+        loadData();
+        
+        // Note: To make this fully functional, you would:
+        // 1. Load JSON files using fetch()
+        // 2. Build interactive tree from hierarchy_leiden.json
+        // 3. Display cluster details from hierarchical_dialog_cards.json
+        // 4. Add click handlers for navigation
+        // 5. Implement search and filtering
+    </script>
+</body>
+</html>

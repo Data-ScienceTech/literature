@@ -1,0 +1,502 @@
+[
+  {
+    "keyword1": "Business",
+    "keyword2": "Computer science",
+    "cooccurrence_count": 4382
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 4039
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Engineering",
+    "cooccurrence_count": 2853
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 2669
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Marketing",
+    "cooccurrence_count": 2365
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Political science",
+    "cooccurrence_count": 2117
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Marketing",
+    "cooccurrence_count": 2109
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 2089
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Psychology",
+    "cooccurrence_count": 2086
+  },
+  {
+    "keyword1": "Law",
+    "keyword2": "Political science",
+    "cooccurrence_count": 2070
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Economics",
+    "cooccurrence_count": 2060
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Operating system",
+    "cooccurrence_count": 1986
+  },
+  {
+    "keyword1": "Artificial intelligence",
+    "keyword2": "Computer science",
+    "cooccurrence_count": 1860
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Philosophy",
+    "cooccurrence_count": 1838
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Law",
+    "cooccurrence_count": 1775
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Economics",
+    "cooccurrence_count": 1769
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Information system",
+    "cooccurrence_count": 1727
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Engineering",
+    "cooccurrence_count": 1696
+  },
+  {
+    "keyword1": "Epistemology",
+    "keyword2": "Philosophy",
+    "cooccurrence_count": 1599
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "World Wide Web",
+    "cooccurrence_count": 1564
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Process management",
+    "cooccurrence_count": 1536
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Political science",
+    "cooccurrence_count": 1499
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Mathematics",
+    "cooccurrence_count": 1466
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Information system",
+    "cooccurrence_count": 1463
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Epistemology",
+    "cooccurrence_count": 1441
+  },
+  {
+    "keyword1": "Information system",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 1424
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Process management",
+    "cooccurrence_count": 1403
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Sociology",
+    "cooccurrence_count": 1391
+  },
+  {
+    "keyword1": "Biology",
+    "keyword2": "Computer science",
+    "cooccurrence_count": 1381
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Process management",
+    "cooccurrence_count": 1373
+  },
+  {
+    "keyword1": "Electrical engineering",
+    "keyword2": "Engineering",
+    "cooccurrence_count": 1354
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Operating system",
+    "cooccurrence_count": 1352
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Electrical engineering",
+    "cooccurrence_count": 1340
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Programming language",
+    "cooccurrence_count": 1326
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Operating system",
+    "cooccurrence_count": 1318
+  },
+  {
+    "keyword1": "Electrical engineering",
+    "keyword2": "Information system",
+    "cooccurrence_count": 1309
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Data science",
+    "cooccurrence_count": 1226
+  },
+  {
+    "keyword1": "Psychology",
+    "keyword2": "Social psychology",
+    "cooccurrence_count": 1225
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Marketing",
+    "cooccurrence_count": 1225
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Political science",
+    "cooccurrence_count": 1208
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Law",
+    "cooccurrence_count": 1202
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Psychology",
+    "cooccurrence_count": 1125
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Finance",
+    "cooccurrence_count": 1118
+  },
+  {
+    "keyword1": "Electrical engineering",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 1113
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Information system",
+    "cooccurrence_count": 1067
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Psychology",
+    "cooccurrence_count": 1066
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Social psychology",
+    "cooccurrence_count": 1060
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Philosophy",
+    "cooccurrence_count": 1048
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Process management",
+    "cooccurrence_count": 1043
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Philosophy",
+    "cooccurrence_count": 1006
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Operating system",
+    "cooccurrence_count": 1005
+  },
+  {
+    "keyword1": "Artificial intelligence",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 1003
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Finance",
+    "cooccurrence_count": 1001
+  },
+  {
+    "keyword1": "Economics",
+    "keyword2": "Marketing",
+    "cooccurrence_count": 999
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Industrial organization",
+    "cooccurrence_count": 971
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Law",
+    "cooccurrence_count": 968
+  },
+  {
+    "keyword1": "Economics",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 965
+  },
+  {
+    "keyword1": "Biology",
+    "keyword2": "Business",
+    "cooccurrence_count": 953
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "World Wide Web",
+    "cooccurrence_count": 938
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Process (computing)",
+    "cooccurrence_count": 879
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Electrical engineering",
+    "cooccurrence_count": 877
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Sociology",
+    "cooccurrence_count": 877
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Management science",
+    "cooccurrence_count": 871
+  },
+  {
+    "keyword1": "Economics",
+    "keyword2": "Microeconomics",
+    "cooccurrence_count": 851
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Computer security",
+    "cooccurrence_count": 845
+  },
+  {
+    "keyword1": "Political science",
+    "keyword2": "Sociology",
+    "cooccurrence_count": 845
+  },
+  {
+    "keyword1": "Economics",
+    "keyword2": "Political science",
+    "cooccurrence_count": 845
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Industrial organization",
+    "cooccurrence_count": 841
+  },
+  {
+    "keyword1": "Biology",
+    "keyword2": "Paleontology",
+    "cooccurrence_count": 836
+  },
+  {
+    "keyword1": "Political science",
+    "keyword2": "Public relations",
+    "cooccurrence_count": 831
+  },
+  {
+    "keyword1": "Operating system",
+    "keyword2": "Process (computing)",
+    "cooccurrence_count": 827
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Machine learning",
+    "cooccurrence_count": 824
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Mathematics",
+    "cooccurrence_count": 811
+  },
+  {
+    "keyword1": "Artificial intelligence",
+    "keyword2": "Business",
+    "cooccurrence_count": 809
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Information technology",
+    "cooccurrence_count": 800
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Management science",
+    "cooccurrence_count": 793
+  },
+  {
+    "keyword1": "Political science",
+    "keyword2": "Psychology",
+    "cooccurrence_count": 787
+  },
+  {
+    "keyword1": "Philosophy",
+    "keyword2": "Political science",
+    "cooccurrence_count": 787
+  },
+  {
+    "keyword1": "Epistemology",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 783
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Context (archaeology)",
+    "cooccurrence_count": 770
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Paleontology",
+    "cooccurrence_count": 769
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Epistemology",
+    "cooccurrence_count": 768
+  },
+  {
+    "keyword1": "Biology",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 763
+  },
+  {
+    "keyword1": "Information technology",
+    "keyword2": "Operating system",
+    "cooccurrence_count": 753
+  },
+  {
+    "keyword1": "Biology",
+    "keyword2": "Context (archaeology)",
+    "cooccurrence_count": 752
+  },
+  {
+    "keyword1": "Context (archaeology)",
+    "keyword2": "Paleontology",
+    "cooccurrence_count": 743
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Political science",
+    "cooccurrence_count": 739
+  },
+  {
+    "keyword1": "Economics",
+    "keyword2": "Law",
+    "cooccurrence_count": 732
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Microeconomics",
+    "cooccurrence_count": 730
+  },
+  {
+    "keyword1": "Business",
+    "keyword2": "Sociology",
+    "cooccurrence_count": 728
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Physics",
+    "cooccurrence_count": 728
+  },
+  {
+    "keyword1": "Information system",
+    "keyword2": "Strategic information system",
+    "cooccurrence_count": 728
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Strategic information system",
+    "cooccurrence_count": 722
+  },
+  {
+    "keyword1": "Data science",
+    "keyword2": "Knowledge management",
+    "cooccurrence_count": 718
+  },
+  {
+    "keyword1": "Engineering",
+    "keyword2": "Philosophy",
+    "cooccurrence_count": 718
+  },
+  {
+    "keyword1": "Industrial organization",
+    "keyword2": "Marketing",
+    "cooccurrence_count": 712
+  },
+  {
+    "keyword1": "Information system",
+    "keyword2": "Operating system",
+    "cooccurrence_count": 710
+  },
+  {
+    "keyword1": "Knowledge management",
+    "keyword2": "Programming language",
+    "cooccurrence_count": 710
+  },
+  {
+    "keyword1": "Computer science",
+    "keyword2": "Public relations",
+    "cooccurrence_count": 698
+  },
+  {
+    "keyword1": "Artificial intelligence",
+    "keyword2": "Engineering",
+    "cooccurrence_count": 697
+  }
+]

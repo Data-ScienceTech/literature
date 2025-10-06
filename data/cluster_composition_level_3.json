@@ -1,0 +1,2191 @@
+[
+  {
+    "cluster_id": "-1",
+    "level": 3,
+    "size": 2472,
+    "journals": {
+      "distribution": {
+        "Journal of Management Information Systems": 522,
+        "MIS Quarterly": 500,
+        "Information Systems Research": 482,
+        "Journal of Information Technology": 368,
+        "Information Systems Journal": 297,
+        "Journal of the Association for Information Systems": 249,
+        "European Journal of Information Systems": 38,
+        "Journal of Strategic Information Systems": 16
+      },
+      "primary": "Journal of Management Information Systems",
+      "diversity": 8,
+      "top_3": {
+        "Journal of Management Information Systems": 522,
+        "MIS Quarterly": 500,
+        "Information Systems Research": 482
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1978,
+        2025
+      ],
+      "median_year": 2014,
+      "mean_year": 2010.963996763754,
+      "papers_per_year": {
+        "1978.0": 3,
+        "1979.0": 3,
+        "1980.0": 2,
+        "1981.0": 2,
+        "1982.0": 3,
+        "1983.0": 2,
+        "1984.0": 4,
+        "1985.0": 7,
+        "1986.0": 10,
+        "1987.0": 6,
+        "1988.0": 23,
+        "1989.0": 20,
+        "1990.0": 28,
+        "1991.0": 28,
+        "1992.0": 34,
+        "1993.0": 36,
+        "1994.0": 56,
+        "1995.0": 41,
+        "1996.0": 44,
+        "1997.0": 44,
+        "1998.0": 52,
+        "1999.0": 67,
+        "2000.0": 58,
+        "2001.0": 29,
+        "2002.0": 40,
+        "2003.0": 35,
+        "2004.0": 42,
+        "2005.0": 34,
+        "2006.0": 47,
+        "2007.0": 60,
+        "2008.0": 49,
+        "2009.0": 54,
+        "2010.0": 62,
+        "2011.0": 64,
+        "2012.0": 66,
+        "2013.0": 63,
+        "2014.0": 77,
+        "2015.0": 71,
+        "2016.0": 86,
+        "2017.0": 90,
+        "2018.0": 100,
+        "2019.0": 97,
+        "2020.0": 98,
+        "2021.0": 123,
+        "2022.0": 115,
+        "2023.0": 133,
+        "2024.0": 134,
+        "2025.0": 130
+      }
+    },
+    "citations": {
+      "total": 193170,
+      "mean": 78.14320388349515,
+      "median": 29.0,
+      "max": 4329,
+      "highly_cited_count": 253
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 6976,
+      "top_10": {
+        "": 6976
+      },
+      "avg_authors_per_paper": 2.822006472491909
+    },
+    "top_papers": [
+      {
+        "Title": "A Partial Least Squares Latent Variable Modeling Approach for Measuring Interaction Effects: Results from a Monte Carlo Simulation Study and an Electronic-Mail Emotion/Adoption Study",
+        "Author": "; ; ",
+        "Year": 2003.0,
+        "Journal": "Information Systems Research",
+        "Citations": 4329
+      },
+      {
+        "Title": "Using PLS Path Modeling for Assessing Hierarchical Construct Models: Guidelines and Empirical Illustration",
+        "Author": "; ; ",
+        "Year": 2009.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 3320
+      },
+      {
+        "Title": "Assimilation of Enterprise Systems: The Effect of Institutional Pressures and the Mediating Role of Top Management",
+        "Author": "; ; ; ",
+        "Year": 2007.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 2748
+      },
+      {
+        "Title": "Specifying Formative Constructs in Information Systems Research",
+        "Author": "; ; ",
+        "Year": 2007.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 2109
+      },
+      {
+        "Title": "Lateral Collinearity and Misleading Results in Variance-Based SEM: An Illustration and Recommendations",
+        "Author": "; ; ; ",
+        "Year": 2012.0,
+        "Journal": "Journal of the Association for Information Systems",
+        "Citations": 2071
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 2710,
+      "total_keyword_instances": 37904,
+      "top_20": {
+        "Computer science": 2245,
+        "Business": 1573,
+        "Knowledge management": 1216,
+        "Economics": 808,
+        "Engineering": 802,
+        "Political science": 790,
+        "Psychology": 773,
+        "Marketing": 746,
+        "Law": 644,
+        "Operating system": 636,
+        "Artificial intelligence": 554,
+        "Philosophy": 538,
+        "Process management": 501,
+        "World Wide Web": 484,
+        "Biology": 472,
+        "Social psychology": 467,
+        "Mathematics": 440,
+        "Information system": 434,
+        "Sociology": 419,
+        "Epistemology": 396
+      },
+      "avg_keywords_per_paper": 15.333333333333334
+    }
+  },
+  {
+    "cluster_id": "0.0.0.0",
+    "level": 3,
+    "size": 397,
+    "journals": {
+      "distribution": {
+        "Information Systems Research": 208,
+        "MIS Quarterly": 84,
+        "Journal of Management Information Systems": 71,
+        "Journal of the Association for Information Systems": 29,
+        "Information Systems Journal": 4,
+        "Journal of Strategic Information Systems": 1
+      },
+      "primary": "Information Systems Research",
+      "diversity": 6,
+      "top_3": {
+        "Information Systems Research": 208,
+        "MIS Quarterly": 84,
+        "Journal of Management Information Systems": 71
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1990,
+        2025
+      ],
+      "median_year": 2019,
+      "mean_year": 2017.4534005037783,
+      "papers_per_year": {
+        "1990.0": 1,
+        "2001.0": 2,
+        "2002.0": 4,
+        "2003.0": 1,
+        "2004.0": 2,
+        "2005.0": 3,
+        "2006.0": 9,
+        "2007.0": 7,
+        "2008.0": 8,
+        "2009.0": 3,
+        "2010.0": 12,
+        "2011.0": 13,
+        "2012.0": 19,
+        "2013.0": 12,
+        "2014.0": 19,
+        "2015.0": 20,
+        "2016.0": 15,
+        "2017.0": 18,
+        "2018.0": 26,
+        "2019.0": 28,
+        "2020.0": 31,
+        "2021.0": 26,
+        "2022.0": 25,
+        "2023.0": 29,
+        "2024.0": 33,
+        "2025.0": 31
+      }
+    },
+    "citations": {
+      "total": 25946,
+      "mean": 65.35516372795969,
+      "median": 29.0,
+      "max": 1244,
+      "highly_cited_count": 40
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 1253,
+      "top_10": {
+        "": 1253
+      },
+      "avg_authors_per_paper": 3.1561712846347607
+    },
+    "top_papers": [
+      {
+        "Title": "Examining the Relationship Between Reviews and Sales: The Role of Reviewer Identity Disclosure in Electronic Markets",
+        "Author": "; ; ",
+        "Year": 2008.0,
+        "Journal": "Information Systems Research",
+        "Citations": 1244
+      },
+      {
+        "Title": "Self-Selection and Information Role of Online Product Reviews",
+        "Author": "; ",
+        "Year": 2008.0,
+        "Journal": "Information Systems Research",
+        "Citations": 858
+      },
+      {
+        "Title": "E-Commerce Product Recommendation Agents: Use, Characteristics, and Impact",
+        "Author": "; ",
+        "Year": 2007.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 674
+      },
+      {
+        "Title": "The Nature and Role of Feedback Text Comments in Online Marketplaces: Implications for Trust Building, Price Premiums, and Seller Differentiation",
+        "Author": "; ",
+        "Year": 2006.0,
+        "Journal": "Information Systems Research",
+        "Citations": 642
+      },
+      {
+        "Title": "When Online Reviews Meet Hyperdifferentiation: A Study of the Craft Beer Industry",
+        "Author": "; ; ",
+        "Year": 2006.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 609
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 858,
+      "total_keyword_instances": 6102,
+      "top_20": {
+        "Computer science": 330,
+        "Business": 313,
+        "Marketing": 247,
+        "Economics": 176,
+        "Mathematics": 166,
+        "Advertising": 156,
+        "World Wide Web": 138,
+        "Microeconomics": 124,
+        "Geometry": 123,
+        "Product (mathematics)": 123,
+        "Psychology": 123,
+        "Philosophy": 106,
+        "Biology": 94,
+        "Epistemology": 88,
+        "Artificial intelligence": 77,
+        "Social psychology": 71,
+        "The Internet": 68,
+        "Political science": 66,
+        "Law": 62,
+        "Industrial organization": 61
+      },
+      "avg_keywords_per_paper": 15.370277078085643
+    }
+  },
+  {
+    "cluster_id": "0.0.0.5",
+    "level": 3,
+    "size": 178,
+    "journals": {
+      "distribution": {
+        "Journal of Management Information Systems": 46,
+        "Information Systems Research": 39,
+        "Journal of the Association for Information Systems": 35,
+        "MIS Quarterly": 32,
+        "Information Systems Journal": 17,
+        "Journal of Information Technology": 9
+      },
+      "primary": "Journal of Management Information Systems",
+      "diversity": 6,
+      "top_3": {
+        "Journal of Management Information Systems": 46,
+        "Information Systems Research": 39,
+        "Journal of the Association for Information Systems": 35
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1999,
+        2025
+      ],
+      "median_year": 2010,
+      "mean_year": 2011.0898876404494,
+      "papers_per_year": {
+        "1999.0": 3,
+        "2001.0": 2,
+        "2002.0": 13,
+        "2003.0": 4,
+        "2004.0": 10,
+        "2005.0": 6,
+        "2006.0": 14,
+        "2007.0": 8,
+        "2008.0": 15,
+        "2009.0": 11,
+        "2010.0": 7,
+        "2011.0": 9,
+        "2012.0": 11,
+        "2013.0": 5,
+        "2014.0": 8,
+        "2015.0": 6,
+        "2016.0": 4,
+        "2017.0": 5,
+        "2018.0": 3,
+        "2019.0": 10,
+        "2020.0": 3,
+        "2021.0": 3,
+        "2022.0": 4,
+        "2023.0": 4,
+        "2024.0": 6,
+        "2025.0": 4
+      }
+    },
+    "citations": {
+      "total": 42821,
+      "mean": 240.56741573033707,
+      "median": 92.5,
+      "max": 4807,
+      "highly_cited_count": 18
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 550,
+      "top_10": {
+        "": 550
+      },
+      "avg_authors_per_paper": 3.0898876404494384
+    },
+    "top_papers": [
+      {
+        "Title": "Trust and TAM in Online Shopping: An Integrated Model",
+        "Author": "; ; ",
+        "Year": 2003.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 4807
+      },
+      {
+        "Title": "Developing and Validating Trust Measures for e-Commerce: An Integrative Typology",
+        "Author": "; ; ",
+        "Year": 2002.0,
+        "Journal": "Information Systems Research",
+        "Citations": 3240
+      },
+      {
+        "Title": "Applying the Technology Acceptance Model and Flow Theory to Online Consumer Behavior",
+        "Author": null,
+        "Year": 2002.0,
+        "Journal": "Information Systems Research",
+        "Citations": 1955
+      },
+      {
+        "Title": "Understanding and Mitigating Uncertainty in Online Exchange Relationships: A Principal-Agent Perspective",
+        "Author": "; ; ",
+        "Year": 2007.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1864
+      },
+      {
+        "Title": "Understanding and Predicting Electronic Commerce Adoption: An Extension of the Theory of Planned Behavior",
+        "Author": "; ",
+        "Year": 2006.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1633
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 481,
+      "total_keyword_instances": 2702,
+      "top_20": {
+        "Computer science": 166,
+        "Business": 124,
+        "Psychology": 107,
+        "Marketing": 97,
+        "World Wide Web": 84,
+        "Philosophy": 54,
+        "Mathematics": 49,
+        "Epistemology": 49,
+        "Social psychology": 45,
+        "Neuroscience": 44,
+        "Knowledge management": 44,
+        "Advertising": 43,
+        "Biology": 41,
+        "Artificial intelligence": 38,
+        "Geometry": 35,
+        "Human–computer interaction": 32,
+        "Paleontology": 32,
+        "Service (business)": 31,
+        "Economics": 29,
+        "The Internet": 29
+      },
+      "avg_keywords_per_paper": 15.179775280898877
+    }
+  },
+  {
+    "cluster_id": "0.3.2.1",
+    "level": 3,
+    "size": 368,
+    "journals": {
+      "distribution": {
+        "Information Systems Research": 179,
+        "Journal of Management Information Systems": 92,
+        "MIS Quarterly": 62,
+        "Journal of the Association for Information Systems": 20,
+        "Journal of Information Technology": 8,
+        "Information Systems Journal": 7
+      },
+      "primary": "Information Systems Research",
+      "diversity": 6,
+      "top_3": {
+        "Information Systems Research": 179,
+        "Journal of Management Information Systems": 92,
+        "MIS Quarterly": 62
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1977,
+        2025
+      ],
+      "median_year": 2018,
+      "mean_year": 2015.5135869565217,
+      "papers_per_year": {
+        "1977.0": 1,
+        "1987.0": 1,
+        "1989.0": 2,
+        "1990.0": 1,
+        "1994.0": 2,
+        "1995.0": 1,
+        "1996.0": 2,
+        "1997.0": 3,
+        "1998.0": 1,
+        "2000.0": 6,
+        "2001.0": 3,
+        "2002.0": 4,
+        "2003.0": 4,
+        "2004.0": 5,
+        "2005.0": 5,
+        "2006.0": 4,
+        "2007.0": 10,
+        "2008.0": 6,
+        "2009.0": 10,
+        "2010.0": 13,
+        "2011.0": 12,
+        "2012.0": 21,
+        "2013.0": 9,
+        "2014.0": 12,
+        "2015.0": 13,
+        "2016.0": 12,
+        "2017.0": 16,
+        "2018.0": 23,
+        "2019.0": 26,
+        "2020.0": 27,
+        "2021.0": 19,
+        "2022.0": 22,
+        "2023.0": 25,
+        "2024.0": 26,
+        "2025.0": 21
+      }
+    },
+    "citations": {
+      "total": 14434,
+      "mean": 39.22282608695652,
+      "median": 22.0,
+      "max": 343,
+      "highly_cited_count": 37
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 1062,
+      "top_10": {
+        "": 1062
+      },
+      "avg_authors_per_paper": 2.885869565217391
+    },
+    "top_papers": [
+      {
+        "Title": "Show Me The Way To Go Home: An Empirical Investigation of Ride-Sharing and Alcohol Related Motor Vehicle Fatalities1",
+        "Author": "; ",
+        "Year": 2017.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 343
+      },
+      {
+        "Title": "Platform or Wholesale? A Strategic Tool for Online Retailers to Benefit from Third-Party Information1",
+        "Author": "; ; ",
+        "Year": 2017.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 290
+      },
+      {
+        "Title": "A Critical Review of Cloud Computing: Researching Desires and Realities",
+        "Author": "; ",
+        "Year": 2012.0,
+        "Journal": "Journal of Information Technology",
+        "Citations": 261
+      },
+      {
+        "Title": "Platform Performance Investment in the Presence of Network Externalities",
+        "Author": "; ; ",
+        "Year": 2014.0,
+        "Journal": "Information Systems Research",
+        "Citations": 255
+      },
+      {
+        "Title": "Exploiting and Defending Open Digital Platforms with Boundary Resources: Android’s Five Platform Forks",
+        "Author": "; ; ",
+        "Year": 2018.0,
+        "Journal": "Information Systems Research",
+        "Citations": 214
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 805,
+      "total_keyword_instances": 5644,
+      "top_20": {
+        "Business": 316,
+        "Computer science": 315,
+        "Economics": 217,
+        "Marketing": 211,
+        "Microeconomics": 162,
+        "Industrial organization": 158,
+        "World Wide Web": 129,
+        "Mathematics": 100,
+        "Finance": 97,
+        "Biology": 82,
+        "Philosophy": 81,
+        "Operating system": 80,
+        "Political science": 75,
+        "Law": 73,
+        "Epistemology": 66,
+        "Geometry": 64,
+        "The Internet": 61,
+        "Product (mathematics)": 59,
+        "Software": 58,
+        "Service (business)": 58
+      },
+      "avg_keywords_per_paper": 15.33695652173913
+    }
+  },
+  {
+    "cluster_id": "1.1.0.0",
+    "level": 3,
+    "size": 567,
+    "journals": {
+      "distribution": {
+        "Journal of Information Technology": 224,
+        "MIS Quarterly": 159,
+        "Journal of Management Information Systems": 110,
+        "Information Systems Journal": 44,
+        "Information Systems Research": 18,
+        "Journal of the Association for Information Systems": 8,
+        "Journal of Strategic Information Systems": 3,
+        "European Journal of Information Systems": 1
+      },
+      "primary": "Journal of Information Technology",
+      "diversity": 8,
+      "top_3": {
+        "Journal of Information Technology": 224,
+        "MIS Quarterly": 159,
+        "Journal of Management Information Systems": 110
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1977,
+        2023
+      ],
+      "median_year": 1992,
+      "mean_year": 1993.2239858906526,
+      "papers_per_year": {
+        "1977.0": 5,
+        "1978.0": 6,
+        "1979.0": 8,
+        "1980.0": 9,
+        "1981.0": 11,
+        "1982.0": 13,
+        "1983.0": 9,
+        "1984.0": 10,
+        "1985.0": 16,
+        "1986.0": 19,
+        "1987.0": 28,
+        "1988.0": 31,
+        "1989.0": 28,
+        "1990.0": 31,
+        "1991.0": 35,
+        "1992.0": 38,
+        "1993.0": 40,
+        "1994.0": 27,
+        "1995.0": 28,
+        "1996.0": 15,
+        "1997.0": 28,
+        "1998.0": 16,
+        "1999.0": 21,
+        "2000.0": 12,
+        "2001.0": 6,
+        "2002.0": 4,
+        "2003.0": 8,
+        "2004.0": 7,
+        "2005.0": 8,
+        "2006.0": 6,
+        "2007.0": 3,
+        "2008.0": 3,
+        "2009.0": 2,
+        "2010.0": 5,
+        "2011.0": 2,
+        "2012.0": 2,
+        "2013.0": 5,
+        "2014.0": 3,
+        "2015.0": 3,
+        "2016.0": 3,
+        "2017.0": 1,
+        "2018.0": 1,
+        "2019.0": 3,
+        "2020.0": 1,
+        "2021.0": 3,
+        "2022.0": 1,
+        "2023.0": 3
+      }
+    },
+    "citations": {
+      "total": 22048,
+      "mean": 38.88536155202822,
+      "median": 10.0,
+      "max": 834,
+      "highly_cited_count": 57
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 894,
+      "top_10": {
+        "": 894
+      },
+      "avg_authors_per_paper": 1.5767195767195767
+    },
+    "top_papers": [
+      {
+        "Title": "Building an Information System Design Theory for Vigilant EIS",
+        "Author": "; ; ",
+        "Year": 1992.0,
+        "Journal": "Information Systems Research",
+        "Citations": 834
+      },
+      {
+        "Title": "Critical Skills and Knowledge Requirements of IS Professionals: A Joint Academic/Industry Investigation",
+        "Author": "; ; ",
+        "Year": 1995.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 434
+      },
+      {
+        "Title": "Executive Involvement and Participation in the Management of Information Technology",
+        "Author": "; ",
+        "Year": 1991.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 415
+      },
+      {
+        "Title": "Creating Competitive Advantage with Interorganizational Information Systems",
+        "Author": "; ",
+        "Year": 1988.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 407
+      },
+      {
+        "Title": "Key Issues in Information Systems Management",
+        "Author": "; ",
+        "Year": 1987.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 387
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 766,
+      "total_keyword_instances": 8756,
+      "top_20": {
+        "Computer science": 552,
+        "Knowledge management": 457,
+        "Engineering": 434,
+        "Business": 428,
+        "Information system": 392,
+        "Electrical engineering": 332,
+        "Process management": 291,
+        "Operating system": 257,
+        "Strategic information system": 206,
+        "Information technology": 183,
+        "Marketing": 176,
+        "Management science": 152,
+        "Soft Systems Methodology": 140,
+        "Political science": 139,
+        "Economics": 137,
+        "Law": 119,
+        "Information management": 93,
+        "Data science": 90,
+        "Engineering management": 89,
+        "Finance": 87
+      },
+      "avg_keywords_per_paper": 15.44268077601411
+    }
+  },
+  {
+    "cluster_id": "10.4.0.0",
+    "level": 3,
+    "size": 403,
+    "journals": {
+      "distribution": {
+        "Journal of Management Information Systems": 134,
+        "MIS Quarterly": 78,
+        "Information Systems Research": 76,
+        "Journal of Information Technology": 45,
+        "Journal of the Association for Information Systems": 38,
+        "Information Systems Journal": 30,
+        "European Journal of Information Systems": 2
+      },
+      "primary": "Journal of Management Information Systems",
+      "diversity": 7,
+      "top_3": {
+        "Journal of Management Information Systems": 134,
+        "MIS Quarterly": 78,
+        "Information Systems Research": 76
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1977,
+        2025
+      ],
+      "median_year": 1994,
+      "mean_year": 1996.5310173697271,
+      "papers_per_year": {
+        "1977.0": 2,
+        "1978.0": 3,
+        "1979.0": 2,
+        "1980.0": 3,
+        "1981.0": 3,
+        "1982.0": 2,
+        "1983.0": 3,
+        "1984.0": 12,
+        "1985.0": 11,
+        "1986.0": 17,
+        "1987.0": 21,
+        "1988.0": 17,
+        "1989.0": 18,
+        "1990.0": 17,
+        "1991.0": 24,
+        "1992.0": 24,
+        "1993.0": 20,
+        "1994.0": 17,
+        "1995.0": 15,
+        "1996.0": 20,
+        "1997.0": 4,
+        "1998.0": 7,
+        "1999.0": 12,
+        "2000.0": 8,
+        "2001.0": 9,
+        "2002.0": 8,
+        "2003.0": 4,
+        "2004.0": 5,
+        "2005.0": 8,
+        "2006.0": 9,
+        "2007.0": 6,
+        "2008.0": 7,
+        "2009.0": 7,
+        "2010.0": 4,
+        "2011.0": 7,
+        "2012.0": 8,
+        "2013.0": 3,
+        "2014.0": 4,
+        "2015.0": 2,
+        "2016.0": 6,
+        "2017.0": 1,
+        "2018.0": 4,
+        "2019.0": 4,
+        "2020.0": 3,
+        "2021.0": 3,
+        "2022.0": 4,
+        "2023.0": 1,
+        "2024.0": 2,
+        "2025.0": 2
+      }
+    },
+    "citations": {
+      "total": 16766,
+      "mean": 41.602977667493796,
+      "median": 14.0,
+      "max": 2608,
+      "highly_cited_count": 42
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 864,
+      "top_10": {
+        "": 864
+      },
+      "avg_authors_per_paper": 2.1439205955334986
+    },
+    "top_papers": [
+      {
+        "Title": "Beyond Accuracy: What Data Quality Means to Data Consumers",
+        "Author": "; ",
+        "Year": 1996.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 2608
+      },
+      {
+        "Title": "A Framework for the Development of Decision Support Systems",
+        "Author": null,
+        "Year": 1980.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 592
+      },
+      {
+        "Title": "Cognitive Fit: An Empirical Study of Information Acquisition",
+        "Author": "; ",
+        "Year": 1991.0,
+        "Journal": "Information Systems Research",
+        "Citations": 420
+      },
+      {
+        "Title": "Research Commentary: Information Systems and Conceptual Modeling—A Research Agenda",
+        "Author": "; ",
+        "Year": 2002.0,
+        "Journal": "Information Systems Research",
+        "Citations": 408
+      },
+      {
+        "Title": "On the ontological expressiveness of information systems analysis and design grammars",
+        "Author": "; ",
+        "Year": 1993.0,
+        "Journal": "Information Systems Journal",
+        "Citations": 362
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 819,
+      "total_keyword_instances": 5899,
+      "top_20": {
+        "Computer science": 402,
+        "Artificial intelligence": 236,
+        "Knowledge management": 205,
+        "Engineering": 198,
+        "Decision support system": 111,
+        "Business": 110,
+        "Programming language": 107,
+        "Information system": 104,
+        "Mathematics": 104,
+        "Data science": 100,
+        "Philosophy": 99,
+        "Management science": 98,
+        "Electrical engineering": 96,
+        "Psychology": 87,
+        "Data mining": 81,
+        "Database": 77,
+        "Process management": 74,
+        "Epistemology": 72,
+        "Information retrieval": 70,
+        "Political science": 66
+      },
+      "avg_keywords_per_paper": 14.63771712158809
+    }
+  },
+  {
+    "cluster_id": "2.5.2.1",
+    "level": 3,
+    "size": 134,
+    "journals": {
+      "distribution": {
+        "Information Systems Research": 44,
+        "MIS Quarterly": 35,
+        "Journal of the Association for Information Systems": 21,
+        "Journal of Management Information Systems": 17,
+        "Information Systems Journal": 11,
+        "Journal of Information Technology": 5,
+        "European Journal of Information Systems": 1
+      },
+      "primary": "Information Systems Research",
+      "diversity": 7,
+      "top_3": {
+        "Information Systems Research": 44,
+        "MIS Quarterly": 35,
+        "Journal of the Association for Information Systems": 21
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1986,
+        2025
+      ],
+      "median_year": 2017,
+      "mean_year": 2014.9850746268658,
+      "papers_per_year": {
+        "1986.0": 1,
+        "1989.0": 1,
+        "1990.0": 1,
+        "1993.0": 1,
+        "1995.0": 1,
+        "1996.0": 1,
+        "1997.0": 1,
+        "2000.0": 1,
+        "2002.0": 2,
+        "2004.0": 1,
+        "2005.0": 2,
+        "2006.0": 6,
+        "2007.0": 5,
+        "2008.0": 4,
+        "2009.0": 4,
+        "2010.0": 4,
+        "2011.0": 10,
+        "2012.0": 3,
+        "2013.0": 4,
+        "2014.0": 3,
+        "2015.0": 7,
+        "2016.0": 2,
+        "2017.0": 7,
+        "2018.0": 6,
+        "2019.0": 9,
+        "2020.0": 4,
+        "2021.0": 3,
+        "2022.0": 7,
+        "2023.0": 11,
+        "2024.0": 10,
+        "2025.0": 12
+      }
+    },
+    "citations": {
+      "total": 20422,
+      "mean": 152.40298507462686,
+      "median": 34.0,
+      "max": 2071,
+      "highly_cited_count": 14
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 423,
+      "top_10": {
+        "": 423
+      },
+      "avg_authors_per_paper": 3.156716417910448
+    },
+    "top_papers": [
+      {
+        "Title": "Internet Users' Information Privacy Concerns (IUIPC): The Construct, the Scale, and a Causal Model",
+        "Author": "; ; ",
+        "Year": 2004.0,
+        "Journal": "Information Systems Research",
+        "Citations": 2071
+      },
+      {
+        "Title": "An Extended Privacy Calculus Model for E-Commerce Transactions",
+        "Author": "; ",
+        "Year": 2006.0,
+        "Journal": "Information Systems Research",
+        "Citations": 1708
+      },
+      {
+        "Title": "Information Privacy: Measuring Individuals' Concerns about Organizational Practices",
+        "Author": "; ; ",
+        "Year": 1996.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1467
+      },
+      {
+        "Title": "Information Privacy Research: An Interdisciplinary Review",
+        "Author": "; ; ",
+        "Year": 2011.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1310
+      },
+      {
+        "Title": "Privacy in the Digital Age: A Review of Information Privacy Research in Information Systems",
+        "Author": "; ",
+        "Year": 2011.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 835
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 427,
+      "total_keyword_instances": 1947,
+      "top_20": {
+        "Computer science": 132,
+        "Internet privacy": 95,
+        "Business": 82,
+        "Computer security": 76,
+        "Information privacy": 67,
+        "Psychology": 51,
+        "Personally identifiable information": 39,
+        "Artificial intelligence": 39,
+        "Political science": 38,
+        "World Wide Web": 36,
+        "Law": 33,
+        "Marketing": 27,
+        "Social psychology": 27,
+        "Data science": 27,
+        "Philosophy": 26,
+        "Biology": 26,
+        "Knowledge management": 25,
+        "Economics": 22,
+        "Programming language": 22,
+        "Machine learning": 20
+      },
+      "avg_keywords_per_paper": 14.529850746268657
+    }
+  },
+  {
+    "cluster_id": "2.8.0.0",
+    "level": 3,
+    "size": 177,
+    "journals": {
+      "distribution": {
+        "Information Systems Research": 47,
+        "MIS Quarterly": 46,
+        "Journal of Management Information Systems": 32,
+        "Journal of the Association for Information Systems": 20,
+        "Information Systems Journal": 15,
+        "Journal of Information Technology": 11,
+        "European Journal of Information Systems": 4,
+        "Journal of Strategic Information Systems": 2
+      },
+      "primary": "Information Systems Research",
+      "diversity": 8,
+      "top_3": {
+        "Information Systems Research": 47,
+        "MIS Quarterly": 46,
+        "Journal of Management Information Systems": 32
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1986,
+        2025
+      ],
+      "median_year": 2022,
+      "mean_year": 2019.7457627118645,
+      "papers_per_year": {
+        "1986.0": 1,
+        "1989.0": 1,
+        "1996.0": 3,
+        "1997.0": 1,
+        "1999.0": 1,
+        "2002.0": 1,
+        "2004.0": 1,
+        "2005.0": 1,
+        "2008.0": 1,
+        "2009.0": 1,
+        "2010.0": 1,
+        "2011.0": 3,
+        "2012.0": 2,
+        "2013.0": 3,
+        "2014.0": 4,
+        "2015.0": 4,
+        "2016.0": 2,
+        "2017.0": 5,
+        "2018.0": 5,
+        "2019.0": 8,
+        "2020.0": 15,
+        "2021.0": 20,
+        "2022.0": 15,
+        "2023.0": 20,
+        "2024.0": 33,
+        "2025.0": 25
+      }
+    },
+    "citations": {
+      "total": 7488,
+      "mean": 42.30508474576271,
+      "median": 17.0,
+      "max": 1186,
+      "highly_cited_count": 18
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 623,
+      "top_10": {
+        "": 623
+      },
+      "avg_authors_per_paper": 3.519774011299435
+    },
+    "top_papers": [
+      {
+        "Title": "Emotions and Information Diffusion in Social Media—Sentiment of Microblogs and Sharing Behavior",
+        "Author": "; ",
+        "Year": 2013.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 1186
+      },
+      {
+        "Title": "Community Intelligence and Social Media Services: A Rumor Theoretic Analysis of Tweets During Social Crises1",
+        "Author": "; ; ",
+        "Year": 2013.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 473
+      },
+      {
+        "Title": "Why Do Adults Engage in Cyberbullying on Social Media? An Integration of Online Disinhibition and Deindividuation Effects with the Social Structure and Social Learning Model",
+        "Author": "; ; ; ",
+        "Year": 2016.0,
+        "Journal": "Information Systems Research",
+        "Citations": 304
+      },
+      {
+        "Title": "<i>Says Who?</i> The Effects of Presentation Format and Source Rating on Fake News in Social Media1",
+        "Author": "; ",
+        "Year": 2019.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 273
+      },
+      {
+        "Title": "Understanding Echo Chambers and Filter Bubbles: The Impact of Social Media on Diversification and Partisan Shifts in News Consumption",
+        "Author": "; ; ",
+        "Year": 2020.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 240
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 657,
+      "total_keyword_instances": 2752,
+      "top_20": {
+        "Computer science": 152,
+        "Political science": 89,
+        "Psychology": 79,
+        "Social media": 78,
+        "Law": 71,
+        "World Wide Web": 71,
+        "Business": 68,
+        "Artificial intelligence": 64,
+        "Internet privacy": 51,
+        "Social psychology": 50,
+        "Data science": 46,
+        "Sociology": 37,
+        "Medicine": 36,
+        "Public relations": 36,
+        "Philosophy": 35,
+        "Machine learning": 33,
+        "Economics": 31,
+        "Knowledge management": 30,
+        "Physics": 30,
+        "Computer security": 28
+      },
+      "avg_keywords_per_paper": 15.548022598870057
+    }
+  },
+  {
+    "cluster_id": "3.1.3.1",
+    "level": 3,
+    "size": 432,
+    "journals": {
+      "distribution": {
+        "MIS Quarterly": 118,
+        "Journal of the Association for Information Systems": 86,
+        "Information Systems Journal": 74,
+        "Information Systems Research": 63,
+        "Journal of Management Information Systems": 55,
+        "Journal of Information Technology": 28,
+        "European Journal of Information Systems": 6,
+        "Journal of Strategic Information Systems": 2
+      },
+      "primary": "MIS Quarterly",
+      "diversity": 8,
+      "top_3": {
+        "MIS Quarterly": 118,
+        "Journal of the Association for Information Systems": 86,
+        "Information Systems Journal": 74
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1983,
+        2025
+      ],
+      "median_year": 2013,
+      "mean_year": 2011.0833333333333,
+      "papers_per_year": {
+        "1983.0": 1,
+        "1985.0": 1,
+        "1986.0": 2,
+        "1987.0": 1,
+        "1989.0": 1,
+        "1990.0": 2,
+        "1991.0": 8,
+        "1992.0": 3,
+        "1993.0": 3,
+        "1994.0": 5,
+        "1995.0": 8,
+        "1996.0": 8,
+        "1997.0": 7,
+        "1998.0": 6,
+        "1999.0": 6,
+        "2000.0": 10,
+        "2001.0": 7,
+        "2002.0": 6,
+        "2003.0": 13,
+        "2004.0": 7,
+        "2005.0": 15,
+        "2006.0": 12,
+        "2007.0": 17,
+        "2008.0": 9,
+        "2009.0": 16,
+        "2010.0": 14,
+        "2011.0": 12,
+        "2012.0": 13,
+        "2013.0": 15,
+        "2014.0": 18,
+        "2015.0": 20,
+        "2016.0": 11,
+        "2017.0": 15,
+        "2018.0": 13,
+        "2019.0": 22,
+        "2020.0": 26,
+        "2021.0": 13,
+        "2022.0": 21,
+        "2023.0": 19,
+        "2024.0": 18,
+        "2025.0": 8
+      }
+    },
+    "citations": {
+      "total": 187119,
+      "mean": 433.1458333333333,
+      "median": 72.0,
+      "max": 37450,
+      "highly_cited_count": 44
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 1326,
+      "top_10": {
+        "": 1326
+      },
+      "avg_authors_per_paper": 3.0694444444444446
+    },
+    "top_papers": [
+      {
+        "Title": "Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology",
+        "Author": null,
+        "Year": 1989.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 37450
+      },
+      {
+        "Title": "User Acceptance of Information Technology: Toward a Unified View",
+        "Author": "; ; ; ",
+        "Year": 2003.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 25363
+      },
+      {
+        "Title": "Consumer Acceptance and Use of Information Technology: Extending the Unified Theory of Acceptance and Use of Technology",
+        "Author": "; ; ",
+        "Year": 2012.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 9471
+      },
+      {
+        "Title": "Understanding Information Systems Continuance: An Expectation-Confirmation Model",
+        "Author": null,
+        "Year": 2001.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 5435
+      },
+      {
+        "Title": "Development of an Instrument to Measure the Perceptions of Adopting an Information Technology Innovation",
+        "Author": "; ",
+        "Year": 1991.0,
+        "Journal": "Information Systems Research",
+        "Citations": 5247
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 877,
+      "total_keyword_instances": 6664,
+      "top_20": {
+        "Computer science": 392,
+        "Psychology": 300,
+        "Knowledge management": 254,
+        "Business": 203,
+        "Social psychology": 191,
+        "Engineering": 148,
+        "Artificial intelligence": 118,
+        "Biology": 116,
+        "Marketing": 104,
+        "Operating system": 103,
+        "Human–computer interaction": 96,
+        "Philosophy": 94,
+        "Mathematics": 87,
+        "Paleontology": 84,
+        "Political science": 82,
+        "Context (archaeology)": 78,
+        "Economics": 75,
+        "Information technology": 73,
+        "Neuroscience": 72,
+        "Sociology": 72
+      },
+      "avg_keywords_per_paper": 15.425925925925926
+    }
+  },
+  {
+    "cluster_id": "3.1.3.4",
+    "level": 3,
+    "size": 52,
+    "journals": {
+      "distribution": {
+        "Information Systems Research": 20,
+        "MIS Quarterly": 13,
+        "Information Systems Journal": 8,
+        "Journal of Management Information Systems": 5,
+        "Journal of the Association for Information Systems": 3,
+        "Journal of Information Technology": 2,
+        "European Journal of Information Systems": 1
+      },
+      "primary": "Information Systems Research",
+      "diversity": 7,
+      "top_3": {
+        "Information Systems Research": 20,
+        "MIS Quarterly": 13,
+        "Information Systems Journal": 8
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1987,
+        2025
+      ],
+      "median_year": 2016,
+      "mean_year": 2011.2307692307693,
+      "papers_per_year": {
+        "1987.0": 1,
+        "1990.0": 2,
+        "1991.0": 2,
+        "1993.0": 2,
+        "1994.0": 3,
+        "1995.0": 1,
+        "1996.0": 1,
+        "1997.0": 1,
+        "1999.0": 3,
+        "2001.0": 2,
+        "2003.0": 1,
+        "2008.0": 1,
+        "2012.0": 1,
+        "2013.0": 2,
+        "2014.0": 2,
+        "2016.0": 1,
+        "2017.0": 1,
+        "2018.0": 1,
+        "2019.0": 1,
+        "2020.0": 2,
+        "2021.0": 1,
+        "2022.0": 4,
+        "2023.0": 5,
+        "2024.0": 6,
+        "2025.0": 5
+      }
+    },
+    "citations": {
+      "total": 4953,
+      "mean": 95.25,
+      "median": 35.0,
+      "max": 857,
+      "highly_cited_count": 6
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 159,
+      "top_10": {
+        "": 159
+      },
+      "avg_authors_per_paper": 3.0576923076923075
+    },
+    "top_papers": [
+      {
+        "Title": "Web-Based Virtual Learning Environments: A Research Framework and a Preliminary Assessment of Effectiveness in Basic IT Skills Training",
+        "Author": "; ; ",
+        "Year": 2001.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 857
+      },
+      {
+        "Title": "Creation of Favorable User Perceptions: Exploring the Role of Intrinsic Motivation",
+        "Author": null,
+        "Year": 1999.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 770
+      },
+      {
+        "Title": "Toward Meaningful Engagement: A Framework for Design and Research of Gamified Information Systems1",
+        "Author": "; ; ",
+        "Year": 2017.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 382
+      },
+      {
+        "Title": "Developing and Validating an Observational Learning Model of Computer Software Training and Skill Acquisition",
+        "Author": "; ",
+        "Year": 2003.0,
+        "Journal": "Information Systems Research",
+        "Citations": 365
+      },
+      {
+        "Title": "Research Commentary: Technology-Mediated Learning—A Call for Greater Depth and Breadth of Research",
+        "Author": "; ",
+        "Year": 2001.0,
+        "Journal": "Information Systems Research",
+        "Citations": 346
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 230,
+      "total_keyword_instances": 715,
+      "top_20": {
+        "Computer science": 52,
+        "Psychology": 37,
+        "Knowledge management": 32,
+        "Human–computer interaction": 19,
+        "World Wide Web": 16,
+        "Artificial intelligence": 15,
+        "Economics": 13,
+        "Physics": 12,
+        "Programming language": 12,
+        "Operating system": 12,
+        "Meteorology": 11,
+        "Training (meteorology)": 11,
+        "Business": 11,
+        "Social psychology": 11,
+        "Mathematics": 10,
+        "Multimedia": 10,
+        "Philosophy": 9,
+        "Applied psychology": 9,
+        "Mathematics education": 9,
+        "Biology": 9
+      },
+      "avg_keywords_per_paper": 13.75
+    }
+  },
+  {
+    "cluster_id": "3.1.7.1",
+    "level": 3,
+    "size": 99,
+    "journals": {
+      "distribution": {
+        "Journal of Management Information Systems": 32,
+        "MIS Quarterly": 31,
+        "Journal of Information Technology": 15,
+        "Information Systems Research": 9,
+        "Journal of the Association for Information Systems": 8,
+        "Information Systems Journal": 4
+      },
+      "primary": "Journal of Management Information Systems",
+      "diversity": 6,
+      "top_3": {
+        "Journal of Management Information Systems": 32,
+        "MIS Quarterly": 31,
+        "Journal of Information Technology": 15
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1978,
+        2020
+      ],
+      "median_year": 1995,
+      "mean_year": 1997.5050505050506,
+      "papers_per_year": {
+        "1978.0": 1,
+        "1983.0": 1,
+        "1985.0": 2,
+        "1986.0": 4,
+        "1987.0": 4,
+        "1988.0": 4,
+        "1989.0": 2,
+        "1990.0": 3,
+        "1991.0": 4,
+        "1992.0": 9,
+        "1993.0": 6,
+        "1994.0": 6,
+        "1995.0": 5,
+        "1996.0": 2,
+        "1997.0": 4,
+        "1998.0": 5,
+        "1999.0": 4,
+        "2002.0": 2,
+        "2003.0": 3,
+        "2004.0": 1,
+        "2005.0": 4,
+        "2006.0": 3,
+        "2007.0": 3,
+        "2008.0": 5,
+        "2009.0": 2,
+        "2011.0": 2,
+        "2012.0": 2,
+        "2013.0": 2,
+        "2014.0": 1,
+        "2017.0": 1,
+        "2018.0": 1,
+        "2020.0": 1
+      }
+    },
+    "citations": {
+      "total": 25510,
+      "mean": 257.67676767676767,
+      "median": 50.0,
+      "max": 6082,
+      "highly_cited_count": 10
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 223,
+      "top_10": {
+        "": 223
+      },
+      "avg_authors_per_paper": 2.2525252525252526
+    },
+    "top_papers": [
+      {
+        "Title": "The DeLone and McLean Model of Information Systems Success: A Ten-Year Update",
+        "Author": "; ",
+        "Year": 2003.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 6082
+      },
+      {
+        "Title": "Information Systems Success: The Quest for the Dependent Variable",
+        "Author": "; ",
+        "Year": 1992.0,
+        "Journal": "Information Systems Research",
+        "Citations": 5784
+      },
+      {
+        "Title": "A Respecification and Extension of the DeLone and McLean Model of IS Success",
+        "Author": null,
+        "Year": 1997.0,
+        "Journal": "Information Systems Research",
+        "Citations": 1319
+      },
+      {
+        "Title": "The Measurement of End-User Computing Satisfaction",
+        "Author": "; ",
+        "Year": 1988.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1256
+      },
+      {
+        "Title": "Service Quality: A Measure of Information Systems Effectiveness",
+        "Author": "; ; ",
+        "Year": 1995.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 938
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 275,
+      "total_keyword_instances": 1519,
+      "top_20": {
+        "Computer science": 98,
+        "Knowledge management": 86,
+        "Business": 63,
+        "Engineering": 60,
+        "Information system": 54,
+        "Electrical engineering": 49,
+        "Marketing": 35,
+        "Process management": 34,
+        "Psychology": 32,
+        "Operating system": 31,
+        "Philosophy": 30,
+        "Epistemology": 28,
+        "Human–computer interaction": 26,
+        "User Satisfaction": 23,
+        "User satisfaction": 23,
+        "Mathematics": 23,
+        "Service (business)": 23,
+        "Quality (philosophy)": 22,
+        "World Wide Web": 19,
+        "Cloud computing": 17
+      },
+      "avg_keywords_per_paper": 15.343434343434344
+    }
+  },
+  {
+    "cluster_id": "4.2.0.1",
+    "level": 3,
+    "size": 559,
+    "journals": {
+      "distribution": {
+        "Information Systems Journal": 159,
+        "Journal of the Association for Information Systems": 150,
+        "Journal of Information Technology": 96,
+        "MIS Quarterly": 88,
+        "Information Systems Research": 39,
+        "Journal of Management Information Systems": 22,
+        "European Journal of Information Systems": 4,
+        "Journal of Strategic Information Systems": 1
+      },
+      "primary": "Information Systems Journal",
+      "diversity": 8,
+      "top_3": {
+        "Information Systems Journal": 159,
+        "Journal of the Association for Information Systems": 150,
+        "Journal of Information Technology": 96
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1977,
+        2025
+      ],
+      "median_year": 2013,
+      "mean_year": 2011.1502683363149,
+      "papers_per_year": {
+        "1977.0": 1,
+        "1980.0": 1,
+        "1982.0": 1,
+        "1985.0": 4,
+        "1986.0": 2,
+        "1987.0": 5,
+        "1988.0": 1,
+        "1989.0": 4,
+        "1990.0": 2,
+        "1991.0": 7,
+        "1992.0": 4,
+        "1993.0": 4,
+        "1994.0": 3,
+        "1995.0": 7,
+        "1996.0": 10,
+        "1997.0": 5,
+        "1998.0": 8,
+        "1999.0": 8,
+        "2000.0": 6,
+        "2001.0": 8,
+        "2002.0": 14,
+        "2003.0": 14,
+        "2004.0": 13,
+        "2005.0": 13,
+        "2006.0": 24,
+        "2007.0": 16,
+        "2008.0": 18,
+        "2009.0": 19,
+        "2010.0": 7,
+        "2011.0": 14,
+        "2012.0": 29,
+        "2013.0": 21,
+        "2014.0": 21,
+        "2015.0": 25,
+        "2016.0": 17,
+        "2017.0": 22,
+        "2018.0": 26,
+        "2019.0": 21,
+        "2020.0": 29,
+        "2021.0": 22,
+        "2022.0": 23,
+        "2023.0": 18,
+        "2024.0": 27,
+        "2025.0": 15
+      }
+    },
+    "citations": {
+      "total": 46372,
+      "mean": 82.95527728085868,
+      "median": 18.0,
+      "max": 4279,
+      "highly_cited_count": 56
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 1368,
+      "top_10": {
+        "": 1368
+      },
+      "avg_authors_per_paper": 2.447227191413238
+    },
+    "top_papers": [
+      {
+        "Title": "A Design Science Research Methodology for Information Systems Research",
+        "Author": "; ; ; ",
+        "Year": 2007.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 4279
+      },
+      {
+        "Title": "A Set of Principles for Conducting and Evaluating Interpretive Field Studies in Information Systems",
+        "Author": "; ",
+        "Year": 1999.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 2517
+      },
+      {
+        "Title": "Positioning and Presenting Design Science Research for Maximum Impact1",
+        "Author": "; ",
+        "Year": 2013.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1771
+      },
+      {
+        "Title": "The Nature of Theory in Information Systems",
+        "Author": null,
+        "Year": 2006.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1687
+      },
+      {
+        "Title": "Research Commentary: Desperately Seeking the “IT” in IT Research—A Call to Theorizing the IT Artifact",
+        "Author": "; ",
+        "Year": 2001.0,
+        "Journal": "Information Systems Research",
+        "Citations": 1414
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 933,
+      "total_keyword_instances": 8591,
+      "top_20": {
+        "Computer science": 496,
+        "Sociology": 317,
+        "Philosophy": 310,
+        "Epistemology": 296,
+        "Political science": 286,
+        "Engineering": 279,
+        "Law": 256,
+        "Knowledge management": 230,
+        "Management science": 212,
+        "Data science": 205,
+        "Information system": 201,
+        "Mathematics": 155,
+        "Psychology": 150,
+        "Artificial intelligence": 147,
+        "Economics": 134,
+        "Social science": 118,
+        "Engineering ethics": 113,
+        "Pure mathematics": 97,
+        "Field (mathematics)": 96,
+        "Business": 94
+      },
+      "avg_keywords_per_paper": 15.368515205724508
+    }
+  },
+  {
+    "cluster_id": "4.2.0.4",
+    "level": 3,
+    "size": 38,
+    "journals": {
+      "distribution": {
+        "Information Systems Research": 27,
+        "Journal of Information Technology": 6,
+        "Journal of the Association for Information Systems": 2,
+        "Journal of Management Information Systems": 1,
+        "European Journal of Information Systems": 1,
+        "Information Systems Journal": 1
+      },
+      "primary": "Information Systems Research",
+      "diversity": 6,
+      "top_3": {
+        "Information Systems Research": 27,
+        "Journal of Information Technology": 6,
+        "Journal of the Association for Information Systems": 2
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1989,
+        2023
+      ],
+      "median_year": 2007,
+      "mean_year": 2007.342105263158,
+      "papers_per_year": {
+        "1989.0": 1,
+        "1991.0": 1,
+        "1992.0": 1,
+        "1995.0": 2,
+        "2003.0": 3,
+        "2004.0": 3,
+        "2005.0": 2,
+        "2006.0": 3,
+        "2007.0": 3,
+        "2008.0": 5,
+        "2009.0": 3,
+        "2010.0": 2,
+        "2011.0": 1,
+        "2013.0": 2,
+        "2018.0": 1,
+        "2019.0": 1,
+        "2020.0": 1,
+        "2021.0": 1,
+        "2022.0": 1,
+        "2023.0": 1
+      }
+    },
+    "citations": {
+      "total": 153,
+      "mean": 4.026315789473684,
+      "median": 0.0,
+      "max": 118,
+      "highly_cited_count": 5
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 22,
+      "top_10": {
+        "": 22
+      },
+      "avg_authors_per_paper": 0.5789473684210527
+    },
+    "top_papers": [
+      {
+        "Title": "Information systems in the age of pandemics: COVID-19 and beyond",
+        "Author": "; ; ",
+        "Year": 2020.0,
+        "Journal": "European Journal of Information Systems",
+        "Citations": 118
+      },
+      {
+        "Title": "Robo-Apocalypse? Response and outlook on the post-COVID-19 future of work",
+        "Author": null,
+        "Year": 2021.0,
+        "Journal": "Journal of Information Technology",
+        "Citations": 20
+      },
+      {
+        "Title": "Editorial Notes",
+        "Author": null,
+        "Year": 2005.0,
+        "Journal": "Information Systems Research",
+        "Citations": 3
+      },
+      {
+        "Title": "Editorial Notes",
+        "Author": null,
+        "Year": 2009.0,
+        "Journal": "Information Systems Research",
+        "Citations": 3
+      },
+      {
+        "Title": "Special Section: Navigation in Information-Intensive Environments",
+        "Author": "; ",
+        "Year": 1995.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 3
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 66,
+      "total_keyword_instances": 220,
+      "top_20": {
+        "Computer science": 38,
+        "Data science": 17,
+        "Political science": 12,
+        "Library science": 11,
+        "Engineering": 9,
+        "Law": 8,
+        "Computer security": 6,
+        "Key (lock)": 6,
+        "World Wide Web": 6,
+        "Editorial board": 6,
+        "Information system": 6,
+        "Operations research": 5,
+        "Epistemology": 4,
+        "Philosophy": 4,
+        "Quality (philosophy)": 4,
+        "Sociology": 4,
+        "Information systems security": 4,
+        "Public relations": 3,
+        "Business": 3,
+        "Medicine": 3
+      },
+      "avg_keywords_per_paper": 5.7894736842105265
+    }
+  },
+  {
+    "cluster_id": "4.7.0.1",
+    "level": 3,
+    "size": 32,
+    "journals": {
+      "distribution": {
+        "Journal of the Association for Information Systems": 10,
+        "MIS Quarterly": 7,
+        "Information Systems Journal": 5,
+        "Journal of Information Technology": 5,
+        "Journal of Management Information Systems": 3,
+        "Information Systems Research": 1,
+        "Journal of Strategic Information Systems": 1
+      },
+      "primary": "Journal of the Association for Information Systems",
+      "diversity": 7,
+      "top_3": {
+        "Journal of the Association for Information Systems": 10,
+        "MIS Quarterly": 7,
+        "Information Systems Journal": 5
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1989,
+        2025
+      ],
+      "median_year": 2005,
+      "mean_year": 2006.375,
+      "papers_per_year": {
+        "1989.0": 1,
+        "1992.0": 1,
+        "1994.0": 1,
+        "1996.0": 3,
+        "1997.0": 1,
+        "1998.0": 2,
+        "1999.0": 2,
+        "2000.0": 3,
+        "2001.0": 1,
+        "2004.0": 1,
+        "2007.0": 2,
+        "2009.0": 3,
+        "2010.0": 1,
+        "2012.0": 1,
+        "2013.0": 2,
+        "2014.0": 1,
+        "2022.0": 1,
+        "2023.0": 2,
+        "2024.0": 1,
+        "2025.0": 2
+      }
+    },
+    "citations": {
+      "total": 1673,
+      "mean": 52.28125,
+      "median": 30.5,
+      "max": 246,
+      "highly_cited_count": 4
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 85,
+      "top_10": {
+        "": 85
+      },
+      "avg_authors_per_paper": 2.65625
+    },
+    "top_papers": [
+      {
+        "Title": "The Effect of Codes of Ethics and Personal Denial of Responsibility on Computer Abuse Judgments and Intentions",
+        "Author": null,
+        "Year": 1996.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 246
+      },
+      {
+        "Title": "Realizing Emancipatory Principles in Information Systems Development: The Case for ETHICS",
+        "Author": "; ",
+        "Year": 1994.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 192
+      },
+      {
+        "Title": "Modeling IT Ethics: A Study in Situational Ethics",
+        "Author": "; ; ",
+        "Year": 1998.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 182
+      },
+      {
+        "Title": "Toward Ethical Information Systems: The Contribution of Discourse Ethics",
+        "Author": "; ",
+        "Year": 2010.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 166
+      },
+      {
+        "Title": "Testing an Ethical Decision-Making Theory: The Case of Softlifting",
+        "Author": "; ",
+        "Year": 1998.0,
+        "Journal": "Journal of Management Information Systems",
+        "Citations": 132
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 153,
+      "total_keyword_instances": 529,
+      "top_20": {
+        "Computer science": 29,
+        "Engineering": 27,
+        "Engineering ethics": 24,
+        "Law": 21,
+        "Political science": 21,
+        "Knowledge management": 20,
+        "Sociology": 18,
+        "Psychology": 17,
+        "Epistemology": 14,
+        "Philosophy": 14,
+        "Information system": 12,
+        "Information ethics": 11,
+        "Social psychology": 11,
+        "Management science": 11,
+        "Business": 10,
+        "Mathematics": 8,
+        "Artificial intelligence": 7,
+        "Operating system": 6,
+        "Field (mathematics)": 6,
+        "Pure mathematics": 6
+      },
+      "avg_keywords_per_paper": 16.53125
+    }
+  },
+  {
+    "cluster_id": "5.6.4.1",
+    "level": 3,
+    "size": 483,
+    "journals": {
+      "distribution": {
+        "Information Systems Journal": 125,
+        "Journal of Information Technology": 115,
+        "MIS Quarterly": 94,
+        "Journal of the Association for Information Systems": 72,
+        "Information Systems Research": 44,
+        "Journal of Management Information Systems": 12,
+        "Journal of Strategic Information Systems": 12,
+        "European Journal of Information Systems": 9
+      },
+      "primary": "Information Systems Journal",
+      "diversity": 8,
+      "top_3": {
+        "Information Systems Journal": 125,
+        "Journal of Information Technology": 115,
+        "MIS Quarterly": 94
+      }
+    },
+    "temporal": {
+      "year_range": [
+        1985,
+        2025
+      ],
+      "median_year": 2018,
+      "mean_year": 2015.606625258799,
+      "papers_per_year": {
+        "1985.0": 1,
+        "1988.0": 1,
+        "1989.0": 1,
+        "1990.0": 1,
+        "1991.0": 1,
+        "1992.0": 5,
+        "1993.0": 5,
+        "1994.0": 1,
+        "1996.0": 3,
+        "1997.0": 2,
+        "1998.0": 6,
+        "1999.0": 7,
+        "2000.0": 3,
+        "2001.0": 3,
+        "2002.0": 4,
+        "2003.0": 6,
+        "2004.0": 5,
+        "2005.0": 16,
+        "2006.0": 13,
+        "2007.0": 15,
+        "2008.0": 4,
+        "2009.0": 13,
+        "2010.0": 9,
+        "2011.0": 5,
+        "2012.0": 6,
+        "2013.0": 37,
+        "2014.0": 12,
+        "2015.0": 12,
+        "2016.0": 16,
+        "2017.0": 7,
+        "2018.0": 25,
+        "2019.0": 23,
+        "2020.0": 20,
+        "2021.0": 31,
+        "2022.0": 29,
+        "2023.0": 35,
+        "2024.0": 50,
+        "2025.0": 50
+      }
+    },
+    "citations": {
+      "total": 46162,
+      "mean": 95.5734989648033,
+      "median": 23.0,
+      "max": 2511,
+      "highly_cited_count": 49
+    },
+    "authors": {
+      "unique_authors": 1,
+      "total_authorships": 1349,
+      "top_10": {
+        "": 1349
+      },
+      "avg_authors_per_paper": 2.79296066252588
+    },
+    "top_papers": [
+      {
+        "Title": "Digital Business Strategy: Toward a Next Generation of Insights",
+        "Author": "; ; ; ",
+        "Year": 2013.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 2511
+      },
+      {
+        "Title": "<b>Research Commentary</b>—The New Organizing Logic of Digital Innovation: An Agenda for Information Systems Research",
+        "Author": "; ; ",
+        "Year": 2010.0,
+        "Journal": "Information Systems Research",
+        "Citations": 2051
+      },
+      {
+        "Title": "Digital Innovation Management: Reinventing Innovation Management Research in a Digital World",
+        "Author": "; ; ; ",
+        "Year": 2017.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1945
+      },
+      {
+        "Title": "Shaping Agility through Digital Options: Reconceptualizing the Role of Information Technology in Contemporary Firms",
+        "Author": "; ; ",
+        "Year": 2003.0,
+        "Journal": "MIS Quarterly",
+        "Citations": 1905
+      },
+      {
+        "Title": "Big other: Surveillance Capitalism and the Prospects of an Information Civilization",
+        "Author": null,
+        "Year": 2015.0,
+        "Journal": "Journal of Information Technology",
+        "Citations": 1692
+      }
+    ],
+    "keywords": {
+      "unique_keywords": 950,
+      "total_keyword_instances": 7750,
+      "top_20": {
+        "Computer science": 418,
+        "Knowledge management": 277,
+        "Business": 265,
+        "Political science": 263,
+        "Sociology": 252,
+        "Law": 218,
+        "Philosophy": 189,
+        "Engineering": 156,
+        "World Wide Web": 141,
+        "Public relations": 139,
+        "Economics": 133,
+        "Epistemology": 126,
+        "Operating system": 115,
+        "Artificial intelligence": 110,
+        "Biology": 103,
+        "Information system": 96,
+        "Marketing": 89,
+        "Social science": 89,
+        "Data science": 86,
+        "Linguistics": 80
+      },
+      "avg_keywords_per_paper": 16.045548654244307
+    }
+  }
+]

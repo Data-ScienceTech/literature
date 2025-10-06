@@ -1,0 +1,1442 @@
+[
+  {
+    "cluster_id": 0,
+    "size": 1250,
+    "distinctive_keywords": [
+      {
+        "keyword": "Common value auction",
+        "tfidf_score": 0.08543188807099202,
+        "count": 53,
+        "cluster_frequency": 0.0424
+      },
+      {
+        "keyword": "Advertising",
+        "tfidf_score": 0.05926692722905411,
+        "count": 332,
+        "cluster_frequency": 0.2656
+      },
+      {
+        "keyword": "Pricing strategies",
+        "tfidf_score": 0.05849388434380774,
+        "count": 27,
+        "cluster_frequency": 0.0216
+      },
+      {
+        "keyword": "Commerce",
+        "tfidf_score": 0.05185450002513478,
+        "count": 59,
+        "cluster_frequency": 0.0472
+      },
+      {
+        "keyword": "Price Discrimination",
+        "tfidf_score": 0.04982812370028066,
+        "count": 23,
+        "cluster_frequency": 0.0184
+      },
+      {
+        "keyword": "Price discrimination",
+        "tfidf_score": 0.04982812370028066,
+        "count": 23,
+        "cluster_frequency": 0.0184
+      },
+      {
+        "keyword": "Consumer behaviour",
+        "tfidf_score": 0.04513382766014673,
+        "count": 28,
+        "cluster_frequency": 0.0224
+      },
+      {
+        "keyword": "Mobile apps",
+        "tfidf_score": 0.04513382766014673,
+        "count": 28,
+        "cluster_frequency": 0.0224
+      },
+      {
+        "keyword": "Cournot competition",
+        "tfidf_score": 0.04352190524371292,
+        "count": 27,
+        "cluster_frequency": 0.0216
+      },
+      {
+        "keyword": "Economic surplus",
+        "tfidf_score": 0.04248916088826025,
+        "count": 33,
+        "cluster_frequency": 0.0264
+      },
+      {
+        "keyword": "Combinatorial auction",
+        "tfidf_score": 0.038995922895871823,
+        "count": 18,
+        "cluster_frequency": 0.0144
+      },
+      {
+        "keyword": "Recommender system",
+        "tfidf_score": 0.0380665681914908,
+        "count": 36,
+        "cluster_frequency": 0.0288
+      },
+      {
+        "keyword": "Bidding",
+        "tfidf_score": 0.037009163519504944,
+        "count": 35,
+        "cluster_frequency": 0.028
+      },
+      {
+        "keyword": "Network effect",
+        "tfidf_score": 0.03691337289924849,
+        "count": 42,
+        "cluster_frequency": 0.0336
+      },
+      {
+        "keyword": "Search cost",
+        "tfidf_score": 0.03385037074511005,
+        "count": 21,
+        "cluster_frequency": 0.0168
+      }
+    ]
+  },
+  {
+    "cluster_id": 1,
+    "size": 877,
+    "distinctive_keywords": [
+      {
+        "keyword": "Strategic management",
+        "tfidf_score": 0.04597125678730083,
+        "count": 44,
+        "cluster_frequency": 0.05017103762827822
+      },
+      {
+        "keyword": "Executive information system",
+        "tfidf_score": 0.037580808050220404,
+        "count": 30,
+        "cluster_frequency": 0.03420752565564424
+      },
+      {
+        "keyword": "Executive summary",
+        "tfidf_score": 0.03705427869239056,
+        "count": 12,
+        "cluster_frequency": 0.013683010262257697
+      },
+      {
+        "keyword": "Process management",
+        "tfidf_score": 0.03453577033383315,
+        "count": 439,
+        "cluster_frequency": 0.500570125427594
+      },
+      {
+        "keyword": "Change Management",
+        "tfidf_score": 0.03315693099157472,
+        "count": 22,
+        "cluster_frequency": 0.02508551881413911
+      },
+      {
+        "keyword": "Information management",
+        "tfidf_score": 0.02849723802416362,
+        "count": 112,
+        "cluster_frequency": 0.12770809578107184
+      },
+      {
+        "keyword": "Strategic planning",
+        "tfidf_score": 0.025890588431080053,
+        "count": 56,
+        "cluster_frequency": 0.06385404789053592
+      },
+      {
+        "keyword": "Business system planning",
+        "tfidf_score": 0.022974948922944865,
+        "count": 10,
+        "cluster_frequency": 0.011402508551881414
+      },
+      {
+        "keyword": "Technology management",
+        "tfidf_score": 0.022974948922944865,
+        "count": 10,
+        "cluster_frequency": 0.011402508551881414
+      },
+      {
+        "keyword": "technology management",
+        "tfidf_score": 0.022974948922944865,
+        "count": 10,
+        "cluster_frequency": 0.011402508551881414
+      },
+      {
+        "keyword": "Business process reengineering",
+        "tfidf_score": 0.02271630481969628,
+        "count": 39,
+        "cluster_frequency": 0.04446978335233751
+      },
+      {
+        "keyword": "Process modeling",
+        "tfidf_score": 0.0226069984033464,
+        "count": 15,
+        "cluster_frequency": 0.01710376282782212
+      },
+      {
+        "keyword": "Critical success factor",
+        "tfidf_score": 0.02254848483013224,
+        "count": 18,
+        "cluster_frequency": 0.020524515393386546
+      },
+      {
+        "keyword": "Information technology",
+        "tfidf_score": 0.020532656166584173,
+        "count": 261,
+        "cluster_frequency": 0.2976054732041049
+      },
+      {
+        "keyword": "Competitive advantage",
+        "tfidf_score": 0.02034260519584861,
+        "count": 44,
+        "cluster_frequency": 0.05017103762827822
+      }
+    ]
+  },
+  {
+    "cluster_id": 10,
+    "size": 420,
+    "distinctive_keywords": [
+      {
+        "keyword": "Expert system",
+        "tfidf_score": 0.1573518857121809,
+        "count": 50,
+        "cluster_frequency": 0.11904761904761904
+      },
+      {
+        "keyword": "Database design",
+        "tfidf_score": 0.11033992731540973,
+        "count": 23,
+        "cluster_frequency": 0.05476190476190476
+      },
+      {
+        "keyword": "Decision support system",
+        "tfidf_score": 0.10812402882884384,
+        "count": 112,
+        "cluster_frequency": 0.26666666666666666
+      },
+      {
+        "keyword": "Rule-based machine translation",
+        "tfidf_score": 0.058029647166475934,
+        "count": 9,
+        "cluster_frequency": 0.02142857142857143
+      },
+      {
+        "keyword": "Query language",
+        "tfidf_score": 0.05756865772977899,
+        "count": 12,
+        "cluster_frequency": 0.02857142857142857
+      },
+      {
+        "keyword": "Subject-matter expert",
+        "tfidf_score": 0.05277126958563074,
+        "count": 11,
+        "cluster_frequency": 0.02619047619047619
+      },
+      {
+        "keyword": "Information retrieval",
+        "tfidf_score": 0.05243095216564905,
+        "count": 71,
+        "cluster_frequency": 0.16904761904761906
+      },
+      {
+        "keyword": "Query optimization",
+        "tfidf_score": 0.05158190859242305,
+        "count": 8,
+        "cluster_frequency": 0.01904761904761905
+      },
+      {
+        "keyword": "Decision analysis",
+        "tfidf_score": 0.04969912734450973,
+        "count": 19,
+        "cluster_frequency": 0.04523809523809524
+      },
+      {
+        "keyword": "Semantics (computer science)",
+        "tfidf_score": 0.04598394035526001,
+        "count": 12,
+        "cluster_frequency": 0.02857142857142857
+      },
+      {
+        "keyword": "Search engine",
+        "tfidf_score": 0.04598394035526001,
+        "count": 12,
+        "cluster_frequency": 0.02857142857142857
+      },
+      {
+        "keyword": "SQL",
+        "tfidf_score": 0.04513417001837017,
+        "count": 7,
+        "cluster_frequency": 0.016666666666666666
+      },
+      {
+        "keyword": "Intelligent decision support system",
+        "tfidf_score": 0.04405852799941065,
+        "count": 14,
+        "cluster_frequency": 0.03333333333333333
+      },
+      {
+        "keyword": "Relational database",
+        "tfidf_score": 0.043176493297334244,
+        "count": 9,
+        "cluster_frequency": 0.02142857142857143
+      },
+      {
+        "keyword": "Decision maker",
+        "tfidf_score": 0.042151945325655006,
+        "count": 11,
+        "cluster_frequency": 0.02619047619047619
+      }
+    ]
+  },
+  {
+    "cluster_id": 11,
+    "size": 236,
+    "distinctive_keywords": [
+      {
+        "keyword": "Group Decision Making",
+        "tfidf_score": 0.20490539191955234,
+        "count": 24,
+        "cluster_frequency": 0.1016949152542373
+      },
+      {
+        "keyword": "Group decision-making",
+        "tfidf_score": 0.20490539191955234,
+        "count": 24,
+        "cluster_frequency": 0.1016949152542373
+      },
+      {
+        "keyword": "Collaborative software",
+        "tfidf_score": 0.1707544932662936,
+        "count": 20,
+        "cluster_frequency": 0.0847457627118644
+      },
+      {
+        "keyword": "Brainstorming",
+        "tfidf_score": 0.11593408691262587,
+        "count": 17,
+        "cluster_frequency": 0.07203389830508475
+      },
+      {
+        "keyword": "Computer-supported cooperative work",
+        "tfidf_score": 0.11099042062309085,
+        "count": 13,
+        "cluster_frequency": 0.05508474576271186
+      },
+      {
+        "keyword": "Group (periodic table)",
+        "tfidf_score": 0.10979983800675631,
+        "count": 34,
+        "cluster_frequency": 0.1440677966101695
+      },
+      {
+        "keyword": "Working group",
+        "tfidf_score": 0.08032352291404861,
+        "count": 7,
+        "cluster_frequency": 0.029661016949152543
+      },
+      {
+        "keyword": "Creativity",
+        "tfidf_score": 0.07990788043504755,
+        "count": 30,
+        "cluster_frequency": 0.1271186440677966
+      },
+      {
+        "keyword": "Ideation",
+        "tfidf_score": 0.07501617388464027,
+        "count": 11,
+        "cluster_frequency": 0.046610169491525424
+      },
+      {
+        "keyword": "Creativity technique",
+        "tfidf_score": 0.06884873392632739,
+        "count": 6,
+        "cluster_frequency": 0.025423728813559324
+      },
+      {
+        "keyword": "Asynchronous communication",
+        "tfidf_score": 0.05455721737064747,
+        "count": 8,
+        "cluster_frequency": 0.03389830508474576
+      },
+      {
+        "keyword": "Team effectiveness",
+        "tfidf_score": 0.054356229856941406,
+        "count": 14,
+        "cluster_frequency": 0.059322033898305086
+      },
+      {
+        "keyword": "Decision support system",
+        "tfidf_score": 0.053260247251496175,
+        "count": 31,
+        "cluster_frequency": 0.13135593220338984
+      },
+      {
+        "keyword": "Decision quality",
+        "tfidf_score": 0.04480528271126507,
+        "count": 8,
+        "cluster_frequency": 0.03389830508474576
+      },
+      {
+        "keyword": "Facilitation",
+        "tfidf_score": 0.04480528271126507,
+        "count": 8,
+        "cluster_frequency": 0.03389830508474576
+      }
+    ]
+  },
+  {
+    "cluster_id": 12,
+    "size": 176,
+    "distinctive_keywords": [
+      {
+        "keyword": "Health care",
+        "tfidf_score": 0.28336481987104667,
+        "count": 123,
+        "cluster_frequency": 0.6988636363636364
+      },
+      {
+        "keyword": "Health information technology",
+        "tfidf_score": 0.1538664886989892,
+        "count": 10,
+        "cluster_frequency": 0.056818181818181816
+      },
+      {
+        "keyword": "Medical emergency",
+        "tfidf_score": 0.10058986952713127,
+        "count": 11,
+        "cluster_frequency": 0.0625
+      },
+      {
+        "keyword": "Healthcare system",
+        "tfidf_score": 0.09231989321939352,
+        "count": 6,
+        "cluster_frequency": 0.03409090909090909
+      },
+      {
+        "keyword": "Nursing",
+        "tfidf_score": 0.08571936264850555,
+        "count": 24,
+        "cluster_frequency": 0.13636363636363635
+      },
+      {
+        "keyword": "Family medicine",
+        "tfidf_score": 0.08230080234038013,
+        "count": 9,
+        "cluster_frequency": 0.05113636363636364
+      },
+      {
+        "keyword": "Electronic health record",
+        "tfidf_score": 0.0769332443494946,
+        "count": 5,
+        "cluster_frequency": 0.028409090909090908
+      },
+      {
+        "keyword": "Public health",
+        "tfidf_score": 0.07509976363535906,
+        "count": 10,
+        "cluster_frequency": 0.056818181818181816
+      },
+      {
+        "keyword": "Healthcare Industry",
+        "tfidf_score": 0.06868987570030448,
+        "count": 6,
+        "cluster_frequency": 0.03409090909090909
+      },
+      {
+        "keyword": "Telehealth",
+        "tfidf_score": 0.06868987570030448,
+        "count": 6,
+        "cluster_frequency": 0.03409090909090909
+      },
+      {
+        "keyword": "Health records",
+        "tfidf_score": 0.061546595479595685,
+        "count": 4,
+        "cluster_frequency": 0.022727272727272728
+      },
+      {
+        "keyword": "Health Information Exchange",
+        "tfidf_score": 0.05724156308358706,
+        "count": 5,
+        "cluster_frequency": 0.028409090909090908
+      },
+      {
+        "keyword": "Chronic disease",
+        "tfidf_score": 0.045793250466869655,
+        "count": 4,
+        "cluster_frequency": 0.022727272727272728
+      },
+      {
+        "keyword": "Health care delivery",
+        "tfidf_score": 0.03434493785015224,
+        "count": 3,
+        "cluster_frequency": 0.017045454545454544
+      },
+      {
+        "keyword": "Medical prescription",
+        "tfidf_score": 0.03434493785015224,
+        "count": 3,
+        "cluster_frequency": 0.017045454545454544
+      }
+    ]
+  },
+  {
+    "cluster_id": 13,
+    "size": 88,
+    "distinctive_keywords": [
+      {
+        "keyword": "Equity crowdfunding",
+        "tfidf_score": 0.18463978643878703,
+        "count": 6,
+        "cluster_frequency": 0.06818181818181818
+      },
+      {
+        "keyword": "Peer-to-peer",
+        "tfidf_score": 0.16521947999778994,
+        "count": 11,
+        "cluster_frequency": 0.125
+      },
+      {
+        "keyword": "Loan",
+        "tfidf_score": 0.16460160468076027,
+        "count": 9,
+        "cluster_frequency": 0.10227272727272728
+      },
+      {
+        "keyword": "Seed money",
+        "tfidf_score": 0.1538664886989892,
+        "count": 5,
+        "cluster_frequency": 0.056818181818181816
+      },
+      {
+        "keyword": "Herding",
+        "tfidf_score": 0.10513966908950269,
+        "count": 7,
+        "cluster_frequency": 0.07954545454545454
+      },
+      {
+        "keyword": "Forestry",
+        "tfidf_score": 0.08738961387132692,
+        "count": 7,
+        "cluster_frequency": 0.07954545454545454
+      },
+      {
+        "keyword": "Venture capital",
+        "tfidf_score": 0.08738961387132692,
+        "count": 7,
+        "cluster_frequency": 0.07954545454545454
+      },
+      {
+        "keyword": "Prosocial Behavior",
+        "tfidf_score": 0.08329915744310501,
+        "count": 8,
+        "cluster_frequency": 0.09090909090909091
+      },
+      {
+        "keyword": "Prosocial behavior",
+        "tfidf_score": 0.08329915744310501,
+        "count": 8,
+        "cluster_frequency": 0.09090909090909091
+      },
+      {
+        "keyword": "Default",
+        "tfidf_score": 0.06868987570030448,
+        "count": 3,
+        "cluster_frequency": 0.03409090909090909
+      },
+      {
+        "keyword": "Microfinance",
+        "tfidf_score": 0.061546595479595685,
+        "count": 2,
+        "cluster_frequency": 0.022727272727272728
+      },
+      {
+        "keyword": "Entrepreneurial finance",
+        "tfidf_score": 0.061546595479595685,
+        "count": 2,
+        "cluster_frequency": 0.022727272727272728
+      },
+      {
+        "keyword": "Herd behavior",
+        "tfidf_score": 0.06007981090828725,
+        "count": 4,
+        "cluster_frequency": 0.045454545454545456
+      },
+      {
+        "keyword": "Peer review",
+        "tfidf_score": 0.05486720156025342,
+        "count": 3,
+        "cluster_frequency": 0.03409090909090909
+      },
+      {
+        "keyword": "Entrepreneurship",
+        "tfidf_score": 0.05206197340194063,
+        "count": 5,
+        "cluster_frequency": 0.056818181818181816
+      }
+    ]
+  },
+  {
+    "cluster_id": 14,
+    "size": 60,
+    "distinctive_keywords": [
+      {
+        "keyword": "Enterprise resource planning",
+        "tfidf_score": 0.2905833274775178,
+        "count": 43,
+        "cluster_frequency": 0.7166666666666667
+      },
+      {
+        "keyword": "Enterprise system",
+        "tfidf_score": 0.1143210078070345,
+        "count": 9,
+        "cluster_frequency": 0.15
+      },
+      {
+        "keyword": "Drama",
+        "tfidf_score": 0.09026834003674034,
+        "count": 2,
+        "cluster_frequency": 0.03333333333333333
+      },
+      {
+        "keyword": "Process management",
+        "tfidf_score": 0.058643940763908706,
+        "count": 51,
+        "cluster_frequency": 0.85
+      },
+      {
+        "keyword": "Critical success factor",
+        "tfidf_score": 0.054930614433405495,
+        "count": 3,
+        "cluster_frequency": 0.05
+      },
+      {
+        "keyword": "Enterprise value",
+        "tfidf_score": 0.05364793041447001,
+        "count": 2,
+        "cluster_frequency": 0.03333333333333333
+      },
+      {
+        "keyword": "Small and medium-sized enterprises",
+        "tfidf_score": 0.05364793041447001,
+        "count": 2,
+        "cluster_frequency": 0.03333333333333333
+      },
+      {
+        "keyword": "Siemens",
+        "tfidf_score": 0.05364793041447001,
+        "count": 2,
+        "cluster_frequency": 0.03333333333333333
+      },
+      {
+        "keyword": "Workaround",
+        "tfidf_score": 0.050809336803126444,
+        "count": 4,
+        "cluster_frequency": 0.06666666666666667
+      },
+      {
+        "keyword": "Build to order",
+        "tfidf_score": 0.04513417001837017,
+        "count": 1,
+        "cluster_frequency": 0.016666666666666666
+      },
+      {
+        "keyword": "Lead time",
+        "tfidf_score": 0.04513417001837017,
+        "count": 1,
+        "cluster_frequency": 0.016666666666666666
+      },
+      {
+        "keyword": "Deskilling",
+        "tfidf_score": 0.04513417001837017,
+        "count": 1,
+        "cluster_frequency": 0.016666666666666666
+      },
+      {
+        "keyword": "Human resource management",
+        "tfidf_score": 0.03810700260234484,
+        "count": 3,
+        "cluster_frequency": 0.05
+      },
+      {
+        "keyword": "Enterprise information system",
+        "tfidf_score": 0.03810700260234484,
+        "count": 3,
+        "cluster_frequency": 0.05
+      },
+      {
+        "keyword": "Enterprise life cycle",
+        "tfidf_score": 0.03358171700903775,
+        "count": 1,
+        "cluster_frequency": 0.016666666666666666
+      }
+    ]
+  },
+  {
+    "cluster_id": 2,
+    "size": 751,
+    "distinctive_keywords": [
+      {
+        "keyword": "Information privacy",
+        "tfidf_score": 0.1543003058525369,
+        "count": 72,
+        "cluster_frequency": 0.09587217043941411
+      },
+      {
+        "keyword": "Information security",
+        "tfidf_score": 0.11102857070645554,
+        "count": 91,
+        "cluster_frequency": 0.12117177097203728
+      },
+      {
+        "keyword": "Information security management",
+        "tfidf_score": 0.1045718453155314,
+        "count": 29,
+        "cluster_frequency": 0.03861517976031957
+      },
+      {
+        "keyword": "Personally identifiable information",
+        "tfidf_score": 0.0900085117473132,
+        "count": 42,
+        "cluster_frequency": 0.0559254327563249
+      },
+      {
+        "keyword": "Internet privacy",
+        "tfidf_score": 0.07190511240750834,
+        "count": 242,
+        "cluster_frequency": 0.322237017310253
+      },
+      {
+        "keyword": "Phishing",
+        "tfidf_score": 0.06490666260964019,
+        "count": 18,
+        "cluster_frequency": 0.023968042609853527
+      },
+      {
+        "keyword": "Big data",
+        "tfidf_score": 0.06290323357220869,
+        "count": 43,
+        "cluster_frequency": 0.05725699067909454
+      },
+      {
+        "keyword": "Data breach",
+        "tfidf_score": 0.061708081854157236,
+        "count": 23,
+        "cluster_frequency": 0.03062583222370173
+      },
+      {
+        "keyword": "Privacy software",
+        "tfidf_score": 0.050482959807497924,
+        "count": 14,
+        "cluster_frequency": 0.018641810918774968
+      },
+      {
+        "keyword": "Hacker",
+        "tfidf_score": 0.047147315677164056,
+        "count": 22,
+        "cluster_frequency": 0.02929427430093209
+      },
+      {
+        "keyword": "Security Policy",
+        "tfidf_score": 0.04327110840642679,
+        "count": 12,
+        "cluster_frequency": 0.015978695073235686
+      },
+      {
+        "keyword": "Security policy",
+        "tfidf_score": 0.04327110840642679,
+        "count": 12,
+        "cluster_frequency": 0.015978695073235686
+      },
+      {
+        "keyword": "Consumer privacy",
+        "tfidf_score": 0.04327110840642679,
+        "count": 12,
+        "cluster_frequency": 0.015978695073235686
+      },
+      {
+        "keyword": "Crisis Management",
+        "tfidf_score": 0.03966518270589123,
+        "count": 11,
+        "cluster_frequency": 0.014647137150466045
+      },
+      {
+        "keyword": "Crisis management",
+        "tfidf_score": 0.03966518270589123,
+        "count": 11,
+        "cluster_frequency": 0.014647137150466045
+      }
+    ]
+  },
+  {
+    "cluster_id": 3,
+    "size": 722,
+    "distinctive_keywords": [
+      {
+        "keyword": "Technology Acceptance Model",
+        "tfidf_score": 0.06439133403720318,
+        "count": 61,
+        "cluster_frequency": 0.08448753462603878
+      },
+      {
+        "keyword": "User Satisfaction",
+        "tfidf_score": 0.04576716897445705,
+        "count": 25,
+        "cluster_frequency": 0.03462603878116344
+      },
+      {
+        "keyword": "User satisfaction",
+        "tfidf_score": 0.04576716897445705,
+        "count": 25,
+        "cluster_frequency": 0.03462603878116344
+      },
+      {
+        "keyword": "Applied psychology",
+        "tfidf_score": 0.0415573656509753,
+        "count": 74,
+        "cluster_frequency": 0.10249307479224377
+      },
+      {
+        "keyword": "Stressor",
+        "tfidf_score": 0.041258382565269126,
+        "count": 11,
+        "cluster_frequency": 0.015235457063711912
+      },
+      {
+        "keyword": "Technostress",
+        "tfidf_score": 0.038444421938543916,
+        "count": 21,
+        "cluster_frequency": 0.029085872576177285
+      },
+      {
+        "keyword": "Continuance",
+        "tfidf_score": 0.038444421938543916,
+        "count": 21,
+        "cluster_frequency": 0.029085872576177285
+      },
+      {
+        "keyword": "End-user computing",
+        "tfidf_score": 0.037895352508836154,
+        "count": 17,
+        "cluster_frequency": 0.023545706371191136
+      },
+      {
+        "keyword": "Habit",
+        "tfidf_score": 0.03375685846249293,
+        "count": 9,
+        "cluster_frequency": 0.012465373961218837
+      },
+      {
+        "keyword": "Usability",
+        "tfidf_score": 0.031359154800803715,
+        "count": 73,
+        "cluster_frequency": 0.10110803324099724
+      },
+      {
+        "keyword": "Human–computer interaction",
+        "tfidf_score": 0.029928292783575706,
+        "count": 151,
+        "cluster_frequency": 0.20914127423822715
+      },
+      {
+        "keyword": "Career development",
+        "tfidf_score": 0.02790724405183192,
+        "count": 10,
+        "cluster_frequency": 0.013850415512465374
+      },
+      {
+        "keyword": "Training (meteorology)",
+        "tfidf_score": 0.027460301384674226,
+        "count": 15,
+        "cluster_frequency": 0.02077562326869806
+      },
+      {
+        "keyword": "Diffusion of innovations",
+        "tfidf_score": 0.026749660594472584,
+        "count": 12,
+        "cluster_frequency": 0.01662049861495845
+      },
+      {
+        "keyword": "Job satisfaction",
+        "tfidf_score": 0.024763015002506477,
+        "count": 35,
+        "cluster_frequency": 0.04847645429362881
+      }
+    ]
+  },
+  {
+    "cluster_id": 4,
+    "size": 709,
+    "distinctive_keywords": [
+      {
+        "keyword": "Positivism",
+        "tfidf_score": 0.04958475773960439,
+        "count": 32,
+        "cluster_frequency": 0.045133991537376586
+      },
+      {
+        "keyword": "Critical Theory",
+        "tfidf_score": 0.04262841369271363,
+        "count": 15,
+        "cluster_frequency": 0.021156558533145273
+      },
+      {
+        "keyword": "Critical theory",
+        "tfidf_score": 0.04262841369271363,
+        "count": 15,
+        "cluster_frequency": 0.021156558533145273
+      },
+      {
+        "keyword": "Citation analysis",
+        "tfidf_score": 0.03819534839354316,
+        "count": 10,
+        "cluster_frequency": 0.014104372355430184
+      },
+      {
+        "keyword": "Information ethics",
+        "tfidf_score": 0.034102730954170914,
+        "count": 12,
+        "cluster_frequency": 0.01692524682651622
+      },
+      {
+        "keyword": "Scholarship",
+        "tfidf_score": 0.032539997266615384,
+        "count": 21,
+        "cluster_frequency": 0.029619181946403384
+      },
+      {
+        "keyword": "Editorial board",
+        "tfidf_score": 0.03126083670799,
+        "count": 11,
+        "cluster_frequency": 0.015514809590973202
+      },
+      {
+        "keyword": "Citation",
+        "tfidf_score": 0.030990473587252744,
+        "count": 20,
+        "cluster_frequency": 0.028208744710860368
+      },
+      {
+        "keyword": "Engineering ethics",
+        "tfidf_score": 0.029467874713030036,
+        "count": 146,
+        "cluster_frequency": 0.2059238363892807
+      },
+      {
+        "keyword": "Pluralism",
+        "tfidf_score": 0.025577048215628184,
+        "count": 9,
+        "cluster_frequency": 0.012693935119887164
+      },
+      {
+        "keyword": "Pluralism (philosophy)",
+        "tfidf_score": 0.025577048215628184,
+        "count": 9,
+        "cluster_frequency": 0.012693935119887164
+      },
+      {
+        "keyword": "Library science",
+        "tfidf_score": 0.025178397891589255,
+        "count": 80,
+        "cluster_frequency": 0.11283497884344147
+      },
+      {
+        "keyword": "Management science",
+        "tfidf_score": 0.023840978158396472,
+        "count": 245,
+        "cluster_frequency": 0.3455571227080395
+      },
+      {
+        "keyword": "Discipline",
+        "tfidf_score": 0.023648915578324017,
+        "count": 22,
+        "cluster_frequency": 0.031029619181946404
+      },
+      {
+        "keyword": "Statistical hypothesis testing",
+        "tfidf_score": 0.0229172090361259,
+        "count": 6,
+        "cluster_frequency": 0.00846262341325811
+      }
+    ]
+  },
+  {
+    "cluster_id": 5,
+    "size": 680,
+    "distinctive_keywords": [
+      {
+        "keyword": "Digital transformation",
+        "tfidf_score": 0.054541045449882454,
+        "count": 59,
+        "cluster_frequency": 0.08676470588235294
+      },
+      {
+        "keyword": "Ecosystem",
+        "tfidf_score": 0.047336409189238246,
+        "count": 20,
+        "cluster_frequency": 0.029411764705882353
+      },
+      {
+        "keyword": "Digital Divide",
+        "tfidf_score": 0.03887517176418587,
+        "count": 20,
+        "cluster_frequency": 0.029411764705882353
+      },
+      {
+        "keyword": "Information and Communications Technology",
+        "tfidf_score": 0.033296043773794526,
+        "count": 73,
+        "cluster_frequency": 0.10735294117647058
+      },
+      {
+        "keyword": "Sustainability",
+        "tfidf_score": 0.030261443243038543,
+        "count": 27,
+        "cluster_frequency": 0.039705882352941174
+      },
+      {
+        "keyword": "Public administration",
+        "tfidf_score": 0.029644700148869725,
+        "count": 22,
+        "cluster_frequency": 0.03235294117647059
+      },
+      {
+        "keyword": "Blockchain",
+        "tfidf_score": 0.024234094602973013,
+        "count": 15,
+        "cluster_frequency": 0.022058823529411766
+      },
+      {
+        "keyword": "Economic system",
+        "tfidf_score": 0.024234094602973013,
+        "count": 15,
+        "cluster_frequency": 0.022058823529411766
+      },
+      {
+        "keyword": "Developing country",
+        "tfidf_score": 0.022415883883732255,
+        "count": 20,
+        "cluster_frequency": 0.029411764705882353
+      },
+      {
+        "keyword": "Digital ecosystem",
+        "tfidf_score": 0.021301384135157208,
+        "count": 9,
+        "cluster_frequency": 0.013235294117647059
+      },
+      {
+        "keyword": "Bureaucracy",
+        "tfidf_score": 0.021301384135157208,
+        "count": 9,
+        "cluster_frequency": 0.013235294117647059
+      },
+      {
+        "keyword": "Sustainable development",
+        "tfidf_score": 0.020741648740876254,
+        "count": 7,
+        "cluster_frequency": 0.010294117647058823
+      },
+      {
+        "keyword": "Fintech",
+        "tfidf_score": 0.019912133831633896,
+        "count": 5,
+        "cluster_frequency": 0.007352941176470588
+      },
+      {
+        "keyword": "Entrepreneurship",
+        "tfidf_score": 0.01886480918564437,
+        "count": 14,
+        "cluster_frequency": 0.020588235294117647
+      },
+      {
+        "keyword": "Affordance",
+        "tfidf_score": 0.017888166534183726,
+        "count": 30,
+        "cluster_frequency": 0.04411764705882353
+      }
+    ]
+  },
+  {
+    "cluster_id": 6,
+    "size": 655,
+    "distinctive_keywords": [
+      {
+        "keyword": "Virtual team",
+        "tfidf_score": 0.09536182234627512,
+        "count": 31,
+        "cluster_frequency": 0.04732824427480916
+      },
+      {
+        "keyword": "Virtual reality",
+        "tfidf_score": 0.058520487571736286,
+        "count": 29,
+        "cluster_frequency": 0.044274809160305344
+      },
+      {
+        "keyword": "Online Community",
+        "tfidf_score": 0.05650253972443503,
+        "count": 28,
+        "cluster_frequency": 0.042748091603053436
+      },
+      {
+        "keyword": "Online community",
+        "tfidf_score": 0.05650253972443503,
+        "count": 28,
+        "cluster_frequency": 0.042748091603053436
+      },
+      {
+        "keyword": "Metaverse",
+        "tfidf_score": 0.05246664402983253,
+        "count": 26,
+        "cluster_frequency": 0.03969465648854962
+      },
+      {
+        "keyword": "CONTEST",
+        "tfidf_score": 0.05229519289957023,
+        "count": 17,
+        "cluster_frequency": 0.025954198473282442
+      },
+      {
+        "keyword": "Psychological Safety",
+        "tfidf_score": 0.041344277879423054,
+        "count": 10,
+        "cluster_frequency": 0.015267175572519083
+      },
+      {
+        "keyword": "Psychological safety",
+        "tfidf_score": 0.041344277879423054,
+        "count": 10,
+        "cluster_frequency": 0.015267175572519083
+      },
+      {
+        "keyword": "Crowdsourcing",
+        "tfidf_score": 0.04133398177037788,
+        "count": 53,
+        "cluster_frequency": 0.08091603053435115
+      },
+      {
+        "keyword": "Open-source software development",
+        "tfidf_score": 0.039990441629083114,
+        "count": 13,
+        "cluster_frequency": 0.01984732824427481
+      },
+      {
+        "keyword": "Social network (sociolinguistics)",
+        "tfidf_score": 0.03956146835052594,
+        "count": 34,
+        "cluster_frequency": 0.051908396946564885
+      },
+      {
+        "keyword": "Team composition",
+        "tfidf_score": 0.03834100909872377,
+        "count": 19,
+        "cluster_frequency": 0.02900763358778626
+      },
+      {
+        "keyword": "Social media",
+        "tfidf_score": 0.03406771775789462,
+        "count": 100,
+        "cluster_frequency": 0.15267175572519084
+      },
+      {
+        "keyword": "Knowledge Sharing",
+        "tfidf_score": 0.030332504270687108,
+        "count": 49,
+        "cluster_frequency": 0.07480916030534351
+      },
+      {
+        "keyword": "Knowledge sharing",
+        "tfidf_score": 0.030332504270687108,
+        "count": 49,
+        "cluster_frequency": 0.07480916030534351
+      }
+    ]
+  },
+  {
+    "cluster_id": 7,
+    "size": 572,
+    "distinctive_keywords": [
+      {
+        "keyword": "Project Risk Management",
+        "tfidf_score": 0.09468706996860875,
+        "count": 20,
+        "cluster_frequency": 0.03496503496503497
+      },
+      {
+        "keyword": "Risk management plan",
+        "tfidf_score": 0.07101530247645656,
+        "count": 15,
+        "cluster_frequency": 0.026223776223776224
+      },
+      {
+        "keyword": "Project management",
+        "tfidf_score": 0.06965803960445327,
+        "count": 78,
+        "cluster_frequency": 0.13636363636363635
+      },
+      {
+        "keyword": "Software project management",
+        "tfidf_score": 0.06471516081465788,
+        "count": 23,
+        "cluster_frequency": 0.04020979020979021
+      },
+      {
+        "keyword": "Risk assessment",
+        "tfidf_score": 0.052838365923311134,
+        "count": 15,
+        "cluster_frequency": 0.026223776223776224
+      },
+      {
+        "keyword": "Package development process",
+        "tfidf_score": 0.05207788848273481,
+        "count": 11,
+        "cluster_frequency": 0.019230769230769232
+      },
+      {
+        "keyword": "Escalation of commitment",
+        "tfidf_score": 0.047343534984304374,
+        "count": 10,
+        "cluster_frequency": 0.017482517482517484
+      },
+      {
+        "keyword": "Rapid Prototyping",
+        "tfidf_score": 0.04260918148587394,
+        "count": 9,
+        "cluster_frequency": 0.015734265734265736
+      },
+      {
+        "keyword": "Rapid prototyping",
+        "tfidf_score": 0.04260918148587394,
+        "count": 9,
+        "cluster_frequency": 0.015734265734265736
+      },
+      {
+        "keyword": "Social software engineering",
+        "tfidf_score": 0.04227069273864891,
+        "count": 12,
+        "cluster_frequency": 0.02097902097902098
+      },
+      {
+        "keyword": "Personal software process",
+        "tfidf_score": 0.0422055396617334,
+        "count": 15,
+        "cluster_frequency": 0.026223776223776224
+      },
+      {
+        "keyword": "Process management",
+        "tfidf_score": 0.0358232217336094,
+        "count": 297,
+        "cluster_frequency": 0.5192307692307693
+      },
+      {
+        "keyword": "Risk management",
+        "tfidf_score": 0.03393596801242595,
+        "count": 38,
+        "cluster_frequency": 0.06643356643356643
+      },
+      {
+        "keyword": "Extreme programming practices",
+        "tfidf_score": 0.03314047448901306,
+        "count": 7,
+        "cluster_frequency": 0.012237762237762238
+      },
+      {
+        "keyword": "Non-functional requirement",
+        "tfidf_score": 0.03314047448901306,
+        "count": 7,
+        "cluster_frequency": 0.012237762237762238
+      }
+    ]
+  },
+  {
+    "cluster_id": 8,
+    "size": 481,
+    "distinctive_keywords": [
+      {
+        "keyword": "Business Value",
+        "tfidf_score": 0.05880954194180215,
+        "count": 45,
+        "cluster_frequency": 0.09355509355509356
+      },
+      {
+        "keyword": "Strategic management",
+        "tfidf_score": 0.04571928807688092,
+        "count": 24,
+        "cluster_frequency": 0.0498960498960499
+      },
+      {
+        "keyword": "Competitive advantage",
+        "tfidf_score": 0.0429911029387035,
+        "count": 51,
+        "cluster_frequency": 0.10602910602910603
+      },
+      {
+        "keyword": "Enterprise value",
+        "tfidf_score": 0.033460247659752605,
+        "count": 10,
+        "cluster_frequency": 0.02079002079002079
+      },
+      {
+        "keyword": "Investment Decisions",
+        "tfidf_score": 0.03297519767107658,
+        "count": 12,
+        "cluster_frequency": 0.02494802494802495
+      },
+      {
+        "keyword": "Industrial organization",
+        "tfidf_score": 0.03126911847017757,
+        "count": 218,
+        "cluster_frequency": 0.45322245322245325
+      },
+      {
+        "keyword": "Mergers and Acquisitions",
+        "tfidf_score": 0.0302272645318202,
+        "count": 11,
+        "cluster_frequency": 0.02286902286902287
+      },
+      {
+        "keyword": "Mergers and acquisitions",
+        "tfidf_score": 0.0302272645318202,
+        "count": 11,
+        "cluster_frequency": 0.02286902286902287
+      },
+      {
+        "keyword": "Resource-Based View",
+        "tfidf_score": 0.028574555048050575,
+        "count": 15,
+        "cluster_frequency": 0.031185031185031187
+      },
+      {
+        "keyword": "Production function",
+        "tfidf_score": 0.028150209990667467,
+        "count": 5,
+        "cluster_frequency": 0.010395010395010396
+      },
+      {
+        "keyword": "Behavioral economics",
+        "tfidf_score": 0.02740820678589879,
+        "count": 12,
+        "cluster_frequency": 0.02494802494802495
+      },
+      {
+        "keyword": "Strategic planning",
+        "tfidf_score": 0.026974809687029647,
+        "count": 32,
+        "cluster_frequency": 0.06652806652806653
+      },
+      {
+        "keyword": "Valuation (finance)",
+        "tfidf_score": 0.026669584711513872,
+        "count": 14,
+        "cluster_frequency": 0.029106029106029108
+      },
+      {
+        "keyword": "Value of information",
+        "tfidf_score": 0.025351852043140017,
+        "count": 16,
+        "cluster_frequency": 0.033264033264033266
+      },
+      {
+        "keyword": "Stock (firearms)",
+        "tfidf_score": 0.02512418955374056,
+        "count": 11,
+        "cluster_frequency": 0.02286902286902287
+      }
+    ]
+  },
+  {
+    "cluster_id": 9,
+    "size": 424,
+    "distinctive_keywords": [
+      {
+        "keyword": "Outsourcing",
+        "tfidf_score": 0.17117512818717318,
+        "count": 179,
+        "cluster_frequency": 0.4221698113207547
+      },
+      {
+        "keyword": "Transaction cost",
+        "tfidf_score": 0.09933202872947892,
+        "count": 67,
+        "cluster_frequency": 0.1580188679245283
+      },
+      {
+        "keyword": "Contract management",
+        "tfidf_score": 0.07664293021987387,
+        "count": 12,
+        "cluster_frequency": 0.02830188679245283
+      },
+      {
+        "keyword": "Electronic data interchange",
+        "tfidf_score": 0.06652981671601817,
+        "count": 14,
+        "cluster_frequency": 0.0330188679245283
+      },
+      {
+        "keyword": "Offshore outsourcing",
+        "tfidf_score": 0.06452935026268798,
+        "count": 17,
+        "cluster_frequency": 0.04009433962264151
+      },
+      {
+        "keyword": "Asset specificity",
+        "tfidf_score": 0.0617776869505883,
+        "count": 13,
+        "cluster_frequency": 0.030660377358490566
+      },
+      {
+        "keyword": "Electronic markets",
+        "tfidf_score": 0.0531418178633901,
+        "count": 14,
+        "cluster_frequency": 0.0330188679245283
+      },
+      {
+        "keyword": "Algorithmic trading",
+        "tfidf_score": 0.05227342741972857,
+        "count": 11,
+        "cluster_frequency": 0.025943396226415096
+      },
+      {
+        "keyword": "Vendor",
+        "tfidf_score": 0.0468158382345418,
+        "count": 64,
+        "cluster_frequency": 0.1509433962264151
+      },
+      {
+        "keyword": "Commerce",
+        "tfidf_score": 0.046639200934023524,
+        "count": 18,
+        "cluster_frequency": 0.04245283018867924
+      },
+      {
+        "keyword": "Supply chain",
+        "tfidf_score": 0.04303285345487594,
+        "count": 45,
+        "cluster_frequency": 0.10613207547169812
+      },
+      {
+        "keyword": "Financial market",
+        "tfidf_score": 0.041754285464092225,
+        "count": 11,
+        "cluster_frequency": 0.025943396226415096
+      },
+      {
+        "keyword": "Procurement",
+        "tfidf_score": 0.04134250282329865,
+        "count": 23,
+        "cluster_frequency": 0.054245283018867926
+      },
+      {
+        "keyword": "Insourcing",
+        "tfidf_score": 0.03886600077835294,
+        "count": 15,
+        "cluster_frequency": 0.03537735849056604
+      },
+      {
+        "keyword": "Industrial organization",
+        "tfidf_score": 0.03807625454704395,
+        "count": 234,
+        "cluster_frequency": 0.5518867924528302
+      }
+    ]
+  }
+]
