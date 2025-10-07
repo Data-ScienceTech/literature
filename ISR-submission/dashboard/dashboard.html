@@ -2167,21 +2167,26 @@
             if (trendsChartsInitialized) return;
             
             console.log('Initializing trends charts...');
+            console.log('Dashboard data:', dashboardData);
             
             // Prepare data from dashboardData
             const papers = dashboardData.papers;
-            const streams = dashboardData.streams.filter(s => s.id >= 0); // Exclude unclassified
+            const streams = dashboardData.streams.filter(s => s.id !== -1); // Exclude unclassified
+            
+            console.log(`Found ${streams.length} streams and ${papers.length} papers`);
             
             // 1. Stream Timeline Data (papers per year by stream)
             const yearlyStreamData = {};
             papers.forEach(paper => {
-                if (paper.l1 >= 0) {
+                if (paper.l1 !== undefined && paper.l1 !== -1 && paper.year) {
                     const year = paper.year;
                     if (!yearlyStreamData[year]) yearlyStreamData[year] = {};
                     if (!yearlyStreamData[year][paper.l1]) yearlyStreamData[year][paper.l1] = 0;
                     yearlyStreamData[year][paper.l1]++;
                 }
             });
+            
+            console.log('Yearly stream data prepared:', Object.keys(yearlyStreamData).length, 'years');
             
             createStreamTimelineChart(yearlyStreamData, streams);
             createCumulativeGrowthChart(papers);
@@ -2190,11 +2195,17 @@
             createActivityHeatmap(yearlyStreamData, streams);
             
             trendsChartsInitialized = true;
+            console.log('Trends charts initialization complete');
         }
         
         function createStreamTimelineChart(yearlyData, streams) {
             const ctx = document.getElementById('streamTimelineChart');
-            if (!ctx) return;
+            if (!ctx) {
+                console.error('Canvas element streamTimelineChart not found');
+                return;
+            }
+            
+            console.log('Creating stream timeline chart...');
             
             const years = Object.keys(yearlyData).map(Number).sort((a, b) => a - b);
             const streamColors = [
@@ -2210,6 +2221,8 @@
                 fill: false,
                 tension: 0.3
             }));
+            
+            console.log(`Timeline chart: ${years.length} years, ${datasets.length} streams`);
             
             streamTimelineChart = new Chart(ctx, {
                 type: 'line',
