@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS Research Streams Explorer | 2000-2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #db2777;
+            --success: #059669;
+            --warning: #d97706;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: var(--dark);
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: var(--light);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        /* Content Panels */
+        .panel {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stream Cards */
+        .streams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .stream-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .stream-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .stream-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stream-id {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stream-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .badge-hot { background: linear-gradient(135deg, #f59e0b, #dc2626); }
+        .badge-impactful { background: linear-gradient(135deg, #10b981, #059669); }
+        .badge-large { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+
+        .stream-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .topic-tag {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .stream-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Search and Filters */
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Visualizations */
+        .viz-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .viz-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+
+        /* Top Papers */
+        .paper-list {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .paper-item {
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 20px;
+            background: var(--light);
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .paper-item:hover {
+            background: white;
+            box-shadow: var(--shadow);
+            transform: translateX(5px);
+        }
+
+        .paper-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .paper-meta {
+            color: #64748b;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .citation-count {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        .spinner {
+            border: 3px solid var(--light);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .streams-grid { grid-template-columns: 1fr; }
+            .viz-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🔬 IS Research Streams Explorer</h1>
+            <p class="subtitle">Mapping the AIS Basket of Eight Journals (1977-2026)</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-papers">12,561</div>
+                    <div class="stat-label">Research Papers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-streams">8</div>
+                    <div class="stat-label">Research Streams</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-citations">980.7K</div>
+                    <div class="stat-label">Total Citations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Premier Journals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-years">49</div>
+                    <div class="stat-label">Years Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-coverage">80%</div>
+                    <div class="stat-label">Citation Coverage</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('overview')">📊 Overview</button>
+            <button class="tab" onclick="showPanel('explorer')">🔍 Explorer</button>
+            <button class="tab" onclick="showPanel('streams')">🌊 Research Streams</button>
+            <button class="tab" onclick="showPanel('emerging')">🔥 Emerging Topics</button>
+            <button class="tab" onclick="showPanel('impactful')">⭐ Most Impactful</button>
+            <button class="tab" onclick="showPanel('visualizations')">📈 Visualizations</button>
+            <button class="tab" onclick="showPanel('top-papers')">📚 Top Papers</button>
+            <button class="tab" onclick="showPanel('about')">ℹ️ About</button>
+        </div>
+
+        <!-- Overview Panel -->
+        <div id="overview" class="panel active">
+            <div class="viz-container">
+                <h2 style="margin-bottom: 20px;">📊 Key Insights</h2>
+                <div class="streams-grid">
+                    <div class="stream-card">
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">🏆 Most Impactful</h3>
+                        <p><strong>Emerging Technologies</strong></p>
+                        <p style="color: #64748b; margin: 10px 0;">83 papers with 429 average citations</p>
+                        <p style="font-size: 0.9rem;">Includes blockchain, AI, and digital options research</p>
+                    </div>
+                    
+                    <div class="stream-card">
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">🔥 Hottest Topic</h3>
+                        <p><strong>Social Media & Digital Platforms</strong></p>
+                        <p style="color: #64748b; margin: 10px 0;">36.6% of papers from 2020+</p>
+                        <p style="font-size: 0.9rem;">1,610 papers covering social networks and communities</p>
+                    </div>
+                    
+                    <div class="stream-card">
+                        <h3 style="color: var(--secondary); margin-bottom: 15px;">📚 Largest Stream</h3>
+                        <p><strong>Systems Development & Decision Support</strong></p>
+                        <p style="color: #64748b; margin: 10px 0;">2,021 papers spanning 1977-2024</p>
+                        <p style="font-size: 0.9rem;">33.7% of papers are from recent years (2020+)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="viz-container" style="margin-top: 20px;">
+                <h2 style="margin-bottom: 20px;">📈 Temporal Distribution</h2>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; text-align: center;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">845</div>
+                        <div style="color: #64748b;">1977-1989</div>
+                        <div style="color: #64748b; font-size: 0.9rem;">6.7%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">2,429</div>
+                        <div style="color: #64748b;">1990-1999</div>
+                        <div style="color: #64748b; font-size: 0.9rem;">19.3%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">2,859</div>
+                        <div style="color: #64748b;">2000-2009</div>
+                        <div style="color: #64748b; font-size: 0.9rem;">22.7%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">3,719</div>
+                        <div style="color: #64748b;">2010-2019</div>
+                        <div style="color: #64748b; font-size: 0.9rem;">29.6%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent);">2,709</div>
+                        <div style="color: #64748b;">2020-2026</div>
+                        <div style="color: var(--accent); font-size: 0.9rem; font-weight: bold;">21.6% 🔥</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explorer Panel - Hierarchical Navigation -->
+        <div id="explorer" class="panel">
+            <div class="viz-container">
+                <h2 style="margin-bottom: 10px;">🔍 Hierarchical Literature Explorer</h2>
+                <p style="color: #64748b; margin-bottom: 20px;">Navigate from research streams → subtopics → individual papers</p>
+                
+                <!-- Breadcrumb Navigation -->
+                <div id="breadcrumb" style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none;">
+                    <div style="font-size: 0.9rem; color: #64748b;">
+                        <span id="breadcrumbPath"></span>
+                    </div>
+                </div>
+                
+                <!-- Explorer Content Area -->
+                <div id="explorerContent">
+                    <!-- Will be populated by JavaScript -->
+                    <div class="loading">
+                        <p style="color: #64748b;">Select a panel to begin exploring...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Streams Panel -->
+        <div id="streams" class="panel">
+            <div class="controls">
+                <input type="text" id="streamSearch" class="search-box" placeholder="🔍 Search research streams by topic, keyword, or stream number...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterStreams('all')">All Streams</button>
+                    <button class="filter-btn" onclick="filterStreams('large')">Large (500+)</button>
+                    <button class="filter-btn" onclick="filterStreams('emerging')">Emerging</button>
+                    <button class="filter-btn" onclick="filterStreams('impactful')">High Impact</button>
+                </div>
+            </div>
+
+            <div id="streamsContainer" class="streams-grid">
+                <!-- Streams will be loaded here by JavaScript -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading research streams...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emerging Topics Panel -->
+        <div id="emerging" class="panel">
+            <div class="viz-container">
+                <h2 style="margin-bottom: 20px;">🔥 Hot Emerging Topics (2020-2025)</h2>
+                <div class="streams-grid" id="emergingStreams">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Most Impactful Panel -->
+        <div id="impactful" class="panel">
+            <div class="viz-container">
+                <h2 style="margin-bottom: 20px;">⭐ Most Impactful Research Streams</h2>
+                <p style="color: #64748b; margin-bottom: 20px;">Ranked by average citations per paper</p>
+                <div class="streams-grid" id="impactfulStreams">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Visualizations Panel -->
+        <div id="visualizations" class="panel">
+            <div class="viz-grid">
+                <div class="viz-container">
+                    <h3 style="margin-bottom: 15px;">📊 Clustering Overview</h3>
+                    <img src="data/clustering_visualization.png" alt="Clustering Overview" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'%3E%3Crect fill=\'%23f8fafc\' width=\'800\' height=\'600\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%2364748b\' font-family=\'Arial\' font-size=\'20\'%3EVisualization loading...%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="viz-container">
+                    <h3 style="margin-bottom: 15px;">📈 Detailed Analysis</h3>
+                    <img src="data/clustering_details.png" alt="Clustering Details" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'%3E%3Crect fill=\'%23f8fafc\' width=\'800\' height=\'600\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%2364748b\' font-family=\'Arial\' font-size=\'20\'%3EVisualization loading...%3C/text%3E%3C/svg%3E'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Papers Panel -->
+        <div id="top-papers" class="panel">
+            <div class="paper-list">
+                <h2 style="margin-bottom: 10px;">📚 Top Papers by Research Stream</h2>
+                <p style="color: #64748b; margin-bottom: 25px;">Most cited papers from each of the 8 major research streams</p>
+                <div id="topPapersContainer">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- About Panel -->
+        <div id="about" class="panel">
+            <div class="viz-container">
+                <h2 style="margin-bottom: 20px;">ℹ️ About This Dashboard</h2>
+                
+                <!-- Dataset Information -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📚 Dataset Overview</h3>
+                    <p style="margin-bottom: 10px;">
+                        This interactive dashboard presents a comprehensive analysis of <strong>12,561 research papers</strong> 
+                        published in the <strong>AIS Basket of Eight</strong> premier Information Systems journals from 
+                        <strong>1977 to 2026</strong>.
+                    </p>
+                    <p style="margin-bottom: 10px;">
+                        Using advanced hybrid clustering techniques combining topic modeling (BERTopic) and hierarchical 
+                        clustering (Agglomerative), we identified <strong>8 major research streams</strong>, 
+                        <strong>48 detailed subtopics</strong>, and <strong>182 granular micro-topics</strong> that 
+                        cover <strong>8,110 papers</strong> (64.6% of the corpus).
+                    </p>
+                    <div style="background: var(--light); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>Coverage Statistics:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>📊 <strong>8 AIS Basket Journals:</strong> EJIS, ISJ, ISR, JAIS, JIT, JMIS, JSIS, MISQ</li>
+                            <li>📅 <strong>Time Span:</strong> 49 years (1977-2026)</li>
+                            <li>📑 <strong>Classified Papers:</strong> 8,110 (64.6%)</li>
+                            <li>📑 <strong>Unclassified Papers:</strong> 4,451 (35.4%)</li>
+                            <li>📚 <strong>Citation Data:</strong> 980,661 citations (80.4% coverage)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Citation Information -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📖 How to Cite</h3>
+                    <div style="background: var(--light); padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9rem;">
+                        <p style="margin-bottom: 15px;"><strong>APA Format:</strong></p>
+                        <p style="margin-bottom: 20px; padding: 10px; background: white; border-left: 4px solid var(--primary);">
+                            [Author Names]. (2025). Mapping the Landscape of Information Systems Research: 
+                            A Hierarchical Analysis of the AIS Basket of Eight (1977-2026). 
+                            <em>Information Systems Research</em>. [Journal details pending]
+                        </p>
+                        
+                        <p style="margin-bottom: 15px;"><strong>BibTeX Entry:</strong></p>
+                        <div style="padding: 10px; background: white; border-left: 4px solid var(--primary); overflow-x: auto;">
+@article{ais_basket_analysis_2025,<br>
+&nbsp;&nbsp;title = {Mapping the Landscape of Information Systems Research: A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)},<br>
+&nbsp;&nbsp;author = {[Authors]},<br>
+&nbsp;&nbsp;journal = {Information Systems Research},<br>
+&nbsp;&nbsp;year = {2025},<br>
+&nbsp;&nbsp;note = {Manuscript submitted for publication}<br>
+}
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #64748b; font-size: 0.9rem;">
+                        <strong>Data Source:</strong> Papers and citation data were collected from OpenAlex 
+                        (originally sourced from Crossref, Microsoft Academic Graph, and other scholarly databases).
+                    </p>
+                </div>
+
+                <!-- Methodology -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">🔬 Methodology</h3>
+                    <p style="margin-bottom: 15px;">
+                        This research employed a rigorous multi-stage analytical approach:
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                        <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 10px;">1️⃣ Data Collection</h4>
+                            <p style="font-size: 0.9rem;">
+                                Comprehensive retrieval of all papers from the AIS Basket of Eight journals 
+                                using OpenAlex API, including metadata, abstracts, and citation information.
+                            </p>
+                        </div>
+                        <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 10px;">2️⃣ Topic Modeling</h4>
+                            <p style="font-size: 0.9rem;">
+                                BERTopic with MPNet embeddings for semantic representation of papers, 
+                                capturing nuanced relationships in research topics.
+                            </p>
+                        </div>
+                        <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 10px;">3️⃣ Hierarchical Clustering</h4>
+                            <p style="font-size: 0.9rem;">
+                                Three-level agglomerative clustering to organize topics into streams (L1), 
+                                subtopics (L2), and micro-topics (L3).
+                            </p>
+                        </div>
+                        <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 10px;">4️⃣ Expert Validation</h4>
+                            <p style="font-size: 0.9rem;">
+                                Cluster labels and themes reviewed and refined by domain experts 
+                                in Information Systems research.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Notes -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">⚙️ Technical Details</h3>
+                    <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                        <ul style="margin-left: 20px;">
+                            <li><strong>Embedding Model:</strong> all-mpnet-base-v2 (768-dimensional semantic vectors)</li>
+                            <li><strong>Topic Model:</strong> BERTopic with UMAP dimensionality reduction and HDBSCAN clustering</li>
+                            <li><strong>Hierarchical Clustering:</strong> Agglomerative clustering with Ward linkage</li>
+                            <li><strong>Evaluation Metrics:</strong> Silhouette scores, topic coherence, temporal consistency</li>
+                            <li><strong>Data Quality:</strong> 80.4% citation coverage, verified DOIs, standardized journal names</li>
+                            <li><strong>Dashboard Technology:</strong> Static HTML/JavaScript (no server required)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Important Notes -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">⚠️ Important Notes</h3>
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                        <ul style="margin-left: 20px;">
+                            <li style="margin-bottom: 10px;">
+                                <strong>Unclassified Papers:</strong> 4,451 papers (35.4%) were not assigned to clusters. 
+                                These include very recent publications, highly specialized topics, and papers with 
+                                limited metadata. They are included in the total count but not in stream analyses.
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>Citation Data:</strong> Citation counts are from OpenAlex and may differ slightly 
+                                from Google Scholar or Web of Science. Coverage is 80.4% of papers.
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>Temporal Range:</strong> While the dataset spans 1977-2026, most papers are from 
+                                1990 onwards. The 2026 papers are early online publications.
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>Dynamic Research:</strong> Research streams are not static. Papers may bridge 
+                                multiple streams, and classifications reflect dominant themes.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- License and Usage -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📜 License & Usage</h3>
+                    <p style="margin-bottom: 10px;">
+                        This dashboard and the underlying data analysis are provided for <strong>academic and research purposes</strong>. 
+                        The data is aggregated from publicly available sources (OpenAlex, Crossref).
+                    </p>
+                    <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                        <p style="margin-bottom: 10px;"><strong>You are free to:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Use this dashboard for research and education</li>
+                            <li>Cite this work in your publications</li>
+                            <li>Share the dashboard URL with colleagues</li>
+                        </ul>
+                        <p style="margin-top: 15px; margin-bottom: 10px;"><strong>Please:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Provide proper attribution when using or citing this work</li>
+                            <li>Do not redistribute the raw data without permission</li>
+                            <li>Contact us for commercial usage or data licensing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📧 Contact & Feedback</h3>
+                    <p style="margin-bottom: 10px;">
+                        We welcome feedback, questions, and collaboration opportunities.
+                    </p>
+                    <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                        <p style="margin-bottom: 10px;">
+                            <strong>For questions about the research:</strong><br>
+                            Please refer to the manuscript for detailed methodology and findings.
+                        </p>
+                        <p style="margin-bottom: 10px;">
+                            <strong>For technical issues or data questions:</strong><br>
+                            Please open an issue on our GitHub repository or contact the authors directly.
+                        </p>
+                        <p style="margin-top: 15px; color: #64748b; font-size: 0.9rem;">
+                            <strong>Dashboard Version:</strong> 1.0 | 
+                            <strong>Last Updated:</strong> <span id="lastUpdated"></span> | 
+                            <strong>Data Snapshot:</strong> October 2025
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Acknowledgments -->
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">🙏 Acknowledgments</h3>
+                    <p style="margin-bottom: 10px;">
+                        This research was made possible by:
+                    </p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>OpenAlex:</strong> For providing open access to scholarly metadata and citation data</li>
+                        <li><strong>AIS (Association for Information Systems):</strong> For establishing and maintaining the Basket of Eight journals</li>
+                        <li><strong>Journal Publishers:</strong> EJIS, ISJ, ISR, JAIS, JIT, JMIS, JSIS, and MISQ for their commitment to high-quality IS research</li>
+                        <li><strong>Open Source Community:</strong> For the tools and libraries that made this analysis possible (Python, Pandas, Scikit-learn, BERTopic, Sentence Transformers)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Dashboard Data -->
+    <script src="dashboard-data.js"></script>
+    
+    <script>
+        // Transform new data format to work with existing dashboard
+        const streams = dashboardData.streams
+            .filter(s => s.id >= 0)  // Exclude unclassified for main view
+            .map(stream => ({
+                id: stream.id,
+                name: stream.title,
+                size: stream.size,
+                years: stream.yearRange,
+                topics: stream.topKeywords.slice(0, 4),
+                avgCites: Math.round(stream.avgCitations),
+                recent: Math.round(stream.recentActivity * 100),
+                totalCites: stream.totalCitations,
+                journal: "AIS Basket",
+                badge: stream.recentActivity > 0.30 ? 'hot' : stream.avgCitations > 200 ? 'impactful' : null
+            }));
+
+        // Extract top papers from all streams
+        const allPapers = [];
+        dashboardData.streams.forEach(stream => {
+            if (stream.samplePapers) {
+                stream.samplePapers.forEach(paper => {
+                    allPapers.push({
+                        title: paper.title,
+                        year: paper.year,
+                        cites: paper.citations,
+                        stream: stream.id
+                    });
+                });
+            }
+        });
+        // Sort by citations and take top 10
+        allPapers.sort((a, b) => b.cites - a.cites);
+        const topPapers = allPapers.slice(0, 10);
+
+        console.log(`✅ Loaded ${dashboardData.metadata.totalPapers} papers across ${dashboardData.metadata.streams} classified streams + ${dashboardData.metadata.unclassifiedPapers} unclassified`);
+
+        // Update stats in header with actual data
+        function updateStats() {
+            document.getElementById('stat-papers').textContent = dashboardData.metadata.totalPapers.toLocaleString();
+            document.getElementById('stat-streams').textContent = dashboardData.metadata.streams;
+            const citationsK = (dashboardData.metadata.totalCitations / 1000).toFixed(1);
+            document.getElementById('stat-citations').textContent = `${citationsK}K`;
+            document.getElementById('stat-coverage').textContent = `${Math.round(dashboardData.metadata.citationCoverage)}%`;
+            
+            // Update last updated date in About tab
+            if (dashboardData.metadata.generated) {
+                const generatedDate = new Date(dashboardData.metadata.generated);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('lastUpdated').textContent = generatedDate.toLocaleDateString('en-US', options);
+            }
+        }
+        updateStats();
+
+        // Tab Navigation
+        function showPanel(panelId) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(panelId).classList.add('active');
+            event.target.classList.add('active');
+
+            // Load data for specific panels
+            if (panelId === 'explorer') {
+                loadExplorer();
+            } else if (panelId === 'streams' && !document.getElementById('streamsContainer').dataset.loaded) {
+                loadAllStreams();
+            } else if (panelId === 'emerging') {
+                loadEmergingStreams();
+            } else if (panelId === 'impactful') {
+                loadImpactfulStreams();
+            } else if (panelId === 'top-papers') {
+                loadTopPapers();
+            }
+        }
+
+        // Load All Streams
+        function loadAllStreams() {
+            const container = document.getElementById('streamsContainer');
+            container.innerHTML = streams.map(stream => createStreamCard(stream)).join('');
+            container.dataset.loaded = 'true';
+
+            // Add search functionality
+            document.getElementById('streamSearch').addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('.stream-card').forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+                });
+            });
+        }
+
+        // Create Stream Card
+        function createStreamCard(stream) {
+            const badge = stream.badge === 'hot' ? '<span class="stream-badge badge-hot">🔥 HOT</span>' :
+                         stream.badge === 'impactful' ? '<span class="stream-badge badge-impactful">⭐ HIGH IMPACT</span>' :
+                         stream.size > 1000 ? '<span class="stream-badge badge-large">📚 LARGE</span>' : '';
+
+            return `
+                <div class="stream-card" data-type="${stream.badge || 'normal'}" data-size="${stream.size}">
+                    <div class="stream-header">
+                        <div class="stream-id">Stream #${stream.id}</div>
+                        ${badge}
+                    </div>
+                    <h3 style="margin-bottom: 10px; color: var(--dark);">${stream.name}</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">${stream.years} • ${stream.journal}</p>
+                    
+                    <div class="stream-topics">
+                        ${stream.topics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
+                    </div>
+                    
+                    <div class="stream-metrics">
+                        <div class="metric">
+                            <div class="metric-value">${stream.size}</div>
+                            <div class="metric-label">Papers</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${stream.avgCites}</div>
+                            <div class="metric-label">Avg Cites</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${stream.recent}%</div>
+                            <div class="metric-label">Recent</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter Streams
+        function filterStreams(type) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.stream-card');
+            cards.forEach(card => {
+                if (type === 'all') {
+                    card.style.display = 'block';
+                } else if (type === 'large') {
+                    card.style.display = parseInt(card.dataset.size) >= 500 ? 'block' : 'none';
+                } else if (type === 'emerging') {
+                    card.style.display = card.dataset.type === 'hot' ? 'block' : 'none';
+                } else if (type === 'impactful') {
+                    card.style.display = card.dataset.type === 'impactful' ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Load Emerging Streams
+        function loadEmergingStreams() {
+            const emerging = streams.filter(s => s.recent >= 25).sort((a, b) => b.recent - a.recent);
+            if (emerging.length === 0) {
+                document.getElementById('emergingStreams').innerHTML = `
+                    <div class="stream-card">
+                        <p style="color: #64748b; text-align: center; padding: 40px;">
+                            No emerging streams found. Adjust the "recent activity" threshold in the filter.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+            document.getElementById('emergingStreams').innerHTML = emerging.map(stream => createStreamCard(stream)).join('');
+        }
+
+        // Load Impactful Streams
+        function loadImpactfulStreams() {
+            const impactful = [...streams].sort((a, b) => b.avgCites - a.avgCites).slice(0, 10);
+            document.getElementById('impactfulStreams').innerHTML = impactful.map(stream => createStreamCard(stream)).join('');
+        }
+
+        // Load Top Papers
+        function loadTopPapers() {
+            const container = document.getElementById('topPapersContainer');
+            
+            // Get top 3 papers from each stream
+            let html = '';
+            streams.forEach(stream => {
+                // Get papers from this stream from dashboardData
+                const streamPapers = dashboardData.streams
+                    .find(s => s.id === stream.id)?.samplePapers || [];
+                
+                if (streamPapers.length === 0) return;
+                
+                // Sort by citations and take top 3
+                const topStreamPapers = streamPapers
+                    .sort((a, b) => b.citations - a.citations)
+                    .slice(0, 3);
+                
+                html += `
+                    <div class="stream-section" style="margin-bottom: 30px;">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--light); padding-bottom: 10px;">
+                            Stream #${stream.id}: ${stream.name}
+                        </h3>
+                        ${topStreamPapers.map((paper, idx) => {
+                            // Create DOI link
+                            const doiLink = paper.doi ? `https://doi.org/${paper.doi}` : '#';
+                            const titleHtml = paper.doi 
+                                ? `<a href="${doiLink}" target="_blank" rel="noopener noreferrer" style="color: var(--dark); text-decoration: none; border-bottom: 1px dotted var(--primary);">${paper.title}</a>`
+                                : paper.title;
+                            
+                            return `
+                            <div class="paper-item" style="margin-bottom: 15px; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                                <div class="paper-title" style="font-weight: 600; margin-bottom: 8px;">
+                                    ${idx + 1}. ${titleHtml}
+                                </div>
+                                <div class="paper-meta" style="font-size: 0.9rem; color: #64748b;">
+                                    <span><strong>Year:</strong> ${paper.year}</span> • 
+                                    <span><strong>Journal:</strong> ${paper.journal}</span> • 
+                                    <span style="color: var(--accent); font-weight: 600;">🎯 ${paper.citations.toLocaleString()} citations</span>
+                                    ${paper.doi ? ` • <a href="${doiLink}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none;">📄 DOI</a>` : ''}
+                                </div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // ========== HIERARCHICAL EXPLORER FUNCTIONS ==========
+        
+        // Load Explorer - Show L1 Streams
+        function loadExplorer() {
+            const container = document.getElementById('explorerContent');
+            document.getElementById('breadcrumb').style.display = 'none';
+            
+            let html = '<div class="streams-grid">';
+            dashboardData.streams.filter(s => s.id >= 0).forEach(stream => {
+                html += `
+                    <div class="stream-card" style="cursor: pointer; transition: transform 0.2s;" 
+                         onclick="loadL2Subtopics(${stream.id}, '${stream.title.replace(/'/g, "\\'")}')">
+                        <div class="stream-header">
+                            <div class="stream-id">Stream #${stream.id}</div>
+                            <span style="color: var(--accent); font-size: 0.9rem;">${stream.size} papers</span>
+                        </div>
+                        <h3 style="margin-bottom: 10px; color: var(--dark);">${stream.title}</h3>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">
+                            ${stream.l2Subtopics.length} subtopics
+                        </p>
+                        <div class="stream-topics">
+                            ${stream.topKeywords.slice(0, 3).map(kw => 
+                                `<span class="topic-tag">${kw}</span>`
+                            ).join('')}
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: var(--primary); font-weight: 600;">
+                            Click to explore subtopics →
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        
+        // Load L2 Subtopics for a stream
+        function loadL2Subtopics(streamId, streamName) {
+            const container = document.getElementById('explorerContent');
+            const stream = dashboardData.streams.find(s => s.id === streamId);
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.style.display = 'block';
+            document.getElementById('breadcrumbPath').innerHTML = `
+                <a href="#" onclick="loadExplorer(); return false;" style="color: var(--primary); text-decoration: none;">🏠 All Streams</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <strong>Stream #${streamId}: ${streamName}</strong>
+            `;
+            
+            // Display subtopics
+            let html = `
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Subtopics in Stream #${streamId}: ${streamName}</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">Click on a subtopic to explore micro-topics and papers</p>
+                </div>
+                <div class="streams-grid">
+            `;
+            
+            stream.l2Subtopics.forEach(subtopic => {
+                const hasL3 = subtopic.l3Microtopics && subtopic.l3Microtopics.length > 0;
+                html += `
+                    <div class="stream-card" style="cursor: pointer;" 
+                         onclick="${hasL3 
+                            ? `loadL3Microtopics(${streamId}, '${streamName.replace(/'/g, "\\'")}', '${subtopic.id}', '${subtopic.title.replace(/'/g, "\\'")}')`
+                            : `loadL2Papers(${streamId}, '${streamName.replace(/'/g, "\\'")}', '${subtopic.id}', '${subtopic.title.replace(/'/g, "\\'")}')`
+                         }">
+                        <div class="stream-header">
+                            <div class="stream-id">Subtopic ${subtopic.id}</div>
+                            <span style="color: var(--accent); font-size: 0.9rem;">${subtopic.paperCount} papers</span>
+                        </div>
+                        <h4 style="margin-bottom: 10px; color: var(--dark);">${subtopic.title}</h4>
+                        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 8px;">
+                            ${hasL3 ? `${subtopic.l3Microtopics.length} micro-topics • ` : ''}Avg year: ${subtopic.avgYear.toFixed(0)}
+                        </p>
+                        <div class="stream-topics">
+                            ${subtopic.topKeywords.slice(0, 4).map(kw => 
+                                `<span class="topic-tag">${kw}</span>`
+                            ).join('')}
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: var(--primary); font-weight: 600;">
+                            ${hasL3 ? `Explore ${subtopic.l3Microtopics.length} micro-topics →` : `View ${subtopic.paperCount} papers →`}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        
+        // Load L3 Micro-topics for an L2 Subtopic
+        function loadL3Microtopics(streamId, streamName, subtopicId, subtopicName) {
+            const container = document.getElementById('explorerContent');
+            const stream = dashboardData.streams.find(s => s.id === streamId);
+            const l2Num = parseInt(subtopicId.split('.')[1]);
+            const subtopic = stream.l2Subtopics.find(st => st.id === subtopicId);
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            document.getElementById('breadcrumbPath').innerHTML = `
+                <a href="#" onclick="loadExplorer(); return false;" style="color: var(--primary); text-decoration: none;">🏠 All Streams</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <a href="#" onclick="loadL2Subtopics(${streamId}, '${streamName.replace(/'/g, "\\'")}'); return false;" 
+                   style="color: var(--primary); text-decoration: none;">Stream #${streamId}</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <strong>Subtopic ${subtopicId}: ${subtopicName}</strong>
+            `;
+            
+            // Display micro-topics
+            let html = `
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Micro-topics in ${subtopicName}</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">Stream #${streamId}: ${streamName} › Subtopic ${subtopicId}</p>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-top: 5px;">Click on a micro-topic to view all papers</p>
+                </div>
+                <div class="streams-grid">
+            `;
+            
+            subtopic.l3Microtopics.forEach(microtopic => {
+                html += `
+                    <div class="stream-card" style="cursor: pointer;" 
+                         onclick="loadL3Papers(${streamId}, '${streamName.replace(/'/g, "\\'")}', '${subtopicId}', '${subtopicName.replace(/'/g, "\\'")}', '${microtopic.id}', '${microtopic.title.replace(/'/g, "\\'")}')">
+                        <div class="stream-header">
+                            <div class="stream-id">Micro-topic ${microtopic.id}</div>
+                            <span style="color: var(--accent); font-size: 0.9rem;">${microtopic.paperCount} papers</span>
+                        </div>
+                        <h4 style="margin-bottom: 10px; color: var(--dark); font-size: 0.95rem;">${microtopic.title}</h4>
+                        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 8px;">
+                            Avg year: ${microtopic.avgYear.toFixed(0)}
+                        </p>
+                        <div class="stream-topics">
+                            ${microtopic.topKeywords.slice(0, 3).map(kw => 
+                                `<span class="topic-tag" style="font-size: 0.75rem;">${kw}</span>`
+                            ).join('')}
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: var(--primary); font-weight: 600;">
+                            View ${microtopic.paperCount} papers →
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        
+        // Load Papers for an L3 Micro-topic
+        function loadL3Papers(streamId, streamName, subtopicId, subtopicName, microtopicId, microtopicName) {
+            const container = document.getElementById('explorerContent');
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            document.getElementById('breadcrumbPath').innerHTML = `
+                <a href="#" onclick="loadExplorer(); return false;" style="color: var(--primary); text-decoration: none;">🏠 All Streams</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <a href="#" onclick="loadL2Subtopics(${streamId}, '${streamName.replace(/'/g, "\\'")}'); return false;" 
+                   style="color: var(--primary); text-decoration: none;">Stream #${streamId}</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <a href="#" onclick="loadL3Microtopics(${streamId}, '${streamName.replace(/'/g, "\\'")}', '${subtopicId}', '${subtopicName.replace(/'/g, "\\'")}'); return false;" 
+                   style="color: var(--primary); text-decoration: none;">Subtopic ${subtopicId}</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <strong>Micro-topic ${microtopicId}</strong>
+            `;
+            
+            // Get papers for this L1-L2-L3 combination
+            const l2Num = parseInt(subtopicId.split('.')[1]);
+            const l3Num = parseInt(microtopicId.split('.')[2]);
+            const papers = dashboardData.papers.filter(p => 
+                p.l1 === streamId && p.l2 === l2Num && p.l3 === l3Num
+            );
+            
+            // Sort by citations descending
+            papers.sort((a, b) => b.citations - a.citations);
+            
+            displayPaperList(papers, {
+                streamId, streamName, subtopicId, subtopicName, microtopicId, microtopicName,
+                title: `${papers.length} Papers in Micro-topic ${microtopicId}: ${microtopicName}`,
+                subtitle: `Stream #${streamId}: ${streamName} › Subtopic ${subtopicId}: ${subtopicName}`
+            });
+        }
+        
+        // Load Papers for an L2 Subtopic
+        function loadL2Papers(streamId, streamName, subtopicId, subtopicName) {
+            const container = document.getElementById('explorerContent');
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            document.getElementById('breadcrumbPath').innerHTML = `
+                <a href="#" onclick="loadExplorer(); return false;" style="color: var(--primary); text-decoration: none;">🏠 All Streams</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <a href="#" onclick="loadL2Subtopics(${streamId}, '${streamName.replace(/'/g, "\\'")}'); return false;" 
+                   style="color: var(--primary); text-decoration: none;">Stream #${streamId}</a>
+                <span style="margin: 0 8px; color: #cbd5e1;">›</span>
+                <strong>Subtopic ${subtopicId}: ${subtopicName}</strong>
+            `;
+            
+            // Get papers for this L1-L2 combination
+            const l2Num = parseInt(subtopicId.split('.')[1]);
+            const papers = dashboardData.papers.filter(p => 
+                p.l1 === streamId && p.l2 === l2Num
+            );
+            
+            // Sort by citations descending
+            papers.sort((a, b) => b.citations - a.citations);
+            
+            displayPaperList(papers, {
+                streamId, streamName, subtopicId, subtopicName,
+                title: `${papers.length} Papers in Subtopic ${subtopicId}: ${subtopicName}`,
+                subtitle: `Stream #${streamId}: ${streamName}`
+            });
+        }
+        
+        // Display a list of papers (reusable function)
+        function displayPaperList(papers, context) {
+            const container = document.getElementById('explorerContent');
+            
+            let html = `
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">${context.title}</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">${context.subtitle}</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <button onclick="sortPapers('citations')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
+                            Sort by Citations
+                        </button>
+                        <button onclick="sortPapers('year-desc')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
+                            Sort by Year (Newest)
+                        </button>
+                        <button onclick="sortPapers('year-asc')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
+                            Sort by Year (Oldest)
+                        </button>
+                    </div>
+                </div>
+                <div id="papersList">
+            `;
+            
+            papers.forEach((paper, idx) => {
+                const doiLink = paper.doi ? `https://doi.org/${paper.doi}` : '#';
+                const titleHtml = paper.doi 
+                    ? `<a href="${doiLink}" target="_blank" rel="noopener noreferrer" style="color: var(--dark); text-decoration: none;">${paper.title}</a>`
+                    : paper.title;
+                
+                html += `
+                    <div class="paper-item" style="margin-bottom: 15px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 3px solid var(--primary);" data-year="${paper.year}" data-citations="${paper.citations}">
+                        <div style="font-weight: 600; margin-bottom: 8px; font-size: 1.05rem;">
+                            ${idx + 1}. ${titleHtml}
+                        </div>
+                        <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 6px;">
+                            <span><strong>Year:</strong> ${paper.year}</span> • 
+                            <span><strong>Journal:</strong> ${paper.journal}</span> • 
+                            <span style="color: var(--accent); font-weight: 600;">🎯 ${paper.citations.toLocaleString()} citations</span>
+                            ${paper.doi ? ` • <a href="${doiLink}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none;">📄 DOI</a>` : ''}
+                        </div>
+                        ${paper.abstract ? `
+                            <div style="font-size: 0.85rem; color: #64748b; margin-top: 8px; line-height: 1.5;">
+                                <strong>Abstract:</strong> ${paper.abstract.substring(0, 250)}${paper.abstract.length > 250 ? '...' : ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            
+            // Store current papers and context for sorting
+            window.currentPapers = papers;
+            window.currentContext = context;
+        }
+        
+        // Sort papers in the current view
+        function sortPapers(sortBy) {
+            if (!window.currentPapers || !window.currentContext) return;
+            
+            const papers = [...window.currentPapers];
+            
+            if (sortBy === 'citations') {
+                papers.sort((a, b) => b.citations - a.citations);
+            } else if (sortBy === 'year-desc') {
+                papers.sort((a, b) => b.year - a.year);
+            } else if (sortBy === 'year-asc') {
+                papers.sort((a, b) => a.year - b.year);
+            }
+            
+            window.currentPapers = papers;
+            
+            // Reload with new sort
+            displayPaperList(papers, window.currentContext);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('IS Research Streams Explorer loaded successfully!');
+        });
+    </script>
+</body>
+</html>
