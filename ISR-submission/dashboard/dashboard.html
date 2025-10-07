@@ -1251,6 +1251,62 @@
                                style="width: 100%; padding: 12px 20px; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem;">
                     </div>
                     
+                    <!-- Advanced Filters Toggle -->
+                    <div style="margin-bottom: 15px;">
+                        <button onclick="toggleAdvancedFilters()" class="filter-btn" style="padding: 8px 16px; font-size: 0.9rem;">
+                            ⚙️ Advanced Filters
+                        </button>
+                        <button onclick="resetFilters()" class="filter-btn" style="padding: 8px 16px; font-size: 0.9rem; margin-left: 10px;">
+                            🔄 Reset Filters
+                        </button>
+                    </div>
+                    
+                    <!-- Advanced Filters Panel -->
+                    <div id="advancedFilters" style="display: none; background: var(--light); padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
+                        <h4 style="margin-top: 0; margin-bottom: 15px; color: var(--primary);">📊 Filter Options</h4>
+                        
+                        <!-- Year Range Filter -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                                📅 Publication Year Range: <span id="yearRangeDisplay">1977 - 2026</span>
+                            </label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <span style="font-size: 0.9rem; color: #64748b;">1977</span>
+                                <input type="range" id="yearMinFilter" min="1977" max="2026" value="1977" 
+                                       oninput="updateYearRange(); filterPapers()" 
+                                       style="flex: 1;">
+                                <input type="range" id="yearMaxFilter" min="1977" max="2026" value="2026" 
+                                       oninput="updateYearRange(); filterPapers()" 
+                                       style="flex: 1;">
+                                <span style="font-size: 0.9rem; color: #64748b;">2026</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Citation Threshold Filter -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                                🎯 Minimum Citations: <span id="citationThresholdDisplay">0</span>
+                            </label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <span style="font-size: 0.9rem; color: #64748b;">0</span>
+                                <input type="range" id="citationFilter" min="0" max="500" value="0" step="10"
+                                       oninput="updateCitationThreshold(); filterPapers()" 
+                                       style="flex: 1;">
+                                <span style="font-size: 0.9rem; color: #64748b;">500+</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Journal Filter -->
+                        <div style="margin-bottom: 10px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                                📚 Journals
+                            </label>
+                            <div id="journalFilters" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+                                <!-- Will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- Filters and Sort -->
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
                         <!-- Sort Options -->
@@ -1324,6 +1380,89 @@
             window.currentPapers = papers;
             window.currentContext = context;
             window.allCurrentPapers = papers; // Keep original unfiltered list
+            
+            // Populate journal filters
+            populateJournalFilters(papers);
+        }
+        
+        // Populate journal filter checkboxes
+        function populateJournalFilters(papers) {
+            const journalSet = new Set(papers.map(p => p.journal));
+            const journals = Array.from(journalSet).sort();
+            
+            const container = document.getElementById('journalFilters');
+            if (!container) return;
+            
+            container.innerHTML = journals.map(journal => `
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.9rem;">
+                    <input type="checkbox" 
+                           class="journal-filter-checkbox" 
+                           value="${journal}" 
+                           checked
+                           onchange="filterPapers()"
+                           style="cursor: pointer;">
+                    <span>${journal}</span>
+                </label>
+            `).join('');
+        }
+        
+        // Toggle advanced filters panel
+        function toggleAdvancedFilters() {
+            const panel = document.getElementById('advancedFilters');
+            if (panel) {
+                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+        
+        // Update year range display
+        function updateYearRange() {
+            const minYear = document.getElementById('yearMinFilter');
+            const maxYear = document.getElementById('yearMaxFilter');
+            const display = document.getElementById('yearRangeDisplay');
+            
+            if (minYear && maxYear && display) {
+                // Ensure min <= max
+                if (parseInt(minYear.value) > parseInt(maxYear.value)) {
+                    minYear.value = maxYear.value;
+                }
+                display.textContent = `${minYear.value} - ${maxYear.value}`;
+            }
+        }
+        
+        // Update citation threshold display
+        function updateCitationThreshold() {
+            const slider = document.getElementById('citationFilter');
+            const display = document.getElementById('citationThresholdDisplay');
+            
+            if (slider && display) {
+                display.textContent = slider.value;
+            }
+        }
+        
+        // Reset all filters
+        function resetFilters() {
+            // Reset search
+            const searchInput = document.getElementById('paperSearch');
+            if (searchInput) searchInput.value = '';
+            
+            // Reset year range
+            const yearMin = document.getElementById('yearMinFilter');
+            const yearMax = document.getElementById('yearMaxFilter');
+            if (yearMin) yearMin.value = '1977';
+            if (yearMax) yearMax.value = '2026';
+            updateYearRange();
+            
+            // Reset citations
+            const citationFilter = document.getElementById('citationFilter');
+            if (citationFilter) citationFilter.value = '0';
+            updateCitationThreshold();
+            
+            // Reset journal checkboxes
+            const checkboxes = document.querySelectorAll('.journal-filter-checkbox');
+            checkboxes.forEach(cb => cb.checked = true);
+            
+            // Reapply filters (which will show all)
+            filterPapers();
         }
         
         // Sort papers in the current view
@@ -1346,26 +1485,49 @@
             displayPaperList(papers, window.currentContext);
         }
         
-        // Filter papers based on search query
+        // Filter papers based on search query and advanced filters
         function filterPapers() {
+            if (!window.allCurrentPapers) return;
+            
+            let filtered = [...window.allCurrentPapers];
+            
+            // 1. Apply search filter
             const searchInput = document.getElementById('paperSearch');
-            if (!searchInput || !window.allCurrentPapers) return;
-            
-            const query = searchInput.value.toLowerCase().trim();
-            
-            if (!query) {
-                // Show all papers if search is empty
-                window.currentPapers = window.allCurrentPapers;
-                displayPaperList(window.allCurrentPapers, window.currentContext);
-                return;
+            if (searchInput && searchInput.value.trim()) {
+                const query = searchInput.value.toLowerCase().trim();
+                filtered = filtered.filter(paper => {
+                    const searchableText = `${paper.title} ${paper.abstract || ''} ${paper.l1Label || ''} ${paper.l3Label || ''}`.toLowerCase();
+                    return searchableText.includes(query);
+                });
             }
             
-            // Filter papers by search query
-            const filtered = window.allCurrentPapers.filter(paper => {
-                const searchableText = `${paper.title} ${paper.abstract || ''} ${paper.l1Label || ''} ${paper.l3Label || ''}`.toLowerCase();
-                return searchableText.includes(query);
-            });
+            // 2. Apply year range filter
+            const yearMin = document.getElementById('yearMinFilter');
+            const yearMax = document.getElementById('yearMaxFilter');
+            if (yearMin && yearMax) {
+                const minYear = parseInt(yearMin.value);
+                const maxYear = parseInt(yearMax.value);
+                filtered = filtered.filter(paper => {
+                    const year = paper.year || 0;
+                    return year >= minYear && year <= maxYear;
+                });
+            }
             
+            // 3. Apply citation threshold filter
+            const citationFilter = document.getElementById('citationFilter');
+            if (citationFilter) {
+                const minCitations = parseInt(citationFilter.value);
+                filtered = filtered.filter(paper => (paper.citations || 0) >= minCitations);
+            }
+            
+            // 4. Apply journal filter
+            const journalCheckboxes = document.querySelectorAll('.journal-filter-checkbox:checked');
+            if (journalCheckboxes.length > 0) {
+                const selectedJournals = new Set(Array.from(journalCheckboxes).map(cb => cb.value));
+                filtered = filtered.filter(paper => selectedJournals.has(paper.journal));
+            }
+            
+            // Update current papers and display
             window.currentPapers = filtered;
             displayPaperList(filtered, window.currentContext);
         }
