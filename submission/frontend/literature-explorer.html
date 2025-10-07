@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIS Basket Literature Explorer - Hybrid Clustering with Citations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .header .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .methodology-banner {
+            background: var(--surface);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .methodology-banner h2 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .method-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .method-icon {
+            background: var(--secondary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .controls {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 0.5rem 1rem;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .chip:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .stream-list {
+            list-style: none;
+        }
+
+        .stream-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .stream-item:hover {
+            background: var(--background);
+            border-color: var(--border);
+        }
+
+        .stream-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stream-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .stream-count {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .stream-item.active .stream-count {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stream-keywords {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            opacity: 0.8;
+        }
+
+        .main-content {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb-separator {
+            color: var(--border);
+        }
+
+        .breadcrumb-item {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-item:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--background);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .topic-card {
+            background: var(--background);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .topic-id {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.875rem;
+        }
+
+        .topic-size {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .topic-keywords {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .papers-list {
+            list-style: none;
+        }
+
+        .paper-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .paper-item:last-child {
+            border-bottom: none;
+        }
+
+        .paper-item:hover {
+            background: var(--background);
+        }
+
+        .paper-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .paper-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .paper-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .paper-topics {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .paper-topic-tag {
+            background: var(--background);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+        }
+
+        .citation-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        .empty-state h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box-content {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .toggle-details {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--primary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toggle-details:hover {
+            text-decoration: underline;
+        }
+
+        .paper-details {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.875rem;
+            display: none;
+        }
+
+        .paper-details.show {
+            display: block;
+        }
+
+        .detail-row {
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text);
+            display: inline-block;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔬 AIS Basket Literature Explorer</h1>
+        <div class="subtitle">3-Level Hybrid Clustering: Text Similarity + Citation Networks</div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="total-papers">8,110</div>
+                <div class="stat-label">Total Papers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">8</div>
+                <div class="stat-label">L1 Streams</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">48</div>
+                <div class="stat-label">L2 Subtopics</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">182</div>
+                <div class="stat-label">L3 Micro-topics</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">0.340</div>
+                <div class="stat-label">Silhouette Score</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="methodology-banner">
+            <h2>📊 Methodology & Tools</h2>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <div class="method-icon">1</div>
+                    <div>
+                        <strong>OpenAlex API</strong><br>
+                        <span style="font-size: 0.875rem; color: var(--text-light);">Citation data extraction (99.9% match rate)</span>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">2</div>
+                    <div>
+                        <strong>TF-IDF + LSI</strong><br>
+                        <span style="font-size: 0.875rem; color: var(--text-light);">Text feature extraction (200 dimensions)</span>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">3</div>
+                    <div>
+                        <strong>Bibliographic Coupling</strong><br>
+                        <span style="font-size: 0.875rem; color: var(--text-light);">Citation network analysis (Jaccard similarity)</span>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">4</div>
+                    <div>
+                        <strong>Hybrid Features</strong><br>
+                        <span style="font-size: 0.875rem; color: var(--text-light);">60% text + 40% citations = 11.7x better clustering</span>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">5</div>
+                    <div>
+                        <strong>Sparse Matrix Optimization</strong><br>
+                        <span style="font-size: 0.875rem; color: var(--text-light);">Inverted index (91.3% sparsity, 15-30x speedup)</span>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">6</div>
+                    <div>
+                        <strong>NMF Topic Modeling</strong><br>
+                        <span style="font-size: 0.875rem; color: var(--text-light);">Hierarchical subtopic discovery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input type="text" class="search-box" id="search-input" placeholder="🔍 Search papers by title, author, keywords...">
+            <div class="filter-chips">
+                <div class="chip active" data-filter="all">All Papers</div>
+                <div class="chip" data-filter="cited">With Citations</div>
+                <div class="chip" data-filter="recent">Recent (2020+)</div>
+                <div class="chip" data-filter="classics">Classics (pre-2010)</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="sidebar">
+                <h3>Research Streams</h3>
+                <ul class="stream-list" id="stream-list">
+                    <li class="stream-item active" data-stream="all">
+                        <div class="stream-header">
+                            <span>📚 All Streams</span>
+                            <span class="stream-count">8,110</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <div class="breadcrumb" id="breadcrumb">
+                    <span class="breadcrumb-item active">All Streams</span>
+                </div>
+
+                <div class="section-header">
+                    <h2 id="content-title">Overview</h2>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="topics">Topics</button>
+                        <button class="view-btn" data-view="papers">Papers</button>
+                    </div>
+                </div>
+
+                <div id="content-area">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 1rem; color: var(--text-light);">Loading data...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>AIS Basket Literature Explorer</strong> | Powered by OpenAlex, scikit-learn, and Python</p>
+        <p style="margin-top: 0.5rem;">Hybrid clustering: 11.7x better than text-only | 88% citation coverage | Professional-grade quality (silhouette > 0.3)</p>
+    </div>
+
+    <script src="literature-explorer.js"></script>
+</body>
+</html>
