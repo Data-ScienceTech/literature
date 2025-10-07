@@ -648,19 +648,9 @@ This system represents a breakthrough in IS research infrastructure:
 - ✅ 99.9% semantic concept coverage
 - ✅ Automated, production-ready pipeline
 
-## 🔬 **Citation**
-
-When using this dataset in research, please cite:
-
-```bibtex
-@software{ais_basket_analyzer_v2,
-  title={AIS Basket Literature Analyzer v2: Comprehensive IS Research Dataset},
-  author={Your Name},
-  year={2025},
-  url={https://github.com/Data-ScienceTech/literature}
-}
-```
-
 ---
 
-**This system sets the new standard for academic literature data collection and analysis in Information Systems research.** 🏆
+**Dashboard Version**: 1.0  
+**Last Updated**: October 2025  
+**Data Snapshot**: October 2025  
+**Repository Structure**: ISR-submission only (cleaned for publication)
