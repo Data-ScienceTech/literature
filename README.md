@@ -1,252 +1,502 @@
-# IS Research Streams Analysis# AIS Basket Literature Analyzer v2
+# Mapping the Landscape of Information Systems Research# IS Research Streams Analysis# AIS Basket Literature Analyzer v2
 
 
 
-[![GitHub Pages](https://img.shields.io/badge/Dashboard-Live-success)](https://data-sciencetech.github.io/literature/)🚀 **The Most Comprehensive IS Research Dataset & Analysis System**
+[![GitHub Pages](https://img.shields.io/badge/Dashboard-Live-success)](https://data-sciencetech.github.io/literature/)
 
 [![License](https://img.shields.io/badge/License-Academic-blue.svg)](LICENSE)
 
+[![GitHub Pages](https://img.shields.io/badge/Dashboard-Live-success)](https://data-sciencetech.github.io/literature/)🚀 **The Most Comprehensive IS Research Dataset & Analysis System**
+
+> **A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)**  
+
+> Carlos Denner Santos  [![License](https://img.shields.io/badge/License-Academic-blue.svg)](LICENSE)
+
+> Manuscript submitted to *Information Systems Research*
+
 A production-ready system for fetching, enriching, and analyzing Information Systems research from the AIS Basket of 8 journals. This system has successfully created a dataset of **12,564 articles** with unprecedented data quality and coverage.
+
+This repository contains the complete research package including manuscript, appendices, interactive dashboard, data, and reproducibility scripts for our comprehensive analysis of **12,561 research papers** from the AIS Basket of Eight journals spanning nearly five decades (1977-2026).
+
+## 🌐 Interactive Dashboard
 
 ## 🌐 Interactive Dashboard
 
 ## 🚀 **Quick Start**
 
+**[→ Explore the Live Dashboard](https://data-sciencetech.github.io/literature/)**
+
 **[Explore the Dashboard →](https://data-sciencetech.github.io/literature/)**
+
+An interactive exploration of 12,561 research papers organized into:
 
 ### **1. Generate Complete Dataset**
 
-An interactive exploration of **12,561 research papers** from the AIS Basket of Eight journals (1977-2026), organized into:```bash
+- 🌊 **8 Major Research Streams** (L1)
 
-# Install dependencies (if needed)
+- 📊 **48 Detailed Subtopics** (L2)An interactive exploration of **12,561 research papers** from the AIS Basket of Eight journals (1977-2026), organized into:```bash
 
-- 🌊 **8 Major Research Streams**pip install requests pandas numpy tqdm pyarrow
+- 🔬 **182 Granular Micro-topics** (L3)
 
-- 📊 **48 Detailed Subtopics**
-
-- 🔬 **182 Granular Micro-topics**# Generate complete dataset (45-50 minutes first time)
-
-- 📚 **980,661 Citations** analyzedpython generate_complete_dataset.py
+- 📚 **980,661 Citations** analyzed# Install dependencies (if needed)
 
 
 
-## 📖 About This Research# Quick regeneration (5 minutes if data exists)
-
-python generate_complete_dataset.py --quick
-
-This repository contains the complete analysis package for our manuscript:```
+### Dashboard Features- 🌊 **8 Major Research Streams**pip install requests pandas numpy tqdm pyarrow
 
 
 
-> **Mapping the Landscape of Information Systems Research: A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)**### **2. Load Data for Analysis**
+- **Hierarchical Navigation**: Browse streams → subtopics → micro-topics → papers- 📊 **48 Detailed Subtopics**
 
-```python
+- **Full-Text Search**: Instant search across titles, abstracts, and research streams
 
-Published in *Information Systems Research* (manuscript under review).import json
+- **Advanced Filtering**: Filter by year range, citation count, and journal- 🔬 **182 Granular Micro-topics**# Generate complete dataset (45-50 minutes first time)
 
-import pandas as pd
+- **Export Functions**: Download filtered results as CSV, BibTeX, or JSON
 
-### Key Features
-
-# Load enriched corpus (recommended)
-
-- **Hierarchical Navigation**: Browse L1 streams → L2 subtopics → L3 micro-topics → individual paperswith open('data/clean/ais_basket_corpus_enriched.json', 'r') as f:
-
-- **Temporal Analysis**: Track research evolution across 49 years    articles = json.load(f)
+- **Temporal Analysis**: Interactive charts showing research evolution (1977-2026)- 📚 **980,661 Citations** analyzedpython generate_complete_dataset.py
 
 - **Citation Insights**: Identify most impactful papers and emerging topics
 
-- **Interactive Visualizations**: Explore clustering, citation networks, and temporal trends# Or load as DataFrame for analysis
+- **Interactive Visualizations**: 11 Chart.js visualizations exploring clustering, citations, and trends
 
-- **Comprehensive Data**: All 8 AIS Basket journals with 80.4% citation coveragedf = pd.read_parquet('data/clean/ais_basket_corpus_enriched.parquet')
 
-```
 
-## 📂 Repository Structure
+## 📂 Repository Structure## 📖 About This Research# Quick regeneration (5 minutes if data exists)
 
-## 🏆 **Dataset Excellence**
 
-```
 
-ISR-submission/### **Unprecedented Coverage**
+This repository contains **only publication-ready materials** for the ISR submission:python generate_complete_dataset.py --quick
 
-├── dashboard/          # Interactive web dashboard (GitHub Pages)- ✅ **12,564 articles** from all 8 AIS Basket journals (1977-2026)
 
-│   ├── dashboard.html- ✅ **99.9% OpenAlex match rate** for enrichment
 
-│   ├── dashboard-data.js- ✅ **64.2% abstract coverage** (improved from 34.1%)
+```This repository contains the complete analysis package for our manuscript:```
 
-│   └── data/          # Visualizations and figures- ✅ **99.9% keyword coverage** (improved from 0%)
+ISR-submission/
 
-├── submission/        # Manuscript and appendices- ✅ **42% enhanced author affiliations**
+├── dashboard/              # Interactive web dashboard (GitHub Pages)
 
-│   ├── manuscript.md- ✅ **Zero data corruption or errors**
+│   ├── dashboard.html      # Main dashboard application
 
-│   └── appendix_*.md
+│   ├── index.html          # Landing page> **Mapping the Landscape of Information Systems Research: A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)**### **2. Load Data for Analysis**
+
+│   ├── data/               # Visualizations and figures
+
+│   └── dashboard-data.js   # Dataset (gitignored - regenerate locally)```python
+
+│
+
+├── submission/             # Manuscript and appendicesPublished in *Information Systems Research* (manuscript under review).import json
+
+│   ├── manuscript.md       # Main manuscript (Pandoc Markdown)
+
+│   ├── appendix_a.md       # Data Collection & Enrichmentimport pandas as pd
+
+│   ├── appendix_b.md       # Topic Modeling & Clustering
+
+│   ├── appendix_c.md       # Validation Results### Key Features
+
+│   ├── appendix_d.md       # Interactive Dashboard Guide
+
+│   └── references.bib      # Complete bibliography# Load enriched corpus (recommended)
+
+│
+
+├── data/                   # Enriched corpus and classifications- **Hierarchical Navigation**: Browse L1 streams → L2 subtopics → L3 micro-topics → individual paperswith open('data/clean/ais_basket_corpus_enriched.json', 'r') as f:
+
+│   ├── ais_basket_corpus_enriched.parquet    # Main dataset (12,561 papers)
+
+│   └── hybrid_streams_3level/- **Temporal Analysis**: Track research evolution across 49 years    articles = json.load(f)
+
+│       └── doc_assignments.csv               # Hierarchical classifications
+
+│- **Citation Insights**: Identify most impactful papers and emerging topics
+
+├── figures/                # Publication-ready figures
+
+│   ├── *.pdf              # Vector graphics for manuscript- **Interactive Visualizations**: Explore clustering, citation networks, and temporal trends# Or load as DataFrame for analysis
+
+│   └── *.png              # Raster versions for web
+
+│- **Comprehensive Data**: All 8 AIS Basket journals with 80.4% citation coveragedf = pd.read_parquet('data/clean/ais_basket_corpus_enriched.parquet')
+
+├── outputs/                # Analysis outputs
+
+│   └── clustering_results/ # Hierarchical clustering results```
+
+│
+
+└── scripts/                # Data processing scripts## 📂 Repository Structure
+
+    ├── generate_dashboard_data.py  # Regenerate dashboard dataset
+
+    └── README.md                   # Script documentation## 🏆 **Dataset Excellence**
+
+
+
+.github/workflows/          # Automated deployment```
+
+└── deploy.yml             # GitHub Pages deployment action
+
+```ISR-submission/### **Unprecedented Coverage**
+
+
+
+## 🚀 Quick Start├── dashboard/          # Interactive web dashboard (GitHub Pages)- ✅ **12,564 articles** from all 8 AIS Basket journals (1977-2026)
+
+
+
+### View the Dashboard│   ├── dashboard.html- ✅ **99.9% OpenAlex match rate** for enrichment
+
+
+
+Simply visit: **https://data-sciencetech.github.io/literature/**│   ├── dashboard-data.js- ✅ **64.2% abstract coverage** (improved from 34.1%)
+
+
+
+No installation required!│   └── data/          # Visualizations and figures- ✅ **99.9% keyword coverage** (improved from 0%)
+
+
+
+### Run Dashboard Locally├── submission/        # Manuscript and appendices- ✅ **42% enhanced author affiliations**
+
+
+
+```bash│   ├── manuscript.md- ✅ **Zero data corruption or errors**
+
+# Clone the repository
+
+git clone https://github.com/Data-ScienceTech/literature.git│   └── appendix_*.md
+
+cd literature/ISR-submission/dashboard
 
 ├── data/             # Enriched corpus data### **Journal Coverage**
 
-├── figures/          # Publication-ready figures (PDF + PNG)- **MIS Quarterly (MISQ)** - 2,095 articles
+# Regenerate dashboard data (if needed)
 
-├── outputs/          # Clustering results and analysis- **Journal of Information Technology (JIT)** - 1,841 articles  
+cd ../scripts├── figures/          # Publication-ready figures (PDF + PNG)- **MIS Quarterly (MISQ)** - 2,095 articles
 
-└── scripts/          # Data processing and generation scripts- **Information Systems Research (ISR)** - 1,806 articles
+python generate_dashboard_data.py \
 
-```- **Journal of Management Information Systems (JMIS)** - 1,758 articles
+    --corpus ../data/ais_basket_corpus_enriched.parquet \├── outputs/          # Clustering results and analysis- **Journal of Information Technology (JIT)** - 1,841 articles  
 
-- **European Journal of Information Systems (EJIS)** - 1,588 articles
+    --clusters ../../data/clean/hybrid_streams_3level/doc_assignments.csv \
 
-## 🚀 Quick Start- **Information Systems Journal (ISJ)** - 1,337 articles
+    --output ../dashboard/dashboard-data.js└── scripts/          # Data processing and generation scripts- **Information Systems Research (ISR)** - 1,806 articles
+
+
+
+# Serve locally```- **Journal of Management Information Systems (JMIS)** - 1,758 articles
+
+cd ../dashboard
+
+python -m http.server 8000- **European Journal of Information Systems (EJIS)** - 1,588 articles
+
+
+
+# Open in browser: http://localhost:8000/dashboard.html## 🚀 Quick Start- **Information Systems Journal (ISJ)** - 1,337 articles
+
+```
 
 - **Journal of Strategic Information Systems (JSIS)** - 1,094 articles
 
+### Read the Manuscript
+
 ### View the Dashboard- **Journal of the Association for Information Systems (JAIS)** - 1,045 articles
 
+The complete manuscript and appendices are in Pandoc Markdown format in `ISR-submission/submission/`:
 
 
-Simply visit: **https://data-sciencetech.github.io/literature/**## 📊 **Quality Transformations**
 
+- `manuscript.md` - Main paper
 
+- `appendix_a.md` - Data Collection & Enrichment methodologySimply visit: **https://data-sciencetech.github.io/literature/**## 📊 **Quality Transformations**
+
+- `appendix_b.md` - Topic Modeling & Clustering approach  
+
+- `appendix_c.md` - Validation results and expert review
+
+- `appendix_d.md` - Interactive Dashboard user guide
 
 ### Run Locally### **Abstract Coverage Revolution**
 
+To compile to PDF, DOCX, or HTML:
+
 | Journal | Before | After | Improvement |
-
-```bash|---------|--------|--------|-------------|
-
-# Clone the repository| **JMIS** | 0.0% | 85.1% | **+85.1%** 🔥 |
-
-git clone https://github.com/Data-ScienceTech/literature.git| **JAIS** | 18.3% | 87.7% | **+69.4%** 🔥 |
-
-cd literature/ISR-submission/dashboard| **MISQ** | 38.3% | 80.3% | **+42.1%** 🔥 |
-
-| **JIT** | 47.8% | 68.5% | **+20.7%** ✨ |
-
-# Serve locally (Python 3)| **ISJ** | 62.9% | 75.7% | **+12.8%** ✨ |
-
-python -m http.server 8000| **ISR** | 87.2% | 87.3% | **+0.1%** ✅ |
-
-
-
-# Open in browser### **Keyword Coverage Breakthrough**
-
-# http://localhost:8000/dashboard.html- **Before**: 0 articles (0.0%) had keywords
-
-```- **After**: 12,548 articles (99.9%) have keywords
-
-- **Result**: Enables semantic analysis across entire IS field
-
-### Regenerate Dashboard Data
-
-## 🔧 **System Architecture**
 
 ```bash
 
-# Navigate to scripts### **Production Pipeline** (`current_pipeline/`)
+cd ISR-submission/submission```bash|---------|--------|--------|-------------|
 
-cd ISR-submission/scripts```
 
-current_pipeline/
+
+# Generate PDF (requires Pandoc + LaTeX)# Clone the repository| **JMIS** | 0.0% | 85.1% | **+85.1%** 🔥 |
+
+pandoc manuscript.md -o manuscript.pdf --citeproc
+
+git clone https://github.com/Data-ScienceTech/literature.git| **JAIS** | 18.3% | 87.7% | **+69.4%** 🔥 |
+
+# Generate DOCX (requires Pandoc)
+
+pandoc manuscript.md -o manuscript.docx --citeproccd literature/ISR-submission/dashboard| **MISQ** | 38.3% | 80.3% | **+42.1%** 🔥 |
+
+```
+
+| **JIT** | 47.8% | 68.5% | **+20.7%** ✨ |
+
+## 📊 Dataset Overview
+
+# Serve locally (Python 3)| **ISJ** | 62.9% | 75.7% | **+12.8%** ✨ |
+
+### Coverage Statistics
+
+python -m http.server 8000| **ISR** | 87.2% | 87.3% | **+0.1%** ✅ |
+
+- **Journals**: All 8 AIS Basket journals
+
+  - MIS Quarterly (MISQ): 2,095 articles
+
+  - Journal of Information Technology (JIT): 1,841 articles
+
+  - Information Systems Research (ISR): 1,806 articles# Open in browser### **Keyword Coverage Breakthrough**
+
+  - Journal of Management Information Systems (JMIS): 1,758 articles
+
+  - European Journal of Information Systems (EJIS): 1,588 articles# http://localhost:8000/dashboard.html- **Before**: 0 articles (0.0%) had keywords
+
+  - Information Systems Journal (ISJ): 1,337 articles
+
+  - Journal of Strategic Information Systems (JSIS): 1,094 articles```- **After**: 12,548 articles (99.9%) have keywords
+
+  - Journal of the AIS (JAIS): 1,045 articles
+
+- **Result**: Enables semantic analysis across entire IS field
+
+- **Time Period**: 1977-2026 (49 years)
+
+- **Total Papers**: 12,561### Regenerate Dashboard Data
+
+- **Classified Papers**: 8,110 (64.6% of corpus)
+
+- **Citation Data**: 980,661 citations (80.4% coverage)## 🔧 **System Architecture**
+
+- **Abstract Coverage**: 64.2% (up from 34.1% baseline)
+
+- **Keyword Coverage**: 99.9% (enhanced via OpenAlex)```bash
+
+
+
+### Data Quality# Navigate to scripts### **Production Pipeline** (`current_pipeline/`)
+
+
+
+- **OpenAlex Match Rate**: 99.9%cd ISR-submission/scripts```
+
+- **Data Integrity**: 100% - zero corruption or errors
+
+- **Enhanced Metadata**: Author affiliations improved by 42%current_pipeline/
+
+- **Validation**: Expert-reviewed hierarchical classifications
 
 # Regenerate dashboard data├── fetcher/                    # CrossRef Data Collection
 
+## 🔬 Methodology
+
 python generate_dashboard_data.py \│   ├── fetch_ais_basket_crossref.py    # Main fetcher script
+
+Our analysis employed a rigorous multi-stage approach:
 
     --corpus ../data/ais_basket_corpus_enriched.parquet \│   ├── run_ais_basket_fetch.ps1        # PowerShell helper
 
-    --clusters ../../data/clean/hybrid_streams_3level/doc_assignments.csv \│   └── test_ais_basket.py              # Test suite
+1. **Data Collection**: Comprehensive retrieval from CrossRef and OpenAlex APIs
 
-    --output ../dashboard/dashboard-data.js├── enricher/                   # OpenAlex Enhancement
+2. **Enrichment**: Enhanced abstracts, keywords, and citations via OpenAlex    --clusters ../../data/clean/hybrid_streams_3level/doc_assignments.csv \│   └── test_ais_basket.py              # Test suite
 
-```│   ├── enrich_ais_basket_openalex.py   # Main enrichment script
+3. **Topic Modeling**: BERTopic with MPNet sentence embeddings
 
-│   ├── run_ais_basket_enrichment.ps1   # PowerShell helper
+4. **Hierarchical Clustering**: 3-level agglomerative clustering (L1→L2→L3)    --output ../dashboard/dashboard-data.js├── enricher/                   # OpenAlex Enhancement
 
-## 📊 Methodology│   └── test_ais_basket_enrichment.py   # Test suite
+5. **Expert Validation**: Domain expert review and iterative refinement
 
-├── analysis/                   # Quality Assessment
+6. **Interactive Visualization**: Web-based dashboard with Chart.js```│   ├── enrich_ais_basket_openalex.py   # Main enrichment script
 
-Our analysis employed a rigorous multi-stage approach:│   ├── analyze_ais_basket_coverage.py  # Coverage analysis
 
-│   └── analyze_enrichment_results.py   # Enrichment assessment
 
-1. **Data Collection**: Comprehensive retrieval from OpenAlex API└── README.md                   # System documentation
+**Technologies Used**:│   ├── run_ais_basket_enrichment.ps1   # PowerShell helper
 
-2. **Topic Modeling**: BERTopic with MPNet embeddings```
+- Python 3.13+ (data processing)
 
-3. **Hierarchical Clustering**: 3-level agglomerative clustering
-
-4. **Expert Validation**: Domain expert review and refinement### **Data Management**
-
-- **Source Code**: Tracked in git
-
-**Technologies Used**:- **Large Data Files**: Regenerated locally (excluded from git)
-
-- Python 3.13+- **Caching**: Intelligent caching for efficiency
-
-- BERTopic (topic modeling)- **Incremental Updates**: Daily updates supported
+- BERTopic (topic modeling)## 📊 Methodology│   └── test_ais_basket_enrichment.py   # Test suite
 
 - Sentence Transformers (MPNet embeddings)
 
-- Scikit-learn (clustering)## 🚀 **Research Capabilities**
+- Scikit-learn (hierarchical clustering)├── analysis/                   # Quality Assessment
 
-- Pandas (data processing)
+- Pandas, NumPy (data analysis)
 
-- Static HTML/CSS/JavaScript (dashboard)### **Enabled by 99.9% Keyword Coverage**
+- Chart.js 4.4.0 (interactive visualizations)Our analysis employed a rigorous multi-stage approach:│   ├── analyze_ais_basket_coverage.py  # Coverage analysis
 
-- **Topic Modeling**: Comprehensive semantic analysis
+- Static HTML/CSS/JavaScript (dashboard)
 
-## 📚 Citation- **Research Stream Identification**: Concept clustering
-
-- **Cross-Journal Analysis**: Compare research focus
-
-If you use this work in your research, please cite:- **Temporal Analysis**: Track concept evolution (1977-2026)
+- GitHub Pages (deployment)│   └── analyze_enrichment_results.py   # Enrichment assessment
 
 
 
-```bibtex### **Enhanced by 64.2% Abstract Coverage**
+## 📚 Citation1. **Data Collection**: Comprehensive retrieval from OpenAlex API└── README.md                   # System documentation
 
-@article{santos2025mapping,- **Content Analysis**: Text mining and NLP
 
-  title = {Mapping the Landscape of Information Systems Research: - **Abstract Quality**: Substantial abstracts (≥20 words)
 
-           A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)},- **Full-Text Proxy**: Rich content for analysis
+If you use this work in your research, please cite:2. **Topic Modeling**: BERTopic with MPNet embeddings```
 
-  author = {Santos, Carlos Denner},- **Journal Comparison**: Content pattern analysis
+
+
+```bibtex3. **Hierarchical Clustering**: 3-level agglomerative clustering
+
+@article{santos2025mapping,
+
+  title = {Mapping the Landscape of Information Systems Research: 4. **Expert Validation**: Domain expert review and refinement### **Data Management**
+
+           A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)},
+
+  author = {Santos, Carlos Denner},- **Source Code**: Tracked in git
 
   journal = {Information Systems Research},
 
-  year = {2025},### **Network Analysis Ready**
+  year = {2025},**Technologies Used**:- **Large Data Files**: Regenerated locally (excluded from git)
 
-  note = {Manuscript submitted for publication}- **Citation Networks**: 57% reference DOI coverage
+  note = {Manuscript submitted for publication},
 
-}- **Author Networks**: Enhanced affiliation data
+  url = {https://github.com/Data-ScienceTech/literature}- Python 3.13+- **Caching**: Intelligent caching for efficiency
 
-```- **Institutional Analysis**: Geographic research mapping
+}
 
-- **Impact Analysis**: Citation patterns and trends
+```- BERTopic (topic modeling)- **Incremental Updates**: Daily updates supported
 
-## 📖 Dataset Details
 
-## 📈 **System Performance**
 
-- **Journals**: EJIS, ISJ, ISR, JAIS, JIT, JMIS, JSIS, MISQ
+## 📖 Research Contributions- Sentence Transformers (MPNet embeddings)
 
-- **Time Period**: 1977-2026 (49 years)### **Production Metrics**
 
-- **Total Papers**: 12,561- **Fetch Time**: ~45 minutes (full), ~5 minutes (incremental)
 
-- **Classified Papers**: 8,110 (64.6%)- **Enrichment Time**: ~5 minutes (99% cache efficiency)
+This work advances IS research infrastructure through:- Scikit-learn (clustering)## 🚀 **Research Capabilities**
 
-- **Citation Coverage**: 80.4% (980,661 citations)- **API Efficiency**: 252 batch calls vs 12,564 individual calls
 
-- **Data Source**: OpenAlex (Crossref, Microsoft Academic Graph)- **Success Rate**: 99.9% with zero errors
 
-- **Data Integrity**: 100% - no corruption or loss
+### Novel Methodology- Pandas (data processing)
 
-## ⚠️ Important Notes
+- **Hierarchical Classification**: First 3-level taxonomy of entire AIS Basket corpus
 
-### **Technical Excellence**
+- **Comprehensive Coverage**: Analysis of all 8 journals over 49 years- Static HTML/CSS/JavaScript (dashboard)### **Enabled by 99.9% Keyword Coverage**
+
+- **Data Enhancement**: 99.9% keyword coverage (vs. 0% baseline)
+
+- **Validation Framework**: Expert-reviewed classification system- **Topic Modeling**: Comprehensive semantic analysis
+
+
+
+### Practical Impact## 📚 Citation- **Research Stream Identification**: Concept clustering
+
+- **Interactive Dashboard**: Public tool for exploring IS research landscape
+
+- **Open Dataset**: Reproducible analysis with complete data lineage- **Cross-Journal Analysis**: Compare research focus
+
+- **Research Trends**: Temporal analysis revealing field evolution
+
+- **Citation Networks**: Identification of seminal and emerging worksIf you use this work in your research, please cite:- **Temporal Analysis**: Track concept evolution (1977-2026)
+
+
+
+### Technical Innovation
+
+- **Automated Pipeline**: Production-ready data collection system
+
+- **Quality Assurance**: 99.9% enrichment success with zero errors```bibtex### **Enhanced by 64.2% Abstract Coverage**
+
+- **Scalable Architecture**: Efficient batch processing and caching
+
+- **Open Science**: Complete code and data transparency@article{santos2025mapping,- **Content Analysis**: Text mining and NLP
+
+
+
+## ⚠️ Important Notes  title = {Mapping the Landscape of Information Systems Research: - **Abstract Quality**: Substantial abstracts (≥20 words)
+
+
+
+- **Classified Papers**: 8,110 papers (64.6%) assigned to research streams; 4,451 (35.4%) remain unclassified           A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)},- **Full-Text Proxy**: Rich content for analysis
+
+- **Citation Data**: From OpenAlex; may differ from Google Scholar or Web of Science
+
+- **Temporal Range**: Most papers from 1990+; 2026 papers are early online publications  author = {Santos, Carlos Denner},- **Journal Comparison**: Content pattern analysis
+
+- **Dynamic Research**: Classifications reflect dominant themes; papers may bridge multiple streams
+
+- **Large Data File**: `dashboard-data.js` (7.79 MB) is gitignored; regenerate locally using scripts  journal = {Information Systems Research},
+
+
+
+## 📜 License  year = {2025},### **Network Analysis Ready**
+
+
+
+This work is provided for **academic and research purposes**.  note = {Manuscript submitted for publication}- **Citation Networks**: 57% reference DOI coverage
+
+
+
+- ✅ Use for research and education}- **Author Networks**: Enhanced affiliation data
+
+- ✅ Cite in publications
+
+- ✅ Share dashboard URL```- **Institutional Analysis**: Geographic research mapping
+
+- ❌ Do not redistribute raw data without permission
+
+- ❌ Contact authors for commercial usage- **Impact Analysis**: Citation patterns and trends
+
+
+
+## 🙏 Acknowledgments## 📖 Dataset Details
+
+
+
+- **OpenAlex**: Open access to scholarly metadata## 📈 **System Performance**
+
+- **CrossRef**: DOI registration and metadata services
+
+- **AIS**: Basket of Eight journal curation- **Journals**: EJIS, ISJ, ISR, JAIS, JIT, JMIS, JSIS, MISQ
+
+- **Journal Publishers**: EJIS, ISJ, ISR, JAIS, JIT, JMIS, JSIS, MISQ
+
+- **Open Source Community**: Python, Pandas, BERTopic, Scikit-learn, Chart.js, Sentence Transformers- **Time Period**: 1977-2026 (49 years)### **Production Metrics**
+
+
+
+## 📧 Contact- **Total Papers**: 12,561- **Fetch Time**: ~45 minutes (full), ~5 minutes (incremental)
+
+
+
+For questions, feedback, or collaboration:- **Classified Papers**: 8,110 (64.6%)- **Enrichment Time**: ~5 minutes (99% cache efficiency)
+
+
+
+- 📧 Open an issue on GitHub- **Citation Coverage**: 80.4% (980,661 citations)- **API Efficiency**: 252 batch calls vs 12,564 individual calls
+
+- 📝 See manuscript for author contact information
+
+- 🌐 Visit the [Interactive Dashboard](https://data-sciencetech.github.io/literature/)- **Data Source**: OpenAlex (Crossref, Microsoft Academic Graph)- **Success Rate**: 99.9% with zero errors
+
+
+
+---- **Data Integrity**: 100% - no corruption or loss
+
+
+
+**Dashboard Version**: 1.0  ## ⚠️ Important Notes
+
+**Last Updated**: October 2025  
+
+**Data Snapshot**: October 2025  ### **Technical Excellence**
+
+**Repository Structure**: ISR-submission only (cleaned for publication)
 
 - **Unclassified Papers**: 4,451 papers (35.4%) not assigned to clusters- **Fault Tolerance**: Recovers from any interruption
 
