@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IS Research Streams Explorer | 2000-2025</title>
+    <!-- Chart.js for interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -439,9 +441,10 @@
             <button class="tab active" onclick="showPanel('overview')">📊 Overview</button>
             <button class="tab" onclick="showPanel('explorer')">🔍 Explorer</button>
             <button class="tab" onclick="showPanel('streams')">🌊 Research Streams</button>
+            <button class="tab" onclick="showPanel('trends')">📈 Trends</button>
             <button class="tab" onclick="showPanel('emerging')">🔥 Emerging Topics</button>
             <button class="tab" onclick="showPanel('impactful')">⭐ Most Impactful</button>
-            <button class="tab" onclick="showPanel('visualizations')">📈 Visualizations</button>
+            <button class="tab" onclick="showPanel('visualizations')">� Visualizations</button>
             <button class="tab" onclick="showPanel('top-papers')">📚 Top Papers</button>
             <button class="tab" onclick="showPanel('about')">ℹ️ About</button>
         </div>
@@ -524,6 +527,55 @@
                     <!-- Will be populated by JavaScript -->
                     <div class="loading">
                         <p style="color: #64748b;">Select a panel to begin exploring...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trends Panel -->
+        <div id="trends" class="panel">
+            <div class="viz-container">
+                <h2 style="margin-bottom: 20px;">📈 Temporal Evolution & Trends</h2>
+                <p style="color: #64748b; margin-bottom: 30px;">Explore how research streams have evolved over nearly 50 years of IS research</p>
+                
+                <!-- Stream Timeline Chart -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📊 Research Stream Evolution (1977-2026)</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Papers published per year by research stream</p>
+                    <canvas id="streamTimelineChart" style="max-height: 400px;"></canvas>
+                </div>
+                
+                <!-- Cumulative Growth Chart -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📈 Cumulative Growth</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Total papers published over time across all journals</p>
+                    <canvas id="cumulativeGrowthChart" style="max-height: 300px;"></canvas>
+                </div>
+                
+                <!-- Journal Distribution by Decade -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">📚 Journal Contribution by Decade</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Publication distribution across the AIS Basket of Eight</p>
+                    <canvas id="journalDecadeChart" style="max-height: 400px;"></canvas>
+                </div>
+                
+                <!-- Emerging Topics Bubble Chart -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">🔥 Emerging vs. Established Topics</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">
+                        Research streams by average publication year and size (bubble size = paper count)
+                    </p>
+                    <canvas id="emergingTopicsBubbleChart" style="max-height: 500px;"></canvas>
+                </div>
+                
+                <!-- Stream Activity Heatmap -->
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">🔥 Research Activity Heatmap</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">
+                        Publication intensity by stream and 5-year period
+                    </p>
+                    <div id="activityHeatmap" style="overflow-x: auto;">
+                        <!-- Will be populated by JavaScript -->
                     </div>
                 </div>
             </div>
@@ -867,6 +919,8 @@
                 loadExplorer();
             } else if (panelId === 'streams' && !document.getElementById('streamsContainer').dataset.loaded) {
                 loadAllStreams();
+            } else if (panelId === 'trends') {
+                initializeTrendsCharts();
             } else if (panelId === 'emerging') {
                 loadEmergingStreams();
             } else if (panelId === 'impactful') {
@@ -1601,6 +1655,262 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+        }
+        
+        // ===== TRENDS VISUALIZATION FUNCTIONS =====
+        
+        let trendsChartsInitialized = false;
+        let streamTimelineChart, cumulativeGrowthChart, journalDecadeChart, emergingTopicsBubbleChart;
+        
+        function initializeTrendsCharts() {
+            if (trendsChartsInitialized) return;
+            
+            console.log('Initializing trends charts...');
+            
+            // Prepare data from dashboardData
+            const papers = dashboardData.papers;
+            const streams = dashboardData.streams.filter(s => s.id >= 0); // Exclude unclassified
+            
+            // 1. Stream Timeline Data (papers per year by stream)
+            const yearlyStreamData = {};
+            papers.forEach(paper => {
+                if (paper.l1 >= 0) {
+                    const year = paper.year;
+                    if (!yearlyStreamData[year]) yearlyStreamData[year] = {};
+                    if (!yearlyStreamData[year][paper.l1]) yearlyStreamData[year][paper.l1] = 0;
+                    yearlyStreamData[year][paper.l1]++;
+                }
+            });
+            
+            createStreamTimelineChart(yearlyStreamData, streams);
+            createCumulativeGrowthChart(papers);
+            createJournalDecadeChart(papers);
+            createEmergingTopicsBubbleChart(streams);
+            createActivityHeatmap(yearlyStreamData, streams);
+            
+            trendsChartsInitialized = true;
+        }
+        
+        function createStreamTimelineChart(yearlyData, streams) {
+            const ctx = document.getElementById('streamTimelineChart');
+            if (!ctx) return;
+            
+            const years = Object.keys(yearlyData).map(Number).sort((a, b) => a - b);
+            const streamColors = [
+                '#2563eb', '#7c3aed', '#db2777', '#059669', 
+                '#d97706', '#dc2626', '#0891b2', '#4f46e5'
+            ];
+            
+            const datasets = streams.map((stream, idx) => ({
+                label: stream.title,
+                data: years.map(year => yearlyData[year]?.[stream.id] || 0),
+                borderColor: streamColors[idx % streamColors.length],
+                backgroundColor: streamColors[idx % streamColors.length] + '20',
+                fill: false,
+                tension: 0.3
+            }));
+            
+            streamTimelineChart = new Chart(ctx, {
+                type: 'line',
+                data: { labels: years, datasets: datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Papers per Year' } },
+                        x: { title: { display: true, text: 'Year' } }
+                    }
+                }
+            });
+        }
+        
+        function createCumulativeGrowthChart(papers) {
+            const ctx = document.getElementById('cumulativeGrowthChart');
+            if (!ctx) return;
+            
+            const yearCounts = {};
+            papers.forEach(p => {
+                const year = p.year;
+                if (year) yearCounts[year] = (yearCounts[year] || 0) + 1;
+            });
+            
+            const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+            let cumulative = 0;
+            const cumulativeData = years.map(year => {
+                cumulative += yearCounts[year] || 0;
+                return cumulative;
+            });
+            
+            cumulativeGrowthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Total Papers',
+                        data: cumulativeData,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: ctx => `Total: ${ctx.parsed.y.toLocaleString()} papers` } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Cumulative Papers' } },
+                        x: { title: { display: true, text: 'Year' } }
+                    }
+                }
+            });
+        }
+        
+        function createJournalDecadeChart(papers) {
+            const ctx = document.getElementById('journalDecadeChart');
+            if (!ctx) return;
+            
+            const journals = [...new Set(papers.map(p => p.journal))].sort();
+            const decades = ['1977-1989', '1990-1999', '2000-2009', '2010-2019', '2020-2026'];
+            
+            const decadeData = decades.map(() => ({}));
+            papers.forEach(p => {
+                const year = p.year;
+                let decadeIdx = -1;
+                if (year >= 1977 && year <= 1989) decadeIdx = 0;
+                else if (year >= 1990 && year <= 1999) decadeIdx = 1;
+                else if (year >= 2000 && year <= 2009) decadeIdx = 2;
+                else if (year >= 2010 && year <= 2019) decadeIdx = 3;
+                else if (year >= 2020 && year <= 2026) decadeIdx = 4;
+                
+                if (decadeIdx >= 0) {
+                    if (!decadeData[decadeIdx][p.journal]) decadeData[decadeIdx][p.journal] = 0;
+                    decadeData[decadeIdx][p.journal]++;
+                }
+            });
+            
+            const journalColors = [
+                '#2563eb', '#7c3aed', '#db2777', '#059669',
+                '#d97706', '#dc2626', '#0891b2', '#4f46e5'
+            ];
+            
+            const datasets = journals.map((journal, idx) => ({
+                label: journal,
+                data: decades.map((_, di) => decadeData[di][journal] || 0),
+                backgroundColor: journalColors[idx % journalColors.length]
+            }));
+            
+            journalDecadeChart = new Chart(ctx, {
+                type: 'bar',
+                data: { labels: decades, datasets: datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+                    },
+                    scales: {
+                        x: { stacked: true, title: { display: true, text: 'Decade' } },
+                        y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Papers' } }
+                    }
+                }
+            });
+        }
+        
+        function createEmergingTopicsBubbleChart(streams) {
+            const ctx = document.getElementById('emergingTopicsBubbleChart');
+            if (!ctx) return;
+            
+            const data = streams.map(stream => ({
+                x: stream.avgYear || 2000,
+                y: stream.avgCitations || 0,
+                r: Math.sqrt(stream.size) / 3, // Bubble size proportional to paper count
+                label: stream.title,
+                papers: stream.size
+            }));
+            
+            emergingTopicsBubbleChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Research Streams',
+                        data: data,
+                        backgroundColor: 'rgba(37, 99, 235, 0.6)',
+                        borderColor: '#2563eb',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => {
+                                    const item = ctx.raw;
+                                    return [
+                                        item.label,
+                                        `Avg Year: ${item.x.toFixed(1)}`,
+                                        `Avg Citations: ${item.y.toFixed(1)}`,
+                                        `Papers: ${item.papers}`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'Average Publication Year' }, min: 1990, max: 2025 },
+                        y: { title: { display: true, text: 'Average Citations' }, beginAtZero: true }
+                    }
+                }
+            });
+        }
+        
+        function createActivityHeatmap(yearlyData, streams) {
+            const container = document.getElementById('activityHeatmap');
+            if (!container) return;
+            
+            const periods = ['1977-1984', '1985-1994', '1995-2004', '2005-2014', '2015-2026'];
+            
+            const periodData = streams.map(stream => {
+                return periods.map((_, pidx) => {
+                    const startYear = 1977 + (pidx * 10) - (pidx === 0 ? 0 : 2);
+                    const endYear = pidx === periods.length - 1 ? 2026 : startYear + 9;
+                    let count = 0;
+                    for (let year = startYear; year <= endYear; year++) {
+                        count += (yearlyData[year]?.[stream.id] || 0);
+                    }
+                    return count;
+                });
+            });
+            
+            const maxCount = Math.max(...periodData.flat());
+            
+            let html = '<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">';
+            html += '<tr><th style="text-align: left; padding: 8px; border: 1px solid #e2e8f0;">Stream</th>';
+            periods.forEach(p => html += `<th style="padding: 8px; border: 1px solid #e2e8f0;">${p}</th>`);
+            html += '</tr>';
+            
+            streams.forEach((stream, sidx) => {
+                html += `<tr><td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: 500;">${stream.title}</td>`;
+                periodData[sidx].forEach(count => {
+                    const intensity = maxCount > 0 ? count / maxCount : 0;
+                    const color = `rgba(37, 99, 235, ${0.1 + intensity * 0.9})`;
+                    html += `<td style="padding: 8px; border: 1px solid #e2e8f0; background: ${color}; text-align: center;">${count}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</table>';
+            
+            container.innerHTML = html;
         }
 
         // Initialize
