@@ -1,3 +1,23 @@
+# === REPOSITORY STRUCTURE ===
+# Keep ONLY ISR-submission folder (manuscript, dashboard, figures, data)
+# Exclude all development/analysis scripts in root
+
+# Exclude everything at root level
+/*
+
+# EXCEPT these essential items:
+!/ISR-submission/
+!/.gitignore
+!/README.md
+!/LICENSE
+!/.github/
+
+# But within ISR-submission, exclude the large dashboard data file
+# (It's already committed, but won't track future changes)
+ISR-submission/dashboard/dashboard-data.js
+
+# === STANDARD IGNORES ===
+
 # Python
 __pycache__/
 *.py[cod]
@@ -26,6 +46,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
 
 # IDEs
 .vscode/
@@ -34,7 +55,7 @@ venv.bak/
 *.swo
 *~
 
-# Data files (large files that shouldn't be in git)
+# Data files (large files)
 *.npy
 *.npz
 *.h5
@@ -56,21 +77,9 @@ Thumbs.db
 # Logs
 *.log
 
-# Large cache and data files
-data/raw/
-data/clean/*.json
-data/clean/*.parquet
-*.cache
-cache/
-*_cache/
-
-# Output files (regeneratable)
-output/*.json
-output/*.log
-output/*.md
-
 # Temporary files
 *.tmp
 *.bak
 *.swp
 research_streams_dashboard.zip
+
