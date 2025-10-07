@@ -1945,7 +1945,7 @@
             const binCounts = new Array(bins.length - 1).fill(0);
             
             papers.forEach(p => {
-                const citations = p.citation_count || 0;
+                const citations = p.citations || 0;
                 for (let i = 0; i < bins.length - 1; i++) {
                     if (citations >= bins[i] && citations < bins[i + 1]) {
                         binCounts[i]++;
