@@ -206,13 +206,13 @@ If you use this work in your research, please cite:- **Temporal Analysis**: Trac
 
 ```bibtex### **Enhanced by 64.2% Abstract Coverage**
 
-@article{ais_basket_analysis_2025,- **Content Analysis**: Text mining and NLP
+@article{santos2025mapping,- **Content Analysis**: Text mining and NLP
 
   title = {Mapping the Landscape of Information Systems Research: - **Abstract Quality**: Substantial abstracts (≥20 words)
 
            A Hierarchical Analysis of the AIS Basket of Eight (1977-2026)},- **Full-Text Proxy**: Rich content for analysis
 
-  author = {[Authors]},- **Journal Comparison**: Content pattern analysis
+  author = {Santos, Carlos Denner},- **Journal Comparison**: Content pattern analysis
 
   journal = {Information Systems Research},
 
