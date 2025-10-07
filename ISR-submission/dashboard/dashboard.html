@@ -1239,18 +1239,47 @@
             let html = `
                 <div style="margin-bottom: 20px;">
                     <h3 style="color: var(--primary); margin-bottom: 10px;">${context.title}</h3>
-                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">${context.subtitle}</p>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">${context.subtitle}</p>
+                    
+                    <!-- Search Bar -->
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" 
+                               id="paperSearch" 
+                               placeholder="🔍 Search papers by title, abstract, or keywords..." 
+                               class="search-box"
+                               oninput="filterPapers()"
+                               style="width: 100%; padding: 12px 20px; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem;">
+                    </div>
+                    
+                    <!-- Filters and Sort -->
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <!-- Sort Options -->
                         <button onclick="sortPapers('citations')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
-                            Sort by Citations
+                            📊 Sort by Citations
                         </button>
                         <button onclick="sortPapers('year-desc')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
-                            Sort by Year (Newest)
+                            📅 Newest First
                         </button>
                         <button onclick="sortPapers('year-asc')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
-                            Sort by Year (Oldest)
+                            📅 Oldest First
+                        </button>
+                        
+                        <!-- Export Options -->
+                        <button onclick="exportPapers('csv')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem; margin-left: auto;">
+                            💾 Export CSV
+                        </button>
+                        <button onclick="exportPapers('bibtex')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
+                            📚 Export BibTeX
+                        </button>
+                        <button onclick="exportPapers('json')" class="filter-btn" style="padding: 6px 12px; font-size: 0.9rem;">
+                            📋 Export JSON
                         </button>
                     </div>
+                    
+                    <!-- Results Count -->
+                    <p id="resultsCount" style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">
+                        Showing ${papers.length} paper${papers.length !== 1 ? 's' : ''}
+                    </p>
                 </div>
                 <div id="papersList">
             `;
@@ -1261,8 +1290,15 @@
                     ? `<a href="${doiLink}" target="_blank" rel="noopener noreferrer" style="color: var(--dark); text-decoration: none;">${paper.title}</a>`
                     : paper.title;
                 
+                const searchableText = `${paper.title} ${paper.abstract || ''} ${paper.l1Label || ''} ${paper.l3Label || ''}`.toLowerCase();
+                
                 html += `
-                    <div class="paper-item" style="margin-bottom: 15px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 3px solid var(--primary);" data-year="${paper.year}" data-citations="${paper.citations}">
+                    <div class="paper-item" 
+                         style="margin-bottom: 15px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 3px solid var(--primary);" 
+                         data-year="${paper.year}" 
+                         data-citations="${paper.citations}"
+                         data-journal="${paper.journal}"
+                         data-searchable="${searchableText}">
                         <div style="font-weight: 600; margin-bottom: 8px; font-size: 1.05rem;">
                             ${idx + 1}. ${titleHtml}
                         </div>
@@ -1284,9 +1320,10 @@
             html += '</div>';
             container.innerHTML = html;
             
-            // Store current papers and context for sorting
+            // Store current papers and context for sorting/filtering
             window.currentPapers = papers;
             window.currentContext = context;
+            window.allCurrentPapers = papers; // Keep original unfiltered list
         }
         
         // Sort papers in the current view
@@ -1307,6 +1344,101 @@
             
             // Reload with new sort
             displayPaperList(papers, window.currentContext);
+        }
+        
+        // Filter papers based on search query
+        function filterPapers() {
+            const searchInput = document.getElementById('paperSearch');
+            if (!searchInput || !window.allCurrentPapers) return;
+            
+            const query = searchInput.value.toLowerCase().trim();
+            
+            if (!query) {
+                // Show all papers if search is empty
+                window.currentPapers = window.allCurrentPapers;
+                displayPaperList(window.allCurrentPapers, window.currentContext);
+                return;
+            }
+            
+            // Filter papers by search query
+            const filtered = window.allCurrentPapers.filter(paper => {
+                const searchableText = `${paper.title} ${paper.abstract || ''} ${paper.l1Label || ''} ${paper.l3Label || ''}`.toLowerCase();
+                return searchableText.includes(query);
+            });
+            
+            window.currentPapers = filtered;
+            displayPaperList(filtered, window.currentContext);
+        }
+        
+        // Export papers in different formats
+        function exportPapers(format) {
+            if (!window.currentPapers || window.currentPapers.length === 0) {
+                alert('No papers to export!');
+                return;
+            }
+            
+            const papers = window.currentPapers;
+            const context = window.currentContext || {title: 'Papers'};
+            const filename = `papers_${context.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${new Date().toISOString().split('T')[0]}`;
+            
+            if (format === 'csv') {
+                exportCSV(papers, filename);
+            } else if (format === 'bibtex') {
+                exportBibTeX(papers, filename);
+            } else if (format === 'json') {
+                exportJSON(papers, filename);
+            }
+        }
+        
+        function exportCSV(papers, filename) {
+            const headers = ['Title', 'Authors', 'Year', 'Journal', 'Citations', 'DOI', 'Abstract', 'Stream', 'Subtopic'];
+            const rows = papers.map(p => [
+                `"${(p.title || '').replace(/"/g, '""')}"`,
+                `"${(p.authors || '').replace(/"/g, '""')}"`,
+                p.year || '',
+                `"${(p.journal || '').replace(/"/g, '""')}"`,
+                p.citations || 0,
+                p.doi || '',
+                `"${(p.abstract || '').replace(/"/g, '""')}"`,
+                `"${(p.l1Label || '').replace(/"/g, '""')}"`,
+                `"${(p.l3Label || '').replace(/"/g, '""')}"`
+            ].join(','));
+            
+            const csv = [headers.join(','), ...rows].join('\\n');
+            downloadFile(csv, `${filename}.csv`, 'text/csv');
+        }
+        
+        function exportBibTeX(papers, filename) {
+            const bibtex = papers.map((paper, idx) => {
+                const key = `${(paper.authors || 'unknown').split(',')[0].toLowerCase().replace(/[^a-z]/g, '')}${paper.year || ''}${paper.title.split(' ')[0].toLowerCase()}`;
+                return `@article{${key},
+  title = {${paper.title}},
+  author = {${paper.authors || 'Unknown'}},
+  journal = {${paper.journal}},
+  year = {${paper.year}},
+  doi = {${paper.doi || ''}},
+  note = {Citations: ${paper.citations}}
+}`;
+            }).join('\\n\\n');
+            
+            downloadFile(bibtex, `${filename}.bib`, 'text/plain');
+        }
+        
+        function exportJSON(papers, filename) {
+            const json = JSON.stringify(papers, null, 2);
+            downloadFile(json, `${filename}.json`, 'application/json');
+        }
+        
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
         // Initialize
