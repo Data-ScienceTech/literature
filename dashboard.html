@@ -408,15 +408,15 @@
             
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">6,556</div>
+                    <div class="stat-number" id="stat-papers">12,561</div>
                     <div class="stat-label">Research Papers</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">28</div>
+                    <div class="stat-number" id="stat-streams">8</div>
                     <div class="stat-label">Research Streams</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">907.9K</div>
+                    <div class="stat-number" id="stat-citations">980.7K</div>
                     <div class="stat-label">Total Citations</div>
                 </div>
                 <div class="stat-card">
@@ -428,8 +428,8 @@
                     <div class="stat-label">Years Analyzed</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Abstract Coverage</div>
+                    <div class="stat-number" id="stat-coverage">80%</div>
+                    <div class="stat-label">Citation Coverage</div>
                 </div>
             </div>
         </header>
@@ -571,40 +571,55 @@
         </div>
     </div>
 
+    <!-- Load Dashboard Data -->
+    <script src="dashboard-data.js"></script>
+    
     <script>
-        // Research Streams Data
-        const streams = [
-            { id: 0, name: "Social Media & Online Communities", size: 549, years: "2000-2025", topics: ["social media", "online communities", "information sharing", "social capital"], avgCites: 85, recent: 44, totalCites: 46527, journal: "ISR" },
-            { id: 1, name: "IT Business Value & Firm Performance", size: 516, years: "2000-2025", topics: ["IT capabilities", "firm performance", "business value", "competitive advantage"], avgCites: 144, recent: 16, totalCites: 74103, journal: "JMIS" },
-            { id: 2, name: "IS Theory & Methodology", size: 508, years: "2000-2025", topics: ["IS theory", "research methods", "conceptual foundations"], avgCites: 108, recent: 21, totalCites: 54725, journal: "MISQ" },
-            { id: 3, name: "Online Markets & E-Commerce", size: 507, years: "2000-2025", topics: ["online markets", "e-commerce", "consumers", "pricing"], avgCites: 49, recent: 34, totalCites: 24984, journal: "ISR" },
-            { id: 4, name: "Technology Acceptance & Adoption", size: 434, years: "2000-2025", topics: ["TAM", "UTAUT", "technology adoption", "user behavior"], avgCites: 406, recent: 21, totalCites: 176275, journal: "MISQ", badge: "impactful" },
-            { id: 5, name: "E-Commerce & Online Trust", size: 393, years: "2000-2025", topics: ["online trust", "e-commerce", "consumer behavior", "privacy"], avgCites: 204, recent: 26, totalCites: 80169, journal: "ISR", badge: "impactful" },
-            { id: 6, name: "Digital Transformation & Platforms", size: 322, years: "2000-2025", topics: ["digital platforms", "digital transformation", "ecosystems", "strategy"], avgCites: 143, recent: 61, totalCites: 46096, journal: "ISJ", badge: "hot" },
-            { id: 7, name: "Virtual Teams & Collaboration", size: 310, years: "2000-2025", topics: ["virtual teams", "collaboration", "communication", "knowledge sharing"], avgCites: 126, recent: 14, totalCites: 38974, journal: "JMIS" },
-            { id: 8, name: "Design Science & IS Development", size: 303, years: "2000-2025", topics: ["design science", "systems development", "software engineering", "projects"], avgCites: 170, recent: 17, totalCites: 51566, journal: "ISJ" },
-            { id: 9, name: "Information Security & Privacy", size: 268, years: "2001-2025", topics: ["cybersecurity", "information security", "privacy", "compliance"], avgCites: 104, recent: 37, totalCites: 27731, journal: "MISQ" },
-            { id: 10, name: "Crowdsourcing & Crowdfunding", size: 211, years: "2009-2025", topics: ["crowdfunding", "crowdsourcing", "peer economy", "platforms"], avgCites: 56, recent: 65, totalCites: 11898, journal: "ISR", badge: "hot" },
-            { id: 11, name: "Health IT & Healthcare Systems", size: 207, years: "2000-2025", topics: ["health IT", "healthcare", "medical systems", "telemedicine"], avgCites: 64, recent: 37, totalCites: 13282, journal: "ISR" },
-            { id: 12, name: "IT Outsourcing", size: 205, years: "2000-2024", topics: ["outsourcing", "offshore", "client-vendor", "control"], avgCites: 87, recent: 10, totalCites: 17834, journal: "MISQ" },
-            { id: 13, name: "Business Analytics & Big Data", size: 202, years: "2000-2025", topics: ["business analytics", "big data", "data science", "privacy"], avgCites: 186, recent: 36, totalCites: 37493, journal: "MISQ", badge: "impactful" },
-            { id: 14, name: "AI & Machine Learning", size: 188, years: "2000-2025", topics: ["artificial intelligence", "machine learning", "algorithms", "automation"], avgCites: 52, recent: 79, totalCites: 9715, journal: "ISR", badge: "hot" },
-            { id: 15, name: "Knowledge Management", size: 164, years: "2000-2025", topics: ["knowledge management", "organizational learning", "KMS"], avgCites: 304, recent: 20, totalCites: 49826, journal: "MISQ", badge: "impactful" }
-        ];
+        // Transform new data format to work with existing dashboard
+        const streams = dashboardData.streams
+            .filter(s => s.id >= 0)  // Exclude unclassified for main view
+            .map(stream => ({
+                id: stream.id,
+                name: stream.title,
+                size: stream.size,
+                years: stream.yearRange,
+                topics: stream.topKeywords.slice(0, 4),
+                avgCites: Math.round(stream.avgCitations),
+                recent: Math.round(stream.recentActivity * 100),
+                totalCites: stream.totalCitations,
+                journal: "AIS Basket",
+                badge: stream.recentActivity > 0.6 ? 'hot' : stream.avgCitations > 100 ? 'impactful' : null
+            }));
 
-        // Top Papers Data
-        const topPapers = [
-            { title: "User Acceptance of Information Technology: Toward a Unified View", year: 2003, cites: 37372, stream: 4 },
-            { title: "Consumer Acceptance and Use of Information Technology: Extending UTAUT", year: 2012, cites: 12327, stream: 4 },
-            { title: "The DeLone and McLean Model of Information Systems Success: A Ten-Year Update", year: 2003, cites: 10732, stream: 4 },
-            { title: "Review: Knowledge Management and Knowledge Management Systems: Conceptual Foundations", year: 2001, cites: 9833, stream: 15 },
-            { title: "Design science in information systems research", year: 2004, cites: 7923, stream: 8 },
-            { title: "Trust and TAM in Online Shopping: An Integrated Model", year: 2003, cites: 7594, stream: 5 },
-            { title: "A Resource-Based Perspective on Information Technology Capability and Firm Performance", year: 2000, cites: 4738, stream: 1 },
-            { title: "Why should I share? Examining social capital and knowledge contribution in electronic networks", year: 2005, cites: 3382, stream: 0 },
-            { title: "Digital Business Strategy: Toward a Next Generation of Insights", year: 2013, cites: 3204, stream: 6 },
-            { title: "The Nature of Theory in Information Systems", year: 2006, cites: 3128, stream: 2 }
-        ];
+        // Extract top papers from all streams
+        const allPapers = [];
+        dashboardData.streams.forEach(stream => {
+            if (stream.samplePapers) {
+                stream.samplePapers.forEach(paper => {
+                    allPapers.push({
+                        title: paper.title,
+                        year: paper.year,
+                        cites: paper.citations,
+                        stream: stream.id
+                    });
+                });
+            }
+        });
+        // Sort by citations and take top 10
+        allPapers.sort((a, b) => b.cites - a.cites);
+        const topPapers = allPapers.slice(0, 10);
+
+        console.log(`✅ Loaded ${dashboardData.metadata.totalPapers} papers across ${dashboardData.metadata.streams} classified streams + ${dashboardData.metadata.unclassifiedPapers} unclassified`);
+
+        // Update stats in header with actual data
+        function updateStats() {
+            document.getElementById('stat-papers').textContent = dashboardData.metadata.totalPapers.toLocaleString();
+            document.getElementById('stat-streams').textContent = dashboardData.metadata.streams;
+            const citationsK = (dashboardData.metadata.totalCitations / 1000).toFixed(1);
+            document.getElementById('stat-citations').textContent = `${citationsK}K`;
+            document.getElementById('stat-coverage').textContent = `${Math.round(dashboardData.metadata.citationCoverage)}%`;
+        }
+        updateStats();
 
         // Tab Navigation
         function showPanel(panelId) {
