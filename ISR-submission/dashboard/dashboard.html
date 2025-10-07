@@ -974,6 +974,12 @@
     <script src="dashboard-data.js"></script>
     
     <script>
+        // Chart initialization state variables (declared at top to avoid hoisting issues)
+        let visualizationsInitialized = false;
+        let streamDistChart, journalContChart, citationDistChart, pubTimelineChart, keywordsChart, streamImpactChart;
+        let trendsChartsInitialized = false;
+        let streamTimelineChart, cumulativeGrowthChart, journalDecadeChart, emergingTopicsBubbleChart;
+        
         // Transform new data format to work with existing dashboard
         const streams = dashboardData.streams
             .filter(s => s.id >= 0)  // Exclude unclassified for main view
@@ -1012,17 +1018,25 @@
 
         // Update stats in header with actual data
         function updateStats() {
-            document.getElementById('stat-papers').textContent = dashboardData.metadata.totalPapers.toLocaleString();
-            document.getElementById('stat-streams').textContent = dashboardData.metadata.streams;
-            const citationsK = (dashboardData.metadata.totalCitations / 1000).toFixed(1);
-            document.getElementById('stat-citations').textContent = `${citationsK}K`;
-            document.getElementById('stat-coverage').textContent = `${Math.round(dashboardData.metadata.citationCoverage)}%`;
+            const statPapers = document.getElementById('stat-papers');
+            const statStreams = document.getElementById('stat-streams');
+            const statCitations = document.getElementById('stat-citations');
+            const statCoverage = document.getElementById('stat-coverage');
             
-            // Update last updated date in About tab
-            if (dashboardData.metadata.generated) {
+            if (statPapers) statPapers.textContent = dashboardData.metadata.totalPapers.toLocaleString();
+            if (statStreams) statStreams.textContent = dashboardData.metadata.streams;
+            if (statCitations) {
+                const citationsK = (dashboardData.metadata.totalCitations / 1000).toFixed(1);
+                statCitations.textContent = `${citationsK}K`;
+            }
+            if (statCoverage) statCoverage.textContent = `${Math.round(dashboardData.metadata.citationCoverage)}%`;
+            
+            // Update last updated date in About tab (if element exists)
+            const lastUpdatedEl = document.getElementById('lastUpdated');
+            if (lastUpdatedEl && dashboardData.metadata.generated) {
                 const generatedDate = new Date(dashboardData.metadata.generated);
                 const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                document.getElementById('lastUpdated').textContent = generatedDate.toLocaleDateString('en-US', options);
+                lastUpdatedEl.textContent = generatedDate.toLocaleDateString('en-US', options);
             }
         }
         updateStats();
@@ -1783,8 +1797,6 @@
         // ===== TRENDS VISUALIZATION FUNCTIONS =====
         
         // ===== VISUALIZATIONS TAB CHARTS =====
-        let visualizationsInitialized = false;
-        let streamDistChart, journalContChart, citationDistChart, pubTimelineChart, keywordsChart, streamImpactChart;
         
         function initializeVisualizations() {
             if (visualizationsInitialized) return;
@@ -2174,8 +2186,6 @@
         }
         
         // ===== TRENDS TAB CHARTS =====
-        let trendsChartsInitialized = false;
-        let streamTimelineChart, cumulativeGrowthChart, journalDecadeChart, emergingTopicsBubbleChart;
         
         function initializeTrendsCharts() {
             if (trendsChartsInitialized) return;
