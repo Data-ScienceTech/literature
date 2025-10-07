@@ -3,7 +3,7 @@
 import pandas as pd, pathlib, sys
 
 # Adjust input path to your artifact
-IN = pathlib.Path("artifacts/level2_topics.csv")
+IN = pathlib.Path("../data/clean/hybrid_streams_3level/topics_level2.csv")
 OUT = pathlib.Path("submission/appendix_A_L2.md")
 
 df = pd.read_csv(IN)

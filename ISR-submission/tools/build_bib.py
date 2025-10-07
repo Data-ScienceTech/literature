@@ -5,7 +5,7 @@ from collections import OrderedDict
 from habanero import Crossref
 import bibtexparser
 
-MANUSCRIPT = pathlib.Path("submission/manuscript.md")  # adjust if needed
+MANUSCRIPT = pathlib.Path("../submission/manuscript/MANUSCRIPT_DRAFT.md")  # original manuscript
 BIB_OUT = pathlib.Path("submission/references.bib")
 
 text = MANUSCRIPT.read_text(encoding="utf-8")
