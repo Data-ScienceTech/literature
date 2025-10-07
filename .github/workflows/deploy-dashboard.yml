@@ -3,7 +3,6 @@ name: Deploy Dashboard to GitHub Pages
 on:
   push:
     branches:
-      - chore/isr-submission
       - main
     paths:
       - 'ISR-submission/dashboard/**'
