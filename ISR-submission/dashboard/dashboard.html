@@ -625,14 +625,50 @@
 
         <!-- Visualizations Panel -->
         <div id="visualizations" class="panel">
-            <div class="viz-grid">
-                <div class="viz-container">
-                    <h3 style="margin-bottom: 15px;">📊 Clustering Overview</h3>
-                    <img src="data/clustering_visualization.png" alt="Clustering Overview" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'%3E%3Crect fill=\'%23f8fafc\' width=\'800\' height=\'600\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%2364748b\' font-family=\'Arial\' font-size=\'20\'%3EVisualization loading...%3C/text%3E%3C/svg%3E'">
+            <h2 style="margin-bottom: 20px;">📊 Interactive Visualizations</h2>
+            <p style="color: #64748b; margin-bottom: 25px;">Explore the research landscape through interactive charts and visualizations</p>
+            
+            <div class="viz-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 25px;">
+                <!-- Stream Distribution -->
+                <div class="viz-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">🎯 Research Stream Distribution</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Distribution of classified papers across 8 major research streams</p>
+                    <canvas id="streamDistributionChart" style="max-height: 350px;"></canvas>
                 </div>
-                <div class="viz-container">
-                    <h3 style="margin-bottom: 15px;">📈 Detailed Analysis</h3>
-                    <img src="data/clustering_details.png" alt="Clustering Details" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'%3E%3Crect fill=\'%23f8fafc\' width=\'800\' height=\'600\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%2364748b\' font-family=\'Arial\' font-size=\'20\'%3EVisualization loading...%3C/text%3E%3C/svg%3E'">
+                
+                <!-- Journal Contributions -->
+                <div class="viz-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">📚 Journal Contributions</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Total papers published by each AIS Basket journal</p>
+                    <canvas id="journalContributionsChart" style="max-height: 350px;"></canvas>
+                </div>
+                
+                <!-- Citation Distribution -->
+                <div class="viz-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">📈 Citation Distribution</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Distribution of citation counts across the corpus</p>
+                    <canvas id="citationDistributionChart" style="max-height: 350px;"></canvas>
+                </div>
+                
+                <!-- Publication Timeline -->
+                <div class="viz-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">� Publication Timeline</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Total papers published per year (1977-2026)</p>
+                    <canvas id="publicationTimelineChart" style="max-height: 350px;"></canvas>
+                </div>
+                
+                <!-- Top Keywords -->
+                <div class="viz-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">🔤 Top Research Keywords</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Most frequent keywords across all research streams</p>
+                    <canvas id="topKeywordsChart" style="max-height: 350px;"></canvas>
+                </div>
+                
+                <!-- Stream Comparison -->
+                <div class="viz-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">⚖️ Stream Impact Comparison</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Average citations per paper by research stream</p>
+                    <canvas id="streamImpactChart" style="max-height: 350px;"></canvas>
                 </div>
             </div>
         </div>
@@ -998,6 +1034,8 @@
                 loadAllStreams();
             } else if (panelId === 'trends') {
                 initializeTrendsCharts();
+            } else if (panelId === 'visualizations') {
+                initializeVisualizations();
             } else if (panelId === 'emerging') {
                 loadEmergingStreams();
             } else if (panelId === 'impactful') {
@@ -1736,6 +1774,392 @@
         
         // ===== TRENDS VISUALIZATION FUNCTIONS =====
         
+        // ===== VISUALIZATIONS TAB CHARTS =====
+        let visualizationsInitialized = false;
+        let streamDistChart, journalContChart, citationDistChart, pubTimelineChart, keywordsChart, streamImpactChart;
+        
+        function initializeVisualizations() {
+            if (visualizationsInitialized) return;
+            
+            console.log('Initializing visualizations...');
+            
+            const papers = dashboardData.papers;
+            const streams = dashboardData.streams.filter(s => s.id !== -1); // Exclude unclassified
+            
+            // 1. Stream Distribution (Doughnut Chart)
+            createStreamDistributionChart(streams);
+            
+            // 2. Journal Contributions (Horizontal Bar Chart)
+            createJournalContributionsChart(papers);
+            
+            // 3. Citation Distribution (Histogram)
+            createCitationDistributionChart(papers);
+            
+            // 4. Publication Timeline (Area Chart)
+            createPublicationTimelineChart(papers);
+            
+            // 5. Top Keywords (Bar Chart)
+            createTopKeywordsChart(streams);
+            
+            // 6. Stream Impact (Bar Chart)
+            createStreamImpactChart(streams);
+            
+            visualizationsInitialized = true;
+        }
+        
+        function createStreamDistributionChart(streams) {
+            const ctx = document.getElementById('streamDistributionChart');
+            if (!ctx) return;
+            
+            const colors = [
+                '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b',
+                '#10b981', '#06b6d4', '#6366f1', '#ef4444'
+            ];
+            
+            streamDistChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: streams.map(s => s.title),
+                    datasets: [{
+                        data: streams.map(s => s.size),
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 15,
+                                padding: 10,
+                                font: { size: 11 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${value} papers (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createJournalContributionsChart(papers) {
+            const ctx = document.getElementById('journalContributionsChart');
+            if (!ctx) return;
+            
+            // Count papers by journal
+            const journalCounts = {};
+            papers.forEach(p => {
+                const journal = p.journal_short || p.journal;
+                journalCounts[journal] = (journalCounts[journal] || 0) + 1;
+            });
+            
+            const sortedJournals = Object.entries(journalCounts)
+                .sort((a, b) => b[1] - a[1]);
+            
+            journalContChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedJournals.map(j => j[0]),
+                    datasets: [{
+                        label: 'Total Papers',
+                        data: sortedJournals.map(j => j[1]),
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#2563eb',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.x} papers`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Papers'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createCitationDistributionChart(papers) {
+            const ctx = document.getElementById('citationDistributionChart');
+            if (!ctx) return;
+            
+            // Create bins for citation counts
+            const bins = [0, 10, 25, 50, 100, 200, 500, 1000, 10000];
+            const binLabels = ['0-9', '10-24', '25-49', '50-99', '100-199', '200-499', '500-999', '1000+'];
+            const binCounts = new Array(bins.length - 1).fill(0);
+            
+            papers.forEach(p => {
+                const citations = p.citation_count || 0;
+                for (let i = 0; i < bins.length - 1; i++) {
+                    if (citations >= bins[i] && citations < bins[i + 1]) {
+                        binCounts[i]++;
+                        break;
+                    }
+                }
+            });
+            
+            citationDistChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: binLabels,
+                    datasets: [{
+                        label: 'Number of Papers',
+                        data: binCounts,
+                        backgroundColor: '#8b5cf6',
+                        borderColor: '#7c3aed',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed.y / total) * 100).toFixed(1);
+                                    return `${context.parsed.y} papers (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Papers'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Citation Count Range'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createPublicationTimelineChart(papers) {
+            const ctx = document.getElementById('publicationTimelineChart');
+            if (!ctx) return;
+            
+            // Count papers by year
+            const yearCounts = {};
+            papers.forEach(p => {
+                const year = p.year;
+                if (year) {
+                    yearCounts[year] = (yearCounts[year] || 0) + 1;
+                }
+            });
+            
+            const sortedYears = Object.keys(yearCounts).sort();
+            const years = sortedYears.map(y => parseInt(y));
+            const counts = sortedYears.map(y => yearCounts[y]);
+            
+            pubTimelineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Papers Published',
+                        data: counts,
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: '#3b82f6',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return `Year ${context[0].label}`;
+                                },
+                                label: function(context) {
+                                    return `${context.parsed.y} papers published`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Papers Published'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            },
+                            ticks: {
+                                maxTicksLimit: 15
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createTopKeywordsChart(streams) {
+            const ctx = document.getElementById('topKeywordsChart');
+            if (!ctx) return;
+            
+            // Collect all keywords with their frequencies
+            const keywordCounts = {};
+            streams.forEach(stream => {
+                if (stream.topKeywords) {
+                    stream.topKeywords.forEach(kw => {
+                        keywordCounts[kw] = (keywordCounts[kw] || 0) + 1;
+                    });
+                }
+            });
+            
+            // Get top 15 keywords
+            const topKeywords = Object.entries(keywordCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 15);
+            
+            keywordsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: topKeywords.map(k => k[0]),
+                    datasets: [{
+                        label: 'Frequency',
+                        data: topKeywords.map(k => k[1]),
+                        backgroundColor: '#10b981',
+                        borderColor: '#059669',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Appears in ${context.parsed.y} streams`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Streams'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Keywords'
+                            },
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createStreamImpactChart(streams) {
+            const ctx = document.getElementById('streamImpactChart');
+            if (!ctx) return;
+            
+            const sortedStreams = streams
+                .map(s => ({
+                    title: s.title,
+                    avgCitations: s.avgCitations || 0
+                }))
+                .sort((a, b) => b.avgCitations - a.avgCitations);
+            
+            streamImpactChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedStreams.map(s => s.title),
+                    datasets: [{
+                        label: 'Average Citations',
+                        data: sortedStreams.map(s => s.avgCitations),
+                        backgroundColor: '#ec4899',
+                        borderColor: '#db2777',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Avg: ${context.parsed.x.toFixed(1)} citations/paper`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Average Citations per Paper'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // ===== TRENDS TAB CHARTS =====
         let trendsChartsInitialized = false;
         let streamTimelineChart, cumulativeGrowthChart, journalDecadeChart, emergingTopicsBubbleChart;
         
