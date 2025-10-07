@@ -2374,7 +2374,11 @@
             const ctx = document.getElementById('emergingTopicsBubbleChart');
             if (!ctx) return;
             
-            const data = streams.map(stream => ({
+            // Filter to only L1 streams (main research streams, not subtopics)
+            // L1 streams have single-digit IDs (0-7), exclude Unclassified (-1)
+            const l1Streams = streams.filter(s => s.id >= 0 && s.id < 10);
+            
+            const data = l1Streams.map(stream => ({
                 x: stream.avgYear || 2000,
                 y: stream.avgCitations || 0,
                 r: Math.sqrt(stream.size) / 3, // Bubble size proportional to paper count
