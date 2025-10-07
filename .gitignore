@@ -12,10 +12,6 @@
 !/LICENSE
 !/.github/
 
-# But within ISR-submission, exclude the large dashboard data file
-# (It's already committed, but won't track future changes)
-ISR-submission/dashboard/dashboard-data.js
-
 # === STANDARD IGNORES ===
 
 # Python
