@@ -542,21 +542,27 @@
                 <div style="margin-bottom: 40px;">
                     <h3 style="color: var(--primary); margin-bottom: 15px;">📊 Research Stream Evolution (1977-2026)</h3>
                     <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Papers published per year by research stream</p>
-                    <canvas id="streamTimelineChart" style="max-height: 400px;"></canvas>
+                    <div style="position: relative; height: 400px; width: 100%;">
+                        <canvas id="streamTimelineChart"></canvas>
+                    </div>
                 </div>
                 
                 <!-- Cumulative Growth Chart -->
                 <div style="margin-bottom: 40px;">
                     <h3 style="color: var(--primary); margin-bottom: 15px;">📈 Cumulative Growth</h3>
                     <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Total papers published over time across all journals</p>
-                    <canvas id="cumulativeGrowthChart" style="max-height: 300px;"></canvas>
+                    <div style="position: relative; height: 300px; width: 100%;">
+                        <canvas id="cumulativeGrowthChart"></canvas>
+                    </div>
                 </div>
                 
                 <!-- Journal Distribution by Decade -->
                 <div style="margin-bottom: 40px;">
                     <h3 style="color: var(--primary); margin-bottom: 15px;">📚 Journal Contribution by Decade</h3>
                     <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Publication distribution across the AIS Basket of Eight</p>
-                    <canvas id="journalDecadeChart" style="max-height: 400px;"></canvas>
+                    <div style="position: relative; height: 400px; width: 100%;">
+                        <canvas id="journalDecadeChart"></canvas>
+                    </div>
                 </div>
                 
                 <!-- Emerging Topics Bubble Chart -->
@@ -565,7 +571,9 @@
                     <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">
                         Research streams by average publication year and size (bubble size = paper count)
                     </p>
-                    <canvas id="emergingTopicsBubbleChart" style="max-height: 500px;"></canvas>
+                    <div style="position: relative; height: 500px; width: 100%;">
+                        <canvas id="emergingTopicsBubbleChart"></canvas>
+                    </div>
                 </div>
                 
                 <!-- Stream Activity Heatmap -->
