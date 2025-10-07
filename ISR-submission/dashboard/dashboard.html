@@ -1781,6 +1781,12 @@
         function initializeVisualizations() {
             if (visualizationsInitialized) return;
             
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded! Visualizations cannot be created.');
+                return;
+            }
+            
             console.log('Initializing visualizations...');
             
             const papers = dashboardData.papers;
@@ -2166,8 +2172,15 @@
         function initializeTrendsCharts() {
             if (trendsChartsInitialized) return;
             
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded! Charts cannot be created.');
+                return;
+            }
+            
             console.log('Initializing trends charts...');
             console.log('Dashboard data:', dashboardData);
+            console.log('Chart.js version:', Chart.version);
             
             // Prepare data from dashboardData
             const papers = dashboardData.papers;
