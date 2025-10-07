@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <h1>Chart.js Test</h1>
+    <div style="width: 600px; height: 400px;">
+        <canvas id="testChart"></canvas>
+    </div>
+
+    <script>
+        console.log('Testing Chart.js availability...');
+        console.log('Chart object:', typeof Chart);
+        if (typeof Chart !== 'undefined') {
+            console.log('Chart.js version:', Chart.version);
+            
+            // Create a simple test chart
+            const ctx = document.getElementById('testChart');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [2020, 2021, 2022, 2023, 2024],
+                    datasets: [{
+                        label: 'Test Data',
+                        data: [10, 25, 15, 30, 20],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Chart.js is Working!'
+                        }
+                    }
+                }
+            });
+            console.log('Test chart created successfully!');
+        } else {
+            console.error('Chart.js failed to load!');
+            document.body.innerHTML += '<p style="color: red;">Chart.js failed to load from CDN!</p>';
+        }
+    </script>
+</body>
+</html>
